@@ -21,6 +21,12 @@ PlaybackController::PlaybackController(QObject *parent)
         audioEngine->setOnError([this](AudioEngine::ErrorCode code, const std::string& msg) {
             this->onPlaybackError(code, msg);
         });
+
+        // Pump backend events so end-of-track callbacks fire.
+        audioEventTimer = new QTimer(this);
+        audioEventTimer->setInterval(50);
+        connect(audioEventTimer, &QTimer::timeout, this, &PlaybackController::onAudioEventTick);
+        audioEventTimer->start();
         
         if (!isBackendAvailable()) {
             Logger::warn("PlaybackController", "Playback backend is unavailable; playback will be disabled");
@@ -37,6 +43,10 @@ PlaybackController::PlaybackController(QObject *parent)
 }
 
 PlaybackController::~PlaybackController() {
+    if (audioEventTimer) {
+        audioEventTimer->stop();
+    }
+
     if (audioEngine) {
         audioEngine->stop();
     }
@@ -266,6 +276,14 @@ int PlaybackController::getTrackCount() const {
         return 0;
     }
     return fileManager->getTrackCount();
+}
+
+void PlaybackController::onAudioEventTick() {
+    if (!audioEngine) {
+        return;
+    }
+
+    audioEngine->processEvents();
 }
 
 void PlaybackController::onTrackFinished() {

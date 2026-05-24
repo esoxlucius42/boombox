@@ -363,6 +363,11 @@ void AudioEngine::processEvents() {
         // Process all pending events from mpv
         while (true) {
             mpv_event* event = mpv_wait_event(mHandle, 0);
+            if (!event) {
+                logMessage("WARN", "mpv_wait_event returned null event");
+                break;
+            }
+
             if (event->event_id == MPV_EVENT_NONE) {
                 break;
             }
@@ -392,7 +397,12 @@ void AudioEngine::handleEvent(const mpv_event* event) {
 
             case MPV_EVENT_END_FILE: {
                 mpv_event_end_file* eof = static_cast<mpv_event_end_file*>(event->data);
-                if (eof && eof->reason == MPV_END_FILE_REASON_ERROR) {
+                if (!eof) {
+                    logMessage("WARN", "END_FILE event had no payload");
+                    break;
+                }
+
+                if (eof->reason == MPV_END_FILE_REASON_ERROR) {
                     // Handle playback error on end file
                     logMessage("ERROR", "Track ended with error: " + std::string(mpv_error_string(eof->error)));
                     mState = PlaybackState::Stopped;
@@ -400,12 +410,16 @@ void AudioEngine::handleEvent(const mpv_event* event) {
                         ErrorCode errorCode = mapMpvError(eof->error);
                         mOnError(errorCode, "Playback error: track ended with error");
                     }
-                } else {
+                } else if (eof->reason == MPV_END_FILE_REASON_EOF) {
                     logMessage("INFO", "Track finished");
                     mState = PlaybackState::Stopped;
                     if (mOnTrackFinished) {
                         mOnTrackFinished();
                     }
+                } else {
+                    // Non-EOF end reasons happen during manual track switches and should
+                    // not trigger automatic random-next behavior.
+                    logMessage("DEBUG", "Track ended for non-EOF reason; skipping auto-next");
                 }
                 break;
             }
@@ -432,12 +446,23 @@ void AudioEngine::handleEvent(const mpv_event* event) {
 
             case MPV_EVENT_PROPERTY_CHANGE: {
                 mpv_event_property* prop = static_cast<mpv_event_property*>(event->data);
-                logMessage("DEBUG", "Property changed: " + std::string(prop->name));
+                if (!prop) {
+                    logMessage("WARN", "Property change event had no payload");
+                    break;
+                }
+
+                const char* propertyName = prop->name ? prop->name : "<unknown>";
+                logMessage("DEBUG", "Property changed: " + std::string(propertyName));
                 break;
             }
 
             case MPV_EVENT_ERROR: {
                 mpv_event_error* error = static_cast<mpv_event_error*>(event->data);
+                if (!error) {
+                    logMessage("WARN", "MPV Error event had no payload; ignoring");
+                    break;
+                }
+
                 logMessage("ERROR", "MPV Error: " + std::string(mpv_error_string(error->error)));
                 mState = PlaybackState::Stopped;
                 if (mOnError) {

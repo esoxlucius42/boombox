@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QTimer>
 #include <memory>
 #include <random>
 #include "audioengine.h"
@@ -92,6 +93,11 @@ signals:
 
 private slots:
     /**
+     * @brief Called periodically to process audio backend events
+     */
+    void onAudioEventTick();
+
+    /**
      * @brief Called when current track finishes
      */
     void onTrackFinished();
@@ -112,6 +118,7 @@ private:
     
     std::mt19937 randomGenerator;  // Mersenne Twister for true random
     bool backendUnavailableErrorShown = false;
+    QTimer* audioEventTimer = nullptr;
     static constexpr int FIXED_VOLUME_LEVEL = 100;
 
     /**

@@ -47,6 +47,7 @@ template <> constexpr inline auto PlaybackController::qt_create_metaobjectdata<q
         "meta",
         "playbackError",
         "error",
+        "onAudioEventTick",
         "onTrackFinished",
         "onPlaybackError",
         "AudioEngine::ErrorCode",
@@ -68,11 +69,13 @@ template <> constexpr inline auto PlaybackController::qt_create_metaobjectdata<q
         QtMocHelpers::SignalData<void(const QString &)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 8 },
         }}),
-        // Slot 'onTrackFinished'
+        // Slot 'onAudioEventTick'
         QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onTrackFinished'
+        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onPlaybackError'
-        QtMocHelpers::SlotData<void(AudioEngine::ErrorCode, const std::string &)>(10, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 11, 12 }, { 0x80000000 | 13, 14 },
+        QtMocHelpers::SlotData<void(AudioEngine::ErrorCode, const std::string &)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 12, 13 }, { 0x80000000 | 14, 15 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -100,8 +103,9 @@ void PlaybackController::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 0: _t->trackChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         case 1: _t->trackMetadataLoaded((*reinterpret_cast<std::add_pointer_t<AudioMetadata>>(_a[1]))); break;
         case 2: _t->playbackError((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 3: _t->onTrackFinished(); break;
-        case 4: _t->onPlaybackError((*reinterpret_cast<std::add_pointer_t<AudioEngine::ErrorCode>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<std::string>>(_a[2]))); break;
+        case 3: _t->onAudioEventTick(); break;
+        case 4: _t->onTrackFinished(); break;
+        case 5: _t->onPlaybackError((*reinterpret_cast<std::add_pointer_t<AudioEngine::ErrorCode>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<std::string>>(_a[2]))); break;
         default: ;
         }
     }
@@ -134,14 +138,14 @@ int PlaybackController::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 5)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 5;
+        _id -= 6;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 5)
+        if (_id < 6)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 5;
+        _id -= 6;
     }
     return _id;
 }

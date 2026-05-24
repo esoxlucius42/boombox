@@ -286,7 +286,11 @@ CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o: \
  /usr/include/qt6/QtCore/qbindingstorage.h /usr/include/c++/16/chrono \
  /usr/include/c++/16/bits/chrono.h /usr/include/c++/16/ratio \
  /usr/include/c++/16/ctime /usr/include/qt6/QtCore/QString \
- /usr/include/qt6/QtCore/qstring.h /usr/include/c++/16/random \
+ /usr/include/qt6/QtCore/qstring.h /usr/include/qt6/QtCore/QTimer \
+ /usr/include/qt6/QtCore/qtimer.h /usr/include/qt6/QtCore/qbasictimer.h \
+ /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
+ /usr/include/qt6/QtCore/qobject.h /usr/include/qt6/QtCore/qeventloop.h \
+ /usr/include/qt6/QtCore/qdeadlinetimer.h /usr/include/c++/16/random \
  /usr/include/c++/16/bits/random.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/opt_random.h \
  /usr/include/c++/16/bits/random.tcc \
@@ -301,13 +305,12 @@ CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o: \
  /var/home/esox/dev/cpp/boombox/include/logger.h \
  /usr/include/qt6/QtCore/QFile /usr/include/qt6/QtCore/qfile.h \
  /usr/include/qt6/QtCore/qfiledevice.h \
- /usr/include/qt6/QtCore/qiodevice.h /usr/include/qt6/QtCore/qobject.h \
- /usr/include/qt6/QtCore/qspan.h /usr/include/c++/16/cassert \
- /usr/include/qt6/QtCore/q20iterator.h /usr/include/c++/16/filesystem \
- /usr/include/c++/16/bits/fs_fwd.h /usr/include/c++/16/bits/fs_path.h \
- /usr/include/c++/16/locale /usr/include/c++/16/bits/locale_facets.h \
- /usr/include/c++/16/cwctype /usr/include/wctype.h \
- /usr/include/bits/wctype-wchar.h \
+ /usr/include/qt6/QtCore/qiodevice.h /usr/include/qt6/QtCore/qspan.h \
+ /usr/include/c++/16/cassert /usr/include/qt6/QtCore/q20iterator.h \
+ /usr/include/c++/16/filesystem /usr/include/c++/16/bits/fs_fwd.h \
+ /usr/include/c++/16/bits/fs_path.h /usr/include/c++/16/locale \
+ /usr/include/c++/16/bits/locale_facets.h /usr/include/c++/16/cwctype \
+ /usr/include/wctype.h /usr/include/bits/wctype-wchar.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/ctype_base.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/ctype_inline.h \
  /usr/include/c++/16/bits/locale_facets.tcc \
@@ -328,7 +331,6 @@ CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o: \
  /usr/include/c++/16/bits/sstream.tcc /usr/include/c++/16/codecvt \
  /usr/include/c++/16/bits/fs_dir.h /usr/include/c++/16/bits/fs_ops.h \
  /usr/include/qt6/QtCore/QMutex /usr/include/qt6/QtCore/qmutex.h \
- /usr/include/qt6/QtCore/qdeadlinetimer.h \
  /usr/include/qt6/QtCore/qtsan_impl.h /usr/include/qt6/QtCore/QFileInfo \
  /usr/include/qt6/QtCore/qfileinfo.h /usr/include/qt6/QtCore/qfile.h \
  /usr/include/qt6/QtCore/qdatetime.h /usr/include/qt6/QtCore/qcalendar.h \

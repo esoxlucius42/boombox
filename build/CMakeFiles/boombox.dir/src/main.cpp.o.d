@@ -388,6 +388,7 @@ CMakeFiles/boombox.dir/src/main.cpp.o: \
  /usr/include/qt6/QtCore/qjsonparseerror.h \
  /var/home/esox/dev/cpp/boombox/include/playbackcontroller.h \
  /usr/include/qt6/QtCore/QObject /usr/include/qt6/QtCore/qobject.h \
+ /usr/include/qt6/QtCore/QTimer /usr/include/qt6/QtCore/qtimer.h \
  /usr/include/c++/16/random /usr/include/c++/16/bits/random.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/opt_random.h \
  /usr/include/c++/16/bits/random.tcc \
@@ -404,8 +405,7 @@ CMakeFiles/boombox.dir/src/main.cpp.o: \
  /usr/include/qt6/QtGui/qfontinfo.h \
  /usr/include/qt6/QtGui/qfontvariableaxis.h \
  /usr/include/qt6/QtWidgets/qsizepolicy.h \
- /usr/include/qt6/QtWidgets/qtabwidget.h /usr/include/qt6/QtCore/QTimer \
- /usr/include/qt6/QtCore/qtimer.h \
+ /usr/include/qt6/QtWidgets/qtabwidget.h \
  /var/home/esox/dev/cpp/boombox/include/widgets/trackinfo.h \
  /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtWidgets/qwidget.h \
  /usr/include/qt6/QtWidgets/QLabel /usr/include/qt6/QtWidgets/qlabel.h \
