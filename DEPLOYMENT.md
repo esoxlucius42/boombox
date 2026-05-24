@@ -60,6 +60,12 @@ This installs dependencies, builds Boombox, installs it to `/opt/boombox`, and r
 sudo ./scripts/install_raspberry_pi_os.sh
 ```
 
+For day-to-day updates on an existing Pi install, use:
+
+```bash
+sudo ./scripts/update_raspberry_pi_os.sh
+```
+
 ## 4. Build on Raspberry Pi OS (manual)
 
 Configure:
@@ -224,9 +230,7 @@ sudo systemctl status boombox --no-pager
 
 ```bash
 cd /path/to/boombox
-git pull
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build -j4
-sudo install -m 0755 build/bin/boombox /opt/boombox/boombox
-sudo systemctl restart boombox
+sudo ./scripts/update_raspberry_pi_os.sh
 ```
+
+The update script performs a fast-forward `git pull`, reruns the Raspberry Pi installer, and restarts `boombox.service` automatically when that service is active. Set `UPDATE_SOURCE=0` to rebuild the current checkout without pulling, or `RESTART_SERVICE=0` to skip the service restart.

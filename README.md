@@ -130,6 +130,12 @@ Quick auto-install on Raspberry Pi OS:
 sudo ./scripts/install_raspberry_pi_os.sh
 ```
 
+Quick update on Raspberry Pi OS:
+
+```bash
+sudo ./scripts/update_raspberry_pi_os.sh
+```
+
 ## Useful developer commands
 
 ```bash
