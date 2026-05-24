@@ -26,6 +26,7 @@ private slots:
     void onPlaybackError(const QString& error);
     void onPlayPauseClicked();
     void onNextClicked();
+    void onFullscreenClicked();
     void onSeekRequested(int positionSeconds);
     void onPlaybackUiTick();
 

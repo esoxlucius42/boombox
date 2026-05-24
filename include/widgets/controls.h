@@ -17,11 +17,13 @@ public:
 signals:
     void playPauseClicked();
     void nextClicked();
+    void fullscreenClicked();
     void browseClicked();
 
 private:
     QPushButton *playPauseButton;
     QPushButton *nextButton;
+    QPushButton *fullscreenButton;
     QPushButton *browseButton;
     bool isPlaying = false;
 };

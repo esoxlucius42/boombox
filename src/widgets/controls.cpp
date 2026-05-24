@@ -31,9 +31,15 @@ ControlsWidget::ControlsWidget(QWidget *parent)
     
     mainLayout->addLayout(playbackLayout);
     
-    // Secondary controls (Browse)
+    // Secondary controls (Fullscreen, Browse)
     auto controlLayout = new QHBoxLayout();
     controlLayout->setSpacing(10);
+
+    fullscreenButton = new QPushButton("FS", this);
+    fullscreenButton->setMinimumHeight(50);
+    fullscreenButton->setMinimumWidth(60);
+    fullscreenButton->setObjectName("fullscreenButton");
+    controlLayout->addWidget(fullscreenButton);
 
     browseButton = new QPushButton("Browse", this);
     browseButton->setMinimumHeight(50);
@@ -45,6 +51,7 @@ ControlsWidget::ControlsWidget(QWidget *parent)
     // Connect signals
     connect(playPauseButton, &QPushButton::clicked, this, &ControlsWidget::playPauseClicked);
     connect(nextButton, &QPushButton::clicked, this, &ControlsWidget::nextClicked);
+    connect(fullscreenButton, &QPushButton::clicked, this, &ControlsWidget::fullscreenClicked);
     connect(browseButton, &QPushButton::clicked, this, &ControlsWidget::browseClicked);
     
     setObjectName("controlsWidget");
@@ -65,5 +72,6 @@ void ControlsWidget::enableControls(bool enabled)
 {
     playPauseButton->setEnabled(enabled);
     nextButton->setEnabled(enabled);
+    fullscreenButton->setEnabled(enabled);
     browseButton->setEnabled(enabled);
 }

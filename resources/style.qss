@@ -133,6 +133,16 @@ QPushButton:pressed {
     border: 1px solid #6f9fdf;
 }
 
+#fullscreenButton {
+    color: #ffd27f;
+    border: 1px solid #c89f52;
+}
+
+#fullscreenButton:hover {
+    background-color: #5a4e3a;
+    border: 1px solid #d8af62;
+}
+
 #browseButton {
     color: #e0e0e0;
     border: 1px solid #505050;

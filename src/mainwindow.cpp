@@ -114,15 +114,16 @@ void MainWindow::setupUI()
 
 void MainWindow::connectSignals()
 {
+    connect(controlsWidget, &ControlsWidget::browseClicked,
+            this, &MainWindow::onBrowseClicked);
+    connect(controlsWidget, &ControlsWidget::fullscreenClicked,
+            this, &MainWindow::onFullscreenClicked);
+
     if (!playbackController) {
         Logger::warn("MainWindow", "PlaybackController is null, cannot connect signals");
         return;
     }
-    
-    // Connect browse button
-    connect(controlsWidget, &ControlsWidget::browseClicked, 
-            this, &MainWindow::onBrowseClicked);
-    
+
     // Connect track changed to extract album art
     connect(playbackController, &PlaybackController::trackChanged,
             this, &MainWindow::onTrackChanged);
@@ -278,6 +279,21 @@ void MainWindow::onNextClicked()
 
     playbackController->playNext();
     controlsWidget->setPlayButtonState(playbackController->isPlaying());
+}
+
+void MainWindow::onFullscreenClicked()
+{
+    const bool enableFullscreen = !isFullScreen();
+    if (enableFullscreen) {
+        showFullScreen();
+    } else {
+        showNormal();
+        resize(800, 480);
+    }
+
+    Logger::info("MainWindow",
+                 enableFullscreen ? "Fullscreen enabled from controls"
+                                  : "Fullscreen disabled from controls");
 }
 
 void MainWindow::onSeekRequested(int positionSeconds)
