@@ -36,7 +36,7 @@ Boombox is a Qt6 + C++ audio player designed for Raspberry Pi (targeting Pi 5 to
 - C++17 compiler toolchain (`g++`, `make`, etc.)
 - Qt6 development packages (`qt6-base-dev`)
 - `pkg-config`
-- `libmpv-dev` (recommended)
+- `libmpv-dev` (recommended, but not required if the runtime library is installed)
 
 ### Check whether mpv is installed
 
@@ -46,14 +46,14 @@ Check whether the runtime library is present:
 ldconfig -p | grep libmpv
 ```
 
-Check whether the development package is available for building the real backend:
+Check whether the development header is available:
 
 ```bash
 pkg-config --modversion mpv
 ls /usr/include/mpv/client.h
 ```
 
-If `pkg-config --modversion mpv` or `ls /usr/include/mpv/client.h` fails, Boombox will fall back to the stub backend and playback will be unavailable.
+If `ldconfig -p | grep libmpv` succeeds, Boombox can still build the real playback backend even when `pkg-config --modversion mpv` or `ls /usr/include/mpv/client.h` fails. The development package is still recommended.
 
 ### Install mpv if missing
 
@@ -62,6 +62,13 @@ On Raspberry Pi OS / Debian:
 ```bash
 sudo apt update
 sudo apt install -y libmpv2 libmpv-dev
+```
+
+If you only need the runtime library:
+
+```bash
+sudo apt update
+sudo apt install -y libmpv2
 ```
 
 Then rebuild:

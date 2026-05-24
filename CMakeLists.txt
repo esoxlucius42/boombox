@@ -5,10 +5,9 @@ project(boombox)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Enable Qt automoc, autouic, and autorcc
+# Enable Qt automoc and autorcc
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
 
 # Set output directories
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -76,7 +75,10 @@ if(NOT MPV_LINKABLE)
         set(MPV_LINK_MODE "direct-library")
         message(STATUS "Found linkable libmpv via direct library lookup: ${MPV_FALLBACK_LIBRARY}")
     elseif(MPV_FALLBACK_LIBRARY)
-        message(WARNING "Found libmpv runtime library but no mpv/client.h header. Building with stub backend.")
+        message(WARNING "Found libmpv runtime library but no mpv/client.h header. Building with compat declarations.")
+        set(MPV_LINKABLE TRUE)
+        set(MPV_LIBRARIES "${MPV_FALLBACK_LIBRARY}")
+        set(MPV_LINK_MODE "direct-library-compat-header")
     endif()
 endif()
 
@@ -88,7 +90,7 @@ endif()
 
 # Include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-if(MPV_LINKABLE)
+if(MPV_LINKABLE AND MPV_INCLUDE_DIRS)
     include_directories(${MPV_INCLUDE_DIRS})
 endif()
 
@@ -165,7 +167,12 @@ if(MPV_LINKABLE)
     if(MPV_LIBRARY_DIRS)
         target_link_directories(boombox PRIVATE ${MPV_LIBRARY_DIRS})
     endif()
-    target_compile_definitions(boombox PRIVATE ${MPV_CFLAGS_OTHER})
+    if(MPV_CFLAGS_OTHER)
+        target_compile_options(boombox PRIVATE ${MPV_CFLAGS_OTHER})
+    endif()
+    if(NOT MPV_INCLUDE_DIRS)
+        target_compile_definitions(boombox PRIVATE BOOMBOX_USING_MPV_COMPAT_HEADER=1)
+    endif()
 else()
     target_compile_definitions(boombox PRIVATE BOOMBOX_USING_MPV_STUB=1)
 endif()

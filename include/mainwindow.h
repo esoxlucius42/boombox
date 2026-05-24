@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTimer>
 #include <memory>
+#include "filemanager.h"
 #include "widgets/trackinfo.h"
 #include "widgets/seekbar.h"
 #include "widgets/controls.h"
@@ -11,7 +12,6 @@
 #include "widgets/spectrumanalyzer.h"
 
 class PlaybackController;
-struct AudioMetadata;
 
 class MainWindow : public QMainWindow {
     Q_OBJECT

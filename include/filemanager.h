@@ -4,6 +4,7 @@
 #include <QString>
 #include <QStringList>
 #include <QMap>
+#include <QMetaType>
 #include <QSet>
 #include <memory>
 
@@ -13,6 +14,8 @@ struct AudioMetadata {
     QString title = "Unknown Title";
     int duration = 0;  // in seconds
 };
+
+Q_DECLARE_METATYPE(AudioMetadata)
 
 class FileManager {
 public:

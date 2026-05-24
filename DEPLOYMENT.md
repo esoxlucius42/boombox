@@ -21,6 +21,7 @@ sudo apt install -y \
   cmake \
   pkg-config \
   qt6-base-dev \
+  libmpv2 \
   libmpv-dev
 ```
 
@@ -42,7 +43,7 @@ pkg-config --modversion Qt6Core
 pkg-config --modversion mpv
 ```
 
-If `pkg-config --modversion mpv` fails, the project can still try direct `libmpv` lookup during CMake configure. If no linkable libmpv is found, Boombox builds with a stub backend (UI works, playback unavailable).
+If `pkg-config --modversion mpv` fails, the project can still use a direct `libmpv` runtime-library lookup during CMake configure. If no usable libmpv runtime is found, Boombox builds with a stub backend (UI works, playback unavailable).
 
 ## 3. Get source code
 
