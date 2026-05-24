@@ -355,6 +355,8 @@ CMakeFiles/boombox.dir/src/mainwindow.cpp.o: \
  /usr/include/qt6/QtCore/QMap /usr/include/qt6/QtCore/qmap.h \
  /usr/include/qt6/QtGui/QPixmapCache \
  /usr/include/qt6/QtGui/qpixmapcache.h \
+ /var/home/esox/dev/cpp/boombox/include/widgets/spectrumanalyzer.h \
+ /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
  /var/home/esox/dev/cpp/boombox/include/playbackcontroller.h \
  /usr/include/qt6/QtCore/QObject /usr/include/qt6/QtCore/qobject.h \
  /usr/include/c++/16/random /usr/include/c++/16/bits/random.h \

@@ -8,6 +8,7 @@
 #include "widgets/seekbar.h"
 #include "widgets/controls.h"
 #include "widgets/albumart.h"
+#include "widgets/spectrumanalyzer.h"
 
 class PlaybackController;
 struct AudioMetadata;
@@ -37,6 +38,7 @@ private:
     SeekBarWidget *seekBarWidget;
     ControlsWidget *controlsWidget;
     AlbumArtWidget *albumArtWidget;
+    SpectrumAnalyzerWidget *spectrumAnalyzerWidget;
     PlaybackController *playbackController;
     QString currentTrackPath;
     QTimer *playbackUiTimer = nullptr;

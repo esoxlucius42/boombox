@@ -290,7 +290,8 @@ CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o: \
  /usr/include/qt6/QtCore/qtimer.h /usr/include/qt6/QtCore/qbasictimer.h \
  /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
  /usr/include/qt6/QtCore/qobject.h /usr/include/qt6/QtCore/qeventloop.h \
- /usr/include/qt6/QtCore/qdeadlinetimer.h /usr/include/c++/16/random \
+ /usr/include/qt6/QtCore/qdeadlinetimer.h /usr/include/qt6/QtCore/QVector \
+ /usr/include/qt6/QtCore/qvector.h /usr/include/c++/16/random \
  /usr/include/c++/16/bits/random.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/opt_random.h \
  /usr/include/c++/16/bits/random.tcc \

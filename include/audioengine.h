@@ -122,6 +122,12 @@ public:
     double getDuration() const;
 
     /**
+     * @brief Get current reactive level derived from backend audio analysis
+     * @return Normalized level in [0.0, 1.0]
+     */
+    double getReactiveLevel() const;
+
+    /**
      * @brief Check if currently playing
      * @return true if playing, false otherwise
      */

@@ -1,13 +1,16 @@
-CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/mocs_compilation.cpp \
+CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o: \
+ /var/home/esox/dev/cpp/boombox/src/widgets/spectrumanalyzer.cpp \
  /usr/include/stdc-predef.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/moc_mainwindow.cpp \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/mainwindow.h \
- /usr/include/qt6/QtWidgets/QMainWindow \
- /usr/include/qt6/QtWidgets/qmainwindow.h \
- /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
- /usr/include/qt6/QtGui/qtguiglobal.h /usr/include/qt6/QtCore/qglobal.h \
- /usr/include/c++/16/type_traits \
+ /var/home/esox/dev/cpp/boombox/include/widgets/spectrumanalyzer.h \
+ /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
+ /usr/include/qt6/QtCore/qlist.h \
+ /usr/include/qt6/QtCore/qarraydatapointer.h \
+ /usr/include/qt6/QtCore/qarraydataops.h \
+ /usr/include/qt6/QtCore/qarraydata.h /usr/include/qt6/QtCore/qpair.h \
+ /usr/include/qt6/QtCore/qcontainerfwd.h \
+ /usr/include/qt6/QtCore/qtconfigmacros.h \
+ /usr/include/qt6/QtCore/qtconfiginclude.h /usr/include/c++/16/version \
+ /usr/include/c++/16/bits/version.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/bits/wordsize.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/os_defines.h \
@@ -16,38 +19,36 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/cpu_defines.h \
- /usr/include/c++/16/pstl/pstl_config.h \
- /usr/include/c++/16/bits/version.h /usr/include/c++/16/cstddef \
+ /usr/include/c++/16/pstl/pstl_config.h /usr/include/qt6/QtCore/qconfig.h \
+ /usr/include/qt6/QtCore/qconfig-64.h \
+ /usr/include/qt6/QtCore/qtcore-config.h \
+ /usr/include/qt6/QtCore/qtdeprecationdefinitions.h \
+ /usr/include/qt6/QtCore/qcompilerdetection.h \
+ /usr/include/qt6/QtCore/qprocessordetection.h \
+ /usr/include/qt6/QtCore/qsystemdetection.h /usr/include/c++/16/utility \
+ /usr/include/c++/16/bits/stl_relops.h \
+ /usr/include/c++/16/bits/stl_pair.h /usr/include/c++/16/type_traits \
+ /usr/include/c++/16/bits/move.h /usr/include/c++/16/bits/utility.h \
+ /usr/include/c++/16/initializer_list \
+ /usr/include/qt6/QtCore/qtversionchecks.h /usr/include/assert.h \
+ /usr/include/qt6/QtCore/qtypes.h /usr/include/qt6/QtCore/qassert.h \
+ /usr/include/qt6/QtCore/qtcoreexports.h \
+ /usr/include/qt6/QtCore/qtdeprecationmarkers.h \
+ /usr/include/qt6/QtCore/qtclasshelpermacros.h \
+ /usr/include/qt6/QtCore/qtnoop.h /usr/include/c++/16/cstddef \
  /usr/lib/gcc/x86_64-redhat-linux/16/include/stddef.h \
- /usr/include/c++/16/utility /usr/include/c++/16/bits/stl_relops.h \
- /usr/include/c++/16/bits/stl_pair.h /usr/include/c++/16/bits/move.h \
- /usr/include/c++/16/bits/utility.h /usr/include/c++/16/initializer_list \
  /usr/include/c++/16/cstdint \
  /usr/lib/gcc/x86_64-redhat-linux/16/include/stdint.h \
  /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
  /usr/include/bits/types.h /usr/include/bits/typesizes.h \
  /usr/include/bits/time64.h /usr/include/bits/wchar.h \
  /usr/include/bits/stdint-intn.h /usr/include/bits/stdint-uintn.h \
- /usr/include/bits/stdint-least.h /usr/include/assert.h \
+ /usr/include/bits/stdint-least.h /usr/include/c++/16/limits \
+ /usr/include/qt6/QtCore/qglobal.h \
  /usr/lib/gcc/x86_64-redhat-linux/16/include/stdbool.h \
  /usr/include/qt6/QtCore/qtcoreglobal.h \
- /usr/include/qt6/QtCore/qtversionchecks.h \
- /usr/include/qt6/QtCore/qtconfiginclude.h /usr/include/c++/16/version \
- /usr/include/qt6/QtCore/qconfig.h /usr/include/qt6/QtCore/qconfig-64.h \
- /usr/include/qt6/QtCore/qtcore-config.h \
- /usr/include/qt6/QtCore/qtconfigmacros.h \
- /usr/include/qt6/QtCore/qtdeprecationdefinitions.h \
- /usr/include/qt6/QtCore/qcompilerdetection.h \
- /usr/include/qt6/QtCore/qprocessordetection.h \
- /usr/include/qt6/QtCore/qsystemdetection.h \
- /usr/include/qt6/QtCore/qtcoreexports.h \
- /usr/include/qt6/QtCore/qtdeprecationmarkers.h \
- /usr/include/qt6/QtCore/qtclasshelpermacros.h \
  /usr/include/qt6/QtCore/qtpreprocessorsupport.h \
- /usr/include/qt6/QtCore/qassert.h /usr/include/qt6/QtCore/qtnoop.h \
- /usr/include/qt6/QtCore/qtypes.h /usr/include/qt6/QtCore/qtversion.h \
- /usr/include/qt6/QtCore/qtypeinfo.h \
- /usr/include/qt6/QtCore/qcontainerfwd.h /usr/include/c++/16/limits \
+ /usr/include/qt6/QtCore/qtversion.h /usr/include/qt6/QtCore/qtypeinfo.h \
  /usr/include/qt6/QtCore/qsysinfo.h /usr/include/qt6/QtCore/qlogging.h \
  /usr/include/qt6/QtCore/qflags.h /usr/include/qt6/QtCore/qcompare_impl.h \
  /usr/include/c++/16/algorithm /usr/include/c++/16/bits/stl_algobase.h \
@@ -145,54 +146,24 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtCore/qtenvironmentvariables.h \
  /usr/include/qt6/QtCore/qtresource.h \
  /usr/include/qt6/QtCore/qttranslation.h \
- /usr/include/qt6/QtCore/qversiontagging.h \
- /usr/include/qt6/QtGui/qtgui-config.h \
- /usr/include/qt6/QtGui/qtguiexports.h \
- /usr/include/qt6/QtWidgets/qtwidgets-config.h \
- /usr/include/qt6/QtWidgets/qtwidgetsexports.h \
- /usr/include/qt6/QtWidgets/qwidget.h \
- /usr/include/qt6/QtGui/qwindowdefs.h \
- /usr/include/qt6/QtCore/qobjectdefs.h \
- /usr/include/qt6/QtCore/qnamespace.h /usr/include/qt6/QtCore/qcompare.h \
- /usr/include/qt6/QtCore/qstdlibdetection.h \
- /usr/include/qt6/QtCore/qcomparehelpers.h /usr/include/c++/16/functional \
- /usr/include/c++/16/bits/refwrap.h \
- /usr/include/c++/16/bits/std_function.h \
- /usr/include/c++/16/bits/functexcept.h /usr/include/c++/16/unordered_map \
- /usr/include/c++/16/bits/unordered_map.h \
- /usr/include/c++/16/bits/hashtable.h \
- /usr/include/c++/16/bits/hashtable_policy.h \
- /usr/include/c++/16/ext/alloc_traits.h \
- /usr/include/c++/16/bits/alloc_traits.h \
- /usr/include/c++/16/bits/memoryfwd.h \
- /usr/include/c++/16/bits/allocator.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/c++allocator.h \
- /usr/include/c++/16/bits/new_allocator.h \
- /usr/include/c++/16/bits/new_throw.h \
- /usr/include/c++/16/bits/node_handle.h \
- /usr/include/c++/16/bits/range_access.h \
- /usr/include/c++/16/bits/erase_if.h \
- /usr/include/c++/16/bits/memory_resource.h \
- /usr/include/c++/16/bits/uses_allocator_args.h \
- /usr/include/c++/16/vector /usr/include/c++/16/bits/stl_uninitialized.h \
- /usr/include/c++/16/bits/stl_vector.h \
- /usr/include/c++/16/bits/stl_bvector.h \
- /usr/include/c++/16/bits/vector.tcc /usr/include/c++/16/array \
- /usr/include/c++/16/compare /usr/include/qt6/QtCore/qtmetamacros.h \
- /usr/include/qt6/QtCore/qobjectdefs_impl.h \
- /usr/include/qt6/QtCore/qfunctionaltools_impl.h \
- /usr/include/c++/16/memory \
- /usr/include/c++/16/bits/stl_raw_storage_iter.h \
- /usr/include/c++/16/bits/align.h /usr/include/c++/16/bits/unique_ptr.h \
- /usr/include/c++/16/bits/shared_ptr.h /usr/include/c++/16/iosfwd \
- /usr/include/c++/16/bits/stringfwd.h /usr/include/c++/16/bits/postypes.h \
+ /usr/include/qt6/QtCore/qversiontagging.h /usr/include/string.h \
+ /usr/include/strings.h /usr/include/qt6/QtCore/qcontainertools_impl.h \
+ /usr/include/qt6/QtCore/qxptype_traits.h \
+ /usr/include/qt6/QtCore/q23type_traits.h /usr/include/c++/16/cstring \
+ /usr/include/c++/16/iterator /usr/include/c++/16/bits/stream_iterator.h \
+ /usr/include/c++/16/iosfwd /usr/include/c++/16/bits/stringfwd.h \
+ /usr/include/c++/16/bits/memoryfwd.h /usr/include/c++/16/bits/postypes.h \
  /usr/include/c++/16/cwchar /usr/include/wchar.h \
  /usr/lib/gcc/x86_64-redhat-linux/16/include/stdarg.h \
  /usr/include/bits/types/wint_t.h /usr/include/bits/types/mbstate_t.h \
  /usr/include/bits/types/__mbstate_t.h /usr/include/bits/types/__FILE.h \
  /usr/include/bits/types/FILE.h \
- /usr/include/c++/16/bits/shared_ptr_base.h \
- /usr/include/c++/16/bits/allocated_ptr.h \
+ /usr/include/c++/16/bits/streambuf_iterator.h \
+ /usr/include/c++/16/streambuf /usr/include/c++/16/bits/localefwd.h \
+ /usr/include/c++/16/x86_64-redhat-linux/bits/c++locale.h \
+ /usr/include/c++/16/clocale /usr/include/locale.h \
+ /usr/include/bits/locale.h /usr/include/c++/16/cctype \
+ /usr/include/ctype.h /usr/include/c++/16/bits/ios_base.h \
  /usr/include/c++/16/ext/atomicity.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/gthr.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/gthr-default.h \
@@ -210,32 +181,21 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
  /usr/include/bits/types/struct___jmp_buf_tag.h \
  /usr/include/bits/pthread_stack_min-dynamic.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/atomic_word.h \
- /usr/include/sys/single_threaded.h /usr/include/c++/16/ext/concurrence.h \
- /usr/include/c++/16/bits/shared_ptr_atomic.h \
- /usr/include/c++/16/backward/auto_ptr.h \
- /usr/include/c++/16/pstl/glue_memory_defs.h \
- /usr/include/qt6/QtCore/qobject.h /usr/include/qt6/QtCore/qstring.h \
- /usr/include/qt6/QtCore/qchar.h /usr/include/qt6/QtCore/qstringview.h \
- /usr/include/qt6/QtCore/qbytearray.h /usr/include/qt6/QtCore/qrefcount.h \
- /usr/include/qt6/QtCore/qarraydata.h /usr/include/qt6/QtCore/qpair.h \
- /usr/include/string.h /usr/include/strings.h \
- /usr/include/qt6/QtCore/qarraydatapointer.h \
- /usr/include/qt6/QtCore/qarraydataops.h \
- /usr/include/qt6/QtCore/qcontainertools_impl.h \
- /usr/include/qt6/QtCore/qxptype_traits.h \
- /usr/include/qt6/QtCore/q23type_traits.h /usr/include/c++/16/cstring \
- /usr/include/c++/16/iterator /usr/include/c++/16/bits/stream_iterator.h \
- /usr/include/c++/16/bits/streambuf_iterator.h \
- /usr/include/c++/16/streambuf /usr/include/c++/16/bits/localefwd.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/c++locale.h \
- /usr/include/c++/16/clocale /usr/include/locale.h \
- /usr/include/bits/locale.h /usr/include/c++/16/cctype \
- /usr/include/ctype.h /usr/include/c++/16/bits/ios_base.h \
- /usr/include/c++/16/bits/locale_classes.h /usr/include/c++/16/string \
+ /usr/include/sys/single_threaded.h \
+ /usr/include/c++/16/bits/locale_classes.h \
+ /usr/include/c++/16/bits/functexcept.h /usr/include/c++/16/string \
  /usr/include/c++/16/bits/char_traits.h \
+ /usr/include/c++/16/bits/allocator.h \
+ /usr/include/c++/16/x86_64-redhat-linux/bits/c++allocator.h \
+ /usr/include/c++/16/bits/new_allocator.h \
+ /usr/include/c++/16/bits/new_throw.h \
  /usr/include/c++/16/bits/ostream_insert.h \
  /usr/include/c++/16/bits/cxxabi_forced.h \
- /usr/include/c++/16/bits/basic_string.h /usr/include/c++/16/string_view \
+ /usr/include/c++/16/bits/range_access.h \
+ /usr/include/c++/16/bits/erase_if.h \
+ /usr/include/c++/16/bits/basic_string.h \
+ /usr/include/c++/16/ext/alloc_traits.h \
+ /usr/include/c++/16/bits/alloc_traits.h /usr/include/c++/16/string_view \
  /usr/include/c++/16/bits/string_view.tcc \
  /usr/include/c++/16/ext/string_conversions.h /usr/include/c++/16/cstdio \
  /usr/include/stdio.h /usr/include/bits/types/__fpos_t.h \
@@ -249,14 +209,43 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
  /usr/include/asm-generic/errno-base.h /usr/include/bits/types/error_t.h \
  /usr/include/c++/16/bits/charconv.h \
  /usr/include/c++/16/bits/basic_string.tcc \
+ /usr/include/c++/16/bits/memory_resource.h \
+ /usr/include/c++/16/bits/uses_allocator_args.h \
  /usr/include/c++/16/bits/locale_classes.tcc \
  /usr/include/c++/16/system_error \
  /usr/include/c++/16/x86_64-redhat-linux/bits/error_constants.h \
  /usr/include/c++/16/stdexcept \
  /usr/include/c++/16/bits/stdexcept_except.h \
- /usr/include/c++/16/bits/streambuf.tcc \
+ /usr/include/c++/16/bits/streambuf.tcc /usr/include/c++/16/memory \
+ /usr/include/c++/16/bits/stl_uninitialized.h \
+ /usr/include/c++/16/bits/stl_raw_storage_iter.h \
+ /usr/include/c++/16/bits/align.h /usr/include/c++/16/bits/unique_ptr.h \
+ /usr/include/c++/16/bits/shared_ptr.h \
+ /usr/include/c++/16/bits/shared_ptr_base.h \
+ /usr/include/c++/16/bits/allocated_ptr.h \
+ /usr/include/c++/16/bits/refwrap.h /usr/include/c++/16/ext/concurrence.h \
+ /usr/include/c++/16/bits/shared_ptr_atomic.h \
+ /usr/include/c++/16/backward/auto_ptr.h \
+ /usr/include/c++/16/pstl/glue_memory_defs.h \
+ /usr/include/qt6/QtCore/qnamespace.h /usr/include/qt6/QtCore/qcompare.h \
+ /usr/include/qt6/QtCore/qstdlibdetection.h \
+ /usr/include/qt6/QtCore/qcomparehelpers.h /usr/include/c++/16/functional \
+ /usr/include/c++/16/bits/std_function.h \
+ /usr/include/c++/16/unordered_map \
+ /usr/include/c++/16/bits/unordered_map.h \
+ /usr/include/c++/16/bits/hashtable.h \
+ /usr/include/c++/16/bits/hashtable_policy.h \
+ /usr/include/c++/16/bits/node_handle.h /usr/include/c++/16/vector \
+ /usr/include/c++/16/bits/stl_vector.h \
+ /usr/include/c++/16/bits/stl_bvector.h \
+ /usr/include/c++/16/bits/vector.tcc /usr/include/c++/16/array \
+ /usr/include/c++/16/compare /usr/include/qt6/QtCore/qtmetamacros.h \
  /usr/include/qt6/QtCore/q20functional.h \
  /usr/include/qt6/QtCore/q20memory.h /usr/include/qt6/QtCore/q17memory.h \
+ /usr/include/qt6/QtCore/qhashfunctions.h \
+ /usr/include/qt6/QtCore/qstring.h /usr/include/qt6/QtCore/qchar.h \
+ /usr/include/qt6/QtCore/qstringview.h \
+ /usr/include/qt6/QtCore/qbytearray.h /usr/include/qt6/QtCore/qrefcount.h \
  /usr/include/qt6/QtCore/qbytearrayalgorithms.h \
  /usr/include/qt6/QtCore/qbytearrayview.h \
  /usr/include/qt6/QtCore/qstringfwd.h /usr/include/c++/16/stdlib.h \
@@ -268,7 +257,6 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtCore/qstringbuilder.h \
  /usr/include/qt6/QtCore/qstringconverter.h \
  /usr/include/qt6/QtCore/qstringconverter_base.h \
- /usr/include/qt6/QtCore/qlist.h /usr/include/qt6/QtCore/qhashfunctions.h \
  /usr/include/c++/16/numeric /usr/include/c++/16/bits/stl_numeric.h \
  /usr/include/c++/16/pstl/glue_numeric_defs.h \
  /usr/include/qt6/QtCore/qiterator.h \
@@ -276,6 +264,18 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtCore/qstringlist.h \
  /usr/include/qt6/QtCore/qalgorithms.h \
  /usr/include/qt6/QtCore/qstringmatcher.h \
+ /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtWidgets/qwidget.h \
+ /usr/include/qt6/QtWidgets/qtwidgetsglobal.h \
+ /usr/include/qt6/QtGui/qtguiglobal.h \
+ /usr/include/qt6/QtGui/qtgui-config.h \
+ /usr/include/qt6/QtGui/qtguiexports.h \
+ /usr/include/qt6/QtWidgets/qtwidgets-config.h \
+ /usr/include/qt6/QtWidgets/qtwidgetsexports.h \
+ /usr/include/qt6/QtGui/qwindowdefs.h \
+ /usr/include/qt6/QtCore/qobjectdefs.h \
+ /usr/include/qt6/QtCore/qobjectdefs_impl.h \
+ /usr/include/qt6/QtCore/qfunctionaltools_impl.h \
+ /usr/include/qt6/QtCore/qobject.h \
  /usr/include/qt6/QtCore/qscopedpointer.h \
  /usr/include/qt6/QtCore/qmetatype.h \
  /usr/include/qt6/QtCore/qdatastream.h \
@@ -332,58 +332,5 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtGui/qfontvariableaxis.h \
  /usr/include/qt6/QtWidgets/qsizepolicy.h \
  /usr/include/qt6/QtGui/qcursor.h /usr/include/qt6/QtGui/qbitmap.h \
- /usr/include/qt6/QtWidgets/qtabwidget.h /usr/include/qt6/QtCore/QTimer \
- /usr/include/qt6/QtCore/qtimer.h /usr/include/qt6/QtCore/qbasictimer.h \
- /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
- /usr/include/qt6/QtCore/qeventloop.h \
- /usr/include/qt6/QtCore/qdeadlinetimer.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/widgets/trackinfo.h \
- /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtWidgets/qwidget.h \
- /usr/include/qt6/QtWidgets/QLabel /usr/include/qt6/QtWidgets/qlabel.h \
- /usr/include/qt6/QtWidgets/qframe.h /usr/include/qt6/QtGui/qpicture.h \
- /usr/include/qt6/QtCore/qiodevice.h \
- /usr/include/qt6/QtGui/qtextdocument.h /usr/include/qt6/QtCore/qurl.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/widgets/seekbar.h \
- /usr/include/qt6/QtWidgets/QSlider /usr/include/qt6/QtWidgets/qslider.h \
- /usr/include/qt6/QtWidgets/qabstractslider.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/widgets/controls.h \
- /usr/include/qt6/QtWidgets/QPushButton \
- /usr/include/qt6/QtWidgets/qpushbutton.h \
- /usr/include/qt6/QtWidgets/qabstractbutton.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/widgets/albumart.h \
- /usr/include/qt6/QtGui/QPixmap /usr/include/qt6/QtGui/qpixmap.h \
- /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/qstring.h \
- /usr/include/qt6/QtCore/QMap /usr/include/qt6/QtCore/qmap.h \
- /usr/include/qt6/QtGui/QPixmapCache \
- /usr/include/qt6/QtGui/qpixmapcache.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/widgets/spectrumanalyzer.h \
- /usr/include/qt6/QtCore/QVector /usr/include/qt6/QtCore/qvector.h \
- /usr/include/qt6/QtGui/qtextcursor.h \
- /usr/include/qt6/QtGui/qtextformat.h /usr/include/qt6/QtGui/qpen.h \
- /usr/include/qt6/QtGui/qtextoption.h \
- /usr/include/qt6/QtCore/qtmochelpers.h \
- /usr/include/qt6/QtCore/qtmocconstants.h \
- /usr/include/qt6/QtCore/q20algorithm.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/moc_playbackcontroller.cpp \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/playbackcontroller.h \
- /usr/include/qt6/QtCore/QObject /usr/include/qt6/QtCore/qobject.h \
- /usr/include/c++/16/random /usr/include/c++/16/bits/random.h \
- /usr/include/c++/16/x86_64-redhat-linux/bits/opt_random.h \
- /usr/include/c++/16/bits/random.tcc \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/audioengine.h \
- /var/home/esox/dev/cpp/boombox/include/mpv/client.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/filemanager.h \
- /usr/include/qt6/QtCore/QStringList \
- /usr/include/qt6/QtCore/qstringlist.h /usr/include/qt6/QtCore/QSet \
- /usr/include/qt6/QtCore/qset.h /usr/include/qt6/QtCore/QList \
- /usr/include/qt6/QtCore/qlist.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/moc_albumart.cpp \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/../../../include/widgets/albumart.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/moc_controls.cpp \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/../../../include/widgets/controls.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/moc_seekbar.cpp \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/../../../include/widgets/seekbar.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/moc_spectrumanalyzer.cpp \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/../../../include/widgets/spectrumanalyzer.h \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/moc_trackinfo.cpp \
- /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/../../../include/widgets/trackinfo.h
+ /usr/include/qt6/QtGui/QPainter /usr/include/qt6/QtGui/qpainter.h \
+ /usr/include/qt6/QtGui/qtextoption.h /usr/include/qt6/QtGui/qpen.h

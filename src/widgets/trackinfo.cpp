@@ -7,21 +7,23 @@ TrackInfoWidget::TrackInfoWidget(QWidget *parent)
     : QWidget(parent)
 {
     auto layout = new QVBoxLayout(this);
-    layout->setContentsMargins(8, 4, 8, 4);
-    layout->setSpacing(2);
+    layout->setContentsMargins(8, 6, 8, 2);
+    layout->setSpacing(3);
     
     // Track name label
     trackNameLabel = new QLabel("No track loaded", this);
     trackNameLabel->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
     QFont trackFont = trackNameLabel->font();
-    trackFont.setPointSize(18);
+    trackFont.setPointSize(16);
     trackFont.setBold(true);
     trackNameLabel->setFont(trackFont);
     trackNameLabel->setObjectName("trackName");
     trackNameLabel->setWordWrap(true);
-    trackNameLabel->setMinimumHeight((QFontMetrics(trackFont).lineSpacing() * 2) + 4);
+    const int titleAreaHeight = (QFontMetrics(trackFont).lineSpacing() * 2) + 6;
+    trackNameLabel->setMinimumHeight(titleAreaHeight);
+    trackNameLabel->setMaximumHeight(titleAreaHeight);
     layout->addWidget(trackNameLabel);
-    layout->addSpacing(QFontMetrics(trackFont).height() / 2);
+    layout->addSpacing(QFontMetrics(trackFont).height() / 4);
     
     // Artist name label
     artistNameLabel = new QLabel("Unknown Artist", this);
@@ -52,7 +54,6 @@ TrackInfoWidget::TrackInfoWidget(QWidget *parent)
     trackNumberLabel->setObjectName("trackNumber");
     layout->addWidget(trackNumberLabel);
     
-    layout->addStretch();
     setObjectName("trackInfoWidget");
 }
 

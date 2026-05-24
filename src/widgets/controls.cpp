@@ -7,9 +7,9 @@ ControlsWidget::ControlsWidget(QWidget *parent)
     : QWidget(parent)
 {
     auto mainLayout = new QVBoxLayout(this);
-    mainLayout->setContentsMargins(10, 10, 10, 10);
+    mainLayout->setContentsMargins(10, 4, 10, 10);
     mainLayout->setSpacing(10);
-    mainLayout->addStretch();
+    mainLayout->addStretch(1);
     
     // Playback control buttons (Play/Pause, Next)
     auto playbackLayout = new QHBoxLayout();

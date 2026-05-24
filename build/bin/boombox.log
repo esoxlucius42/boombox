@@ -8478,3 +8478,503 @@
 [2026-05-24 14:59:49] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
 [2026-05-24 14:59:49] [DEBUG] [Main] State saved on application exit
 [2026-05-24 14:59:49] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 15:09:08] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:09:08] [INFO] [Main] Application startup
+[2026-05-24 15:09:08] [DEBUG] [Main] This is a debug message
+[2026-05-24 15:09:08] [WARN] [Main] This is a warning message
+[2026-05-24 15:09:08] [ERROR] [Main] This is an error message
+[2026-05-24 15:09:08] [INFO] [Main] Logging test complete
+[2026-05-24 15:12:20] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:12:20] [INFO] [Main] Logger initialized
+[2026-05-24 15:12:20] [DEBUG] [Main] Debug message
+[2026-05-24 15:12:20] [WARN] [Main] Warning message
+[2026-05-24 15:12:20] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 15:12:20] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack, Track: track.mp3
+[2026-05-24 15:12:20] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 15:12:20] [INFO] [Main] StateManager initialized
+[2026-05-24 15:12:20] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 15:12:20] [INFO] [Main] PlaybackController initialized
+[2026-05-24 15:12:20] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 15:12:20] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 15:12:20] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 15:12:20] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 15:12:20] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 15:12:20] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 15:12:20] [INFO] [Main] Track count: 4
+[2026-05-24 15:12:20] [INFO] [Main] ✓ Correct track count
+[2026-05-24 15:12:20] [INFO] [Main] Current track: /tmp/boombox-YRLpqM/song1.mp3
+[2026-05-24 15:12:20] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 15:12:20] [INFO] [Main] Current position: 0
+[2026-05-24 15:12:20] [INFO] [Main] Metadata for current track:
+[2026-05-24 15:12:20] [INFO] [Main]   Title: song1
+[2026-05-24 15:12:20] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 15:12:20] [INFO] [Main]   Album: boombox-YRLpqM
+[2026-05-24 15:12:20] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 15:12:20] [INFO] [Main] Track at index 1: found
+[2026-05-24 15:12:20] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 15:12:20] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack
+[2026-05-24 15:12:20] [INFO] [PlaybackController] Folder loaded with 10 tracks
+[2026-05-24 15:12:20] [DEBUG] [PlaybackController] Picked random track: index 6 of 10
+[2026-05-24 15:12:20] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/07 - Wait.flac
+[2026-05-24 15:12:20] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/07 - Wait.flac
+[2026-05-24 15:12:20] [DEBUG] [MainWindow] Track metadata loaded: 07 - Wait by Unknown Artist
+[2026-05-24 15:12:20] [INFO] [Main] Auto-loaded saved folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack
+[2026-05-24 15:12:32] [DEBUG] [PlaybackController] Picked random track: index 1 of 10
+[2026-05-24 15:12:32] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/02 - Shape.flac
+[2026-05-24 15:12:32] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/02 - Shape.flac
+[2026-05-24 15:12:33] [DEBUG] [MainWindow] Track metadata loaded: 02 - Shape by Unknown Artist
+[2026-05-24 15:12:33] [DEBUG] [PlaybackController] Picked random track: index 8 of 10
+[2026-05-24 15:12:33] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 15:12:33] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 15:12:33] [DEBUG] [MainWindow] Track metadata loaded: 09 - Sterilization by Unknown Artist
+[2026-05-24 15:12:33] [DEBUG] [PlaybackController] Picked random track: index 6 of 10
+[2026-05-24 15:12:33] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/07 - Wait.flac
+[2026-05-24 15:12:33] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/07 - Wait.flac
+[2026-05-24 15:12:33] [DEBUG] [MainWindow] Track metadata loaded: 07 - Wait by Unknown Artist
+[2026-05-24 15:12:34] [DEBUG] [PlaybackController] Picked random track: index 0 of 10
+[2026-05-24 15:12:34] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 15:12:34] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 15:12:34] [DEBUG] [MainWindow] Track metadata loaded: 01 - Humanity (Part 1) by Unknown Artist
+[2026-05-24 15:12:34] [DEBUG] [PlaybackController] Picked random track: index 3 of 10
+[2026-05-24 15:12:34] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/04 - Bestiality.flac
+[2026-05-24 15:12:34] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/04 - Bestiality.flac
+[2026-05-24 15:12:34] [DEBUG] [MainWindow] Track metadata loaded: 04 - Bestiality by Unknown Artist
+[2026-05-24 15:12:35] [DEBUG] [PlaybackController] Picked random track: index 2 of 10
+[2026-05-24 15:12:35] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/03 - Contamination.flac
+[2026-05-24 15:12:35] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/03 - Contamination.flac
+[2026-05-24 15:12:35] [DEBUG] [MainWindow] Track metadata loaded: 03 - Contamination by Unknown Artist
+[2026-05-24 15:12:35] [DEBUG] [PlaybackController] Picked random track: index 6 of 10
+[2026-05-24 15:12:35] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/07 - Wait.flac
+[2026-05-24 15:12:35] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/07 - Wait.flac
+[2026-05-24 15:12:35] [DEBUG] [MainWindow] Track metadata loaded: 07 - Wait by Unknown Artist
+[2026-05-24 15:12:36] [DEBUG] [PlaybackController] Picked random track: index 8 of 10
+[2026-05-24 15:12:36] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 15:12:36] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 15:12:36] [DEBUG] [MainWindow] Track metadata loaded: 09 - Sterilization by Unknown Artist
+[2026-05-24 15:12:36] [DEBUG] [PlaybackController] Picked random track: index 7 of 10
+[2026-05-24 15:12:36] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/08 - Humanity (Part 2).flac
+[2026-05-24 15:12:36] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/08 - Humanity (Part 2).flac
+[2026-05-24 15:12:36] [DEBUG] [MainWindow] Track metadata loaded: 08 - Humanity (Part 2) by Unknown Artist
+[2026-05-24 15:12:37] [DEBUG] [PlaybackController] Picked random track: index 7 of 10
+[2026-05-24 15:12:37] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/08 - Humanity (Part 2).flac
+[2026-05-24 15:12:37] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/08 - Humanity (Part 2).flac
+[2026-05-24 15:12:37] [DEBUG] [MainWindow] Track metadata loaded: 08 - Humanity (Part 2) by Unknown Artist
+[2026-05-24 15:12:37] [DEBUG] [PlaybackController] Picked random track: index 4 of 10
+[2026-05-24 15:12:37] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/05 - Solitude.flac
+[2026-05-24 15:12:37] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/05 - Solitude.flac
+[2026-05-24 15:12:37] [DEBUG] [MainWindow] Track metadata loaded: 05 - Solitude by Unknown Artist
+[2026-05-24 15:12:41] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 15:12:46] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:12:46] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:12:46] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 15:12:46] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:12:46] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 15:12:46] [DEBUG] [PlaybackController] Picked random track: index 2309 of 2321
+[2026-05-24 15:12:46] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Whitesnake/Whitesnake - Here I Go Again.mp3
+[2026-05-24 15:12:46] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Whitesnake/Whitesnake - Here I Go Again.mp3
+[2026-05-24 15:12:46] [DEBUG] [MainWindow] Track metadata loaded: Here I Go Again by Whitesnake
+[2026-05-24 15:12:49] [DEBUG] [PlaybackController] Picked random track: index 829 of 2321
+[2026-05-24 15:12:49] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Guns N' Roses/Guns N' Roses - Use Your Illusion II (1991) [MP3 320] 88/Guns N’ Roses - You Could Be Mine.mp3
+[2026-05-24 15:12:49] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Guns N' Roses/Guns N' Roses - Use Your Illusion II (1991) [MP3 320] 88/Guns N’ Roses - You Could Be Mine.mp3
+[2026-05-24 15:12:49] [DEBUG] [MainWindow] Track metadata loaded: You Could Be Mine by Guns N Roses
+[2026-05-24 15:12:50] [DEBUG] [PlaybackController] Picked random track: index 900 of 2321
+[2026-05-24 15:12:50] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1985] Live After Death (Live Album)/Iron Maiden - Iron Maiden.mp3
+[2026-05-24 15:12:50] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1985] Live After Death (Live Album)/Iron Maiden - Iron Maiden.mp3
+[2026-05-24 15:12:50] [DEBUG] [MainWindow] Track metadata loaded: Iron Maiden by Iron Maiden
+[2026-05-24 15:12:50] [DEBUG] [PlaybackController] Picked random track: index 834 of 2321
+[2026-05-24 15:12:50] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iggy Pop/Iggy Pop - Five Foot One.mp3
+[2026-05-24 15:12:50] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iggy Pop/Iggy Pop - Five Foot One.mp3
+[2026-05-24 15:12:50] [DEBUG] [MainWindow] Track metadata loaded: Five Foot One by Iggy Pop
+[2026-05-24 15:12:51] [DEBUG] [PlaybackController] Picked random track: index 1354 of 2321
+[2026-05-24 15:12:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Metallica/1996 - Load/Metallica - Hero Of The Day.mp3
+[2026-05-24 15:12:51] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Metallica/1996 - Load/Metallica - Hero Of The Day.mp3
+[2026-05-24 15:12:51] [DEBUG] [MainWindow] Track metadata loaded: Hero Of The Day by Metallica
+[2026-05-24 15:12:51] [DEBUG] [PlaybackController] Picked random track: index 128 of 2321
+[2026-05-24 15:12:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Billy Idol/Billy Idol - Don't Need A Gun (Single Edit).mp3
+[2026-05-24 15:12:51] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Billy Idol/Billy Idol - Don't Need A Gun (Single Edit).mp3
+[2026-05-24 15:12:51] [DEBUG] [MainWindow] Track metadata loaded: Don't Need A Gun (Single Edit) by Billy Idol
+[2026-05-24 15:13:44] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 15:13:44] [DEBUG] [Main] State saved on application exit
+[2026-05-24 15:13:44] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 15:14:27] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:14:27] [INFO] [Main] Application startup
+[2026-05-24 15:14:27] [DEBUG] [Main] This is a debug message
+[2026-05-24 15:14:27] [WARN] [Main] This is a warning message
+[2026-05-24 15:14:27] [ERROR] [Main] This is an error message
+[2026-05-24 15:14:27] [INFO] [Main] Logging test complete
+[2026-05-24 15:14:41] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:14:41] [INFO] [Main] Logger initialized
+[2026-05-24 15:14:41] [DEBUG] [Main] Debug message
+[2026-05-24 15:14:41] [WARN] [Main] Warning message
+[2026-05-24 15:14:41] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 15:14:41] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 15:14:41] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 15:14:41] [INFO] [Main] StateManager initialized
+[2026-05-24 15:14:41] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 15:14:41] [INFO] [Main] PlaybackController initialized
+[2026-05-24 15:14:41] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 15:14:41] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 15:14:41] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 15:14:41] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 15:14:41] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 15:14:41] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 15:14:41] [INFO] [Main] Track count: 4
+[2026-05-24 15:14:41] [INFO] [Main] ✓ Correct track count
+[2026-05-24 15:14:41] [INFO] [Main] Current track: /tmp/boombox-HApZOt/song1.mp3
+[2026-05-24 15:14:41] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 15:14:41] [INFO] [Main] Current position: 0
+[2026-05-24 15:14:41] [INFO] [Main] Metadata for current track:
+[2026-05-24 15:14:41] [INFO] [Main]   Title: song1
+[2026-05-24 15:14:41] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 15:14:41] [INFO] [Main]   Album: boombox-HApZOt
+[2026-05-24 15:14:41] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 15:14:41] [INFO] [Main] Track at index 1: found
+[2026-05-24 15:14:41] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 15:14:41] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:14:41] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 15:14:41] [DEBUG] [PlaybackController] Picked random track: index 570 of 2321
+[2026-05-24 15:14:41] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2000 - Master Of Chant/Gregorian - Scaraborough Fair.mp3
+[2026-05-24 15:14:41] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2000 - Master Of Chant/Gregorian - Scaraborough Fair.mp3
+[2026-05-24 15:14:41] [DEBUG] [MainWindow] Track metadata loaded: Scaraborough Fair by Gregorian
+[2026-05-24 15:14:41] [INFO] [Main] Auto-loaded saved folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:14:57] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 15:14:57] [DEBUG] [Main] State saved on application exit
+[2026-05-24 15:14:57] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 15:17:46] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:17:46] [INFO] [Main] Application startup
+[2026-05-24 15:17:46] [DEBUG] [Main] This is a debug message
+[2026-05-24 15:17:46] [WARN] [Main] This is a warning message
+[2026-05-24 15:17:46] [ERROR] [Main] This is an error message
+[2026-05-24 15:17:46] [INFO] [Main] Logging test complete
+[2026-05-24 15:18:04] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:18:04] [INFO] [Main] Application startup
+[2026-05-24 15:18:04] [DEBUG] [Main] This is a debug message
+[2026-05-24 15:18:04] [WARN] [Main] This is a warning message
+[2026-05-24 15:18:04] [ERROR] [Main] This is an error message
+[2026-05-24 15:18:04] [INFO] [Main] Logging test complete
+[2026-05-24 15:19:35] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:19:35] [INFO] [Main] Logger initialized
+[2026-05-24 15:19:35] [DEBUG] [Main] Debug message
+[2026-05-24 15:19:35] [WARN] [Main] Warning message
+[2026-05-24 15:19:35] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 15:19:35] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 15:19:35] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 15:19:35] [INFO] [Main] StateManager initialized
+[2026-05-24 15:19:35] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 15:19:35] [INFO] [Main] PlaybackController initialized
+[2026-05-24 15:19:35] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 15:19:35] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 15:19:35] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 15:19:35] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 15:19:35] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 15:19:35] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 15:19:35] [INFO] [Main] Track count: 4
+[2026-05-24 15:19:35] [INFO] [Main] ✓ Correct track count
+[2026-05-24 15:19:35] [INFO] [Main] Current track: /tmp/boombox-BExnrv/song1.mp3
+[2026-05-24 15:19:35] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 15:19:35] [INFO] [Main] Current position: 0
+[2026-05-24 15:19:35] [INFO] [Main] Metadata for current track:
+[2026-05-24 15:19:35] [INFO] [Main]   Title: song1
+[2026-05-24 15:19:35] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 15:19:35] [INFO] [Main]   Album: boombox-BExnrv
+[2026-05-24 15:19:35] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 15:19:35] [INFO] [Main] Track at index 1: found
+[2026-05-24 15:19:35] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 15:19:35] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:19:36] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 15:19:36] [DEBUG] [PlaybackController] Picked random track: index 1450 of 2321
+[2026-05-24 15:19:36] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Motley Crue/Motley Crue - Too Fast For Love.mp3
+[2026-05-24 15:19:36] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Motley Crue/Motley Crue - Too Fast For Love.mp3
+[2026-05-24 15:19:36] [DEBUG] [MainWindow] Track metadata loaded: Too Fast For Love by Mötley Crüe
+[2026-05-24 15:19:36] [INFO] [Main] Auto-loaded saved folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:19:55] [DEBUG] [PlaybackController] Picked random track: index 1569 of 2321
+[2026-05-24 15:19:55] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Pearl Jam/Rearviewmirror CD2/Pearl Jam - Nothing as It Seems.mp3
+[2026-05-24 15:19:55] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Pearl Jam/Rearviewmirror CD2/Pearl Jam - Nothing as It Seems.mp3
+[2026-05-24 15:19:55] [DEBUG] [MainWindow] Track metadata loaded: Nothing as It Seems by Pearl Jam
+[2026-05-24 15:20:02] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 15:20:02] [INFO] [PlaybackController] Playback paused
+[2026-05-24 15:20:03] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 15:20:03] [INFO] [PlaybackController] Playback resumed
+[2026-05-24 15:20:17] [DEBUG] [PlaybackController] Picked random track: index 401 of 2321
+[2026-05-24 15:20:17] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Def Leppard/Def Leppard - When Love And Hate Collide.mp3
+[2026-05-24 15:20:17] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Def Leppard/Def Leppard - When Love And Hate Collide.mp3
+[2026-05-24 15:20:17] [DEBUG] [MainWindow] Track metadata loaded: When Love And Hate Collide by Def Leppard
+[2026-05-24 15:20:25] [DEBUG] [PlaybackController] Picked random track: index 1693 of 2321
+[2026-05-24 15:20:25] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Poison/Poison - Lay Your Body Down (Previously Unreleased).mp3
+[2026-05-24 15:20:25] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Poison/Poison - Lay Your Body Down (Previously Unreleased).mp3
+[2026-05-24 15:20:25] [DEBUG] [MainWindow] Track metadata loaded: Lay Your Body Down (Previously by Poison
+[2026-05-24 15:20:53] [DEBUG] [PlaybackController] Picked random track: index 222 of 2321
+[2026-05-24 15:20:53] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Chicago/Chicago - Just You 'N' Me.mp3
+[2026-05-24 15:20:53] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Chicago/Chicago - Just You 'N' Me.mp3
+[2026-05-24 15:20:53] [DEBUG] [MainWindow] Track metadata loaded: Just You 'N' Me by Chicago
+[2026-05-24 15:21:19] [DEBUG] [PlaybackController] Picked random track: index 1362 of 2321
+[2026-05-24 15:21:19] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Metallica/1996 - Load/Metallica - Until It Sleeps.mp3
+[2026-05-24 15:21:19] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Metallica/1996 - Load/Metallica - Until It Sleeps.mp3
+[2026-05-24 15:21:19] [DEBUG] [MainWindow] Track metadata loaded: Until It Sleeps by Metallica
+[2026-05-24 15:21:29] [DEBUG] [PlaybackController] Picked random track: index 2192 of 2321
+[2026-05-24 15:21:29] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Police/The Police - Zenyatta Mondatta 2003 Remaster]/The Police - Canary in a Coalmine.mp3
+[2026-05-24 15:21:29] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Police/The Police - Zenyatta Mondatta 2003 Remaster]/The Police - Canary in a Coalmine.mp3
+[2026-05-24 15:21:29] [DEBUG] [MainWindow] Track metadata loaded: Canary in a Coalmine by The Police
+[2026-05-24 15:21:31] [DEBUG] [PlaybackController] Picked random track: index 940 of 2321
+[2026-05-24 15:21:31] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1992] Fear Of The Dark/Iron Maiden - From Here To Eternity.mp3
+[2026-05-24 15:21:31] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1992] Fear Of The Dark/Iron Maiden - From Here To Eternity.mp3
+[2026-05-24 15:21:31] [DEBUG] [MainWindow] Track metadata loaded: From Here To Eternity by Iron Maiden
+[2026-05-24 15:21:34] [DEBUG] [PlaybackController] Picked random track: index 1574 of 2321
+[2026-05-24 15:21:34] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Pearl Jam/Rearviewmirror CD2/Pearl Jam - Wishlist.mp3
+[2026-05-24 15:21:34] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Pearl Jam/Rearviewmirror CD2/Pearl Jam - Wishlist.mp3
+[2026-05-24 15:21:34] [DEBUG] [MainWindow] Track metadata loaded: Wishlist by Pearl Jam
+[2026-05-24 15:21:35] [DEBUG] [PlaybackController] Picked random track: index 859 of 2321
+[2026-05-24 15:21:35] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1981] Killers [2006 Remastered]/Iron Maiden - Another Life.mp3
+[2026-05-24 15:21:35] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1981] Killers [2006 Remastered]/Iron Maiden - Another Life.mp3
+[2026-05-24 15:21:36] [DEBUG] [MainWindow] Track metadata loaded: Another Life by Iron Maiden
+[2026-05-24 15:21:36] [DEBUG] [PlaybackController] Picked random track: index 287 of 2321
+[2026-05-24 15:21:36] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Cult/The Cult - Go West.mp3
+[2026-05-24 15:21:36] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Cult/The Cult - Go West.mp3
+[2026-05-24 15:21:36] [DEBUG] [MainWindow] Track metadata loaded: Go West by The Cult
+[2026-05-24 15:21:38] [DEBUG] [PlaybackController] Picked random track: index 179 of 2321
+[2026-05-24 15:21:38] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Bon Jovi/Bon Jovi - Wanted Dead Or Alive.mp3
+[2026-05-24 15:21:38] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Bon Jovi/Bon Jovi - Wanted Dead Or Alive.mp3
+[2026-05-24 15:21:38] [DEBUG] [MainWindow] Track metadata loaded: Wanted Dead Or Alive by Bon Jovi
+[2026-05-24 15:21:51] [DEBUG] [PlaybackController] Picked random track: index 1443 of 2321
+[2026-05-24 15:21:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Motley Crue/Motley Crue - Ride With The Devil.mp3
+[2026-05-24 15:21:51] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Motley Crue/Motley Crue - Ride With The Devil.mp3
+[2026-05-24 15:21:51] [DEBUG] [MainWindow] Track metadata loaded: Ride With The Devil by Mötley Crüe
+[2026-05-24 15:21:51] [DEBUG] [PlaybackController] Picked random track: index 821 of 2321
+[2026-05-24 15:21:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Guns N' Roses/Guns N' Roses - Use Your Illusion II (1991) [MP3 320] 88/Guns N’ Roses - Get In The Ring.mp3
+[2026-05-24 15:21:51] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Guns N' Roses/Guns N' Roses - Use Your Illusion II (1991) [MP3 320] 88/Guns N’ Roses - Get In The Ring.mp3
+[2026-05-24 15:21:51] [DEBUG] [MainWindow] Track metadata loaded: Get In The Ring by Guns N Roses
+[2026-05-24 15:21:52] [DEBUG] [PlaybackController] Picked random track: index 1708 of 2321
+[2026-05-24 15:21:52] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Queen/Queen - Bohemian Rhapsody.mp3
+[2026-05-24 15:21:52] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Queen/Queen - Bohemian Rhapsody.mp3
+[2026-05-24 15:21:52] [DEBUG] [MainWindow] Track metadata loaded: Bohemian Rhapsody by Queen
+[2026-05-24 15:21:53] [DEBUG] [PlaybackController] Picked random track: index 852 of 2321
+[2026-05-24 15:21:53] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1980] Iron Maiden [1998 Remastered]/Iron Maiden - Phantom Of The Opera.mp3
+[2026-05-24 15:21:53] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1980] Iron Maiden [1998 Remastered]/Iron Maiden - Phantom Of The Opera.mp3
+[2026-05-24 15:21:53] [DEBUG] [MainWindow] Track metadata loaded: Phantom Of The Opera by Iron Maiden
+[2026-05-24 15:21:54] [DEBUG] [PlaybackController] Picked random track: index 2166 of 2321
+[2026-05-24 15:21:54] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Police/The Police - Outlandos d'Amour [2003 Remaster]/The Police - So Lonely.mp3
+[2026-05-24 15:21:54] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Police/The Police - Outlandos d'Amour [2003 Remaster]/The Police - So Lonely.mp3
+[2026-05-24 15:21:54] [DEBUG] [MainWindow] Track metadata loaded: So Lonely by The Police
+[2026-05-24 15:21:55] [DEBUG] [PlaybackController] Picked random track: index 2090 of 2321
+[2026-05-24 15:21:55] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Lord Of The Rings Trilogy Soundtrack/The Fellowship Of The Ring/LOTR - Flight to the Ford.mp3
+[2026-05-24 15:21:55] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Lord Of The Rings Trilogy Soundtrack/The Fellowship Of The Ring/LOTR - Flight to the Ford.mp3
+[2026-05-24 15:21:55] [DEBUG] [MainWindow] Track metadata loaded: Flight to the Ford by LOTR
+[2026-05-24 15:21:57] [DEBUG] [PlaybackController] Picked random track: index 1649 of 2321
+[2026-05-24 15:21:57] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Pink Floyd/1994 - The Division Bell/Pink Floyd - A Great Day For Freedom.mp3
+[2026-05-24 15:21:57] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Pink Floyd/1994 - The Division Bell/Pink Floyd - A Great Day For Freedom.mp3
+[2026-05-24 15:21:57] [DEBUG] [MainWindow] Track metadata loaded: A Great Day For Freedom by Pink Floyd
+[2026-05-24 15:21:58] [DEBUG] [PlaybackController] Picked random track: index 868 of 2321
+[2026-05-24 15:21:58] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1981] Killers [2006 Remastered]/Iron Maiden - Twilight Zone.mp3
+[2026-05-24 15:21:58] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1981] Killers [2006 Remastered]/Iron Maiden - Twilight Zone.mp3
+[2026-05-24 15:21:58] [DEBUG] [MainWindow] Track metadata loaded: Twilight Zone by Iron Maiden
+[2026-05-24 15:22:01] [DEBUG] [PlaybackController] Picked random track: index 514 of 2321
+[2026-05-24 15:22:01] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Eric Clapton/Eric Clapton - White Room.mp3
+[2026-05-24 15:22:01] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Eric Clapton/Eric Clapton - White Room.mp3
+[2026-05-24 15:22:01] [DEBUG] [MainWindow] Track metadata loaded: White Room by Eric Clapton
+[2026-05-24 15:22:03] [DEBUG] [PlaybackController] Picked random track: index 1968 of 2321
+[2026-05-24 15:22:03] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Steppenwolf/Steppenwolf - Children Of The Night.mp3
+[2026-05-24 15:22:03] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Steppenwolf/Steppenwolf - Children Of The Night.mp3
+[2026-05-24 15:22:03] [DEBUG] [MainWindow] Track metadata loaded: Children Of The Night by Steppenwolf
+[2026-05-24 15:22:04] [DEBUG] [PlaybackController] Picked random track: index 1335 of 2321
+[2026-05-24 15:22:04] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Metallica/1988 - ...And Justice For All/Metallica - The Frayed Ends Of Sanity.mp3
+[2026-05-24 15:22:04] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Metallica/1988 - ...And Justice For All/Metallica - The Frayed Ends Of Sanity.mp3
+[2026-05-24 15:22:04] [DEBUG] [MainWindow] Track metadata loaded: The Frayed Ends Of Sanity by Metallica
+[2026-05-24 15:25:08] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:25:08] [INFO] [Main] Application startup
+[2026-05-24 15:25:08] [DEBUG] [Main] This is a debug message
+[2026-05-24 15:25:08] [WARN] [Main] This is a warning message
+[2026-05-24 15:25:08] [ERROR] [Main] This is an error message
+[2026-05-24 15:25:08] [INFO] [Main] Logging test complete
+[2026-05-24 15:25:54] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 15:25:54] [DEBUG] [Main] State saved on application exit
+[2026-05-24 15:25:54] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 15:25:57] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:25:57] [INFO] [Main] Logger initialized
+[2026-05-24 15:25:57] [DEBUG] [Main] Debug message
+[2026-05-24 15:25:57] [WARN] [Main] Warning message
+[2026-05-24 15:25:57] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 15:25:57] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 15:25:57] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 15:25:57] [INFO] [Main] StateManager initialized
+[2026-05-24 15:25:57] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 15:25:57] [INFO] [Main] PlaybackController initialized
+[2026-05-24 15:25:57] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 15:25:57] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 15:25:57] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 15:25:57] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 15:25:57] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 15:25:57] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 15:25:57] [INFO] [Main] Track count: 4
+[2026-05-24 15:25:57] [INFO] [Main] ✓ Correct track count
+[2026-05-24 15:25:57] [INFO] [Main] Current track: /tmp/boombox-ePCYeW/song1.mp3
+[2026-05-24 15:25:57] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 15:25:57] [INFO] [Main] Current position: 0
+[2026-05-24 15:25:57] [INFO] [Main] Metadata for current track:
+[2026-05-24 15:25:57] [INFO] [Main]   Title: song1
+[2026-05-24 15:25:57] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 15:25:57] [INFO] [Main]   Album: boombox-ePCYeW
+[2026-05-24 15:25:57] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 15:25:57] [INFO] [Main] Track at index 1: found
+[2026-05-24 15:25:57] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 15:25:57] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:25:57] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 15:25:57] [DEBUG] [PlaybackController] Picked random track: index 1263 of 2321
+[2026-05-24 15:25:57] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Lynard Skynard/Lynard Skynard - Sweet Home Alabama.mp3
+[2026-05-24 15:25:57] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Lynard Skynard/Lynard Skynard - Sweet Home Alabama.mp3
+[2026-05-24 15:25:57] [DEBUG] [MainWindow] Track metadata loaded: I Ain't the One by Lynyrd Skynyrd
+[2026-05-24 15:25:57] [INFO] [Main] Auto-loaded saved folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:26:29] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 15:26:29] [DEBUG] [Main] State saved on application exit
+[2026-05-24 15:26:29] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 15:28:48] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:28:48] [INFO] [Main] Application startup
+[2026-05-24 15:28:48] [DEBUG] [Main] This is a debug message
+[2026-05-24 15:28:48] [WARN] [Main] This is a warning message
+[2026-05-24 15:28:48] [ERROR] [Main] This is an error message
+[2026-05-24 15:28:48] [INFO] [Main] Logging test complete
+[2026-05-24 15:29:08] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:29:08] [INFO] [Main] Logger initialized
+[2026-05-24 15:29:08] [DEBUG] [Main] Debug message
+[2026-05-24 15:29:08] [WARN] [Main] Warning message
+[2026-05-24 15:29:08] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 15:29:08] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 15:29:08] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 15:29:08] [INFO] [Main] StateManager initialized
+[2026-05-24 15:29:08] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 15:29:08] [INFO] [Main] PlaybackController initialized
+[2026-05-24 15:29:08] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 15:29:08] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 15:29:08] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 15:29:08] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 15:29:08] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 15:29:08] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 15:29:08] [INFO] [Main] Track count: 4
+[2026-05-24 15:29:08] [INFO] [Main] ✓ Correct track count
+[2026-05-24 15:29:08] [INFO] [Main] Current track: /tmp/boombox-EpDGQC/song1.mp3
+[2026-05-24 15:29:08] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 15:29:08] [INFO] [Main] Current position: 0
+[2026-05-24 15:29:08] [INFO] [Main] Metadata for current track:
+[2026-05-24 15:29:08] [INFO] [Main]   Title: song1
+[2026-05-24 15:29:08] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 15:29:08] [INFO] [Main]   Album: boombox-EpDGQC
+[2026-05-24 15:29:08] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 15:29:08] [INFO] [Main] Track at index 1: found
+[2026-05-24 15:29:08] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 15:29:08] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:29:08] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 15:29:08] [DEBUG] [PlaybackController] Picked random track: index 2116 of 2321
+[2026-05-24 15:29:08] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Lord Of The Rings Trilogy Soundtrack/The Return Of The King/LOTR - The Grey Havens (& Sir James Galway).mp3
+[2026-05-24 15:29:08] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Lord Of The Rings Trilogy Soundtrack/The Return Of The King/LOTR - The Grey Havens (& Sir James Galway).mp3
+[2026-05-24 15:29:08] [DEBUG] [MainWindow] Track metadata loaded: The Grey Havens (& Sir James G by LOTR
+[2026-05-24 15:29:08] [INFO] [Main] Auto-loaded saved folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:29:21] [DEBUG] [PlaybackController] Picked random track: index 830 of 2321
+[2026-05-24 15:29:21] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iggy Pop/Iggy Pop - Break Into Your Heart.mp3
+[2026-05-24 15:29:21] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iggy Pop/Iggy Pop - Break Into Your Heart.mp3
+[2026-05-24 15:29:21] [DEBUG] [MainWindow] Track metadata loaded: Break Into Your Heart by Iggy Pop
+[2026-05-24 15:29:23] [DEBUG] [PlaybackController] Picked random track: index 1796 of 2321
+[2026-05-24 15:29:23] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Rolling Stones/The Rolling Stones - Wild Horses.mp3
+[2026-05-24 15:29:23] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Rolling Stones/The Rolling Stones - Wild Horses.mp3
+[2026-05-24 15:29:23] [DEBUG] [MainWindow] Track metadata loaded: Wild Horses by The Rolling Stones
+[2026-05-24 15:29:27] [DEBUG] [PlaybackController] Picked random track: index 1991 of 2321
+[2026-05-24 15:29:27] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Steppenwolf/Steppenwolf - Tenderness.mp3
+[2026-05-24 15:29:27] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Steppenwolf/Steppenwolf - Tenderness.mp3
+[2026-05-24 15:29:27] [DEBUG] [MainWindow] Track metadata loaded: Tenderness by Steppenwolf
+[2026-05-24 15:29:32] [DEBUG] [PlaybackController] Picked random track: index 1067 of 2321
+[2026-05-24 15:29:32] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[2010] The Final Frontier/Iron Maiden - When The Wild Wind Blows.mp3
+[2026-05-24 15:29:32] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[2010] The Final Frontier/Iron Maiden - When The Wild Wind Blows.mp3
+[2026-05-24 15:29:32] [DEBUG] [MainWindow] Track metadata loaded: When The Wild Wind Blows by Iron Maiden
+[2026-05-24 15:29:37] [DEBUG] [PlaybackController] Picked random track: index 1826 of 2321
+[2026-05-24 15:29:37] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Sabaton/Sabaton - Long Live The King.mp3
+[2026-05-24 15:29:37] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Sabaton/Sabaton - Long Live The King.mp3
+[2026-05-24 15:29:37] [DEBUG] [MainWindow] Track metadata loaded: Long Live The King by Sabaton
+[2026-05-24 15:29:44] [DEBUG] [PlaybackController] Picked random track: index 280 of 2321
+[2026-05-24 15:29:44] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Creedence Clearwater Revival/Creedence Clearwater Revival - Up Around The Bend.mp3
+[2026-05-24 15:29:44] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Creedence Clearwater Revival/Creedence Clearwater Revival - Up Around The Bend.mp3
+[2026-05-24 15:29:44] [DEBUG] [MainWindow] Track metadata loaded: Up Around The Bend by Creedence Clearwater Revival
+[2026-05-24 15:29:48] [DEBUG] [PlaybackController] Picked random track: index 1863 of 2321
+[2026-05-24 15:29:48] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Scorpions/Scorpions - Wind of Change.mp3
+[2026-05-24 15:29:48] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Scorpions/Scorpions - Wind of Change.mp3
+[2026-05-24 15:29:48] [DEBUG] [MainWindow] Track metadata loaded: Wind of Change by Scorpions
+[2026-05-24 15:29:51] [DEBUG] [PlaybackController] Picked random track: index 1636 of 2321
+[2026-05-24 15:29:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Pink Floyd/1983 - The Final Cut/Pink Floyd - Two Suns In The Sunset.mp3
+[2026-05-24 15:29:51] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Pink Floyd/1983 - The Final Cut/Pink Floyd - Two Suns In The Sunset.mp3
+[2026-05-24 15:29:51] [DEBUG] [MainWindow] Track metadata loaded: Two Suns In The Sunset by Pink Floyd
+[2026-05-24 15:29:55] [DEBUG] [PlaybackController] Picked random track: index 361 of 2321
+[2026-05-24 15:29:55] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Deep Purple/21.  Deep Purple  -  Strange Kind Of Woman (2002 Remaster).mp3
+[2026-05-24 15:29:55] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Deep Purple/21.  Deep Purple  -  Strange Kind Of Woman (2002 Remaster).mp3
+[2026-05-24 15:29:55] [DEBUG] [MainWindow] Track metadata loaded: Strange Kind Of Woman (2002 Re by Deep Purple
+[2026-05-24 15:30:05] [DEBUG] [PlaybackController] Picked random track: index 310 of 2321
+[2026-05-24 15:30:05] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/David Bowie/David Bowie - Drive-In Saturday.mp3
+[2026-05-24 15:30:05] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/David Bowie/David Bowie - Drive-In Saturday.mp3
+[2026-05-24 15:30:05] [DEBUG] [MainWindow] Track metadata loaded: Drive-In Saturday by David Bowie
+[2026-05-24 15:30:14] [DEBUG] [PlaybackController] Picked random track: index 425 of 2321
+[2026-05-24 15:30:14] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Dio/Dio - Sacred Heart.mp3
+[2026-05-24 15:30:14] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Dio/Dio - Sacred Heart.mp3
+[2026-05-24 15:30:14] [DEBUG] [MainWindow] Track metadata loaded: Sacred Heart by Dio
+[2026-05-24 15:30:16] [DEBUG] [PlaybackController] Picked random track: index 572 of 2321
+[2026-05-24 15:30:16] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2000 - Master Of Chant/Gregorian - Still I'm Sad.mp3
+[2026-05-24 15:30:16] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2000 - Master Of Chant/Gregorian - Still I'm Sad.mp3
+[2026-05-24 15:30:16] [DEBUG] [MainWindow] Track metadata loaded: Still I'm Sad by Gregorian
+[2026-05-24 15:30:24] [DEBUG] [PlaybackController] Picked random track: index 213 of 2321
+[2026-05-24 15:30:24] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Chicago/Chicago - Feelin' Stronger Every Day.mp3
+[2026-05-24 15:30:24] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Chicago/Chicago - Feelin' Stronger Every Day.mp3
+[2026-05-24 15:30:24] [DEBUG] [MainWindow] Track metadata loaded: Feelin' Stronger Every Day by Chicago
+[2026-05-24 15:30:26] [DEBUG] [PlaybackController] Picked random track: index 601 of 2321
+[2026-05-24 15:30:26] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2002 - Masters Of Chant Chapter III/Gregorian - Out Of The Gold.mp3
+[2026-05-24 15:30:26] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2002 - Masters Of Chant Chapter III/Gregorian - Out Of The Gold.mp3
+[2026-05-24 15:30:26] [DEBUG] [MainWindow] Track metadata loaded: Out Of The Gold by Gregorian
+[2026-05-24 15:30:27] [DEBUG] [PlaybackController] Picked random track: index 1780 of 2321
+[2026-05-24 15:30:27] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Rolling Stones/The Rolling Stones - Paint It, Black.mp3
+[2026-05-24 15:30:27] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Rolling Stones/The Rolling Stones - Paint It, Black.mp3
+[2026-05-24 15:30:27] [DEBUG] [MainWindow] Track metadata loaded: Paint It, Black by The Rolling Stones
+[2026-05-24 15:30:27] [DEBUG] [PlaybackController] Picked random track: index 1731 of 2321
+[2026-05-24 15:30:27] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Queen/Queen - Somebody To Love.mp3
+[2026-05-24 15:30:27] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Queen/Queen - Somebody To Love.mp3
+[2026-05-24 15:30:27] [DEBUG] [MainWindow] Track metadata loaded: Somebody To Love by Queen
+[2026-05-24 15:30:28] [DEBUG] [PlaybackController] Picked random track: index 318 of 2321
+[2026-05-24 15:30:28] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/David Bowie/David Bowie - Jump They Say.mp3
+[2026-05-24 15:30:28] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/David Bowie/David Bowie - Jump They Say.mp3
+[2026-05-24 15:30:28] [DEBUG] [MainWindow] Track metadata loaded: Jump They Say by David Bowie
+[2026-05-24 15:30:29] [DEBUG] [PlaybackController] Picked random track: index 785 of 2321
+[2026-05-24 15:30:29] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2025 - 25 LIVE The Best Of 25 Years (Limited Edition) [Disc2]/Gregorian - Viva La Vida.mp3
+[2026-05-24 15:30:29] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2025 - 25 LIVE The Best Of 25 Years (Limited Edition) [Disc2]/Gregorian - Viva La Vida.mp3
+[2026-05-24 15:30:29] [DEBUG] [MainWindow] Track metadata loaded: Viva La Vida by Gregorian
+[2026-05-24 15:30:29] [DEBUG] [PlaybackController] Picked random track: index 309 of 2321
+[2026-05-24 15:30:29] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/David Bowie/David Bowie - Diamond Dogs.mp3
+[2026-05-24 15:30:29] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/David Bowie/David Bowie - Diamond Dogs.mp3
+[2026-05-24 15:30:29] [DEBUG] [MainWindow] Track metadata loaded: Diamond Dogs by David Bowie
+[2026-05-24 15:30:30] [DEBUG] [PlaybackController] Picked random track: index 1474 of 2321
+[2026-05-24 15:30:30] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Motorhead/Motorhead - I Got Mine.mp3
+[2026-05-24 15:30:30] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Motorhead/Motorhead - I Got Mine.mp3
+[2026-05-24 15:30:30] [DEBUG] [MainWindow] Track metadata loaded: I Got Mine by Motorhead
+[2026-05-24 15:30:31] [DEBUG] [PlaybackController] Picked random track: index 1012 of 2321
+[2026-05-24 15:30:31] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[2002] Rock In Rio (Live Album) [2 CD]/Iron Maiden - Run To The Hills.mp3
+[2026-05-24 15:30:31] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[2002] Rock In Rio (Live Album) [2 CD]/Iron Maiden - Run To The Hills.mp3
+[2026-05-24 15:30:31] [DEBUG] [MainWindow] Track metadata loaded: Run To The Hills by Iron Maiden
+[2026-05-24 15:30:31] [DEBUG] [PlaybackController] Picked random track: index 2142 of 2321
+[2026-05-24 15:30:31] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Offspring/The Offspring - Hit That.mp3
+[2026-05-24 15:30:31] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Offspring/The Offspring - Hit That.mp3
+[2026-05-24 15:30:31] [DEBUG] [MainWindow] Track metadata loaded: Hit That by The Offspring
+[2026-05-24 15:30:32] [DEBUG] [PlaybackController] Picked random track: index 718 of 2321
+[2026-05-24 15:30:32] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2016 - Other Chants/Gregorian - I Wont Hold You Back.mp3
+[2026-05-24 15:30:32] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2016 - Other Chants/Gregorian - I Wont Hold You Back.mp3
+[2026-05-24 15:30:32] [DEBUG] [MainWindow] Track metadata loaded: I Won?t Hold You Back by Gregorian
+[2026-05-24 15:30:32] [DEBUG] [PlaybackController] Picked random track: index 743 of 2321
+[2026-05-24 15:30:32] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2020 - The Complete Masters Of Chant/Gregorian - Le Temps Des Cathédrales.mp3
+[2026-05-24 15:30:32] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2020 - The Complete Masters Of Chant/Gregorian - Le Temps Des Cathédrales.mp3
+[2026-05-24 15:30:32] [DEBUG] [MainWindow] Track metadata loaded: Le Temps Des Cathédrales by Gregorian
+[2026-05-24 15:30:33] [DEBUG] [PlaybackController] Picked random track: index 937 of 2321
+[2026-05-24 15:30:33] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1992] Fear Of The Dark/Iron Maiden - Childhood's End.mp3
+[2026-05-24 15:30:33] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1992] Fear Of The Dark/Iron Maiden - Childhood's End.mp3
+[2026-05-24 15:30:33] [DEBUG] [MainWindow] Track metadata loaded: Childhood's End by Iron Maiden
+[2026-05-24 15:30:34] [DEBUG] [PlaybackController] Picked random track: index 370 of 2321
+[2026-05-24 15:30:34] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Deep Purple/30.  Deep Purple  -  Vincent Price.mp3
+[2026-05-24 15:30:34] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Deep Purple/30.  Deep Purple  -  Vincent Price.mp3
+[2026-05-24 15:30:34] [DEBUG] [MainWindow] Track metadata loaded: Vincent Price by Deep Purple
+[2026-05-24 15:30:34] [DEBUG] [PlaybackController] Picked random track: index 165 of 2321
+[2026-05-24 15:30:34] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Bob Dylan/Bob Dylan - Subterranean Homesick Blues.mp3
+[2026-05-24 15:30:34] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Bob Dylan/Bob Dylan - Subterranean Homesick Blues.mp3
+[2026-05-24 15:30:34] [DEBUG] [MainWindow] Track metadata loaded: Subterranean Homesick Blues by Bob Dylan
+[2026-05-24 15:30:40] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 15:30:40] [DEBUG] [Main] State saved on application exit
+[2026-05-24 15:30:40] [INFO] [PlaybackController] PlaybackController destroyed

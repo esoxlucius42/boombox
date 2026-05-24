@@ -14,6 +14,7 @@ bin/boombox: \
   CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o \
   CMakeFiles/boombox.dir/src/widgets/controls.cpp.o \
   CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o \
+  CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o \
   CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o \
   /usr/lib64/libQt6Widgets.so.6.10.3 \
   /usr/lib64/libmpv.so.2 \
@@ -425,6 +426,8 @@ CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o:
 CMakeFiles/boombox.dir/src/widgets/controls.cpp.o:
 
 CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o:
+
+CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o:
 
 CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o:
 

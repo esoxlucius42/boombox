@@ -535,6 +535,12 @@
 			null
 		],
 		[
+			"/var/home/esox/dev/cpp/boombox/include/widgets/spectrumanalyzer.h",
+			"MU",
+			"MROXUFLNXW/moc_spectrumanalyzer.cpp",
+			null
+		],
+		[
 			"/var/home/esox/dev/cpp/boombox/include/widgets/trackinfo.h",
 			"MU",
 			"MROXUFLNXW/moc_trackinfo.cpp",
@@ -614,6 +620,11 @@
 		[ "/var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp", "MU", null ],
 		[ "/var/home/esox/dev/cpp/boombox/src/widgets/controls.cpp", "MU", null ],
 		[ "/var/home/esox/dev/cpp/boombox/src/widgets/seekbar.cpp", "MU", null ],
+		[
+			"/var/home/esox/dev/cpp/boombox/src/widgets/spectrumanalyzer.cpp",
+			"MU",
+			null
+		],
 		[
 			"/var/home/esox/dev/cpp/boombox/src/widgets/trackinfo.cpp",
 			"MU",

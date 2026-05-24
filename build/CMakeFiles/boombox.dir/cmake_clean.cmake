@@ -27,6 +27,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/boombox.dir/src/widgets/controls.cpp.o.d"
   "CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o"
   "CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o.d"
+  "CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o"
+  "CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o.d"
   "CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o"
   "CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o.d"
   "bin/boombox"

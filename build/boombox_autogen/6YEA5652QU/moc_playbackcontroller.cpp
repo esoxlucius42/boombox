@@ -8,6 +8,7 @@
 
 #include "../../../include/playbackcontroller.h"
 #include <QtCore/qmetatype.h>
+#include <QtCore/QList>
 
 #include <QtCore/qtmochelpers.h>
 
@@ -47,6 +48,9 @@ template <> constexpr inline auto PlaybackController::qt_create_metaobjectdata<q
         "meta",
         "playbackError",
         "error",
+        "spectrumLevelsUpdated",
+        "QList<float>",
+        "levels",
         "onAudioEventTick",
         "onTrackFinished",
         "onPlaybackError",
@@ -69,13 +73,17 @@ template <> constexpr inline auto PlaybackController::qt_create_metaobjectdata<q
         QtMocHelpers::SignalData<void(const QString &)>(7, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::QString, 8 },
         }}),
+        // Signal 'spectrumLevelsUpdated'
+        QtMocHelpers::SignalData<void(const QVector<float> &)>(9, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { 0x80000000 | 10, 11 },
+        }}),
         // Slot 'onAudioEventTick'
-        QtMocHelpers::SlotData<void()>(9, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(12, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onTrackFinished'
-        QtMocHelpers::SlotData<void()>(10, 2, QMC::AccessPrivate, QMetaType::Void),
+        QtMocHelpers::SlotData<void()>(13, 2, QMC::AccessPrivate, QMetaType::Void),
         // Slot 'onPlaybackError'
-        QtMocHelpers::SlotData<void(AudioEngine::ErrorCode, const std::string &)>(11, 2, QMC::AccessPrivate, QMetaType::Void, {{
-            { 0x80000000 | 12, 13 }, { 0x80000000 | 14, 15 },
+        QtMocHelpers::SlotData<void(AudioEngine::ErrorCode, const std::string &)>(14, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { 0x80000000 | 15, 16 }, { 0x80000000 | 17, 18 },
         }}),
     };
     QtMocHelpers::UintData qt_properties {
@@ -103,10 +111,23 @@ void PlaybackController::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         case 0: _t->trackChanged((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
         case 1: _t->trackMetadataLoaded((*reinterpret_cast<std::add_pointer_t<AudioMetadata>>(_a[1]))); break;
         case 2: _t->playbackError((*reinterpret_cast<std::add_pointer_t<QString>>(_a[1]))); break;
-        case 3: _t->onAudioEventTick(); break;
-        case 4: _t->onTrackFinished(); break;
-        case 5: _t->onPlaybackError((*reinterpret_cast<std::add_pointer_t<AudioEngine::ErrorCode>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<std::string>>(_a[2]))); break;
+        case 3: _t->spectrumLevelsUpdated((*reinterpret_cast<std::add_pointer_t<QList<float>>>(_a[1]))); break;
+        case 4: _t->onAudioEventTick(); break;
+        case 5: _t->onTrackFinished(); break;
+        case 6: _t->onPlaybackError((*reinterpret_cast<std::add_pointer_t<AudioEngine::ErrorCode>>(_a[1])),(*reinterpret_cast<std::add_pointer_t<std::string>>(_a[2]))); break;
         default: ;
+        }
+    }
+    if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
+        switch (_id) {
+        default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+        case 3:
+            switch (*reinterpret_cast<int*>(_a[1])) {
+            default: *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType(); break;
+            case 0:
+                *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType::fromType< QList<float> >(); break;
+            }
+            break;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
@@ -115,6 +136,8 @@ void PlaybackController::qt_static_metacall(QObject *_o, QMetaObject::Call _c, i
         if (QtMocHelpers::indexOfMethod<void (PlaybackController::*)(const AudioMetadata & )>(_a, &PlaybackController::trackMetadataLoaded, 1))
             return;
         if (QtMocHelpers::indexOfMethod<void (PlaybackController::*)(const QString & )>(_a, &PlaybackController::playbackError, 2))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (PlaybackController::*)(const QVector<float> & )>(_a, &PlaybackController::spectrumLevelsUpdated, 3))
             return;
     }
 }
@@ -138,14 +161,14 @@ int PlaybackController::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 7)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 7;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
-            *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        if (_id < 7)
+            qt_static_metacall(this, _c, _id, _a);
+        _id -= 7;
     }
     return _id;
 }
@@ -166,5 +189,11 @@ void PlaybackController::trackMetadataLoaded(const AudioMetadata & _t1)
 void PlaybackController::playbackError(const QString & _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 2, nullptr, _t1);
+}
+
+// SIGNAL 3
+void PlaybackController::spectrumLevelsUpdated(const QVector<float> & _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 3, nullptr, _t1);
 }
 QT_WARNING_POP

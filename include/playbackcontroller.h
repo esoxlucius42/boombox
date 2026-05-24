@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QString>
 #include <QTimer>
+#include <QVector>
 #include <memory>
 #include <random>
 #include "audioengine.h"
@@ -90,6 +91,7 @@ signals:
      * @param error Error message
      */
     void playbackError(const QString& error);
+    void spectrumLevelsUpdated(const QVector<float>& levels);
 
 private slots:
     /**
@@ -120,6 +122,8 @@ private:
     bool backendUnavailableErrorShown = false;
     QTimer* audioEventTimer = nullptr;
     static constexpr int FIXED_VOLUME_LEVEL = 100;
+    static constexpr int SPECTRUM_BIN_COUNT = 24;
+    QVector<float> smoothedSpectrumBins;
 
     /**
      * @brief Pick a random track from queue
@@ -132,6 +136,7 @@ private:
      * @param index Index in queue
      */
     void playTrackAt(int index);
+    QVector<float> createSpectrumBins(float baseLevel, bool playing);
 
     /**
      * @brief Check if backend is currently available for playback

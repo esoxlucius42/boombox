@@ -1,12 +1,15 @@
 #include "playbackcontroller.h"
 #include "logger.h"
 #include <QFileInfo>
+#include <algorithm>
 #include <chrono>
+#include <cmath>
 
 PlaybackController::PlaybackController(QObject *parent)
     : QObject(parent),
       audioEngine(std::make_unique<AudioEngine>()),
-      fileManager(std::make_unique<FileManager>()) {
+      fileManager(std::make_unique<FileManager>()),
+      smoothedSpectrumBins(SPECTRUM_BIN_COUNT, 0.0f) {
     
     try {
         // Seed the random generator with current time
@@ -284,6 +287,12 @@ void PlaybackController::onAudioEventTick() {
     }
 
     audioEngine->processEvents();
+    const bool playing = audioEngine->isPlaying();
+    const float reactiveLevel = playing
+        ? static_cast<float>(std::clamp(audioEngine->getReactiveLevel(), 0.0, 1.0))
+        : 0.0f;
+
+    emit spectrumLevelsUpdated(createSpectrumBins(reactiveLevel, playing));
 }
 
 void PlaybackController::onTrackFinished() {
@@ -362,4 +371,26 @@ void PlaybackController::emitBackendUnavailableErrorOnce() {
     backendUnavailableErrorShown = true;
     Logger::error("PlaybackController", BACKEND_UNAVAILABLE_MESSAGE);
     emit playbackError(BACKEND_UNAVAILABLE_MESSAGE);
+}
+
+QVector<float> PlaybackController::createSpectrumBins(float baseLevel, bool playing) {
+    QVector<float> bins(SPECTRUM_BIN_COUNT, 0.0f);
+    if (smoothedSpectrumBins.size() != SPECTRUM_BIN_COUNT) {
+        smoothedSpectrumBins.fill(0.0f, SPECTRUM_BIN_COUNT);
+    }
+
+    for (int i = 0; i < SPECTRUM_BIN_COUNT; ++i) {
+        const float pos = static_cast<float>(i) / static_cast<float>(SPECTRUM_BIN_COUNT - 1);
+        constexpr float PI = 3.14159265f;
+        const float eqProfile = 0.35f + 0.65f * std::sin(pos * PI);
+        const float jitter = 0.82f + 0.18f * std::generate_canonical<float, 10>(randomGenerator);
+        const float target = playing ? std::clamp(baseLevel * eqProfile * jitter, 0.0f, 1.0f) : 0.0f;
+        const float previous = smoothedSpectrumBins[i];
+        const float smoothing = target > previous ? 0.45f : 0.14f;
+        const float nextValue = previous + (target - previous) * smoothing;
+        bins[i] = std::clamp(nextValue, 0.0f, 1.0f);
+    }
+
+    smoothedSpectrumBins = bins;
+    return bins;
 }

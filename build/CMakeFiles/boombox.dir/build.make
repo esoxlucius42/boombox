@@ -255,10 +255,24 @@ CMakeFiles/boombox.dir/src/widgets/albumart.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/boombox.dir/src/widgets/albumart.cpp.s"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp -o CMakeFiles/boombox.dir/src/widgets/albumart.cpp.s
 
+CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o: CMakeFiles/boombox.dir/flags.make
+CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o: /var/home/esox/dev/cpp/boombox/src/widgets/spectrumanalyzer.cpp
+CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o: CMakeFiles/boombox.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o -MF CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o.d -o CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o -c /var/home/esox/dev/cpp/boombox/src/widgets/spectrumanalyzer.cpp
+
+CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.i"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /var/home/esox/dev/cpp/boombox/src/widgets/spectrumanalyzer.cpp > CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.i
+
+CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.s"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /var/home/esox/dev/cpp/boombox/src/widgets/spectrumanalyzer.cpp -o CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.s
+
 CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o: CMakeFiles/boombox.dir/flags.make
 CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o: boombox_autogen/3YJK5W5UP7/qrc_resources.cpp
 CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o: CMakeFiles/boombox.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o -MF CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o.d -o CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o -c /var/home/esox/dev/cpp/boombox/build/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp
 
 CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.i: cmake_force
@@ -283,6 +297,7 @@ boombox_OBJECTS = \
 "CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o" \
 "CMakeFiles/boombox.dir/src/widgets/controls.cpp.o" \
 "CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o" \
+"CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o" \
 "CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o"
 
 # External object files for target boombox
@@ -300,6 +315,7 @@ bin/boombox: CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/src/widgets/controls.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o
+bin/boombox: CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/build.make
 bin/boombox: CMakeFiles/boombox.dir/compiler_depend.ts
@@ -310,7 +326,7 @@ bin/boombox: /usr/lib64/libGLX.so
 bin/boombox: /usr/lib64/libOpenGL.so
 bin/boombox: /usr/lib64/libQt6Core.so.6.10.3
 bin/boombox: CMakeFiles/boombox.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable bin/boombox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable bin/boombox"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/boombox.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

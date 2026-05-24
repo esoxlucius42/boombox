@@ -4,4 +4,5 @@
 #include "MROXUFLNXW/moc_albumart.cpp"
 #include "MROXUFLNXW/moc_controls.cpp"
 #include "MROXUFLNXW/moc_seekbar.cpp"
+#include "MROXUFLNXW/moc_spectrumanalyzer.cpp"
 #include "MROXUFLNXW/moc_trackinfo.cpp"

@@ -79,6 +79,7 @@ set(SOURCES
     src/widgets/seekbar.cpp
     src/widgets/controls.cpp
     src/widgets/albumart.cpp
+    src/widgets/spectrumanalyzer.cpp
 )
 
 # Use libmpv stub only when real libmpv is not available
@@ -94,6 +95,7 @@ set(HEADERS
     include/widgets/seekbar.h
     include/widgets/controls.h
     include/widgets/albumart.h
+    include/widgets/spectrumanalyzer.h
     include/filemanager.h
     include/logger.h
     include/statemanager.h

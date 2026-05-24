@@ -554,6 +554,30 @@ src/widgets/seekbar.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.s
 .PHONY : src/widgets/seekbar.cpp.s
 
+src/widgets/spectrumanalyzer.o: src/widgets/spectrumanalyzer.cpp.o
+.PHONY : src/widgets/spectrumanalyzer.o
+
+# target to build an object file
+src/widgets/spectrumanalyzer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o
+.PHONY : src/widgets/spectrumanalyzer.cpp.o
+
+src/widgets/spectrumanalyzer.i: src/widgets/spectrumanalyzer.cpp.i
+.PHONY : src/widgets/spectrumanalyzer.i
+
+# target to preprocess a source file
+src/widgets/spectrumanalyzer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.i
+.PHONY : src/widgets/spectrumanalyzer.cpp.i
+
+src/widgets/spectrumanalyzer.s: src/widgets/spectrumanalyzer.cpp.s
+.PHONY : src/widgets/spectrumanalyzer.s
+
+# target to generate assembly for a file
+src/widgets/spectrumanalyzer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.s
+.PHONY : src/widgets/spectrumanalyzer.cpp.s
+
 src/widgets/trackinfo.o: src/widgets/trackinfo.cpp.o
 .PHONY : src/widgets/trackinfo.o
 
@@ -706,6 +730,9 @@ help:
 	@echo "... src/widgets/seekbar.o"
 	@echo "... src/widgets/seekbar.i"
 	@echo "... src/widgets/seekbar.s"
+	@echo "... src/widgets/spectrumanalyzer.o"
+	@echo "... src/widgets/spectrumanalyzer.i"
+	@echo "... src/widgets/spectrumanalyzer.s"
 	@echo "... src/widgets/trackinfo.o"
 	@echo "... src/widgets/trackinfo.i"
 	@echo "... src/widgets/trackinfo.s"

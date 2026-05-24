@@ -59,20 +59,25 @@ void MainWindow::setupUI()
     auto leftLayout = new QVBoxLayout(leftPane);
     leftLayout->setContentsMargins(0, 0, 0, 0);
     leftLayout->setSpacing(0);
-    leftLayout->addStretch(1);
-    
+
+    // Analyzer strip at top of left pane
+    spectrumAnalyzerWidget = new SpectrumAnalyzerWidget(this);
+    spectrumAnalyzerWidget->setObjectName("spectrumAnalyzer");
+    leftLayout->addWidget(spectrumAnalyzerWidget);
+    leftLayout->addSpacing(2);
+     
     // Pane 0: Track Info (80px)
     trackInfoWidget = new TrackInfoWidget(this);
     trackInfoWidget->setObjectName("pane0");
-    trackInfoWidget->setMinimumHeight(140);
-    trackInfoWidget->setMaximumHeight(160);
+    trackInfoWidget->setMinimumHeight(150);
+    trackInfoWidget->setMaximumHeight(170);
     leftLayout->addWidget(trackInfoWidget);
-    
+     
     // Pane 1: Seek Bar (100px)
     seekBarWidget = new SeekBarWidget(this);
     seekBarWidget->setObjectName("pane1");
-    seekBarWidget->setMinimumHeight(70);
-    seekBarWidget->setMaximumHeight(90);
+    seekBarWidget->setMinimumHeight(56);
+    seekBarWidget->setMaximumHeight(72);
     leftLayout->addWidget(seekBarWidget);
     
     // Pane 2: Control Buttons (300px)
@@ -100,6 +105,7 @@ void MainWindow::setupUI()
     mainLayout->addWidget(rightPane);
     
     trackInfoWidget->clearDisplay();
+    spectrumAnalyzerWidget->clear();
     seekBarWidget->setCurrentTime(0);
     seekBarWidget->setTotalTime(0);
     seekBarWidget->setDuration(0);
@@ -128,6 +134,9 @@ void MainWindow::connectSignals()
     // Connect playback error
     connect(playbackController, &PlaybackController::playbackError,
             this, &MainWindow::onPlaybackError);
+
+    connect(playbackController, &PlaybackController::spectrumLevelsUpdated,
+            spectrumAnalyzerWidget, &SpectrumAnalyzerWidget::setSpectrumLevels);
     
     // Connect play/pause button
     connect(controlsWidget, &ControlsWidget::playPauseClicked,

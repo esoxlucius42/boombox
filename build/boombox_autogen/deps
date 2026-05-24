@@ -378,6 +378,7 @@ boombox_autogen/timestamp: \
 	/usr/include/c++/16/bits/localefwd.h \
 	/usr/include/c++/16/bits/memory_resource.h \
 	/usr/include/c++/16/bits/memoryfwd.h \
+	/usr/include/c++/16/bits/monostate.h \
 	/usr/include/c++/16/bits/move.h \
 	/usr/include/c++/16/bits/nested_exception.h \
 	/usr/include/c++/16/bits/new_allocator.h \
@@ -477,6 +478,8 @@ boombox_autogen/timestamp: \
 	/usr/include/c++/16/numeric \
 	/usr/include/c++/16/optional \
 	/usr/include/c++/16/pstl/execution_defs.h \
+	/usr/include/c++/16/pstl/glue_algorithm_defs.h \
+	/usr/include/c++/16/pstl/glue_memory_defs.h \
 	/usr/include/c++/16/pstl/glue_numeric_defs.h \
 	/usr/include/c++/16/pstl/pstl_config.h \
 	/usr/include/c++/16/random \
@@ -540,6 +543,7 @@ boombox_autogen/timestamp: \
 	/usr/include/qt6/QtCore/QString \
 	/usr/include/qt6/QtCore/QStringList \
 	/usr/include/qt6/QtCore/QTimer \
+	/usr/include/qt6/QtCore/QVector \
 	/usr/include/qt6/QtCore/q17memory.h \
 	/usr/include/qt6/QtCore/q20functional.h \
 	/usr/include/qt6/QtCore/q20iterator.h \
@@ -672,6 +676,7 @@ boombox_autogen/timestamp: \
 	/usr/include/qt6/QtCore/qutf8stringview.h \
 	/usr/include/qt6/QtCore/qvariant.h \
 	/usr/include/qt6/QtCore/qvarlengtharray.h \
+	/usr/include/qt6/QtCore/qvector.h \
 	/usr/include/qt6/QtCore/qversiontagging.h \
 	/usr/include/qt6/QtCore/qxptype_traits.h \
 	/usr/include/qt6/QtCore/qyieldcpu.h \
@@ -840,6 +845,7 @@ boombox_autogen/timestamp: \
 	/var/home/esox/dev/cpp/boombox/include/widgets/albumart.h \
 	/var/home/esox/dev/cpp/boombox/include/widgets/controls.h \
 	/var/home/esox/dev/cpp/boombox/include/widgets/seekbar.h \
+	/var/home/esox/dev/cpp/boombox/include/widgets/spectrumanalyzer.h \
 	/var/home/esox/dev/cpp/boombox/include/widgets/trackinfo.h \
 	/var/home/esox/dev/cpp/boombox/resources/resources.qrc \
 	/var/home/esox/dev/cpp/boombox/src/audioengine.cpp \
@@ -852,5 +858,6 @@ boombox_autogen/timestamp: \
 	/var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp \
 	/var/home/esox/dev/cpp/boombox/src/widgets/controls.cpp \
 	/var/home/esox/dev/cpp/boombox/src/widgets/seekbar.cpp \
+	/var/home/esox/dev/cpp/boombox/src/widgets/spectrumanalyzer.cpp \
 	/var/home/esox/dev/cpp/boombox/src/widgets/trackinfo.cpp \
 	/bin/cmake

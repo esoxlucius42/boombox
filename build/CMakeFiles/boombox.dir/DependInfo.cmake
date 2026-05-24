@@ -21,6 +21,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp" "CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o" "gcc" "CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o.d"
   "/var/home/esox/dev/cpp/boombox/src/widgets/controls.cpp" "CMakeFiles/boombox.dir/src/widgets/controls.cpp.o" "gcc" "CMakeFiles/boombox.dir/src/widgets/controls.cpp.o.d"
   "/var/home/esox/dev/cpp/boombox/src/widgets/seekbar.cpp" "CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o" "gcc" "CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o.d"
+  "/var/home/esox/dev/cpp/boombox/src/widgets/spectrumanalyzer.cpp" "CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o" "gcc" "CMakeFiles/boombox.dir/src/widgets/spectrumanalyzer.cpp.o.d"
   "/var/home/esox/dev/cpp/boombox/src/widgets/trackinfo.cpp" "CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o" "gcc" "CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o.d"
   "" "bin/boombox" "gcc" "CMakeFiles/boombox.dir/link.d"
   )

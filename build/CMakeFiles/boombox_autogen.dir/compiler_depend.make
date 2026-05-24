@@ -381,6 +381,7 @@ boombox_autogen/timestamp: /bin/cmake \
   /usr/include/c++/16/bits/localefwd.h \
   /usr/include/c++/16/bits/memory_resource.h \
   /usr/include/c++/16/bits/memoryfwd.h \
+  /usr/include/c++/16/bits/monostate.h \
   /usr/include/c++/16/bits/move.h \
   /usr/include/c++/16/bits/nested_exception.h \
   /usr/include/c++/16/bits/new_allocator.h \
@@ -480,6 +481,8 @@ boombox_autogen/timestamp: /bin/cmake \
   /usr/include/c++/16/numeric \
   /usr/include/c++/16/optional \
   /usr/include/c++/16/pstl/execution_defs.h \
+  /usr/include/c++/16/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/16/pstl/glue_memory_defs.h \
   /usr/include/c++/16/pstl/glue_numeric_defs.h \
   /usr/include/c++/16/pstl/pstl_config.h \
   /usr/include/c++/16/random \
@@ -543,6 +546,7 @@ boombox_autogen/timestamp: /bin/cmake \
   /usr/include/qt6/QtCore/QString \
   /usr/include/qt6/QtCore/QStringList \
   /usr/include/qt6/QtCore/QTimer \
+  /usr/include/qt6/QtCore/QVector \
   /usr/include/qt6/QtCore/q17memory.h \
   /usr/include/qt6/QtCore/q20functional.h \
   /usr/include/qt6/QtCore/q20iterator.h \
@@ -675,6 +679,7 @@ boombox_autogen/timestamp: /bin/cmake \
   /usr/include/qt6/QtCore/qutf8stringview.h \
   /usr/include/qt6/QtCore/qvariant.h \
   /usr/include/qt6/QtCore/qvarlengtharray.h \
+  /usr/include/qt6/QtCore/qvector.h \
   /usr/include/qt6/QtCore/qversiontagging.h \
   /usr/include/qt6/QtCore/qxptype_traits.h \
   /usr/include/qt6/QtCore/qyieldcpu.h \
@@ -843,6 +848,7 @@ boombox_autogen/timestamp: /bin/cmake \
   /var/home/esox/dev/cpp/boombox/include/widgets/albumart.h \
   /var/home/esox/dev/cpp/boombox/include/widgets/controls.h \
   /var/home/esox/dev/cpp/boombox/include/widgets/seekbar.h \
+  /var/home/esox/dev/cpp/boombox/include/widgets/spectrumanalyzer.h \
   /var/home/esox/dev/cpp/boombox/include/widgets/trackinfo.h \
   /var/home/esox/dev/cpp/boombox/resources/resources.qrc \
   /var/home/esox/dev/cpp/boombox/src/audioengine.cpp \
@@ -855,8 +861,11 @@ boombox_autogen/timestamp: /bin/cmake \
   /var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp \
   /var/home/esox/dev/cpp/boombox/src/widgets/controls.cpp \
   /var/home/esox/dev/cpp/boombox/src/widgets/seekbar.cpp \
+  /var/home/esox/dev/cpp/boombox/src/widgets/spectrumanalyzer.cpp \
   /var/home/esox/dev/cpp/boombox/src/widgets/trackinfo.cpp
 
+
+/var/home/esox/dev/cpp/boombox/src/widgets/spectrumanalyzer.cpp:
 
 /var/home/esox/dev/cpp/boombox/src/widgets/controls.cpp:
 
@@ -1146,6 +1155,8 @@ boombox_autogen/moc_predefs.h:
 
 /usr/include/qt6/QtCore/qmetatype.h:
 
+/var/home/esox/dev/cpp/boombox/include/widgets/spectrumanalyzer.h:
+
 /usr/lib64/cmake/Qt6/QtPublicCMakeHelpers.cmake:
 
 /usr/include/qt6/QtCore/qmetacontainer.h:
@@ -1231,6 +1242,8 @@ boombox_autogen/moc_predefs.h:
 /usr/include/qt6/QtCore/q20memory.h:
 
 /usr/include/qt6/QtCore/q20functional.h:
+
+/usr/include/qt6/QtCore/QString:
 
 /lib64/cmake/Qt6Gui/Qt6QTuioTouchPluginConfig.cmake:
 
@@ -1364,11 +1377,17 @@ CMakeFiles/4.3.0/CMakeCCompiler.cmake:
 
 /usr/include/qt6/QtCore/q17memory.h:
 
+/usr/include/qt6/QtCore/QVector:
+
 /usr/include/c++/16/bits/enable_special_members.h:
 
 /usr/include/c++/16/tr1/exp_integral.tcc:
 
 /lib64/cmake/Qt6Gui/Qt6QVkKhrDisplayIntegrationPluginConfig.cmake:
+
+/usr/include/qt6/QtCore/QStringList:
+
+/usr/include/bits/pthread_stack_min-dynamic.h:
 
 /usr/lib64/cmake/Qt6/FindWrapAtomic.cmake:
 
@@ -1403,6 +1422,8 @@ CMakeFiles/4.3.0/CMakeCCompiler.cmake:
 /usr/include/qt6/QtCore/qmalloc.h:
 
 /lib64/cmake/Qt6/Qt6ConfigVersion.cmake:
+
+/usr/include/qt6/QtCore/qvector.h:
 
 /lib64/cmake/Qt6Gui/Qt6QTiffPluginTargets.cmake:
 
@@ -2228,10 +2249,6 @@ CMakeFiles/4.3.0/CMakeCXXCompiler.cmake:
 
 /usr/include/c++/16/bits/stl_list.h:
 
-/lib64/cmake/Qt6Gui/Qt6QWaylandWlShellIntegrationPluginTargets.cmake:
-
-/usr/include/c++/16/bits/align.h:
-
 /usr/include/qt6/QtWidgets/qtwidgets-config.h:
 
 /usr/include/c++/16/cmath:
@@ -2318,6 +2335,12 @@ CMakeFiles/4.3.0/CMakeCXXCompiler.cmake:
 
 /usr/include/c++/16/bits/memoryfwd.h:
 
+/lib64/cmake/Qt6Gui/Qt6QWaylandWlShellIntegrationPluginTargets.cmake:
+
+/usr/include/c++/16/bits/align.h:
+
+/usr/include/c++/16/bits/monostate.h:
+
 /usr/share/cmake/Modules/FindPkgConfig.cmake:
 
 /usr/include/c++/16/bits/move.h:
@@ -2325,12 +2348,6 @@ CMakeFiles/4.3.0/CMakeCXXCompiler.cmake:
 /usr/include/qt6/QtCore/qtpreprocessorsupport.h:
 
 /usr/include/c++/16/bits/nested_exception.h:
-
-/usr/include/qt6/QtCore/QString:
-
-/usr/include/bits/pthread_stack_min-dynamic.h:
-
-/usr/include/qt6/QtCore/QStringList:
 
 /usr/include/c++/16/bits/new_allocator.h:
 
@@ -2476,6 +2493,8 @@ CMakeFiles/4.3.0/CMakeCXXCompiler.cmake:
 
 /usr/include/c++/16/debug/assertions.h:
 
+/usr/include/c++/16/pstl/glue_algorithm_defs.h:
+
 /lib64/cmake/Qt6Gui/Qt6ShmServerBufferPluginTargets.cmake:
 
 /usr/include/c++/16/ext/aligned_buffer.h:
@@ -2497,6 +2516,8 @@ CMakeFiles/4.3.0/CMakeCXXCompiler.cmake:
 /usr/include/qt6/QtCore/qtformat_impl.h:
 
 /usr/include/c++/16/numeric:
+
+/usr/include/c++/16/pstl/glue_memory_defs.h:
 
 /usr/include/c++/16/pstl/glue_numeric_defs.h:
 
