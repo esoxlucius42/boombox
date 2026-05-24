@@ -1,0 +1,6 @@
+[2026-05-24 09:39:37] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 09:39:37] [INFO] [Main] Application startup
+[2026-05-24 09:39:37] [DEBUG] [Main] This is a debug message
+[2026-05-24 09:39:37] [WARN] [Main] This is a warning message
+[2026-05-24 09:39:37] [ERROR] [Main] This is an error message
+[2026-05-24 09:39:37] [INFO] [Main] Logging test complete

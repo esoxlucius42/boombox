@@ -1,0 +1,6 @@
+# Hashes of file build rules.
+394c4b83158f99951dffed181c5c0d50 CMakeFiles/boombox_autogen
+394c4b83158f99951dffed181c5c0d50 CMakeFiles/test_logger_exe_autogen
+fab53f46cb5615d3d8369b5e7415e9d3 boombox_autogen/3YJK5W5UP7/qrc_resources.cpp
+b13a2de3ea187abd3da65be36ad875e3 boombox_autogen/timestamp
+37923154ef4fca89ec57f3c4983c269a test_logger_exe_autogen/timestamp

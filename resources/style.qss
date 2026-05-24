@@ -1,0 +1,171 @@
+/* Boombox Dark Theme Stylesheet */
+
+/* Main window and panes */
+QMainWindow {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}
+
+QWidget {
+    background-color: #2a2a2a;
+    color: #e0e0e0;
+}
+
+#leftPane {
+    background-color: #2a2a2a;
+    border-right: 1px solid #1a1a1a;
+}
+
+#rightPane {
+    background-color: #3a3a3a;
+}
+
+/* Track Info Widget */
+#trackInfoWidget {
+    background-color: #2a2a2a;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+#trackName {
+    color: #e0e0e0;
+    font-weight: bold;
+}
+
+#artistName {
+    color: #87ceeb;
+}
+
+#albumName {
+    color: #98fb98;
+}
+
+#trackNumber {
+    color: #dda0dd;
+}
+
+/* Seek Bar Widget */
+#seekBarWidget {
+    background-color: #2a2a2a;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+#currentTime, #totalTime {
+    color: #87ceeb;
+    font-size: 8pt;
+}
+
+QSlider::groove:horizontal {
+    border: 1px solid #505050;
+    height: 8px;
+    background: #505050;
+    margin: 2px 0;
+    border-radius: 4px;
+}
+
+QSlider::handle:horizontal {
+    background: #87ceeb;
+    border: 1px solid #5f9fdf;
+    width: 12px;
+    margin: -2px 0;
+    border-radius: 6px;
+}
+
+QSlider::handle:horizontal:hover {
+    background: #a0dff0;
+}
+
+/* Controls Widget */
+#controlsWidget {
+    background-color: #2a2a2a;
+}
+
+/* Push Buttons */
+QPushButton {
+    background-color: #3a3a3a;
+    color: #e0e0e0;
+    border: 1px solid #505050;
+    border-radius: 4px;
+    padding: 5px;
+    font-weight: bold;
+    font-size: 10pt;
+}
+
+QPushButton:hover {
+    background-color: #4a4a4a;
+    border: 1px solid #606060;
+}
+
+QPushButton:pressed {
+    background-color: #2a2a2a;
+    border: 1px solid #707070;
+}
+
+#playPauseButton {
+    background-color: #4a6a4a;
+    color: #98fb98;
+    border: 1px solid #5a7a5a;
+    font-size: 12pt;
+    font-weight: bold;
+}
+
+#playPauseButton:hover {
+    background-color: #5a7a5a;
+    border: 1px solid #6a8a6a;
+}
+
+#playPauseButton:pressed {
+    background-color: #3a5a3a;
+    border: 1px solid #6a8a6a;
+}
+
+#previousButton, #nextButton {
+    color: #87ceeb;
+    border: 1px solid #5f9fdf;
+}
+
+#previousButton:hover, #nextButton:hover {
+    background-color: #4a5a6a;
+    border: 1px solid #6f9fdf;
+}
+
+#randomButton {
+    color: #dda0dd;
+    border: 1px solid #8a5a8a;
+}
+
+#randomButton:hover {
+    background-color: #4a3a4a;
+    border: 1px solid #9a6a9a;
+}
+
+#browseButton {
+    color: #e0e0e0;
+    border: 1px solid #505050;
+}
+
+#browseButton:hover {
+    background-color: #4a4a4a;
+    border: 1px solid #606060;
+}
+
+#volumeDownButton, #volumeUpButton {
+    color: #87ceeb;
+    border: 1px solid #5f9fdf;
+}
+
+#volumeDownButton:hover, #volumeUpButton:hover {
+    background-color: #4a5a6a;
+    border: 1px solid #6f9fdf;
+}
+
+/* Album Art Label */
+#albumArt {
+    background-color: #3a3a3a;
+    border: 1px solid #505050;
+    border-radius: 4px;
+}
+
+/* Labels */
+QLabel {
+    color: #e0e0e0;
+}

@@ -1,0 +1,36 @@
+file(REMOVE_RECURSE
+  "CMakeFiles/boombox.dir/link.d"
+  "CMakeFiles/boombox_autogen.dir/AutogenUsed.txt"
+  "CMakeFiles/boombox_autogen.dir/ParseCache.txt"
+  "boombox_autogen"
+  "CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o"
+  "CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o.d"
+  "CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o"
+  "CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o.d"
+  "CMakeFiles/boombox.dir/src/filemanager.cpp.o"
+  "CMakeFiles/boombox.dir/src/filemanager.cpp.o.d"
+  "CMakeFiles/boombox.dir/src/logger.cpp.o"
+  "CMakeFiles/boombox.dir/src/logger.cpp.o.d"
+  "CMakeFiles/boombox.dir/src/main.cpp.o"
+  "CMakeFiles/boombox.dir/src/main.cpp.o.d"
+  "CMakeFiles/boombox.dir/src/mainwindow.cpp.o"
+  "CMakeFiles/boombox.dir/src/mainwindow.cpp.o.d"
+  "CMakeFiles/boombox.dir/src/statemanager.cpp.o"
+  "CMakeFiles/boombox.dir/src/statemanager.cpp.o.d"
+  "CMakeFiles/boombox.dir/src/widgets/controls.cpp.o"
+  "CMakeFiles/boombox.dir/src/widgets/controls.cpp.o.d"
+  "CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o"
+  "CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o.d"
+  "CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o"
+  "CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o.d"
+  "bin/boombox"
+  "bin/boombox.pdb"
+  "boombox_autogen/3YJK5W5UP7/qrc_resources.cpp"
+  "boombox_autogen/mocs_compilation.cpp"
+  "boombox_autogen/timestamp"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/boombox.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()
