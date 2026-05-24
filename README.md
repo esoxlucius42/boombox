@@ -84,6 +84,12 @@ For full installation, deployment, service setup, and troubleshooting on Raspber
 
 - [`DEPLOYMENT.md`](./DEPLOYMENT.md)
 
+Quick auto-install on Raspberry Pi OS:
+
+```bash
+sudo ./scripts/install_raspberry_pi_os.sh
+```
+
 ## Useful developer commands
 
 ```bash

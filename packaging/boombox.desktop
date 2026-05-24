@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Boombox
+Comment=Boombox audio player
+Exec=/opt/boombox/boombox
+Icon=/opt/boombox/resources/icon.jpg
+Terminal=false
+Categories=AudioVideo;Audio;Player;
+Keywords=music;audio;player;boombox;
+StartupNotify=true

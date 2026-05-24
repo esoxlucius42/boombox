@@ -51,7 +51,15 @@ git clone <repository-url> boombox
 cd boombox
 ```
 
-## 4. Build on Raspberry Pi OS
+## 3.1 One-command auto install (Raspberry Pi OS)
+
+This installs dependencies, builds Boombox, installs it to `/opt/boombox`, and registers it in the desktop app menu under **Sound & Video**.
+
+```bash
+sudo ./scripts/install_raspberry_pi_os.sh
+```
+
+## 4. Build on Raspberry Pi OS (manual)
 
 Configure:
 

@@ -3159,6 +3159,7 @@ CMakeFiles/boombox.dir/src/main.cpp.o
  /usr/include/qt6/QtCore/qversiontagging.h
  /usr/include/qt6/QtCore/qxptype_traits.h
  /usr/include/qt6/QtCore/qyieldcpu.h
+ /usr/include/qt6/QtGui/QIcon
  /usr/include/qt6/QtGui/QPixmap
  /usr/include/qt6/QtGui/QPixmapCache
  /usr/include/qt6/QtGui/qaction.h

@@ -3152,6 +3152,7 @@ CMakeFiles/boombox.dir/src/main.cpp.o: /var/home/esox/dev/cpp/boombox/src/main.c
   /usr/include/qt6/QtCore/qversiontagging.h \
   /usr/include/qt6/QtCore/qxptype_traits.h \
   /usr/include/qt6/QtCore/qyieldcpu.h \
+  /usr/include/qt6/QtGui/QIcon \
   /usr/include/qt6/QtGui/QPixmap \
   /usr/include/qt6/QtGui/QPixmapCache \
   /usr/include/qt6/QtGui/qaction.h \
@@ -10189,10 +10190,6 @@ boombox_autogen/MROXUFLNXW/moc_trackinfo.cpp:
 
 /usr/lib64/libaribcaption.so.1:
 
-/usr/lib64/liblilv-0.so.0:
-
-/usr/include/c++/16/bits/quoted_string.h:
-
 /usr/lib64/samba/libgenrand-private-samba.so:
 
 /usr/include/c++/16/filesystem:
@@ -10240,6 +10237,12 @@ boombox_autogen/3YJK5W5UP7/qrc_resources.cpp:
 /usr/lib64/samba/libMESSAGING-SEND-private-samba.so:
 
 /usr/include/qt6/QtCore/quuid.h:
+
+/usr/lib64/liblilv-0.so.0:
+
+/usr/include/c++/16/bits/quoted_string.h:
+
+/usr/include/qt6/QtGui/QIcon:
 
 /usr/include/qt6/QtGui/qguiapplication.h:
 
