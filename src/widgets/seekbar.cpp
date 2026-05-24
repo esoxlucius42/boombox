@@ -3,7 +3,7 @@
 #include <QFont>
 
 SeekBarWidget::SeekBarWidget(QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent), isUserDragging(false)
 {
     auto layout = new QHBoxLayout(this);
     layout->setContentsMargins(10, 10, 10, 10);
@@ -22,6 +22,7 @@ SeekBarWidget::SeekBarWidget(QWidget *parent)
     seekSlider = new QSlider(Qt::Horizontal, this);
     seekSlider->setMinimum(0);
     seekSlider->setMaximum(0);
+    seekSlider->setMinimumHeight(10);
     seekSlider->setObjectName("seekSlider");
     layout->addWidget(seekSlider);
     
@@ -32,7 +33,16 @@ SeekBarWidget::SeekBarWidget(QWidget *parent)
     totalTimeLabel->setMinimumWidth(40);
     layout->addWidget(totalTimeLabel);
     
-    connect(seekSlider, &QSlider::sliderMoved, this, &SeekBarWidget::positionChanged);
+    // Connect slider signals
+    connect(seekSlider, &QSlider::sliderMoved, this, &SeekBarWidget::onSliderMoved);
+    connect(seekSlider, &QSlider::sliderPressed, this, &SeekBarWidget::onSliderPressed);
+    connect(seekSlider, &QSlider::sliderReleased, this, &SeekBarWidget::onSliderReleased);
+    // Also handle direct clicks
+    connect(seekSlider, QOverload<int>::of(&QSlider::valueChanged), this, [this](int value) {
+        if (!isUserDragging) {
+            emit positionChanged(value);
+        }
+    });
     
     setObjectName("seekBarWidget");
 }
@@ -57,10 +67,61 @@ int SeekBarWidget::getCurrentPosition() const
     return seekSlider->value();
 }
 
+void SeekBarWidget::setDuration(int seconds)
+{
+    seekSlider->setMaximum(seconds);
+    totalTimeLabel->setText(formatTimeSeconds(seconds));
+}
+
+void SeekBarWidget::updatePosition(int seconds)
+{
+    if (!isUserDragging) {
+        seekSlider->blockSignals(true);
+        seekSlider->setValue(seconds);
+        seekSlider->blockSignals(false);
+        currentTimeLabel->setText(formatTimeSeconds(seconds));
+    }
+}
+
+void SeekBarWidget::enableSeeking(bool enabled)
+{
+    seekSlider->setEnabled(enabled);
+}
+
+int SeekBarWidget::getRequestedPosition() const
+{
+    return seekSlider->value();
+}
+
+void SeekBarWidget::onSliderMoved(int position)
+{
+    if (isUserDragging) {
+        currentTimeLabel->setText(formatTimeSeconds(position));
+        emit userSeeked(position);
+        emit positionChanged(position);
+    }
+}
+
+void SeekBarWidget::onSliderPressed()
+{
+    isUserDragging = true;
+}
+
+void SeekBarWidget::onSliderReleased()
+{
+    isUserDragging = false;
+    emit userSeeked(seekSlider->value());
+}
+
 QString SeekBarWidget::formatTime(int milliseconds) const
 {
     int seconds = milliseconds / 1000;
+    return formatTimeSeconds(seconds);
+}
+
+QString SeekBarWidget::formatTimeSeconds(int seconds) const
+{
     int minutes = seconds / 60;
-    seconds = seconds % 60;
-    return QString("%1:%2").arg(minutes).arg(seconds, 2, 10, QChar('0'));
+    int secs = seconds % 60;
+    return QString("%1:%2").arg(minutes).arg(secs, 2, 10, QChar('0'));
 }
