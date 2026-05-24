@@ -1,0 +1,43 @@
+app name: Boombox
+description: linux audio player app
+target system: Raspberry Pi 5
+target OS: Raspberry PI OS (64 bit)
+setup: PPi5 with 7 inch display (800 x 480) with touchscreen
+output: bluetooth speaker
+gui:
+- lanscape orientation
+- screen area divided to left and right pane
+- right pane is full height (480p) and 480p width (it is a square)
+- all remainig area belongs to left pane
+- right pane display album cover art
+- left pane is divided verticaly to several panes
+pane0: display information about current track
+- track name
+- album
+- artist
+- track number / total number of tracks in queue
+pane1: time played, seek bar, total time
+- user can use seek bar to contorol audio
+pane2: holds playback control buttons:
+previous, play/pause, next, random on/off, browse, volume-, volume+
+feats:
+- app will play existing tracks from local storrage
+- app will not play remote media like streaming
+- playback que is using file system directory structure:
+-- when user clicks browse it selects folder, not individual files
+-- folder is processed and every usable file is added to queue
+-- playback starts immediatly and default mode is random
+considerations:
+- there can be thousands of files in the queue so do not process them in any way ( do not reed meta data, album covers, track lengthd, ...)
+- when a track is ready to be played then process it and display info on screen
+- make sure memory is released when track stops playing
+tech:
+- development is done on linux distro, make it possible for app to run on this environment so app can be tested before deployment
+- use c++
+- store current app state and restore it later; save info about current source folder and currently playing track, don't save volume level or playing position
+- random mode is trully random and not shuffle
+- do not bother with favourites or playlists
+- dark gui but not high contrast: dark grey back with pastel colors for front
+- use error handling to prevent app crashes; catch unexpected problems (like a corruptioin in track) and play next random track
+- keep a log file in the same folder where executable is, an make it DEBUG level. it will be used for feedback on errors
+- when running on raspberry pi app is run in fullscreen mode
