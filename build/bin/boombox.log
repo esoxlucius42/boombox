@@ -8978,3 +8978,53 @@
 [2026-05-24 15:30:40] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
 [2026-05-24 15:30:40] [DEBUG] [Main] State saved on application exit
 [2026-05-24 15:30:40] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 15:37:11] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:37:11] [INFO] [Main] Logger initialized
+[2026-05-24 15:37:11] [DEBUG] [Main] Debug message
+[2026-05-24 15:37:11] [WARN] [Main] Warning message
+[2026-05-24 15:37:11] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 15:37:11] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 15:37:11] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 15:37:11] [INFO] [Main] StateManager initialized
+[2026-05-24 15:37:11] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 15:37:11] [INFO] [Main] PlaybackController initialized
+[2026-05-24 15:37:11] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 15:37:11] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 15:37:11] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 15:37:11] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 15:37:11] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 15:37:11] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 15:37:11] [INFO] [Main] Track count: 4
+[2026-05-24 15:37:11] [INFO] [Main] ✓ Correct track count
+[2026-05-24 15:37:11] [INFO] [Main] Current track: /tmp/boombox-oQFBDl/song1.mp3
+[2026-05-24 15:37:11] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 15:37:11] [INFO] [Main] Current position: 0
+[2026-05-24 15:37:11] [INFO] [Main] Metadata for current track:
+[2026-05-24 15:37:11] [INFO] [Main]   Title: song1
+[2026-05-24 15:37:11] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 15:37:11] [INFO] [Main]   Album: boombox-oQFBDl
+[2026-05-24 15:37:11] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 15:37:11] [INFO] [Main] Track at index 1: found
+[2026-05-24 15:37:11] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 15:37:11] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:37:11] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 15:37:11] [DEBUG] [PlaybackController] Picked random track: index 1130 of 2321
+[2026-05-24 15:37:11] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Joe Cocker/Joe Cocker - Sorry Seems To Be The Hardest Word.mp3
+[2026-05-24 15:37:11] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Joe Cocker/Joe Cocker - Sorry Seems To Be The Hardest Word.mp3
+[2026-05-24 15:37:11] [DEBUG] [MainWindow] Track metadata loaded: Sorry Seems To Be The Hardest by Joe Cocker
+[2026-05-24 15:37:11] [INFO] [Main] Auto-loaded saved folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:37:12] [DEBUG] [PlaybackController] Picked random track: index 1746 of 2321
+[2026-05-24 15:37:12] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Razno/Kenny Loggins - Danger Zone.mp3
+[2026-05-24 15:37:12] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Razno/Kenny Loggins - Danger Zone.mp3
+[2026-05-24 15:37:12] [DEBUG] [MainWindow] Track metadata loaded: Danger Zone by Kenny Loggins
+[2026-05-24 15:37:14] [DEBUG] [PlaybackController] Picked random track: index 1006 of 2321
+[2026-05-24 15:37:14] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[2002] Rock In Rio (Live Album) [2 CD]/Iron Maiden - Dream Of Mirrors.mp3
+[2026-05-24 15:37:14] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[2002] Rock In Rio (Live Album) [2 CD]/Iron Maiden - Dream Of Mirrors.mp3
+[2026-05-24 15:37:14] [DEBUG] [MainWindow] Track metadata loaded: Dream Of Mirrors by Iron Maiden
+[2026-05-24 15:37:18] [DEBUG] [PlaybackController] Picked random track: index 930 of 2321
+[2026-05-24 15:37:18] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1990] No Prayer For The Dying/Iron Maiden - Public Enema Number One.mp3
+[2026-05-24 15:37:18] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1990] No Prayer For The Dying/Iron Maiden - Public Enema Number One.mp3
+[2026-05-24 15:37:18] [DEBUG] [MainWindow] Track metadata loaded: Public Enema Number One by Iron Maiden
+[2026-05-24 15:37:54] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 15:37:54] [DEBUG] [Main] State saved on application exit
+[2026-05-24 15:37:54] [INFO] [PlaybackController] PlaybackController destroyed
