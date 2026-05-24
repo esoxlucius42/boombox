@@ -73,6 +73,16 @@ static bool readDoubleProperty(mpv_handle* handle, const char* property, double&
     return ok;
 }
 
+namespace {
+constexpr int kMpvEventPause = 19;
+constexpr int kMpvEventUnpause = 20;
+constexpr int kMpvEventError = 21;
+
+struct MpvEventErrorPayload {
+    int error;
+};
+} // namespace
+
 AudioEngine::AudioEngine()
     : mHandle(nullptr), mState(PlaybackState::Stopped) {
     initializeMpv();
@@ -489,7 +499,7 @@ void AudioEngine::handleEvent(const mpv_event* event) {
     }
 
     try {
-        switch (event->event_id) {
+        switch (static_cast<int>(event->event_id)) {
             case MPV_EVENT_FILE_LOADED:
                 logMessage("INFO", "File loaded successfully");
                 if (mState == PlaybackState::Stopped) {
@@ -531,12 +541,12 @@ void AudioEngine::handleEvent(const mpv_event* event) {
                 mState = PlaybackState::Playing;
                 break;
 
-            case MPV_EVENT_PAUSE:
+            case kMpvEventPause:
                 logMessage("INFO", "Paused by event");
                 mState = PlaybackState::Paused;
                 break;
 
-            case MPV_EVENT_UNPAUSE:
+            case kMpvEventUnpause:
                 logMessage("INFO", "Unpaused by event");
                 mState = PlaybackState::Playing;
                 break;
@@ -558,8 +568,8 @@ void AudioEngine::handleEvent(const mpv_event* event) {
                 break;
             }
 
-            case MPV_EVENT_ERROR: {
-                mpv_event_error* error = static_cast<mpv_event_error*>(event->data);
+            case kMpvEventError: {
+                auto* error = static_cast<MpvEventErrorPayload*>(event->data);
                 if (!error) {
                     logMessage("WARN", "MPV Error event had no payload; ignoring");
                     break;
