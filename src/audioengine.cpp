@@ -499,7 +499,8 @@ void AudioEngine::handleEvent(const mpv_event* event) {
     }
 
     try {
-        switch (static_cast<int>(event->event_id)) {
+        const int eventId = static_cast<int>(event->event_id);
+        switch (eventId) {
             case MPV_EVENT_FILE_LOADED:
                 logMessage("INFO", "File loaded successfully");
                 if (mState == PlaybackState::Stopped) {
@@ -541,16 +542,6 @@ void AudioEngine::handleEvent(const mpv_event* event) {
                 mState = PlaybackState::Playing;
                 break;
 
-            case kMpvEventPause:
-                logMessage("INFO", "Paused by event");
-                mState = PlaybackState::Paused;
-                break;
-
-            case kMpvEventUnpause:
-                logMessage("INFO", "Unpaused by event");
-                mState = PlaybackState::Playing;
-                break;
-
             case MPV_EVENT_SEEK: {
                 logMessage("INFO", "Seek event");
                 break;
@@ -568,29 +559,41 @@ void AudioEngine::handleEvent(const mpv_event* event) {
                 break;
             }
 
-            case kMpvEventError: {
-                auto* error = static_cast<MpvEventErrorPayload*>(event->data);
-                if (!error) {
-                    logMessage("WARN", "MPV Error event had no payload; ignoring");
-                    break;
-                }
-
-                logMessage("ERROR", "MPV Error: " + std::string(mpv_error_string(error->error)));
-                mState = PlaybackState::Stopped;
-                if (mOnError) {
-                    mOnError(mapMpvError(error->error),
-                            "MPV Error: " + std::string(mpv_error_string(error->error)));
-                }
-                break;
-            }
-
             case MPV_EVENT_SHUTDOWN:
                 logMessage("INFO", "MPV shutting down");
                 mState = PlaybackState::Stopped;
                 break;
 
             default:
-                // Ignore other events
+                if (eventId == kMpvEventPause) {
+                    logMessage("INFO", "Paused by event");
+                    mState = PlaybackState::Paused;
+                    break;
+                }
+
+                if (eventId == kMpvEventUnpause) {
+                    logMessage("INFO", "Unpaused by event");
+                    mState = PlaybackState::Playing;
+                    break;
+                }
+
+                if (eventId == kMpvEventError) {
+                    auto* error = static_cast<MpvEventErrorPayload*>(event->data);
+                    if (!error) {
+                        logMessage("WARN", "MPV Error event had no payload; ignoring");
+                        break;
+                    }
+
+                    logMessage("ERROR", "MPV Error: " + std::string(mpv_error_string(error->error)));
+                    mState = PlaybackState::Stopped;
+                    if (mOnError) {
+                        mOnError(mapMpvError(error->error),
+                                "MPV Error: " + std::string(mpv_error_string(error->error)));
+                    }
+                    break;
+                }
+
+                // Ignore other events.
                 break;
         }
     } catch (const std::exception& e) {
