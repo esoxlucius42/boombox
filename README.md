@@ -1,5 +1,7 @@
 # Boombox
 
+![Boombox app screenshot](resources/appshot.png)
+
 Boombox is a Qt6 + C++ audio player designed for Raspberry Pi (targeting Pi 5 touchscreen setups).
 
 ## What the app does
