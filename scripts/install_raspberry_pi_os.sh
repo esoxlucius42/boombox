@@ -56,6 +56,13 @@ apt install -y \
     desktop-file-utils
 
 echo "[2/6] Configuring build (repo: ${REPO_ROOT})..."
+# Remove any stale build directory that may have been copied from another machine.
+# Its CMakeCache.txt would contain the original machine's absolute paths and
+# cause CMake to abort with a path-mismatch error.
+if [[ -f "${REPO_ROOT}/build/CMakeCache.txt" ]]; then
+    echo "  Removing stale build directory..."
+    rm -rf "${REPO_ROOT}/build"
+fi
 run_as_build_user cmake -S "${REPO_ROOT}" -B "${REPO_ROOT}/build" -DCMAKE_BUILD_TYPE=Release
 
 echo "[3/6] Building boombox..."

@@ -1,2 +1,3 @@
 include/mpv/
 include/mpv.disabled/
+build/
