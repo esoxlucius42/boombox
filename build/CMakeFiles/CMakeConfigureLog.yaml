@@ -5133,3 +5133,106 @@ events:
       CMAKE_SYSTEM_INCLUDE_PATH:
         - "/usr/include/X11"
 ...
+
+---
+events:
+  -
+    kind: "find-v1"
+    backtrace:
+      - "CMakeLists.txt:66 (find_path)"
+    mode: "path"
+    variable: "MPV_HEADER_DIR"
+    description: "Path to a file."
+    settings:
+      SearchFramework: "NEVER"
+      SearchAppBundle: "NEVER"
+      CMAKE_FIND_USE_CMAKE_PATH: true
+      CMAKE_FIND_USE_CMAKE_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_SYSTEM_ENVIRONMENT_PATH: true
+      CMAKE_FIND_USE_CMAKE_SYSTEM_PATH: true
+      CMAKE_FIND_USE_INSTALL_PREFIX: true
+    names:
+      - "mpv/client.h"
+    candidate_directories:
+      - "/bin/"
+      - "/home/linuxbrew/.linuxbrew/opt/openjdk/bin/"
+      - "/home/esox/.opencode/bin/"
+      - "/home/esox/.cargo/bin/"
+      - "/home/esox/.local/bin/"
+      - "/home/esox/bin/"
+      - "/usr/local/bin/"
+      - "/usr/bin/"
+      - "/usr/local/sbin/"
+      - "/home/linuxbrew/.linuxbrew/bin/"
+      - "/home/linuxbrew/.linuxbrew/sbin/"
+      - "/usr/local/include/"
+      - "/usr/local/"
+      - "/usr/include/"
+      - "/usr/"
+      - "/include/"
+      - "/usr/X11R6/include/"
+      - "/usr/X11R6/"
+      - "/usr/pkg/include/"
+      - "/usr/pkg/"
+      - "/opt/include/"
+      - "/opt/"
+      - "/usr/include/X11/"
+      - "/usr/include/"
+      - "/usr/local/include/"
+    searched_directories:
+      - "/bin/mpv/client.h"
+      - "/home/linuxbrew/.linuxbrew/opt/openjdk/bin/mpv/client.h"
+      - "/home/esox/.opencode/bin/mpv/client.h"
+      - "/home/esox/.cargo/bin/mpv/client.h"
+      - "/home/esox/.local/bin/mpv/client.h"
+      - "/home/esox/bin/mpv/client.h"
+      - "/usr/local/bin/mpv/client.h"
+      - "/usr/bin/mpv/client.h"
+      - "/usr/local/sbin/mpv/client.h"
+      - "/home/linuxbrew/.linuxbrew/bin/mpv/client.h"
+      - "/home/linuxbrew/.linuxbrew/sbin/mpv/client.h"
+      - "/usr/local/include/mpv/client.h"
+      - "/usr/local/mpv/client.h"
+      - "/usr/include/mpv/client.h"
+      - "/usr/mpv/client.h"
+      - "/include/mpv/client.h"
+      - "/usr/X11R6/include/mpv/client.h"
+      - "/usr/X11R6/mpv/client.h"
+      - "/usr/pkg/include/mpv/client.h"
+      - "/usr/pkg/mpv/client.h"
+      - "/opt/include/mpv/client.h"
+      - "/opt/mpv/client.h"
+      - "/usr/include/X11/mpv/client.h"
+      - "/usr/include/mpv/client.h"
+      - "/usr/local/include/mpv/client.h"
+    found: false
+    search_context:
+      ENV{PATH}:
+        - "/bin"
+        - "/home/linuxbrew/.linuxbrew/opt/openjdk/bin"
+        - "/home/esox/.opencode/bin"
+        - "/bin"
+        - "/bin"
+        - "/home/esox/.cargo/bin"
+        - "/home/esox/.opencode/bin"
+        - "/home/esox/.local/bin"
+        - "/home/esox/bin"
+        - "/usr/local/bin"
+        - "/usr/bin"
+        - "/bin"
+        - "/usr/local/sbin"
+        - "/home/linuxbrew/.linuxbrew/bin"
+        - "/home/linuxbrew/.linuxbrew/sbin"
+      CMAKE_INSTALL_PREFIX: "/usr/local"
+      CMAKE_SYSTEM_PREFIX_PATH:
+        - "/usr/local"
+        - "/usr"
+        - "/"
+        - "/usr"
+        - "/usr/local"
+        - "/usr/X11R6"
+        - "/usr/pkg"
+        - "/opt"
+      CMAKE_SYSTEM_INCLUDE_PATH:
+        - "/usr/include/X11"
+...

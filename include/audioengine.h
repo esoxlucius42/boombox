@@ -3,7 +3,7 @@
 #include <string>
 #include <functional>
 #include <memory>
-#include <mpv/client.h>
+#include "mpv_client_compat.h"
 
 /**
  * @brief AudioEngine - Wraps libmpv C API for audio playback

@@ -273,6 +273,9 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 MPV_FALLBACK_LIBRARY:FILEPATH=/usr/lib64/libmpv.so.2
 
 //Path to a file.
+MPV_HEADER_DIR:PATH=MPV_HEADER_DIR-NOTFOUND
+
+//Path to a file.
 OPENGL_EGL_INCLUDE_DIR:PATH=/usr/include
 
 //Path to a file.

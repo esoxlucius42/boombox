@@ -434,6 +434,30 @@ src/mainwindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/mainwindow.cpp.s
 .PHONY : src/mainwindow.cpp.s
 
+src/mpv_stub.o: src/mpv_stub.cpp.o
+.PHONY : src/mpv_stub.o
+
+# target to build an object file
+src/mpv_stub.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/mpv_stub.cpp.o
+.PHONY : src/mpv_stub.cpp.o
+
+src/mpv_stub.i: src/mpv_stub.cpp.i
+.PHONY : src/mpv_stub.i
+
+# target to preprocess a source file
+src/mpv_stub.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/mpv_stub.cpp.i
+.PHONY : src/mpv_stub.cpp.i
+
+src/mpv_stub.s: src/mpv_stub.cpp.s
+.PHONY : src/mpv_stub.s
+
+# target to generate assembly for a file
+src/mpv_stub.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/mpv_stub.cpp.s
+.PHONY : src/mpv_stub.cpp.s
+
 src/playbackcontroller.o: src/playbackcontroller.cpp.o
 .PHONY : src/playbackcontroller.o
 
@@ -715,6 +739,9 @@ help:
 	@echo "... src/mainwindow.o"
 	@echo "... src/mainwindow.i"
 	@echo "... src/mainwindow.s"
+	@echo "... src/mpv_stub.o"
+	@echo "... src/mpv_stub.i"
+	@echo "... src/mpv_stub.s"
 	@echo "... src/playbackcontroller.o"
 	@echo "... src/playbackcontroller.i"
 	@echo "... src/playbackcontroller.s"

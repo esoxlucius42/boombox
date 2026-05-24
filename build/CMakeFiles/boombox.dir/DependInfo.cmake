@@ -16,6 +16,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/var/home/esox/dev/cpp/boombox/src/logger.cpp" "CMakeFiles/boombox.dir/src/logger.cpp.o" "gcc" "CMakeFiles/boombox.dir/src/logger.cpp.o.d"
   "/var/home/esox/dev/cpp/boombox/src/main.cpp" "CMakeFiles/boombox.dir/src/main.cpp.o" "gcc" "CMakeFiles/boombox.dir/src/main.cpp.o.d"
   "/var/home/esox/dev/cpp/boombox/src/mainwindow.cpp" "CMakeFiles/boombox.dir/src/mainwindow.cpp.o" "gcc" "CMakeFiles/boombox.dir/src/mainwindow.cpp.o.d"
+  "/var/home/esox/dev/cpp/boombox/src/mpv_stub.cpp" "CMakeFiles/boombox.dir/src/mpv_stub.cpp.o" "gcc" "CMakeFiles/boombox.dir/src/mpv_stub.cpp.o.d"
   "/var/home/esox/dev/cpp/boombox/src/playbackcontroller.cpp" "CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o" "gcc" "CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o.d"
   "/var/home/esox/dev/cpp/boombox/src/statemanager.cpp" "CMakeFiles/boombox.dir/src/statemanager.cpp.o" "gcc" "CMakeFiles/boombox.dir/src/statemanager.cpp.o.d"
   "/var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp" "CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o" "gcc" "CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o.d"

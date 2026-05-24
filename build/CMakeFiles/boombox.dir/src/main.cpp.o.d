@@ -395,7 +395,7 @@ CMakeFiles/boombox.dir/src/main.cpp.o: \
  /usr/include/c++/16/x86_64-redhat-linux/bits/opt_random.h \
  /usr/include/c++/16/bits/random.tcc \
  /var/home/esox/dev/cpp/boombox/include/audioengine.h \
- /var/home/esox/dev/cpp/boombox/include/mpv/client.h \
+ /var/home/esox/dev/cpp/boombox/include/mpv_client_compat.h \
  /var/home/esox/dev/cpp/boombox/include/filemanager.h \
  /var/home/esox/dev/cpp/boombox/include/mainwindow.h \
  /usr/include/qt6/QtWidgets/QMainWindow \

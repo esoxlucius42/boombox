@@ -1,8 +1,8 @@
 CMakeFiles/boombox.dir/src/mpv_stub.cpp.o: \
  /var/home/esox/dev/cpp/boombox/src/mpv_stub.cpp \
  /usr/include/stdc-predef.h \
- /var/home/esox/dev/cpp/boombox/include/mpv/client.h \
- /usr/include/c++/16/cstdlib \
+ /var/home/esox/dev/cpp/boombox/include/mpv_client_compat.h \
+ /usr/include/c++/16/cstdint \
  /usr/include/c++/16/x86_64-redhat-linux/bits/c++config.h \
  /usr/include/bits/wordsize.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/os_defines.h \
@@ -11,17 +11,21 @@ CMakeFiles/boombox.dir/src/mpv_stub.cpp.o: \
  /usr/include/bits/long-double.h /usr/include/gnu/stubs.h \
  /usr/include/gnu/stubs-64.h \
  /usr/include/c++/16/x86_64-redhat-linux/bits/cpu_defines.h \
- /usr/include/c++/16/pstl/pstl_config.h /usr/include/stdlib.h \
- /usr/include/bits/libc-header-start.h \
+ /usr/include/c++/16/pstl/pstl_config.h \
+ /usr/lib/gcc/x86_64-redhat-linux/16/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/libc-header-start.h \
+ /usr/include/bits/types.h /usr/include/bits/typesizes.h \
+ /usr/include/bits/time64.h /usr/include/bits/wchar.h \
+ /usr/include/bits/stdint-intn.h /usr/include/bits/stdint-uintn.h \
+ /usr/include/bits/stdint-least.h /usr/include/c++/16/cstdlib \
+ /usr/include/stdlib.h \
  /usr/lib/gcc/x86_64-redhat-linux/16/include/stddef.h \
  /usr/include/bits/waitflags.h /usr/include/bits/waitstatus.h \
  /usr/include/bits/floatn.h /usr/include/bits/floatn-common.h \
  /usr/include/bits/types/locale_t.h /usr/include/bits/types/__locale_t.h \
- /usr/include/sys/types.h /usr/include/bits/types.h \
- /usr/include/bits/typesizes.h /usr/include/bits/time64.h \
- /usr/include/bits/types/clock_t.h /usr/include/bits/types/clockid_t.h \
- /usr/include/bits/types/time_t.h /usr/include/bits/types/timer_t.h \
- /usr/include/bits/stdint-intn.h /usr/include/endian.h \
+ /usr/include/sys/types.h /usr/include/bits/types/clock_t.h \
+ /usr/include/bits/types/clockid_t.h /usr/include/bits/types/time_t.h \
+ /usr/include/bits/types/timer_t.h /usr/include/endian.h \
  /usr/include/bits/endian.h /usr/include/bits/endianness.h \
  /usr/include/bits/byteswap.h /usr/include/bits/uintn-identity.h \
  /usr/include/sys/select.h /usr/include/bits/select.h \

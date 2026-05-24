@@ -842,7 +842,7 @@ boombox_autogen/timestamp: /bin/cmake \
   /var/home/esox/dev/cpp/boombox/include/filemanager.h \
   /var/home/esox/dev/cpp/boombox/include/logger.h \
   /var/home/esox/dev/cpp/boombox/include/mainwindow.h \
-  /var/home/esox/dev/cpp/boombox/include/mpv/client.h \
+  /var/home/esox/dev/cpp/boombox/include/mpv_client_compat.h \
   /var/home/esox/dev/cpp/boombox/include/playbackcontroller.h \
   /var/home/esox/dev/cpp/boombox/include/statemanager.h \
   /var/home/esox/dev/cpp/boombox/include/widgets/albumart.h \
@@ -856,6 +856,7 @@ boombox_autogen/timestamp: /bin/cmake \
   /var/home/esox/dev/cpp/boombox/src/logger.cpp \
   /var/home/esox/dev/cpp/boombox/src/main.cpp \
   /var/home/esox/dev/cpp/boombox/src/mainwindow.cpp \
+  /var/home/esox/dev/cpp/boombox/src/mpv_stub.cpp \
   /var/home/esox/dev/cpp/boombox/src/playbackcontroller.cpp \
   /var/home/esox/dev/cpp/boombox/src/statemanager.cpp \
   /var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp \
@@ -1380,6 +1381,7 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: boombox_autogen/m
   /var/home/esox/dev/cpp/boombox/include/audioengine.h \
   /var/home/esox/dev/cpp/boombox/include/filemanager.h \
   /var/home/esox/dev/cpp/boombox/include/mainwindow.h \
+  /var/home/esox/dev/cpp/boombox/include/mpv_client_compat.h \
   /var/home/esox/dev/cpp/boombox/include/playbackcontroller.h \
   /var/home/esox/dev/cpp/boombox/include/widgets/albumart.h \
   /var/home/esox/dev/cpp/boombox/include/widgets/controls.h \
@@ -1397,8 +1399,7 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: boombox_autogen/m
   boombox_autogen/MROXUFLNXW/moc_controls.cpp \
   boombox_autogen/MROXUFLNXW/moc_seekbar.cpp \
   boombox_autogen/MROXUFLNXW/moc_spectrumanalyzer.cpp \
-  boombox_autogen/MROXUFLNXW/moc_trackinfo.cpp \
-  /var/home/esox/dev/cpp/boombox/include/mpv/client.h
+  boombox_autogen/MROXUFLNXW/moc_trackinfo.cpp
 
 CMakeFiles/boombox.dir/src/audioengine.cpp.o: /var/home/esox/dev/cpp/boombox/src/audioengine.cpp \
   /usr/include/alloca.h \
@@ -1441,6 +1442,8 @@ CMakeFiles/boombox.dir/src/audioengine.cpp.o: /var/home/esox/dev/cpp/boombox/src
   /usr/include/bits/select.h \
   /usr/include/bits/setjmp.h \
   /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdint-least.h \
+  /usr/include/bits/stdint-uintn.h \
   /usr/include/bits/stdio.h \
   /usr/include/bits/stdio_lim.h \
   /usr/include/bits/stdlib-bsearch.h \
@@ -1586,6 +1589,7 @@ CMakeFiles/boombox.dir/src/audioengine.cpp.o: /var/home/esox/dev/cpp/boombox/src
   /usr/include/c++/16/compare \
   /usr/include/c++/16/concepts \
   /usr/include/c++/16/cstddef \
+  /usr/include/c++/16/cstdint \
   /usr/include/c++/16/cstdio \
   /usr/include/c++/16/cstdlib \
   /usr/include/c++/16/cstring \
@@ -1668,6 +1672,7 @@ CMakeFiles/boombox.dir/src/audioengine.cpp.o: /var/home/esox/dev/cpp/boombox/src
   /usr/include/pthread.h \
   /usr/include/sched.h \
   /usr/include/stdc-predef.h \
+  /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
   /usr/include/string.h \
@@ -1681,8 +1686,9 @@ CMakeFiles/boombox.dir/src/audioengine.cpp.o: /var/home/esox/dev/cpp/boombox/src
   /usr/include/wctype.h \
   /usr/lib/gcc/x86_64-redhat-linux/16/include/stdarg.h \
   /usr/lib/gcc/x86_64-redhat-linux/16/include/stddef.h \
+  /usr/lib/gcc/x86_64-redhat-linux/16/include/stdint.h \
   /var/home/esox/dev/cpp/boombox/include/audioengine.h \
-  /var/home/esox/dev/cpp/boombox/include/mpv/client.h
+  /var/home/esox/dev/cpp/boombox/include/mpv_client_compat.h
 
 CMakeFiles/boombox.dir/src/filemanager.cpp.o: /var/home/esox/dev/cpp/boombox/src/filemanager.cpp \
   /usr/include/alloca.h \
@@ -3839,6 +3845,66 @@ CMakeFiles/boombox.dir/src/mainwindow.cpp.o: /var/home/esox/dev/cpp/boombox/src/
   /var/home/esox/dev/cpp/boombox/include/widgets/seekbar.h \
   /var/home/esox/dev/cpp/boombox/include/widgets/spectrumanalyzer.h \
   /var/home/esox/dev/cpp/boombox/include/widgets/trackinfo.h
+
+CMakeFiles/boombox.dir/src/mpv_stub.cpp.o: /var/home/esox/dev/cpp/boombox/src/mpv_stub.cpp \
+  /usr/include/alloca.h \
+  /usr/include/bits/atomic_wide_counter.h \
+  /usr/include/bits/byteswap.h \
+  /usr/include/bits/endian.h \
+  /usr/include/bits/endianness.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/pthreadtypes-arch.h \
+  /usr/include/bits/pthreadtypes.h \
+  /usr/include/bits/select.h \
+  /usr/include/bits/stdint-intn.h \
+  /usr/include/bits/stdlib-bsearch.h \
+  /usr/include/bits/stdlib-float.h \
+  /usr/include/bits/struct_mutex.h \
+  /usr/include/bits/struct_rwlock.h \
+  /usr/include/bits/thread-shared-types.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/types/__locale_t.h \
+  /usr/include/bits/types/__sigset_t.h \
+  /usr/include/bits/types/clock_t.h \
+  /usr/include/bits/types/clockid_t.h \
+  /usr/include/bits/types/locale_t.h \
+  /usr/include/bits/types/sigset_t.h \
+  /usr/include/bits/types/struct_timespec.h \
+  /usr/include/bits/types/struct_timeval.h \
+  /usr/include/bits/types/time_t.h \
+  /usr/include/bits/types/timer_t.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/uintn-identity.h \
+  /usr/include/bits/waitflags.h \
+  /usr/include/bits/waitstatus.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/c++/16/bits/std_abs.h \
+  /usr/include/c++/16/bits/version.h \
+  /usr/include/c++/16/cstdlib \
+  /usr/include/c++/16/cstring \
+  /usr/include/c++/16/pstl/pstl_config.h \
+  /usr/include/c++/16/x86_64-redhat-linux/bits/c++config.h \
+  /usr/include/c++/16/x86_64-redhat-linux/bits/cpu_defines.h \
+  /usr/include/c++/16/x86_64-redhat-linux/bits/os_defines.h \
+  /usr/include/endian.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/include/sys/cdefs.h \
+  /usr/include/sys/select.h \
+  /usr/include/sys/types.h \
+  /usr/lib/gcc/x86_64-redhat-linux/16/include/stddef.h \
+  /var/home/esox/dev/cpp/boombox/include/mpv/client.h
 
 CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o: /var/home/esox/dev/cpp/boombox/src/playbackcontroller.cpp \
   /usr/include/alloca.h \
@@ -7970,6 +8036,8 @@ CMakeFiles/boombox.dir/src/audioengine.cpp.o:
 
 /usr/lib64/libfmt.so.11:
 
+/usr/lib64/libffi.so.8:
+
 /usr/include/qt6/QtCore/QMap:
 
 /usr/include/linux/types.h:
@@ -8672,6 +8740,8 @@ boombox_autogen/MROXUFLNXW/moc_albumart.cpp:
 
 /lib64/cmake/Qt6Gui/Qt6QTgaPluginAdditionalTargetInfo.cmake:
 
+/var/home/esox/dev/cpp/boombox/include/mpv_client_compat.h:
+
 /usr/include/qt6/QtCore/q23type_traits.h:
 
 /lib64/cmake/Qt6Gui/Qt6GuiVersionlessAliasTargets.cmake:
@@ -9083,6 +9153,8 @@ CMakeFiles/4.3.0/CMakeCXXCompiler.cmake:
 /lib64/cmake/Qt6Gui/Qt6QGtk3ThemePluginTargets.cmake:
 
 /usr/include/qt6/QtCore/qtcore-config.h:
+
+/var/home/esox/dev/cpp/boombox/src/mpv_stub.cpp:
 
 /lib64/cmake/Qt6Gui/Qt6QTgaPluginTargets-relwithdebinfo.cmake:
 
@@ -9591,8 +9663,6 @@ boombox_autogen/MROXUFLNXW/moc_controls.cpp:
 /usr/include/qt6/QtCore/qhash.h:
 
 /usr/include/qt6/QtCore/qhashfunctions.h:
-
-/usr/lib64/libffi.so.8:
 
 /usr/include/qt6/QtCore/qiodevicebase.h:
 

@@ -843,7 +843,7 @@
  /var/home/esox/dev/cpp/boombox/include/filemanager.h
  /var/home/esox/dev/cpp/boombox/include/logger.h
  /var/home/esox/dev/cpp/boombox/include/mainwindow.h
- /var/home/esox/dev/cpp/boombox/include/mpv/client.h
+ /var/home/esox/dev/cpp/boombox/include/mpv_client_compat.h
  /var/home/esox/dev/cpp/boombox/include/playbackcontroller.h
  /var/home/esox/dev/cpp/boombox/include/statemanager.h
  /var/home/esox/dev/cpp/boombox/include/widgets/albumart.h
@@ -857,6 +857,7 @@
  /var/home/esox/dev/cpp/boombox/src/logger.cpp
  /var/home/esox/dev/cpp/boombox/src/main.cpp
  /var/home/esox/dev/cpp/boombox/src/mainwindow.cpp
+ /var/home/esox/dev/cpp/boombox/src/mpv_stub.cpp
  /var/home/esox/dev/cpp/boombox/src/playbackcontroller.cpp
  /var/home/esox/dev/cpp/boombox/src/statemanager.cpp
  /var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp

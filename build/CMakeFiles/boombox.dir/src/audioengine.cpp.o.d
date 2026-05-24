@@ -146,10 +146,13 @@ CMakeFiles/boombox.dir/src/audioengine.cpp.o: \
  /usr/include/c++/16/backward/auto_ptr.h \
  /usr/include/c++/16/pstl/glue_memory_defs.h \
  /usr/include/c++/16/pstl/execution_defs.h \
- /var/home/esox/dev/cpp/boombox/include/mpv/client.h \
- /usr/include/c++/16/iostream /usr/include/c++/16/ostream \
- /usr/include/c++/16/bits/ostream.h /usr/include/c++/16/ios \
- /usr/include/c++/16/bits/ios_base.h \
+ /var/home/esox/dev/cpp/boombox/include/mpv_client_compat.h \
+ /usr/include/c++/16/cstdint \
+ /usr/lib/gcc/x86_64-redhat-linux/16/include/stdint.h \
+ /usr/include/stdint.h /usr/include/bits/stdint-uintn.h \
+ /usr/include/bits/stdint-least.h /usr/include/c++/16/iostream \
+ /usr/include/c++/16/ostream /usr/include/c++/16/bits/ostream.h \
+ /usr/include/c++/16/ios /usr/include/c++/16/bits/ios_base.h \
  /usr/include/c++/16/bits/locale_classes.h \
  /usr/include/c++/16/bits/locale_classes.tcc \
  /usr/include/c++/16/system_error \

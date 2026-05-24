@@ -17,6 +17,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/boombox.dir/src/main.cpp.o.d"
   "CMakeFiles/boombox.dir/src/mainwindow.cpp.o"
   "CMakeFiles/boombox.dir/src/mainwindow.cpp.o.d"
+  "CMakeFiles/boombox.dir/src/mpv_stub.cpp.o"
+  "CMakeFiles/boombox.dir/src/mpv_stub.cpp.o.d"
   "CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o"
   "CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o.d"
   "CMakeFiles/boombox.dir/src/statemanager.cpp.o"

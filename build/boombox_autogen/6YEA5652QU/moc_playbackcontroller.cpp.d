@@ -400,4 +400,4 @@
   /usr/lib/gcc/x86_64-redhat-linux/16/include/stddef.h \
   /var/home/esox/dev/cpp/boombox/include/audioengine.h \
   /var/home/esox/dev/cpp/boombox/include/filemanager.h \
-  /var/home/esox/dev/cpp/boombox/include/mpv/client.h
+  /var/home/esox/dev/cpp/boombox/include/mpv_client_compat.h

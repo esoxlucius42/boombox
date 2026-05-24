@@ -842,7 +842,7 @@ boombox_autogen/timestamp: /bin/cmake \
   /var/home/esox/dev/cpp/boombox/include/filemanager.h \
   /var/home/esox/dev/cpp/boombox/include/logger.h \
   /var/home/esox/dev/cpp/boombox/include/mainwindow.h \
-  /var/home/esox/dev/cpp/boombox/include/mpv/client.h \
+  /var/home/esox/dev/cpp/boombox/include/mpv_client_compat.h \
   /var/home/esox/dev/cpp/boombox/include/playbackcontroller.h \
   /var/home/esox/dev/cpp/boombox/include/statemanager.h \
   /var/home/esox/dev/cpp/boombox/include/widgets/albumart.h \
@@ -856,6 +856,7 @@ boombox_autogen/timestamp: /bin/cmake \
   /var/home/esox/dev/cpp/boombox/src/logger.cpp \
   /var/home/esox/dev/cpp/boombox/src/main.cpp \
   /var/home/esox/dev/cpp/boombox/src/mainwindow.cpp \
+  /var/home/esox/dev/cpp/boombox/src/mpv_stub.cpp \
   /var/home/esox/dev/cpp/boombox/src/playbackcontroller.cpp \
   /var/home/esox/dev/cpp/boombox/src/statemanager.cpp \
   /var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp \
@@ -1623,6 +1624,8 @@ CMakeFiles/4.3.0/CMakeCCompiler.cmake:
 
 /lib64/cmake/Qt6DBusTools/Qt6DBusToolsAdditionalTargetInfo.cmake:
 
+/var/home/esox/dev/cpp/boombox/src/mpv_stub.cpp:
+
 /lib64/cmake/Qt6Gui/Qt6QEglFSX11IntegrationPluginConfig.cmake:
 
 /lib64/cmake/Qt6Gui/Qt6QOffscreenIntegrationPluginTargets-relwithdebinfo.cmake:
@@ -1924,8 +1927,6 @@ CMakeFiles/4.3.0/CMakeCXXCompiler.cmake:
 /usr/share/cmake/Modules/CheckCXXSourceCompiles.cmake:
 
 /lib64/cmake/Qt6Gui/Qt6QEvdevMousePluginAdditionalTargetInfo.cmake:
-
-/var/home/esox/dev/cpp/boombox/include/mpv/client.h:
 
 /lib64/cmake/Qt6Gui/Qt6QEglFSKmsGbmIntegrationPluginTargets-relwithdebinfo.cmake:
 
@@ -2278,6 +2279,8 @@ CMakeFiles/4.3.0/CMakeCXXCompiler.cmake:
 /lib64/cmake/Qt6Gui/Qt6QIbusPlatformInputContextPluginTargets-relwithdebinfo.cmake:
 
 /usr/include/c++/16/bits/concept_check.h:
+
+/var/home/esox/dev/cpp/boombox/include/mpv_client_compat.h:
 
 /usr/include/c++/16/bits/cxxabi_forced.h:
 

@@ -8,9 +8,6 @@
 #include <cmath>
 #include <cstdio>
 
-// libmpv C API headers
-#include <mpv/client.h>
-
 // Helper function to log messages
 static void logMessage(const std::string& level, const std::string& message) {
     std::cerr << "[AudioEngine " << level << "] " << message << std::endl;

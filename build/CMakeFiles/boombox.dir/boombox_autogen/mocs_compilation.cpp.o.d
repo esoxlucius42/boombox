@@ -371,7 +371,7 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
  /usr/include/c++/16/x86_64-redhat-linux/bits/opt_random.h \
  /usr/include/c++/16/bits/random.tcc \
  /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/audioengine.h \
- /var/home/esox/dev/cpp/boombox/include/mpv/client.h \
+ /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/mpv_client_compat.h \
  /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/filemanager.h \
  /usr/include/qt6/QtCore/QStringList \
  /usr/include/qt6/QtCore/qstringlist.h /usr/include/qt6/QtCore/QSet \

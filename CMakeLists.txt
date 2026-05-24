@@ -22,9 +22,25 @@ find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
 find_package(PkgConfig QUIET)
 set(MPV_LINKABLE FALSE)
 set(MPV_LINK_MODE "stub")
+set(MPV_HEADER_FOUND FALSE)
 if(PkgConfig_FOUND)
     pkg_check_modules(MPV QUIET mpv)
     if(MPV_FOUND AND MPV_LIBRARIES)
+        if(MPV_INCLUDE_DIRS)
+            set(MPV_HEADER_FOUND TRUE)
+        else()
+            find_path(MPV_HEADER_DIR
+                NAMES mpv/client.h
+                PATHS /usr/include /usr/local/include
+            )
+            if(MPV_HEADER_DIR)
+                set(MPV_INCLUDE_DIRS "${MPV_HEADER_DIR}")
+                set(MPV_HEADER_FOUND TRUE)
+            endif()
+        endif()
+    endif()
+
+    if(MPV_FOUND AND MPV_LIBRARIES AND MPV_HEADER_FOUND)
         set(MPV_LINKABLE TRUE)
         set(MPV_LINK_MODE "pkg-config")
         message(STATUS "Found linkable libmpv via pkg-config")
@@ -47,10 +63,20 @@ if(NOT MPV_LINKABLE)
     endif()
 
     if(MPV_FALLBACK_LIBRARY)
+        find_path(MPV_HEADER_DIR
+            NAMES mpv/client.h
+            PATHS /usr/include /usr/local/include
+        )
+    endif()
+
+    if(MPV_FALLBACK_LIBRARY AND MPV_HEADER_DIR)
         set(MPV_LINKABLE TRUE)
         set(MPV_LIBRARIES "${MPV_FALLBACK_LIBRARY}")
+        set(MPV_INCLUDE_DIRS "${MPV_HEADER_DIR}")
         set(MPV_LINK_MODE "direct-library")
         message(STATUS "Found linkable libmpv via direct library lookup: ${MPV_FALLBACK_LIBRARY}")
+    elseif(MPV_FALLBACK_LIBRARY)
+        message(WARNING "Found libmpv runtime library but no mpv/client.h header. Building with stub backend.")
     endif()
 endif()
 

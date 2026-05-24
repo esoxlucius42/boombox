@@ -2,7 +2,7 @@
 
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
-#include <mpv/client.h>
+#include "mpv_client_compat.h"
 #include <cstdlib>
 #include <cstring>
 

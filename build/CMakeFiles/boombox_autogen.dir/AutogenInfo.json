@@ -481,12 +481,6 @@
 	"HEADERS" : 
 	[
 		[
-			"/var/home/esox/dev/cpp/boombox/include/audioengine.h",
-			"MU",
-			"6YEA5652QU/moc_audioengine.cpp",
-			null
-		],
-		[
 			"/var/home/esox/dev/cpp/boombox/include/filemanager.h",
 			"MU",
 			"6YEA5652QU/moc_filemanager.cpp",
@@ -550,7 +544,14 @@
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
 	"INCLUDE_DIR" : "/var/home/esox/dev/cpp/boombox/build/boombox_autogen/include",
 	"MOC_COMPILATION_FILE" : "/var/home/esox/dev/cpp/boombox/build/boombox_autogen/mocs_compilation.cpp",
-	"MOC_DEFINITIONS" : [ "QT_CORE_LIB", "QT_GUI_LIB", "QT_NO_DEBUG", "QT_WIDGETS_LIB" ],
+	"MOC_DEFINITIONS" : 
+	[
+		"BOOMBOX_USING_MPV_STUB=1",
+		"QT_CORE_LIB",
+		"QT_GUI_LIB",
+		"QT_NO_DEBUG",
+		"QT_WIDGETS_LIB"
+	],
 	"MOC_DEPEND_FILTERS" : 
 	[
 		[
@@ -611,6 +612,7 @@
 		[ "/var/home/esox/dev/cpp/boombox/src/logger.cpp", "MU", null ],
 		[ "/var/home/esox/dev/cpp/boombox/src/main.cpp", "MU", null ],
 		[ "/var/home/esox/dev/cpp/boombox/src/mainwindow.cpp", "MU", null ],
+		[ "/var/home/esox/dev/cpp/boombox/src/mpv_stub.cpp", "MU", null ],
 		[
 			"/var/home/esox/dev/cpp/boombox/src/playbackcontroller.cpp",
 			"MU",
