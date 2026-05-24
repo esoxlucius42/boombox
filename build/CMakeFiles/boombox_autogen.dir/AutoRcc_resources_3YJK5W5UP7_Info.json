@@ -7,7 +7,11 @@
 	"CROSS_CONFIG" : false,
 	"GENERATOR" : "Unix Makefiles",
 	"INCLUDE_DIR" : "/var/home/esox/dev/cpp/boombox/build/boombox_autogen/include",
-	"INPUTS" : [ "/var/home/esox/dev/cpp/boombox/resources/style.qss" ],
+	"INPUTS" : 
+	[
+		"/var/home/esox/dev/cpp/boombox/resources/style.qss",
+		"/var/home/esox/dev/cpp/boombox/resources/icon.jpg"
+	],
 	"LOCK_FILE" : "/var/home/esox/dev/cpp/boombox/build/CMakeFiles/boombox_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Lock.lock",
 	"MULTI_CONFIG" : false,
 	"OPTIONS" : [ "-name", "resources" ],

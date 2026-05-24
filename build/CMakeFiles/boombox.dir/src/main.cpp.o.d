@@ -366,6 +366,7 @@ CMakeFiles/boombox.dir/src/main.cpp.o: \
  /usr/include/qt6/QtCore/qfileinfo.h /usr/include/qt6/QtCore/qtimezone.h \
  /usr/include/qt6/QtCore/QFile /usr/include/qt6/QtCore/qfile.h \
  /usr/include/qt6/QtCore/QFileInfo /usr/include/qt6/QtCore/qfileinfo.h \
+ /usr/include/qt6/QtGui/QIcon /usr/include/qt6/QtGui/qicon.h \
  /var/home/esox/dev/cpp/boombox/include/logger.h \
  /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/qstring.h \
  /usr/include/qt6/QtCore/QMutex /usr/include/qt6/QtCore/qmutex.h \

@@ -79,6 +79,7 @@ boombox_autogen/timestamp: CMakeFiles/boombox.dir/compiler_depend.ts
 boombox_autogen/3YJK5W5UP7/qrc_resources.cpp: /var/home/esox/dev/cpp/boombox/resources/resources.qrc
 boombox_autogen/3YJK5W5UP7/qrc_resources.cpp: CMakeFiles/boombox_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Info.json
 boombox_autogen/3YJK5W5UP7/qrc_resources.cpp: /var/home/esox/dev/cpp/boombox/resources/style.qss
+boombox_autogen/3YJK5W5UP7/qrc_resources.cpp: /var/home/esox/dev/cpp/boombox/resources/icon.jpg
 boombox_autogen/3YJK5W5UP7/qrc_resources.cpp: /usr/lib64/qt6/libexec/rcc
 boombox_autogen/3YJK5W5UP7/qrc_resources.cpp: /usr/lib64/qt6/libexec/rcc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic RCC for resources/resources.qrc"

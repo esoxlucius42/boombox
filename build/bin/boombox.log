@@ -9028,3 +9028,53 @@
 [2026-05-24 15:37:54] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
 [2026-05-24 15:37:54] [DEBUG] [Main] State saved on application exit
 [2026-05-24 15:37:54] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 15:44:56] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:44:56] [INFO] [Main] Application startup
+[2026-05-24 15:44:56] [DEBUG] [Main] This is a debug message
+[2026-05-24 15:44:56] [WARN] [Main] This is a warning message
+[2026-05-24 15:44:56] [ERROR] [Main] This is an error message
+[2026-05-24 15:44:56] [INFO] [Main] Logging test complete
+[2026-05-24 15:45:08] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:45:08] [INFO] [Main] Application startup
+[2026-05-24 15:45:08] [DEBUG] [Main] This is a debug message
+[2026-05-24 15:45:08] [WARN] [Main] This is a warning message
+[2026-05-24 15:45:08] [ERROR] [Main] This is an error message
+[2026-05-24 15:45:08] [INFO] [Main] Logging test complete
+[2026-05-24 15:46:05] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 15:46:05] [INFO] [Main] Logger initialized
+[2026-05-24 15:46:05] [DEBUG] [Main] Debug message
+[2026-05-24 15:46:05] [WARN] [Main] Warning message
+[2026-05-24 15:46:05] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 15:46:05] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 15:46:05] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 15:46:05] [INFO] [Main] StateManager initialized
+[2026-05-24 15:46:05] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 15:46:05] [INFO] [Main] PlaybackController initialized
+[2026-05-24 15:46:05] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 15:46:05] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 15:46:05] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 15:46:05] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 15:46:05] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 15:46:05] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 15:46:05] [INFO] [Main] Track count: 4
+[2026-05-24 15:46:05] [INFO] [Main] ✓ Correct track count
+[2026-05-24 15:46:05] [INFO] [Main] Current track: /tmp/boombox-YAvkev/song1.mp3
+[2026-05-24 15:46:05] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 15:46:05] [INFO] [Main] Current position: 0
+[2026-05-24 15:46:05] [INFO] [Main] Metadata for current track:
+[2026-05-24 15:46:05] [INFO] [Main]   Title: song1
+[2026-05-24 15:46:05] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 15:46:05] [INFO] [Main]   Album: boombox-YAvkev
+[2026-05-24 15:46:05] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 15:46:05] [INFO] [Main] Track at index 1: found
+[2026-05-24 15:46:05] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 15:46:05] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:46:05] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 15:46:05] [DEBUG] [PlaybackController] Picked random track: index 84 of 2321
+[2026-05-24 15:46:05] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Alice Cooper/Alice Cooper - House Of Fire.mp3
+[2026-05-24 15:46:05] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Alice Cooper/Alice Cooper - House Of Fire.mp3
+[2026-05-24 15:46:05] [DEBUG] [MainWindow] Track metadata loaded: House Of Fire by Alice Cooper
+[2026-05-24 15:46:05] [INFO] [Main] Auto-loaded saved folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 15:46:12] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 15:46:12] [DEBUG] [Main] State saved on application exit
+[2026-05-24 15:46:12] [INFO] [PlaybackController] PlaybackController destroyed

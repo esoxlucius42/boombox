@@ -2,6 +2,7 @@
 #include <QTemporaryDir>
 #include <QFile>
 #include <QFileInfo>
+#include <QIcon>
 #include <locale.h>
 #include <memory>
 #include "logger.h"
@@ -16,6 +17,7 @@ int main(int argc, char *argv[])
     setlocale(LC_NUMERIC, "C");
 
     QApplication app(argc, argv);
+    app.setWindowIcon(QIcon(":/icon.jpg"));
 
     // Initialize logger after creating QApplication
     Logger::init();
