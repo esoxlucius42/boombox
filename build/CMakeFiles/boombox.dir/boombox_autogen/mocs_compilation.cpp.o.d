@@ -89,7 +89,8 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
  /usr/include/bits/pthreadtypes-arch.h \
  /usr/include/bits/atomic_wide_counter.h /usr/include/bits/struct_mutex.h \
  /usr/include/bits/struct_rwlock.h /usr/include/alloca.h \
- /usr/include/bits/stdlib-float.h /usr/include/c++/16/bits/std_abs.h \
+ /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
+ /usr/include/c++/16/bits/std_abs.h \
  /usr/include/c++/16/pstl/glue_algorithm_defs.h \
  /usr/include/c++/16/pstl/execution_defs.h \
  /usr/include/qt6/QtCore/qatomic.h /usr/include/qt6/QtCore/qbasicatomic.h \
@@ -241,11 +242,12 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
  /usr/include/bits/types/__fpos64_t.h \
  /usr/include/bits/types/struct_FILE.h \
  /usr/include/bits/types/cookie_io_functions_t.h \
- /usr/include/bits/stdio_lim.h /usr/include/c++/16/cerrno \
- /usr/include/errno.h /usr/include/bits/errno.h \
- /usr/include/linux/errno.h /usr/include/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/bits/types/error_t.h /usr/include/c++/16/bits/charconv.h \
+ /usr/include/bits/stdio_lim.h /usr/include/bits/stdio.h \
+ /usr/include/c++/16/cerrno /usr/include/errno.h \
+ /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h /usr/include/bits/types/error_t.h \
+ /usr/include/c++/16/bits/charconv.h \
  /usr/include/c++/16/bits/basic_string.tcc \
  /usr/include/c++/16/bits/locale_classes.tcc \
  /usr/include/c++/16/system_error \
@@ -330,7 +332,11 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtGui/qfontvariableaxis.h \
  /usr/include/qt6/QtWidgets/qsizepolicy.h \
  /usr/include/qt6/QtGui/qcursor.h /usr/include/qt6/QtGui/qbitmap.h \
- /usr/include/qt6/QtWidgets/qtabwidget.h \
+ /usr/include/qt6/QtWidgets/qtabwidget.h /usr/include/qt6/QtCore/QTimer \
+ /usr/include/qt6/QtCore/qtimer.h /usr/include/qt6/QtCore/qbasictimer.h \
+ /usr/include/qt6/QtCore/qabstracteventdispatcher.h \
+ /usr/include/qt6/QtCore/qeventloop.h \
+ /usr/include/qt6/QtCore/qdeadlinetimer.h \
  /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/widgets/trackinfo.h \
  /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtWidgets/qwidget.h \
  /usr/include/qt6/QtWidgets/QLabel /usr/include/qt6/QtWidgets/qlabel.h \
@@ -344,12 +350,32 @@ CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o: \
  /usr/include/qt6/QtWidgets/QPushButton \
  /usr/include/qt6/QtWidgets/qpushbutton.h \
  /usr/include/qt6/QtWidgets/qabstractbutton.h \
+ /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/widgets/albumart.h \
+ /usr/include/qt6/QtGui/QPixmap /usr/include/qt6/QtGui/qpixmap.h \
+ /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/qstring.h \
+ /usr/include/qt6/QtCore/QMap /usr/include/qt6/QtCore/qmap.h \
+ /usr/include/qt6/QtGui/QPixmapCache \
+ /usr/include/qt6/QtGui/qpixmapcache.h \
  /usr/include/qt6/QtGui/qtextcursor.h \
  /usr/include/qt6/QtGui/qtextformat.h /usr/include/qt6/QtGui/qpen.h \
  /usr/include/qt6/QtGui/qtextoption.h \
  /usr/include/qt6/QtCore/qtmochelpers.h \
  /usr/include/qt6/QtCore/qtmocconstants.h \
  /usr/include/qt6/QtCore/q20algorithm.h \
+ /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/moc_playbackcontroller.cpp \
+ /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/playbackcontroller.h \
+ /usr/include/qt6/QtCore/QObject /usr/include/qt6/QtCore/qobject.h \
+ /usr/include/c++/16/random /usr/include/c++/16/bits/random.h \
+ /usr/include/c++/16/x86_64-redhat-linux/bits/opt_random.h \
+ /usr/include/c++/16/bits/random.tcc \
+ /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/audioengine.h \
+ /var/home/esox/dev/cpp/boombox/include/mpv/client.h \
+ /var/home/esox/dev/cpp/boombox/build/boombox_autogen/6YEA5652QU/../../../include/filemanager.h \
+ /usr/include/qt6/QtCore/QStringList \
+ /usr/include/qt6/QtCore/qstringlist.h /usr/include/qt6/QtCore/QSet \
+ /usr/include/qt6/QtCore/qset.h \
+ /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/moc_albumart.cpp \
+ /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/../../../include/widgets/albumart.h \
  /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/moc_controls.cpp \
  /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/../../../include/widgets/controls.h \
  /var/home/esox/dev/cpp/boombox/build/boombox_autogen/MROXUFLNXW/moc_seekbar.cpp \

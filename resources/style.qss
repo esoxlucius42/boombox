@@ -118,24 +118,14 @@ QPushButton:pressed {
     border: 1px solid #6a8a6a;
 }
 
-#previousButton, #nextButton {
+#nextButton {
     color: #87ceeb;
     border: 1px solid #5f9fdf;
 }
 
-#previousButton:hover, #nextButton:hover {
+#nextButton:hover {
     background-color: #4a5a6a;
     border: 1px solid #6f9fdf;
-}
-
-#randomButton {
-    color: #dda0dd;
-    border: 1px solid #8a5a8a;
-}
-
-#randomButton:hover {
-    background-color: #4a3a4a;
-    border: 1px solid #9a6a9a;
 }
 
 #browseButton {
@@ -146,16 +136,6 @@ QPushButton:pressed {
 #browseButton:hover {
     background-color: #4a4a4a;
     border: 1px solid #606060;
-}
-
-#volumeDownButton, #volumeUpButton {
-    color: #87ceeb;
-    border: 1px solid #5f9fdf;
-}
-
-#volumeDownButton:hover, #volumeUpButton:hover {
-    background-color: #4a5a6a;
-    border: 1px solid #6f9fdf;
 }
 
 /* Album Art Label */

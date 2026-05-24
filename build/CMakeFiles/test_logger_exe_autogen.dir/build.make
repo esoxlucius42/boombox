@@ -72,7 +72,7 @@ test_logger_exe_autogen/timestamp: /usr/lib64/qt6/libexec/moc
 test_logger_exe_autogen/timestamp: /usr/lib64/qt6/libexec/uic
 test_logger_exe_autogen/timestamp: CMakeFiles/test_logger_exe_autogen.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target test_logger_exe"
-	/bin/cmake -E cmake_autogen /var/home/esox/dev/cpp/boombox/build/CMakeFiles/test_logger_exe_autogen.dir/AutogenInfo.json ""
+	/bin/cmake -E cmake_autogen /var/home/esox/dev/cpp/boombox/build/CMakeFiles/test_logger_exe_autogen.dir/AutogenInfo.json Release
 	/bin/cmake -E touch /var/home/esox/dev/cpp/boombox/build/test_logger_exe_autogen/timestamp
 
 CMakeFiles/test_logger_exe_autogen.dir/codegen:

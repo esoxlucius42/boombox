@@ -20,9 +20,11 @@ public:
         NoError = 0,
         InitializationFailed = 1,
         FileNotFound = 2,
-        UnplayableFormat = 3,
-        PlaybackFailed = 4,
-        UnknownError = 5
+        CorruptedFile = 3,
+        UnsupportedCodec = 4,
+        PlaybackFailed = 5,
+        DeviceError = 6,
+        UnknownError = 7
     };
 
     /**
@@ -124,6 +126,12 @@ public:
      * @return true if playing, false otherwise
      */
     bool isPlaying() const;
+
+    /**
+     * @brief Check if audio backend is initialized and usable
+     * @return true if mpv handle is available
+     */
+    bool isInitialized() const;
 
     /**
      * @brief Get current playback state

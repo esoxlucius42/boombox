@@ -35,41 +35,51 @@ void StateManager::initInternal()
 
 void StateManager::loadInternal()
 {
-    QString configPath = getConfigPath();
-    QFile configFile(configPath);
+    try {
+        QString configPath = getConfigPath();
+        QFile configFile(configPath);
 
-    if (!configFile.exists()) {
-        Logger::debug("StateManager", "Config file does not exist, using defaults for first run");
+        if (!configFile.exists()) {
+            Logger::debug("StateManager", "Config file does not exist, using defaults for first run");
+            currentFolder = "";
+            currentTrack = "";
+            return;
+        }
+
+        if (!configFile.open(QIODevice::ReadOnly)) {
+            Logger::warn("StateManager", "Failed to open config file: " + configPath);
+            currentFolder = "";
+            currentTrack = "";
+            return;
+        }
+
+        QByteArray jsonData = configFile.readAll();
+        configFile.close();
+
+        QJsonParseError parseError;
+        QJsonDocument doc = QJsonDocument::fromJson(jsonData, &parseError);
+
+        if (!doc.isObject()) {
+            Logger::warn("StateManager", "Invalid JSON in config file: " + parseError.errorString());
+            currentFolder = "";
+            currentTrack = "";
+            return;
+        }
+
+        QJsonObject obj = doc.object();
+        currentFolder = obj.value("currentFolder").toString("");
+        currentTrack = obj.value("currentTrack").toString("");
+
+        Logger::debug("StateManager", "Loaded state - Folder: " + currentFolder + ", Track: " + currentTrack);
+    } catch (const std::exception& e) {
+        Logger::error("StateManager", QString("Exception in loadInternal: %1").arg(e.what()));
         currentFolder = "";
         currentTrack = "";
-        return;
-    }
-
-    if (!configFile.open(QIODevice::ReadOnly)) {
-        Logger::warn("StateManager", "Failed to open config file: " + configPath);
+    } catch (...) {
+        Logger::error("StateManager", "Unknown exception in loadInternal, using defaults");
         currentFolder = "";
         currentTrack = "";
-        return;
     }
-
-    QByteArray jsonData = configFile.readAll();
-    configFile.close();
-
-    QJsonParseError parseError;
-    QJsonDocument doc = QJsonDocument::fromJson(jsonData, &parseError);
-
-    if (!doc.isObject()) {
-        Logger::warn("StateManager", "Invalid JSON in config file: " + parseError.errorString());
-        currentFolder = "";
-        currentTrack = "";
-        return;
-    }
-
-    QJsonObject obj = doc.object();
-    currentFolder = obj.value("currentFolder").toString("");
-    currentTrack = obj.value("currentTrack").toString("");
-
-    Logger::debug("StateManager", "Loaded state - Folder: " + currentFolder + ", Track: " + currentTrack);
 }
 
 bool StateManager::ensureConfigDirectory() const
@@ -122,29 +132,40 @@ void StateManager::save()
 
 void StateManager::saveInternal() const
 {
-    if (!ensureConfigDirectory()) {
-        Logger::error("StateManager", "Failed to ensure config directory exists");
-        return;
+    try {
+        if (!ensureConfigDirectory()) {
+            Logger::error("StateManager", "Failed to ensure config directory exists");
+            return;
+        }
+
+        QJsonObject obj;
+        obj.insert("currentFolder", currentFolder);
+        obj.insert("currentTrack", currentTrack);
+        obj.insert("version", "1.0");
+
+        QJsonDocument doc(obj);
+        QByteArray jsonData = doc.toJson();
+
+        QString configPath = getConfigPath();
+        QFile configFile(configPath);
+
+        if (!configFile.open(QIODevice::WriteOnly)) {
+            Logger::error("StateManager", "Failed to open config file for writing: " + configPath);
+            return;
+        }
+
+        qint64 written = configFile.write(jsonData);
+        configFile.close();
+
+        if (written < 0) {
+            Logger::error("StateManager", "Failed to write config file: " + configPath);
+            return;
+        }
+
+        Logger::debug("StateManager", "State saved to: " + configPath);
+    } catch (const std::exception& e) {
+        Logger::error("StateManager", QString("Exception in saveInternal: %1").arg(e.what()));
+    } catch (...) {
+        Logger::error("StateManager", "Unknown exception in saveInternal");
     }
-
-    QJsonObject obj;
-    obj.insert("currentFolder", currentFolder);
-    obj.insert("currentTrack", currentTrack);
-    obj.insert("version", "1.0");
-
-    QJsonDocument doc(obj);
-    QByteArray jsonData = doc.toJson();
-
-    QString configPath = getConfigPath();
-    QFile configFile(configPath);
-
-    if (!configFile.open(QIODevice::WriteOnly)) {
-        Logger::error("StateManager", "Failed to open config file for writing: " + configPath);
-        return;
-    }
-
-    configFile.write(jsonData);
-    configFile.close();
-
-    Logger::debug("StateManager", "State saved to: " + configPath);
 }

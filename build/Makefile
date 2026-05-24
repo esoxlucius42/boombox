@@ -143,6 +143,19 @@ test_logger_exe/fast:
 .PHONY : test_logger_exe/fast
 
 #=============================================================================
+# Target rules for targets named test_error_handling
+
+# Build rule for target.
+test_error_handling: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_error_handling
+.PHONY : test_error_handling
+
+# fast build rule for target.
+test_error_handling/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/build
+.PHONY : test_error_handling/fast
+
+#=============================================================================
 # Target rules for targets named boombox_autogen_timestamp_deps
 
 # Build rule for target.
@@ -194,6 +207,32 @@ test_logger_exe_autogen/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_logger_exe_autogen.dir/build.make CMakeFiles/test_logger_exe_autogen.dir/build
 .PHONY : test_logger_exe_autogen/fast
 
+#=============================================================================
+# Target rules for targets named test_error_handling_autogen_timestamp_deps
+
+# Build rule for target.
+test_error_handling_autogen_timestamp_deps: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_error_handling_autogen_timestamp_deps
+.PHONY : test_error_handling_autogen_timestamp_deps
+
+# fast build rule for target.
+test_error_handling_autogen_timestamp_deps/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling_autogen_timestamp_deps.dir/build.make CMakeFiles/test_error_handling_autogen_timestamp_deps.dir/build
+.PHONY : test_error_handling_autogen_timestamp_deps/fast
+
+#=============================================================================
+# Target rules for targets named test_error_handling_autogen
+
+# Build rule for target.
+test_error_handling_autogen: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 test_error_handling_autogen
+.PHONY : test_error_handling_autogen
+
+# fast build rule for target.
+test_error_handling_autogen/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling_autogen.dir/build.make CMakeFiles/test_error_handling_autogen.dir/build
+.PHONY : test_error_handling_autogen/fast
+
 boombox_autogen/3YJK5W5UP7/qrc_resources.o: boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o
 .PHONY : boombox_autogen/3YJK5W5UP7/qrc_resources.o
 
@@ -242,12 +281,37 @@ boombox_autogen/mocs_compilation.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.s
 .PHONY : boombox_autogen/mocs_compilation.cpp.s
 
+src/audioengine.o: src/audioengine.cpp.o
+.PHONY : src/audioengine.o
+
+# target to build an object file
+src/audioengine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/audioengine.cpp.o
+.PHONY : src/audioengine.cpp.o
+
+src/audioengine.i: src/audioengine.cpp.i
+.PHONY : src/audioengine.i
+
+# target to preprocess a source file
+src/audioengine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/audioengine.cpp.i
+.PHONY : src/audioengine.cpp.i
+
+src/audioengine.s: src/audioengine.cpp.s
+.PHONY : src/audioengine.s
+
+# target to generate assembly for a file
+src/audioengine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/audioengine.cpp.s
+.PHONY : src/audioengine.cpp.s
+
 src/filemanager.o: src/filemanager.cpp.o
 .PHONY : src/filemanager.o
 
 # target to build an object file
 src/filemanager.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/filemanager.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/src/filemanager.cpp.o
 .PHONY : src/filemanager.cpp.o
 
 src/filemanager.i: src/filemanager.cpp.i
@@ -256,6 +320,7 @@ src/filemanager.i: src/filemanager.cpp.i
 # target to preprocess a source file
 src/filemanager.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/filemanager.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/src/filemanager.cpp.i
 .PHONY : src/filemanager.cpp.i
 
 src/filemanager.s: src/filemanager.cpp.s
@@ -264,6 +329,7 @@ src/filemanager.s: src/filemanager.cpp.s
 # target to generate assembly for a file
 src/filemanager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/filemanager.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/src/filemanager.cpp.s
 .PHONY : src/filemanager.cpp.s
 
 src/logger.o: src/logger.cpp.o
@@ -273,6 +339,7 @@ src/logger.o: src/logger.cpp.o
 src/logger.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/logger.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_logger_exe.dir/build.make CMakeFiles/test_logger_exe.dir/src/logger.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/src/logger.cpp.o
 .PHONY : src/logger.cpp.o
 
 src/logger.i: src/logger.cpp.i
@@ -282,6 +349,7 @@ src/logger.i: src/logger.cpp.i
 src/logger.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/logger.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_logger_exe.dir/build.make CMakeFiles/test_logger_exe.dir/src/logger.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/src/logger.cpp.i
 .PHONY : src/logger.cpp.i
 
 src/logger.s: src/logger.cpp.s
@@ -291,6 +359,7 @@ src/logger.s: src/logger.cpp.s
 src/logger.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/logger.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_logger_exe.dir/build.make CMakeFiles/test_logger_exe.dir/src/logger.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/src/logger.cpp.s
 .PHONY : src/logger.cpp.s
 
 src/main.o: src/main.cpp.o
@@ -365,6 +434,30 @@ src/mainwindow.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/mainwindow.cpp.s
 .PHONY : src/mainwindow.cpp.s
 
+src/playbackcontroller.o: src/playbackcontroller.cpp.o
+.PHONY : src/playbackcontroller.o
+
+# target to build an object file
+src/playbackcontroller.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o
+.PHONY : src/playbackcontroller.cpp.o
+
+src/playbackcontroller.i: src/playbackcontroller.cpp.i
+.PHONY : src/playbackcontroller.i
+
+# target to preprocess a source file
+src/playbackcontroller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/playbackcontroller.cpp.i
+.PHONY : src/playbackcontroller.cpp.i
+
+src/playbackcontroller.s: src/playbackcontroller.cpp.s
+.PHONY : src/playbackcontroller.s
+
+# target to generate assembly for a file
+src/playbackcontroller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/playbackcontroller.cpp.s
+.PHONY : src/playbackcontroller.cpp.s
+
 src/statemanager.o: src/statemanager.cpp.o
 .PHONY : src/statemanager.o
 
@@ -388,6 +481,30 @@ src/statemanager.s: src/statemanager.cpp.s
 src/statemanager.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/statemanager.cpp.s
 .PHONY : src/statemanager.cpp.s
+
+src/widgets/albumart.o: src/widgets/albumart.cpp.o
+.PHONY : src/widgets/albumart.o
+
+# target to build an object file
+src/widgets/albumart.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o
+.PHONY : src/widgets/albumart.cpp.o
+
+src/widgets/albumart.i: src/widgets/albumart.cpp.i
+.PHONY : src/widgets/albumart.i
+
+# target to preprocess a source file
+src/widgets/albumart.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/widgets/albumart.cpp.i
+.PHONY : src/widgets/albumart.cpp.i
+
+src/widgets/albumart.s: src/widgets/albumart.cpp.s
+.PHONY : src/widgets/albumart.s
+
+# target to generate assembly for a file
+src/widgets/albumart.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/widgets/albumart.cpp.s
+.PHONY : src/widgets/albumart.cpp.s
 
 src/widgets/controls.o: src/widgets/controls.cpp.o
 .PHONY : src/widgets/controls.o
@@ -461,6 +578,54 @@ src/widgets/trackinfo.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/boombox.dir/build.make CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.s
 .PHONY : src/widgets/trackinfo.cpp.s
 
+test_error_handling.o: test_error_handling.cpp.o
+.PHONY : test_error_handling.o
+
+# target to build an object file
+test_error_handling.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/test_error_handling.cpp.o
+.PHONY : test_error_handling.cpp.o
+
+test_error_handling.i: test_error_handling.cpp.i
+.PHONY : test_error_handling.i
+
+# target to preprocess a source file
+test_error_handling.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/test_error_handling.cpp.i
+.PHONY : test_error_handling.cpp.i
+
+test_error_handling.s: test_error_handling.cpp.s
+.PHONY : test_error_handling.s
+
+# target to generate assembly for a file
+test_error_handling.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/test_error_handling.cpp.s
+.PHONY : test_error_handling.cpp.s
+
+test_error_handling_autogen/mocs_compilation.o: test_error_handling_autogen/mocs_compilation.cpp.o
+.PHONY : test_error_handling_autogen/mocs_compilation.o
+
+# target to build an object file
+test_error_handling_autogen/mocs_compilation.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/test_error_handling_autogen/mocs_compilation.cpp.o
+.PHONY : test_error_handling_autogen/mocs_compilation.cpp.o
+
+test_error_handling_autogen/mocs_compilation.i: test_error_handling_autogen/mocs_compilation.cpp.i
+.PHONY : test_error_handling_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+test_error_handling_autogen/mocs_compilation.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/test_error_handling_autogen/mocs_compilation.cpp.i
+.PHONY : test_error_handling_autogen/mocs_compilation.cpp.i
+
+test_error_handling_autogen/mocs_compilation.s: test_error_handling_autogen/mocs_compilation.cpp.s
+.PHONY : test_error_handling_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+test_error_handling_autogen/mocs_compilation.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test_error_handling.dir/build.make CMakeFiles/test_error_handling.dir/test_error_handling_autogen/mocs_compilation.cpp.s
+.PHONY : test_error_handling_autogen/mocs_compilation.cpp.s
+
 test_logger_exe_autogen/mocs_compilation.o: test_logger_exe_autogen/mocs_compilation.cpp.o
 .PHONY : test_logger_exe_autogen/mocs_compilation.o
 
@@ -495,9 +660,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... boombox_autogen"
 	@echo "... boombox_autogen_timestamp_deps"
+	@echo "... test_error_handling_autogen"
+	@echo "... test_error_handling_autogen_timestamp_deps"
 	@echo "... test_logger_exe_autogen"
 	@echo "... test_logger_exe_autogen_timestamp_deps"
 	@echo "... boombox"
+	@echo "... test_error_handling"
 	@echo "... test_logger_exe"
 	@echo "... boombox_autogen/3YJK5W5UP7/qrc_resources.o"
 	@echo "... boombox_autogen/3YJK5W5UP7/qrc_resources.i"
@@ -505,6 +673,9 @@ help:
 	@echo "... boombox_autogen/mocs_compilation.o"
 	@echo "... boombox_autogen/mocs_compilation.i"
 	@echo "... boombox_autogen/mocs_compilation.s"
+	@echo "... src/audioengine.o"
+	@echo "... src/audioengine.i"
+	@echo "... src/audioengine.s"
 	@echo "... src/filemanager.o"
 	@echo "... src/filemanager.i"
 	@echo "... src/filemanager.s"
@@ -520,9 +691,15 @@ help:
 	@echo "... src/mainwindow.o"
 	@echo "... src/mainwindow.i"
 	@echo "... src/mainwindow.s"
+	@echo "... src/playbackcontroller.o"
+	@echo "... src/playbackcontroller.i"
+	@echo "... src/playbackcontroller.s"
 	@echo "... src/statemanager.o"
 	@echo "... src/statemanager.i"
 	@echo "... src/statemanager.s"
+	@echo "... src/widgets/albumart.o"
+	@echo "... src/widgets/albumart.i"
+	@echo "... src/widgets/albumart.s"
 	@echo "... src/widgets/controls.o"
 	@echo "... src/widgets/controls.i"
 	@echo "... src/widgets/controls.s"
@@ -532,6 +709,12 @@ help:
 	@echo "... src/widgets/trackinfo.o"
 	@echo "... src/widgets/trackinfo.i"
 	@echo "... src/widgets/trackinfo.s"
+	@echo "... test_error_handling.o"
+	@echo "... test_error_handling.i"
+	@echo "... test_error_handling.s"
+	@echo "... test_error_handling_autogen/mocs_compilation.o"
+	@echo "... test_error_handling_autogen/mocs_compilation.i"
+	@echo "... test_error_handling_autogen/mocs_compilation.s"
 	@echo "... test_logger_exe_autogen/mocs_compilation.o"
 	@echo "... test_logger_exe_autogen/mocs_compilation.i"
 	@echo "... test_logger_exe_autogen/mocs_compilation.s"

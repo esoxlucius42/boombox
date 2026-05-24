@@ -6,5 +6,5 @@ CXX_DEFINES = -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB
 
 CXX_INCLUDES = -I/var/home/esox/dev/cpp/boombox/build/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets
 
-CXX_FLAGS = -std=gnu++17 -Wall -Wextra
+CXX_FLAGS = -O3 -DNDEBUG -std=gnu++17 -O2 -Wall -Wextra
 

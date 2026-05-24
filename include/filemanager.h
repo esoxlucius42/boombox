@@ -4,6 +4,7 @@
 #include <QString>
 #include <QStringList>
 #include <QMap>
+#include <QSet>
 #include <memory>
 
 struct AudioMetadata {
@@ -19,23 +20,40 @@ public:
     ~FileManager() = default;
 
     bool loadFolder(const QString& folderPath);
-    int getQueueSize() const;
+    int getTrackCount() const;
     QString getCurrentTrack() const;
-    int getCurrentTrackIndex() const;
-    QString getNextTrack() const;
-    void advanceQueue();
-    void regressQueue();
-    QString getTrackAt(int index) const;
+    int getCurrentTrackPosition() const;
+    bool setCurrentTrackPosition(int index);
+    int indexOfTrack(const QString& filePath) const;
+    QString getTrackByPosition(int index) const;
     AudioMetadata getMetadata(const QString& filePath);
+    
+    /**
+     * @brief Mark a file as problematic (corrupted, unsupported, etc)
+     * @param filePath Path to the problematic file
+     */
+    void markFileAsProblematic(const QString& filePath);
+    
+    /**
+     * @brief Get the next playable track, skipping problematic files
+     * @return Path to next playable track, or empty string if none found
+     */
+    QString getNextPlayableTrack(int startIndex);
 
 private:
-    QStringList queue;
-    int currentIndex = -1;
+    QStringList tracks;
+    int currentTrackPosition = -1;
     QMap<QString, AudioMetadata> metadataCache;
+    QSet<QString> problematicFiles;  // Track files that have had errors
 
     bool isSupportedAudioFormat(const QString& filePath) const;
     AudioMetadata extractMetadata(const QString& filePath);
     void loadFolderRecursive(class QDir dir);
+    
+    /**
+     * @brief Check if file exists and is readable
+     */
+    bool isFileReadable(const QString& filePath) const;
 };
 
 #endif // FILEMANAGER_H

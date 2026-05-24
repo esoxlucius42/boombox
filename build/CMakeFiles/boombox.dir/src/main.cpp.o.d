@@ -86,7 +86,8 @@ CMakeFiles/boombox.dir/src/main.cpp.o: \
  /usr/include/bits/pthreadtypes-arch.h \
  /usr/include/bits/atomic_wide_counter.h /usr/include/bits/struct_mutex.h \
  /usr/include/bits/struct_rwlock.h /usr/include/alloca.h \
- /usr/include/bits/stdlib-float.h /usr/include/c++/16/bits/std_abs.h \
+ /usr/include/bits/stdlib-bsearch.h /usr/include/bits/stdlib-float.h \
+ /usr/include/c++/16/bits/std_abs.h \
  /usr/include/c++/16/pstl/glue_algorithm_defs.h \
  /usr/include/c++/16/pstl/execution_defs.h \
  /usr/include/qt6/QtCore/qatomic.h /usr/include/qt6/QtCore/qbasicatomic.h \
@@ -227,11 +228,12 @@ CMakeFiles/boombox.dir/src/main.cpp.o: \
  /usr/include/bits/types/__fpos64_t.h \
  /usr/include/bits/types/struct_FILE.h \
  /usr/include/bits/types/cookie_io_functions_t.h \
- /usr/include/bits/stdio_lim.h /usr/include/c++/16/cerrno \
- /usr/include/errno.h /usr/include/bits/errno.h \
- /usr/include/linux/errno.h /usr/include/asm/errno.h \
- /usr/include/asm-generic/errno.h /usr/include/asm-generic/errno-base.h \
- /usr/include/bits/types/error_t.h /usr/include/c++/16/bits/charconv.h \
+ /usr/include/bits/stdio_lim.h /usr/include/bits/stdio.h \
+ /usr/include/c++/16/cerrno /usr/include/errno.h \
+ /usr/include/bits/errno.h /usr/include/linux/errno.h \
+ /usr/include/asm/errno.h /usr/include/asm-generic/errno.h \
+ /usr/include/asm-generic/errno-base.h /usr/include/bits/types/error_t.h \
+ /usr/include/c++/16/bits/charconv.h \
  /usr/include/c++/16/bits/basic_string.tcc \
  /usr/include/c++/16/bits/locale_classes.tcc \
  /usr/include/c++/16/system_error \
@@ -363,6 +365,7 @@ CMakeFiles/boombox.dir/src/main.cpp.o: \
  /usr/include/c++/16/bits/fs_dir.h /usr/include/c++/16/bits/fs_ops.h \
  /usr/include/qt6/QtCore/qfileinfo.h /usr/include/qt6/QtCore/qtimezone.h \
  /usr/include/qt6/QtCore/QFile /usr/include/qt6/QtCore/qfile.h \
+ /usr/include/qt6/QtCore/QFileInfo /usr/include/qt6/QtCore/qfileinfo.h \
  /var/home/esox/dev/cpp/boombox/include/logger.h \
  /usr/include/qt6/QtCore/QString /usr/include/qt6/QtCore/qstring.h \
  /usr/include/qt6/QtCore/QMutex /usr/include/qt6/QtCore/qmutex.h \
@@ -370,7 +373,8 @@ CMakeFiles/boombox.dir/src/main.cpp.o: \
  /var/home/esox/dev/cpp/boombox/include/filemanager.h \
  /usr/include/qt6/QtCore/QStringList \
  /usr/include/qt6/QtCore/qstringlist.h /usr/include/qt6/QtCore/QMap \
- /usr/include/qt6/QtCore/qmap.h \
+ /usr/include/qt6/QtCore/qmap.h /usr/include/qt6/QtCore/QSet \
+ /usr/include/qt6/QtCore/qset.h \
  /var/home/esox/dev/cpp/boombox/include/statemanager.h \
  /usr/include/qt6/QtCore/QJsonObject \
  /usr/include/qt6/QtCore/qjsonobject.h \
@@ -382,6 +386,14 @@ CMakeFiles/boombox.dir/src/main.cpp.o: \
  /usr/include/qt6/QtCore/qendian.h \
  /usr/include/qt6/QtCore/qjsondocument.h \
  /usr/include/qt6/QtCore/qjsonparseerror.h \
+ /var/home/esox/dev/cpp/boombox/include/playbackcontroller.h \
+ /usr/include/qt6/QtCore/QObject /usr/include/qt6/QtCore/qobject.h \
+ /usr/include/c++/16/random /usr/include/c++/16/bits/random.h \
+ /usr/include/c++/16/x86_64-redhat-linux/bits/opt_random.h \
+ /usr/include/c++/16/bits/random.tcc \
+ /var/home/esox/dev/cpp/boombox/include/audioengine.h \
+ /var/home/esox/dev/cpp/boombox/include/mpv/client.h \
+ /var/home/esox/dev/cpp/boombox/include/filemanager.h \
  /var/home/esox/dev/cpp/boombox/include/mainwindow.h \
  /usr/include/qt6/QtWidgets/QMainWindow \
  /usr/include/qt6/QtWidgets/qmainwindow.h \
@@ -392,7 +404,8 @@ CMakeFiles/boombox.dir/src/main.cpp.o: \
  /usr/include/qt6/QtGui/qfontinfo.h \
  /usr/include/qt6/QtGui/qfontvariableaxis.h \
  /usr/include/qt6/QtWidgets/qsizepolicy.h \
- /usr/include/qt6/QtWidgets/qtabwidget.h \
+ /usr/include/qt6/QtWidgets/qtabwidget.h /usr/include/qt6/QtCore/QTimer \
+ /usr/include/qt6/QtCore/qtimer.h \
  /var/home/esox/dev/cpp/boombox/include/widgets/trackinfo.h \
  /usr/include/qt6/QtWidgets/QWidget /usr/include/qt6/QtWidgets/qwidget.h \
  /usr/include/qt6/QtWidgets/QLabel /usr/include/qt6/QtWidgets/qlabel.h \
@@ -404,4 +417,8 @@ CMakeFiles/boombox.dir/src/main.cpp.o: \
  /var/home/esox/dev/cpp/boombox/include/widgets/controls.h \
  /usr/include/qt6/QtWidgets/QPushButton \
  /usr/include/qt6/QtWidgets/qpushbutton.h \
- /usr/include/qt6/QtWidgets/qabstractbutton.h
+ /usr/include/qt6/QtWidgets/qabstractbutton.h \
+ /var/home/esox/dev/cpp/boombox/include/widgets/albumart.h \
+ /usr/include/qt6/QtGui/QPixmap /usr/include/qt6/QtGui/qpixmap.h \
+ /usr/include/qt6/QtGui/QPixmapCache \
+ /usr/include/qt6/QtGui/qpixmapcache.h

@@ -73,7 +73,7 @@ boombox_autogen/timestamp: /usr/lib64/qt6/libexec/moc
 boombox_autogen/timestamp: /usr/lib64/qt6/libexec/uic
 boombox_autogen/timestamp: CMakeFiles/boombox.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target boombox"
-	/bin/cmake -E cmake_autogen /var/home/esox/dev/cpp/boombox/build/CMakeFiles/boombox_autogen.dir/AutogenInfo.json ""
+	/bin/cmake -E cmake_autogen /var/home/esox/dev/cpp/boombox/build/CMakeFiles/boombox_autogen.dir/AutogenInfo.json Release
 	/bin/cmake -E touch /var/home/esox/dev/cpp/boombox/build/boombox_autogen/timestamp
 
 boombox_autogen/3YJK5W5UP7/qrc_resources.cpp: /var/home/esox/dev/cpp/boombox/resources/resources.qrc
@@ -82,7 +82,7 @@ boombox_autogen/3YJK5W5UP7/qrc_resources.cpp: /var/home/esox/dev/cpp/boombox/res
 boombox_autogen/3YJK5W5UP7/qrc_resources.cpp: /usr/lib64/qt6/libexec/rcc
 boombox_autogen/3YJK5W5UP7/qrc_resources.cpp: /usr/lib64/qt6/libexec/rcc
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Automatic RCC for resources/resources.qrc"
-	/bin/cmake -E cmake_autorcc /var/home/esox/dev/cpp/boombox/build/CMakeFiles/boombox_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Info.json 
+	/bin/cmake -E cmake_autorcc /var/home/esox/dev/cpp/boombox/build/CMakeFiles/boombox_autogen.dir/AutoRcc_resources_3YJK5W5UP7_Info.json Release
 
 CMakeFiles/boombox.dir/codegen:
 .PHONY : CMakeFiles/boombox.dir/codegen
@@ -129,10 +129,24 @@ CMakeFiles/boombox.dir/src/mainwindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/boombox.dir/src/mainwindow.cpp.s"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /var/home/esox/dev/cpp/boombox/src/mainwindow.cpp -o CMakeFiles/boombox.dir/src/mainwindow.cpp.s
 
+CMakeFiles/boombox.dir/src/audioengine.cpp.o: CMakeFiles/boombox.dir/flags.make
+CMakeFiles/boombox.dir/src/audioengine.cpp.o: /var/home/esox/dev/cpp/boombox/src/audioengine.cpp
+CMakeFiles/boombox.dir/src/audioengine.cpp.o: CMakeFiles/boombox.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/boombox.dir/src/audioengine.cpp.o"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/boombox.dir/src/audioengine.cpp.o -MF CMakeFiles/boombox.dir/src/audioengine.cpp.o.d -o CMakeFiles/boombox.dir/src/audioengine.cpp.o -c /var/home/esox/dev/cpp/boombox/src/audioengine.cpp
+
+CMakeFiles/boombox.dir/src/audioengine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/boombox.dir/src/audioengine.cpp.i"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /var/home/esox/dev/cpp/boombox/src/audioengine.cpp > CMakeFiles/boombox.dir/src/audioengine.cpp.i
+
+CMakeFiles/boombox.dir/src/audioengine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/boombox.dir/src/audioengine.cpp.s"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /var/home/esox/dev/cpp/boombox/src/audioengine.cpp -o CMakeFiles/boombox.dir/src/audioengine.cpp.s
+
 CMakeFiles/boombox.dir/src/filemanager.cpp.o: CMakeFiles/boombox.dir/flags.make
 CMakeFiles/boombox.dir/src/filemanager.cpp.o: /var/home/esox/dev/cpp/boombox/src/filemanager.cpp
 CMakeFiles/boombox.dir/src/filemanager.cpp.o: CMakeFiles/boombox.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/boombox.dir/src/filemanager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/boombox.dir/src/filemanager.cpp.o"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/boombox.dir/src/filemanager.cpp.o -MF CMakeFiles/boombox.dir/src/filemanager.cpp.o.d -o CMakeFiles/boombox.dir/src/filemanager.cpp.o -c /var/home/esox/dev/cpp/boombox/src/filemanager.cpp
 
 CMakeFiles/boombox.dir/src/filemanager.cpp.i: cmake_force
@@ -143,10 +157,24 @@ CMakeFiles/boombox.dir/src/filemanager.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/boombox.dir/src/filemanager.cpp.s"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /var/home/esox/dev/cpp/boombox/src/filemanager.cpp -o CMakeFiles/boombox.dir/src/filemanager.cpp.s
 
+CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o: CMakeFiles/boombox.dir/flags.make
+CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o: /var/home/esox/dev/cpp/boombox/src/playbackcontroller.cpp
+CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o: CMakeFiles/boombox.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o -MF CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o.d -o CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o -c /var/home/esox/dev/cpp/boombox/src/playbackcontroller.cpp
+
+CMakeFiles/boombox.dir/src/playbackcontroller.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/boombox.dir/src/playbackcontroller.cpp.i"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /var/home/esox/dev/cpp/boombox/src/playbackcontroller.cpp > CMakeFiles/boombox.dir/src/playbackcontroller.cpp.i
+
+CMakeFiles/boombox.dir/src/playbackcontroller.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/boombox.dir/src/playbackcontroller.cpp.s"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /var/home/esox/dev/cpp/boombox/src/playbackcontroller.cpp -o CMakeFiles/boombox.dir/src/playbackcontroller.cpp.s
+
 CMakeFiles/boombox.dir/src/logger.cpp.o: CMakeFiles/boombox.dir/flags.make
 CMakeFiles/boombox.dir/src/logger.cpp.o: /var/home/esox/dev/cpp/boombox/src/logger.cpp
 CMakeFiles/boombox.dir/src/logger.cpp.o: CMakeFiles/boombox.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/boombox.dir/src/logger.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/boombox.dir/src/logger.cpp.o"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/boombox.dir/src/logger.cpp.o -MF CMakeFiles/boombox.dir/src/logger.cpp.o.d -o CMakeFiles/boombox.dir/src/logger.cpp.o -c /var/home/esox/dev/cpp/boombox/src/logger.cpp
 
 CMakeFiles/boombox.dir/src/logger.cpp.i: cmake_force
@@ -160,7 +188,7 @@ CMakeFiles/boombox.dir/src/logger.cpp.s: cmake_force
 CMakeFiles/boombox.dir/src/statemanager.cpp.o: CMakeFiles/boombox.dir/flags.make
 CMakeFiles/boombox.dir/src/statemanager.cpp.o: /var/home/esox/dev/cpp/boombox/src/statemanager.cpp
 CMakeFiles/boombox.dir/src/statemanager.cpp.o: CMakeFiles/boombox.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/boombox.dir/src/statemanager.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/boombox.dir/src/statemanager.cpp.o"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/boombox.dir/src/statemanager.cpp.o -MF CMakeFiles/boombox.dir/src/statemanager.cpp.o.d -o CMakeFiles/boombox.dir/src/statemanager.cpp.o -c /var/home/esox/dev/cpp/boombox/src/statemanager.cpp
 
 CMakeFiles/boombox.dir/src/statemanager.cpp.i: cmake_force
@@ -174,7 +202,7 @@ CMakeFiles/boombox.dir/src/statemanager.cpp.s: cmake_force
 CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o: CMakeFiles/boombox.dir/flags.make
 CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o: /var/home/esox/dev/cpp/boombox/src/widgets/trackinfo.cpp
 CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o: CMakeFiles/boombox.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o -MF CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o.d -o CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o -c /var/home/esox/dev/cpp/boombox/src/widgets/trackinfo.cpp
 
 CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.i: cmake_force
@@ -188,7 +216,7 @@ CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.s: cmake_force
 CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o: CMakeFiles/boombox.dir/flags.make
 CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o: /var/home/esox/dev/cpp/boombox/src/widgets/seekbar.cpp
 CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o: CMakeFiles/boombox.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o -MF CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o.d -o CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o -c /var/home/esox/dev/cpp/boombox/src/widgets/seekbar.cpp
 
 CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.i: cmake_force
@@ -202,7 +230,7 @@ CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.s: cmake_force
 CMakeFiles/boombox.dir/src/widgets/controls.cpp.o: CMakeFiles/boombox.dir/flags.make
 CMakeFiles/boombox.dir/src/widgets/controls.cpp.o: /var/home/esox/dev/cpp/boombox/src/widgets/controls.cpp
 CMakeFiles/boombox.dir/src/widgets/controls.cpp.o: CMakeFiles/boombox.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/boombox.dir/src/widgets/controls.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/boombox.dir/src/widgets/controls.cpp.o"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/boombox.dir/src/widgets/controls.cpp.o -MF CMakeFiles/boombox.dir/src/widgets/controls.cpp.o.d -o CMakeFiles/boombox.dir/src/widgets/controls.cpp.o -c /var/home/esox/dev/cpp/boombox/src/widgets/controls.cpp
 
 CMakeFiles/boombox.dir/src/widgets/controls.cpp.i: cmake_force
@@ -213,10 +241,24 @@ CMakeFiles/boombox.dir/src/widgets/controls.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/boombox.dir/src/widgets/controls.cpp.s"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /var/home/esox/dev/cpp/boombox/src/widgets/controls.cpp -o CMakeFiles/boombox.dir/src/widgets/controls.cpp.s
 
+CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o: CMakeFiles/boombox.dir/flags.make
+CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o: /var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp
+CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o: CMakeFiles/boombox.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o -MF CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o.d -o CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o -c /var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp
+
+CMakeFiles/boombox.dir/src/widgets/albumart.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/boombox.dir/src/widgets/albumart.cpp.i"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp > CMakeFiles/boombox.dir/src/widgets/albumart.cpp.i
+
+CMakeFiles/boombox.dir/src/widgets/albumart.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/boombox.dir/src/widgets/albumart.cpp.s"
+	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp -o CMakeFiles/boombox.dir/src/widgets/albumart.cpp.s
+
 CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o: CMakeFiles/boombox.dir/flags.make
 CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o: boombox_autogen/3YJK5W5UP7/qrc_resources.cpp
 CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o: CMakeFiles/boombox.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o"
 	/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o -MF CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o.d -o CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o -c /var/home/esox/dev/cpp/boombox/build/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp
 
 CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.i: cmake_force
@@ -232,12 +274,15 @@ boombox_OBJECTS = \
 "CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/boombox.dir/src/main.cpp.o" \
 "CMakeFiles/boombox.dir/src/mainwindow.cpp.o" \
+"CMakeFiles/boombox.dir/src/audioengine.cpp.o" \
 "CMakeFiles/boombox.dir/src/filemanager.cpp.o" \
+"CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o" \
 "CMakeFiles/boombox.dir/src/logger.cpp.o" \
 "CMakeFiles/boombox.dir/src/statemanager.cpp.o" \
 "CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o" \
 "CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o" \
 "CMakeFiles/boombox.dir/src/widgets/controls.cpp.o" \
+"CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o" \
 "CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o"
 
 # External object files for target boombox
@@ -246,22 +291,26 @@ boombox_EXTERNAL_OBJECTS =
 bin/boombox: CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/src/main.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/src/mainwindow.cpp.o
+bin/boombox: CMakeFiles/boombox.dir/src/audioengine.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/src/filemanager.cpp.o
+bin/boombox: CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/src/logger.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/src/statemanager.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/src/widgets/controls.cpp.o
+bin/boombox: CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o
 bin/boombox: CMakeFiles/boombox.dir/build.make
 bin/boombox: CMakeFiles/boombox.dir/compiler_depend.ts
 bin/boombox: /usr/lib64/libQt6Widgets.so.6.10.3
+bin/boombox: /usr/lib64/libmpv.so.2
 bin/boombox: /usr/lib64/libQt6Gui.so.6.10.3
 bin/boombox: /usr/lib64/libGLX.so
 bin/boombox: /usr/lib64/libOpenGL.so
 bin/boombox: /usr/lib64/libQt6Core.so.6.10.3
 bin/boombox: CMakeFiles/boombox.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable bin/boombox"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Linking CXX executable bin/boombox"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/boombox.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

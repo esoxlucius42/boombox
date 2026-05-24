@@ -20,27 +20,49 @@ find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
 
 # Find libmpv using pkg-config (optional)
 find_package(PkgConfig QUIET)
+set(MPV_LINKABLE FALSE)
+set(MPV_LINK_MODE "stub")
 if(PkgConfig_FOUND)
     pkg_check_modules(MPV QUIET mpv)
-else()
-    message(WARNING "PkgConfig not found, checking for libmpv headers directly")
+    if(MPV_FOUND AND MPV_LIBRARIES)
+        set(MPV_LINKABLE TRUE)
+        set(MPV_LINK_MODE "pkg-config")
+        message(STATUS "Found linkable libmpv via pkg-config")
+    endif()
 endif()
 
-# If pkg-config didn't find libmpv, try to find headers directly
-if(NOT MPV_FOUND)
-    # Check if mpv headers exist in the local include directory
-    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/include/mpv/client.h")
-        set(MPV_FOUND TRUE)
-        set(MPV_INCLUDE_DIRS "${CMAKE_CURRENT_SOURCE_DIR}/include")
-        message(STATUS "Found mpv headers in local include directory")
-    else()
-        message(WARNING "libmpv not found. Audio playback will not be available.")
+# Fallback: allow linking directly to libmpv runtime library when pkg-config metadata
+# is unavailable (common on immutable systems with runtime-only package layering).
+if(NOT MPV_LINKABLE)
+    find_library(MPV_FALLBACK_LIBRARY
+        NAMES mpv
+        PATHS /usr/lib64 /usr/lib /lib64 /lib
+    )
+
+    if(NOT MPV_FALLBACK_LIBRARY)
+        find_file(MPV_FALLBACK_LIBRARY
+            NAMES libmpv.so.2 libmpv.so.1
+            PATHS /usr/lib64 /usr/lib /lib64 /lib
+        )
     endif()
+
+    if(MPV_FALLBACK_LIBRARY)
+        set(MPV_LINKABLE TRUE)
+        set(MPV_LIBRARIES "${MPV_FALLBACK_LIBRARY}")
+        set(MPV_LINK_MODE "direct-library")
+        message(STATUS "Found linkable libmpv via direct library lookup: ${MPV_FALLBACK_LIBRARY}")
+    endif()
+endif()
+
+if(NOT MPV_LINKABLE)
+    message(WARNING "libmpv not found or not linkable. Building with stub backend (no real audio playback).")
+else()
+    message(STATUS "Using libmpv backend detection mode: ${MPV_LINK_MODE}")
 endif()
 
 # Include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-if(MPV_FOUND)
+if(MPV_LINKABLE)
     include_directories(${MPV_INCLUDE_DIRS})
 endif()
 
@@ -48,32 +70,37 @@ endif()
 set(SOURCES
     src/main.cpp
     src/mainwindow.cpp
+    src/audioengine.cpp
     src/filemanager.cpp
+    src/playbackcontroller.cpp
     src/logger.cpp
     src/statemanager.cpp
     src/widgets/trackinfo.cpp
     src/widgets/seekbar.cpp
     src/widgets/controls.cpp
+    src/widgets/albumart.cpp
 )
 
-# Add audioengine only if MPV is found
-if(MPV_FOUND)
-    list(APPEND SOURCES src/audioengine.cpp)
+# Use libmpv stub only when real libmpv is not available
+if(NOT MPV_LINKABLE)
+    list(APPEND SOURCES src/mpv_stub.cpp)
 endif()
 
 # Header files (needed for MOC)
 set(HEADERS
     include/mainwindow.h
+    include/playbackcontroller.h
     include/widgets/trackinfo.h
     include/widgets/seekbar.h
     include/widgets/controls.h
+    include/widgets/albumart.h
     include/filemanager.h
     include/logger.h
     include/statemanager.h
 )
 
 # Add audioengine header only if MPV is found
-if(MPV_FOUND)
+if(MPV_LINKABLE)
     list(APPEND HEADERS include/audioengine.h)
 endif()
 
@@ -105,13 +132,28 @@ target_link_libraries(test_logger_exe
 )
 
 # Link MPV if found
-if(MPV_FOUND)
+if(MPV_LINKABLE)
     target_link_libraries(boombox ${MPV_LIBRARIES})
-    target_link_directories(boombox PRIVATE ${MPV_LIBRARY_DIRS})
+    if(MPV_LIBRARY_DIRS)
+        target_link_directories(boombox PRIVATE ${MPV_LIBRARY_DIRS})
+    endif()
     target_compile_definitions(boombox PRIVATE ${MPV_CFLAGS_OTHER})
 else()
-    message(WARNING "libmpv not found. Audio playback will not be available.")
+    target_compile_definitions(boombox PRIVATE BOOMBOX_USING_MPV_STUB=1)
 endif()
+
+# Test executable for error handling
+add_executable(test_error_handling
+    test_error_handling.cpp
+    src/filemanager.cpp
+    src/logger.cpp
+)
+
+target_link_libraries(test_error_handling
+    Qt6::Core
+    Qt6::Gui
+    Qt6::Widgets
+)
 
 # Compiler flags for Release optimization
 if(CMAKE_BUILD_TYPE STREQUAL "Release")

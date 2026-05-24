@@ -1,13 +1,20 @@
 #include <QApplication>
 #include <QTemporaryDir>
 #include <QFile>
+#include <QFileInfo>
+#include <locale.h>
+#include <memory>
 #include "logger.h"
 #include "filemanager.h"
 #include "statemanager.h"
+#include "playbackcontroller.h"
 #include "mainwindow.h"
 
 int main(int argc, char *argv[])
 {
+    // libmpv requires C numeric locale for parsing floats/options.
+    setlocale(LC_NUMERIC, "C");
+
     QApplication app(argc, argv);
 
     // Initialize logger after creating QApplication
@@ -19,6 +26,21 @@ int main(int argc, char *argv[])
     // Initialize state manager to load saved state
     StateManager::init();
     Logger::info("Main", "StateManager initialized");
+
+    // Some frameworks can reset locale during startup; enforce again before mpv init.
+    if (!setlocale(LC_NUMERIC, "C")) {
+        Logger::warn("Main", "Failed to enforce LC_NUMERIC=C before audio engine initialization");
+    }
+
+    // Create PlaybackController - always created (uses stub if AudioEngine not available)
+    auto playbackController = std::make_unique<PlaybackController>();
+    Logger::info("Main", "PlaybackController initialized");
+
+    // Check for --fullscreen flag
+    bool fullscreenMode = app.arguments().contains("--fullscreen");
+    if (fullscreenMode) {
+        Logger::info("Main", "Fullscreen mode enabled");
+    }
 
     // ===== FileManager Test =====
     Logger::info("Main", "=== Testing FileManager ===");
@@ -51,12 +73,12 @@ int main(int argc, char *argv[])
         return 1;
     }
     
-    // Test queue operations
-    Logger::info("Main", QString("Queue size: %1").arg(fm.getQueueSize()));
-    if (fm.getQueueSize() == 4) {
-        Logger::info("Main", "✓ Correct queue size");
+    // Test track list operations
+    Logger::info("Main", QString("Track count: %1").arg(fm.getTrackCount()));
+    if (fm.getTrackCount() == 4) {
+        Logger::info("Main", "✓ Correct track count");
     } else {
-        Logger::error("Main", QString("✗ Incorrect queue size (expected 4, got %1)").arg(fm.getQueueSize()));
+        Logger::error("Main", QString("✗ Incorrect track count (expected 4, got %1)").arg(fm.getTrackCount()));
         return 1;
     }
     
@@ -70,16 +92,8 @@ int main(int argc, char *argv[])
         return 1;
     }
     
-    // Test track indexing
-    Logger::info("Main", QString("Current index: %1").arg(fm.getCurrentTrackIndex()));
-    
-    // Test next track
-    QString nextTrack = fm.getNextTrack();
-    Logger::info("Main", QString("Next track exists: %1").arg(!nextTrack.isEmpty() ? "yes" : "no"));
-    
-    // Test advance
-    fm.advanceQueue();
-    Logger::info("Main", QString("Advanced to index: %1").arg(fm.getCurrentTrackIndex()));
+    // Test track position
+    Logger::info("Main", QString("Current position: %1").arg(fm.getCurrentTrackPosition()));
     
     // Test metadata loading (lazy loading)
     AudioMetadata meta = fm.getMetadata(currentTrack);
@@ -89,22 +103,30 @@ int main(int argc, char *argv[])
     Logger::info("Main", "  Album: " + meta.album);
     Logger::info("Main", QString("  Duration: %1 seconds").arg(meta.duration));
     
-    // Test getTrackAt
-    QString trackAt1 = fm.getTrackAt(1);
+    // Test getTrackByPosition
+    QString trackAt1 = fm.getTrackByPosition(1);
     Logger::info("Main", QString("Track at index 1: %1").arg(!trackAt1.isEmpty() ? "found" : "not found"));
-    
-    // Test regression
-    fm.regressQueue();
-    Logger::info("Main", QString("Regressed to index: %1").arg(fm.getCurrentTrackIndex()));
     
     Logger::info("Main", "=== All FileManager tests completed ===");
 
     // Create and show the main window
-    MainWindow window;
+    MainWindow window(playbackController.get(), fullscreenMode);
     window.show();
 
+    // Auto-load the last selected folder if it still exists.
+    const QString savedFolder = StateManager::getCurrentFolder();
+    if (!savedFolder.isEmpty()) {
+        const QFileInfo savedFolderInfo(savedFolder);
+        if (savedFolderInfo.exists() && savedFolderInfo.isDir() && savedFolderInfo.isReadable()) {
+            playbackController->loadFolder(savedFolder);
+            Logger::info("Main", "Auto-loaded saved folder: " + savedFolder);
+        } else {
+            Logger::warn("Main", "Saved folder is unavailable and was not auto-loaded: " + savedFolder);
+        }
+    }
+
     // Save state when application exits
-    QObject::connect(&app, &QApplication::aboutToQuit, []() {
+    QObject::connect(&app, &QApplication::aboutToQuit, [&playbackController]() {
         StateManager::save();
         Logger::debug("Main", "State saved on application exit");
     });

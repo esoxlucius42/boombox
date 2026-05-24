@@ -72,7 +72,7 @@ boombox_autogen/timestamp: /usr/lib64/qt6/libexec/moc
 boombox_autogen/timestamp: /usr/lib64/qt6/libexec/uic
 boombox_autogen/timestamp: CMakeFiles/boombox_autogen.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/var/home/esox/dev/cpp/boombox/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target boombox"
-	/bin/cmake -E cmake_autogen /var/home/esox/dev/cpp/boombox/build/CMakeFiles/boombox_autogen.dir/AutogenInfo.json ""
+	/bin/cmake -E cmake_autogen /var/home/esox/dev/cpp/boombox/build/CMakeFiles/boombox_autogen.dir/AutogenInfo.json Release
 	/bin/cmake -E touch /var/home/esox/dev/cpp/boombox/build/boombox_autogen/timestamp
 
 CMakeFiles/boombox_autogen.dir/codegen:

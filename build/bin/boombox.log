@@ -1,6 +1,1256 @@
-[2026-05-24 09:39:37] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
-[2026-05-24 09:39:37] [INFO] [Main] Application startup
-[2026-05-24 09:39:37] [DEBUG] [Main] This is a debug message
-[2026-05-24 09:39:37] [WARN] [Main] This is a warning message
-[2026-05-24 09:39:37] [ERROR] [Main] This is an error message
-[2026-05-24 09:39:37] [INFO] [Main] Logging test complete
+[2026-05-24 10:34:07] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 10:34:07] [INFO] [Main] Logger initialized
+[2026-05-24 10:34:07] [DEBUG] [Main] Debug message
+[2026-05-24 10:34:07] [WARN] [Main] Warning message
+[2026-05-24 10:34:07] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 10:34:07] [DEBUG] [StateManager] Loaded state - Folder: /home/music, Track: track.mp3
+[2026-05-24 10:34:07] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 10:34:07] [INFO] [Main] StateManager initialized
+[2026-05-24 10:34:07] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 10:34:07] [INFO] [Main] PlaybackController initialized
+[2026-05-24 10:34:07] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 10:34:07] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 10:34:07] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 10:34:07] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 10:34:07] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 10:34:07] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 10:34:07] [INFO] [Main] Queue size: 4
+[2026-05-24 10:34:07] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 10:34:07] [INFO] [Main] Current track: /tmp/boombox-fdBXSl/song1.mp3
+[2026-05-24 10:34:07] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 10:34:07] [INFO] [Main] Current index: 0
+[2026-05-24 10:34:07] [INFO] [Main] Next track exists: yes
+[2026-05-24 10:34:07] [INFO] [Main] Advanced to index: 1
+[2026-05-24 10:34:07] [INFO] [Main] Metadata for current track:
+[2026-05-24 10:34:07] [INFO] [Main]   Title: song1
+[2026-05-24 10:34:07] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 10:34:07] [INFO] [Main]   Album: Unknown Album
+[2026-05-24 10:34:07] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 10:34:07] [INFO] [Main] Track at index 1: found
+[2026-05-24 10:34:07] [INFO] [Main] Regressed to index: 0
+[2026-05-24 10:34:07] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 10:34:10] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 10:34:30] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack
+[2026-05-24 10:34:30] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack
+[2026-05-24 10:34:30] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 10:34:30] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack
+[2026-05-24 10:34:30] [INFO] [PlaybackController] Folder loaded with 10 tracks
+[2026-05-24 10:34:30] [DEBUG] [PlaybackController] Picked random track: index 7 of 10
+[2026-05-24 10:34:30] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/08 - Humanity (Part 2).flac
+[2026-05-24 10:34:30] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:30] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:41] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:41] [DEBUG] [PlaybackController] Picked random track: index 9 of 10
+[2026-05-24 10:34:41] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 10:34:41] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:41] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:44] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:44] [DEBUG] [PlaybackController] Picked random track: index 7 of 10
+[2026-05-24 10:34:44] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/08 - Humanity (Part 2).flac
+[2026-05-24 10:34:44] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:44] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:45] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:45] [DEBUG] [PlaybackController] Picked random track: index 5 of 10
+[2026-05-24 10:34:45] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/06 - Eternity.flac
+[2026-05-24 10:34:45] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:45] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:46] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:46] [DEBUG] [PlaybackController] Picked random track: index 2 of 10
+[2026-05-24 10:34:46] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/03 - Contamination.flac
+[2026-05-24 10:34:46] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:46] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:46] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:46] [DEBUG] [PlaybackController] Picked random track: index 1 of 10
+[2026-05-24 10:34:46] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/02 - Shape.flac
+[2026-05-24 10:34:46] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:46] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:46] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:46] [DEBUG] [PlaybackController] Picked random track: index 1 of 10
+[2026-05-24 10:34:46] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/02 - Shape.flac
+[2026-05-24 10:34:46] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:46] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:46] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:46] [DEBUG] [PlaybackController] Picked random track: index 6 of 10
+[2026-05-24 10:34:46] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/07 - Wait.flac
+[2026-05-24 10:34:46] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:46] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:46] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:46] [DEBUG] [PlaybackController] Picked random track: index 2 of 10
+[2026-05-24 10:34:46] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/03 - Contamination.flac
+[2026-05-24 10:34:46] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:46] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:47] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:47] [DEBUG] [PlaybackController] Picked random track: index 0 of 10
+[2026-05-24 10:34:47] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:47] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:47] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:47] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:47] [DEBUG] [PlaybackController] Picked random track: index 3 of 10
+[2026-05-24 10:34:47] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/04 - Bestiality.flac
+[2026-05-24 10:34:47] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:47] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:47] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:47] [DEBUG] [PlaybackController] Picked random track: index 9 of 10
+[2026-05-24 10:34:47] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 10:34:47] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:47] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:47] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:47] [DEBUG] [PlaybackController] Picked random track: index 8 of 10
+[2026-05-24 10:34:47] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 10:34:47] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:47] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:47] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:47] [DEBUG] [PlaybackController] Picked random track: index 9 of 10
+[2026-05-24 10:34:47] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 10:34:47] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:47] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:48] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:48] [DEBUG] [PlaybackController] Picked random track: index 5 of 10
+[2026-05-24 10:34:48] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/06 - Eternity.flac
+[2026-05-24 10:34:48] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:48] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:48] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:48] [DEBUG] [PlaybackController] Picked random track: index 3 of 10
+[2026-05-24 10:34:48] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/04 - Bestiality.flac
+[2026-05-24 10:34:48] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:48] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:48] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:48] [DEBUG] [PlaybackController] Picked random track: index 0 of 10
+[2026-05-24 10:34:48] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:48] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:48] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:48] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:48] [DEBUG] [PlaybackController] Picked random track: index 9 of 10
+[2026-05-24 10:34:48] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 10:34:48] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:48] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:48] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:48] [DEBUG] [PlaybackController] Picked random track: index 9 of 10
+[2026-05-24 10:34:48] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 10:34:48] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:48] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:49] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:49] [DEBUG] [PlaybackController] Picked random track: index 3 of 10
+[2026-05-24 10:34:49] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/04 - Bestiality.flac
+[2026-05-24 10:34:49] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:49] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:49] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:49] [DEBUG] [PlaybackController] Picked random track: index 4 of 10
+[2026-05-24 10:34:49] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/05 - Solitude.flac
+[2026-05-24 10:34:49] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:49] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:49] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:49] [DEBUG] [PlaybackController] Picked random track: index 6 of 10
+[2026-05-24 10:34:49] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/07 - Wait.flac
+[2026-05-24 10:34:49] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:49] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:49] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:49] [DEBUG] [PlaybackController] Picked random track: index 7 of 10
+[2026-05-24 10:34:49] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/08 - Humanity (Part 2).flac
+[2026-05-24 10:34:49] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:49] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:49] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:49] [DEBUG] [PlaybackController] Picked random track: index 6 of 10
+[2026-05-24 10:34:49] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/07 - Wait.flac
+[2026-05-24 10:34:49] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:49] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:50] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:50] [DEBUG] [PlaybackController] Picked random track: index 9 of 10
+[2026-05-24 10:34:50] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 10:34:50] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:50] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:50] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:50] [DEBUG] [PlaybackController] Picked random track: index 5 of 10
+[2026-05-24 10:34:50] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/06 - Eternity.flac
+[2026-05-24 10:34:50] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:50] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:50] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:50] [DEBUG] [PlaybackController] Picked random track: index 7 of 10
+[2026-05-24 10:34:50] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/08 - Humanity (Part 2).flac
+[2026-05-24 10:34:50] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:50] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:50] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:50] [DEBUG] [PlaybackController] Picked random track: index 8 of 10
+[2026-05-24 10:34:50] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 10:34:50] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:50] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:50] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:50] [DEBUG] [PlaybackController] Picked random track: index 1 of 10
+[2026-05-24 10:34:50] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/02 - Shape.flac
+[2026-05-24 10:34:50] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:50] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:51] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:51] [DEBUG] [PlaybackController] Picked random track: index 5 of 10
+[2026-05-24 10:34:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/06 - Eternity.flac
+[2026-05-24 10:34:51] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:51] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:51] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:51] [DEBUG] [PlaybackController] Picked random track: index 1 of 10
+[2026-05-24 10:34:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/02 - Shape.flac
+[2026-05-24 10:34:51] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:51] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:51] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:51] [DEBUG] [PlaybackController] Picked random track: index 9 of 10
+[2026-05-24 10:34:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 10:34:51] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:51] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:51] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:51] [DEBUG] [PlaybackController] Picked random track: index 4 of 10
+[2026-05-24 10:34:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/05 - Solitude.flac
+[2026-05-24 10:34:51] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:51] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:51] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:51] [DEBUG] [PlaybackController] Picked random track: index 2 of 10
+[2026-05-24 10:34:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/03 - Contamination.flac
+[2026-05-24 10:34:51] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:51] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:52] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:52] [DEBUG] [PlaybackController] Picked random track: index 3 of 10
+[2026-05-24 10:34:52] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/04 - Bestiality.flac
+[2026-05-24 10:34:52] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:52] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:53] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:53] [DEBUG] [PlaybackController] Picked random track: index 8 of 10
+[2026-05-24 10:34:53] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 10:34:53] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:53] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:53] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:53] [DEBUG] [PlaybackController] Picked random track: index 0 of 10
+[2026-05-24 10:34:53] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:53] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:53] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:53] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:53] [DEBUG] [PlaybackController] Picked random track: index 5 of 10
+[2026-05-24 10:34:53] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/06 - Eternity.flac
+[2026-05-24 10:34:53] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:53] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:53] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:53] [DEBUG] [PlaybackController] Picked random track: index 3 of 10
+[2026-05-24 10:34:53] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/04 - Bestiality.flac
+[2026-05-24 10:34:53] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:53] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:53] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:53] [DEBUG] [PlaybackController] Picked random track: index 3 of 10
+[2026-05-24 10:34:53] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/04 - Bestiality.flac
+[2026-05-24 10:34:53] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:53] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:54] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:54] [DEBUG] [PlaybackController] Picked random track: index 7 of 10
+[2026-05-24 10:34:54] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/08 - Humanity (Part 2).flac
+[2026-05-24 10:34:54] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:54] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:54] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:54] [DEBUG] [PlaybackController] Picked random track: index 2 of 10
+[2026-05-24 10:34:54] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/03 - Contamination.flac
+[2026-05-24 10:34:54] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:54] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:54] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:54] [DEBUG] [PlaybackController] Picked random track: index 9 of 10
+[2026-05-24 10:34:54] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 10:34:54] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:54] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:54] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:54] [DEBUG] [PlaybackController] Picked random track: index 8 of 10
+[2026-05-24 10:34:54] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 10:34:54] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:54] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:54] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:54] [DEBUG] [PlaybackController] Picked random track: index 0 of 10
+[2026-05-24 10:34:54] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:54] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:54] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:55] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:34:55] [DEBUG] [PlaybackController] Picked random track: index 1 of 10
+[2026-05-24 10:34:55] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/02 - Shape.flac
+[2026-05-24 10:34:55] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:34:55] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:36:04] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:36:04] [DEBUG] [PlaybackController] Picked random track: index 1 of 10
+[2026-05-24 10:36:04] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/02 - Shape.flac
+[2026-05-24 10:36:04] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:36:04] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:36:04] [WARN] [PlaybackController] Playback failed for: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 10:36:04] [DEBUG] [PlaybackController] Picked random track: index 7 of 10
+[2026-05-24 10:36:04] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/08 - Humanity (Part 2).flac
+[2026-05-24 10:36:04] [ERROR] [PlaybackController] Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:36:04] [ERROR] [MainWindow] Playback error: Playback error for '/run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac' (code 5): AudioEngine not initialized
+[2026-05-24 10:39:12] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 10:39:12] [INFO] [Main] Application startup
+[2026-05-24 10:39:12] [DEBUG] [Main] This is a debug message
+[2026-05-24 10:39:12] [WARN] [Main] This is a warning message
+[2026-05-24 10:39:12] [ERROR] [Main] This is an error message
+[2026-05-24 10:39:12] [INFO] [Main] Logging test complete
+[2026-05-24 11:48:27] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 11:48:27] [INFO] [Main] Logger initialized
+[2026-05-24 11:48:27] [DEBUG] [Main] Debug message
+[2026-05-24 11:48:27] [WARN] [Main] Warning message
+[2026-05-24 11:48:27] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 11:48:27] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack, Track: track.mp3
+[2026-05-24 11:48:27] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 11:48:27] [INFO] [Main] StateManager initialized
+[2026-05-24 11:48:27] [WARN] [PlaybackController] Playback backend is unavailable; playback will be disabled
+[2026-05-24 11:48:27] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 11:48:27] [INFO] [Main] PlaybackController initialized
+[2026-05-24 11:48:27] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 11:48:27] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 11:48:27] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 11:48:27] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 11:48:27] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 11:48:27] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 11:48:27] [INFO] [Main] Queue size: 4
+[2026-05-24 11:48:27] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 11:48:27] [INFO] [Main] Current track: /tmp/boombox-fnIUhv/song1.mp3
+[2026-05-24 11:48:27] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 11:48:27] [INFO] [Main] Current index: 0
+[2026-05-24 11:48:27] [INFO] [Main] Next track exists: yes
+[2026-05-24 11:48:27] [INFO] [Main] Advanced to index: 1
+[2026-05-24 11:48:27] [INFO] [Main] Metadata for current track:
+[2026-05-24 11:48:27] [INFO] [Main]   Title: song1
+[2026-05-24 11:48:27] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 11:48:27] [INFO] [Main]   Album: Unknown Album
+[2026-05-24 11:48:27] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 11:48:27] [INFO] [Main] Track at index 1: found
+[2026-05-24 11:48:27] [INFO] [Main] Regressed to index: 0
+[2026-05-24 11:48:27] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 11:48:29] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 11:48:34] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack
+[2026-05-24 11:48:34] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack
+[2026-05-24 11:48:34] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 11:48:34] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack
+[2026-05-24 11:48:34] [INFO] [PlaybackController] Folder loaded with 10 tracks
+[2026-05-24 11:48:34] [WARN] [PlaybackController] Folder loaded but backend unavailable; skipping autoplay
+[2026-05-24 11:48:34] [ERROR] [PlaybackController] Audio backend unavailable. Folder loaded, but playback cannot start.
+[2026-05-24 11:48:34] [ERROR] [MainWindow] Playback error: Audio backend unavailable. Folder loaded, but playback cannot start.
+[2026-05-24 11:48:41] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 11:48:43] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 11:48:43] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 11:48:43] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 11:48:43] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 11:48:43] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 11:48:43] [WARN] [PlaybackController] Folder loaded but backend unavailable; skipping autoplay
+[2026-05-24 11:48:47] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 11:49:39] [DEBUG] [MainWindow] Random mode toggled: OFF
+[2026-05-24 11:49:39] [INFO] [PlaybackController] Random mode: OFF
+[2026-05-24 11:49:40] [DEBUG] [MainWindow] Random mode toggled: ON
+[2026-05-24 11:49:40] [INFO] [PlaybackController] Random mode: ON
+[2026-05-24 11:56:18] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 11:56:18] [DEBUG] [Main] State saved on application exit
+[2026-05-24 11:56:18] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 11:56:23] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 11:56:23] [INFO] [Main] Logger initialized
+[2026-05-24 11:56:23] [DEBUG] [Main] Debug message
+[2026-05-24 11:56:23] [WARN] [Main] Warning message
+[2026-05-24 11:56:23] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 11:56:23] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 11:56:23] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 11:56:23] [INFO] [Main] StateManager initialized
+[2026-05-24 11:56:23] [WARN] [PlaybackController] Playback backend is unavailable; playback will be disabled
+[2026-05-24 11:56:23] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 11:56:23] [INFO] [Main] PlaybackController initialized
+[2026-05-24 11:56:23] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 11:56:23] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 11:56:23] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 11:56:23] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 11:56:23] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 11:56:23] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 11:56:23] [INFO] [Main] Queue size: 4
+[2026-05-24 11:56:23] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 11:56:23] [INFO] [Main] Current track: /tmp/boombox-YkIuTl/song1.mp3
+[2026-05-24 11:56:23] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 11:56:23] [INFO] [Main] Current index: 0
+[2026-05-24 11:56:23] [INFO] [Main] Next track exists: yes
+[2026-05-24 11:56:23] [INFO] [Main] Advanced to index: 1
+[2026-05-24 11:56:23] [INFO] [Main] Metadata for current track:
+[2026-05-24 11:56:23] [INFO] [Main]   Title: song1
+[2026-05-24 11:56:23] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 11:56:23] [INFO] [Main]   Album: Unknown Album
+[2026-05-24 11:56:23] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 11:56:23] [INFO] [Main] Track at index 1: found
+[2026-05-24 11:56:23] [INFO] [Main] Regressed to index: 0
+[2026-05-24 11:56:23] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 11:56:31] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 11:56:34] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 11:56:34] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 11:56:34] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 11:56:34] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 11:56:34] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 11:56:34] [WARN] [PlaybackController] Folder loaded but backend unavailable; skipping autoplay
+[2026-05-24 11:56:34] [ERROR] [PlaybackController] Audio backend unavailable. Folder loaded, but playback cannot start.
+[2026-05-24 11:56:34] [ERROR] [MainWindow] Playback error: Audio backend unavailable. Folder loaded, but playback cannot start.
+[2026-05-24 11:57:21] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 11:57:21] [DEBUG] [Main] State saved on application exit
+[2026-05-24 11:57:21] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 12:09:58] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:09:58] [INFO] [Main] Logger initialized
+[2026-05-24 12:09:58] [DEBUG] [Main] Debug message
+[2026-05-24 12:09:58] [WARN] [Main] Warning message
+[2026-05-24 12:09:58] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 12:09:58] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 12:09:58] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 12:09:58] [INFO] [Main] StateManager initialized
+[2026-05-24 12:09:58] [WARN] [PlaybackController] Playback backend is unavailable; playback will be disabled
+[2026-05-24 12:09:58] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 12:09:58] [INFO] [Main] PlaybackController initialized
+[2026-05-24 12:09:58] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 12:09:58] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 12:09:58] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 12:09:58] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 12:09:58] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 12:09:58] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 12:09:58] [INFO] [Main] Queue size: 4
+[2026-05-24 12:09:58] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 12:09:58] [INFO] [Main] Current track: /tmp/boombox-nZNOWE/song1.mp3
+[2026-05-24 12:09:58] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 12:09:58] [INFO] [Main] Current index: 0
+[2026-05-24 12:09:58] [INFO] [Main] Next track exists: yes
+[2026-05-24 12:09:58] [INFO] [Main] Advanced to index: 1
+[2026-05-24 12:09:58] [INFO] [Main] Metadata for current track:
+[2026-05-24 12:09:58] [INFO] [Main]   Title: song1
+[2026-05-24 12:09:58] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 12:09:58] [INFO] [Main]   Album: Unknown Album
+[2026-05-24 12:09:58] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 12:09:58] [INFO] [Main] Track at index 1: found
+[2026-05-24 12:09:58] [INFO] [Main] Regressed to index: 0
+[2026-05-24 12:09:58] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 12:10:00] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 12:10:02] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 12:10:02] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 12:10:02] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:10:02] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 12:10:02] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 12:10:02] [WARN] [PlaybackController] Folder loaded but backend unavailable; skipping autoplay
+[2026-05-24 12:10:02] [ERROR] [PlaybackController] Audio backend unavailable. Folder loaded, but playback cannot start.
+[2026-05-24 12:10:02] [ERROR] [MainWindow] Playback error: Audio backend unavailable. Folder loaded, but playback cannot start.
+[2026-05-24 12:10:05] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:10:05] [DEBUG] [Main] State saved on application exit
+[2026-05-24 12:10:05] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 12:14:34] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:14:34] [INFO] [Main] Application startup
+[2026-05-24 12:14:34] [DEBUG] [Main] This is a debug message
+[2026-05-24 12:14:34] [WARN] [Main] This is a warning message
+[2026-05-24 12:14:34] [ERROR] [Main] This is an error message
+[2026-05-24 12:14:34] [INFO] [Main] Logging test complete
+[2026-05-24 12:16:11] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:16:11] [INFO] [Main] Logger initialized
+[2026-05-24 12:16:11] [DEBUG] [Main] Debug message
+[2026-05-24 12:16:11] [WARN] [Main] Warning message
+[2026-05-24 12:16:11] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 12:16:11] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 12:16:11] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 12:16:11] [INFO] [Main] StateManager initialized
+[2026-05-24 12:16:11] [WARN] [PlaybackController] Playback backend is unavailable; playback will be disabled
+[2026-05-24 12:16:11] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 12:16:11] [INFO] [Main] PlaybackController initialized
+[2026-05-24 12:16:11] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 12:16:11] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 12:16:11] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 12:16:11] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 12:16:11] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 12:16:11] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 12:16:11] [INFO] [Main] Queue size: 4
+[2026-05-24 12:16:11] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 12:16:11] [INFO] [Main] Current track: /tmp/boombox-yCmljl/song1.mp3
+[2026-05-24 12:16:11] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 12:16:11] [INFO] [Main] Current index: 0
+[2026-05-24 12:16:11] [INFO] [Main] Next track exists: yes
+[2026-05-24 12:16:11] [INFO] [Main] Advanced to index: 1
+[2026-05-24 12:16:11] [INFO] [Main] Metadata for current track:
+[2026-05-24 12:16:11] [INFO] [Main]   Title: song1
+[2026-05-24 12:16:11] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 12:16:11] [INFO] [Main]   Album: Unknown Album
+[2026-05-24 12:16:11] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 12:16:11] [INFO] [Main] Track at index 1: found
+[2026-05-24 12:16:11] [INFO] [Main] Regressed to index: 0
+[2026-05-24 12:16:11] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 12:16:12] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 12:16:13] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 12:16:13] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 12:16:13] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:16:13] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 12:16:13] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 12:16:13] [WARN] [PlaybackController] Folder loaded but backend unavailable; skipping autoplay
+[2026-05-24 12:16:13] [ERROR] [PlaybackController] Audio backend unavailable. Folder loaded, but playback cannot start.
+[2026-05-24 12:16:13] [ERROR] [MainWindow] Playback error: Audio backend unavailable. Folder loaded, but playback cannot start.
+[2026-05-24 12:16:16] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:16:17] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:16:19] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:16:19] [DEBUG] [Main] State saved on application exit
+[2026-05-24 12:16:19] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 12:17:22] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:17:22] [INFO] [Main] Logger initialized
+[2026-05-24 12:17:22] [DEBUG] [Main] Debug message
+[2026-05-24 12:17:22] [WARN] [Main] Warning message
+[2026-05-24 12:17:22] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 12:17:22] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 12:17:22] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 12:17:22] [INFO] [Main] StateManager initialized
+[2026-05-24 12:17:22] [WARN] [PlaybackController] Playback backend is unavailable; playback will be disabled
+[2026-05-24 12:17:22] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 12:17:22] [INFO] [Main] PlaybackController initialized
+[2026-05-24 12:17:22] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 12:17:22] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 12:17:22] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 12:17:22] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 12:17:22] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 12:17:22] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 12:17:22] [INFO] [Main] Queue size: 4
+[2026-05-24 12:17:22] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 12:17:22] [INFO] [Main] Current track: /tmp/boombox-rEwljd/song1.mp3
+[2026-05-24 12:17:22] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 12:17:22] [INFO] [Main] Current index: 0
+[2026-05-24 12:17:22] [INFO] [Main] Next track exists: yes
+[2026-05-24 12:17:22] [INFO] [Main] Advanced to index: 1
+[2026-05-24 12:17:22] [INFO] [Main] Metadata for current track:
+[2026-05-24 12:17:22] [INFO] [Main]   Title: song1
+[2026-05-24 12:17:22] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 12:17:22] [INFO] [Main]   Album: Unknown Album
+[2026-05-24 12:17:22] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 12:17:22] [INFO] [Main] Track at index 1: found
+[2026-05-24 12:17:22] [INFO] [Main] Regressed to index: 0
+[2026-05-24 12:17:22] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 12:17:52] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:17:52] [INFO] [Main] Logger initialized
+[2026-05-24 12:17:52] [DEBUG] [Main] Debug message
+[2026-05-24 12:17:52] [WARN] [Main] Warning message
+[2026-05-24 12:17:52] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 12:17:52] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 12:17:52] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 12:17:52] [INFO] [Main] StateManager initialized
+[2026-05-24 12:17:52] [WARN] [PlaybackController] Playback backend is unavailable; playback will be disabled
+[2026-05-24 12:17:52] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 12:17:52] [INFO] [Main] PlaybackController initialized
+[2026-05-24 12:17:52] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 12:17:52] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 12:17:52] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 12:17:52] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 12:17:52] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 12:17:52] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 12:17:52] [INFO] [Main] Queue size: 4
+[2026-05-24 12:17:52] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 12:17:52] [INFO] [Main] Current track: /tmp/boombox-WWenNf/song1.mp3
+[2026-05-24 12:17:52] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 12:17:52] [INFO] [Main] Current index: 0
+[2026-05-24 12:17:52] [INFO] [Main] Next track exists: yes
+[2026-05-24 12:17:52] [INFO] [Main] Advanced to index: 1
+[2026-05-24 12:17:52] [INFO] [Main] Metadata for current track:
+[2026-05-24 12:17:52] [INFO] [Main]   Title: song1
+[2026-05-24 12:17:52] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 12:17:52] [INFO] [Main]   Album: Unknown Album
+[2026-05-24 12:17:52] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 12:17:52] [INFO] [Main] Track at index 1: found
+[2026-05-24 12:17:52] [INFO] [Main] Regressed to index: 0
+[2026-05-24 12:17:52] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 12:18:16] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:18:16] [INFO] [Main] Logger initialized
+[2026-05-24 12:18:16] [DEBUG] [Main] Debug message
+[2026-05-24 12:18:16] [WARN] [Main] Warning message
+[2026-05-24 12:18:16] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 12:18:16] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 12:18:16] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 12:18:16] [INFO] [Main] StateManager initialized
+[2026-05-24 12:18:16] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 12:18:16] [INFO] [Main] PlaybackController initialized
+[2026-05-24 12:18:16] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 12:18:16] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 12:18:16] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 12:18:16] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 12:18:16] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 12:18:16] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 12:18:16] [INFO] [Main] Queue size: 4
+[2026-05-24 12:18:16] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 12:18:16] [INFO] [Main] Current track: /tmp/boombox-PYHKFe/song1.mp3
+[2026-05-24 12:18:16] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 12:18:16] [INFO] [Main] Current index: 0
+[2026-05-24 12:18:16] [INFO] [Main] Next track exists: yes
+[2026-05-24 12:18:16] [INFO] [Main] Advanced to index: 1
+[2026-05-24 12:18:16] [INFO] [Main] Metadata for current track:
+[2026-05-24 12:18:16] [INFO] [Main]   Title: song1
+[2026-05-24 12:18:16] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 12:18:16] [INFO] [Main]   Album: Unknown Album
+[2026-05-24 12:18:16] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 12:18:16] [INFO] [Main] Track at index 1: found
+[2026-05-24 12:18:16] [INFO] [Main] Regressed to index: 0
+[2026-05-24 12:18:16] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 12:18:30] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:18:30] [INFO] [Main] Application startup
+[2026-05-24 12:18:30] [DEBUG] [Main] This is a debug message
+[2026-05-24 12:18:30] [WARN] [Main] This is a warning message
+[2026-05-24 12:18:30] [ERROR] [Main] This is an error message
+[2026-05-24 12:18:30] [INFO] [Main] Logging test complete
+[2026-05-24 12:20:42] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:20:42] [INFO] [Main] Logger initialized
+[2026-05-24 12:20:42] [DEBUG] [Main] Debug message
+[2026-05-24 12:20:42] [WARN] [Main] Warning message
+[2026-05-24 12:20:42] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 12:20:42] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 12:20:42] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 12:20:42] [INFO] [Main] StateManager initialized
+[2026-05-24 12:20:42] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 12:20:42] [INFO] [Main] PlaybackController initialized
+[2026-05-24 12:20:42] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 12:20:42] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 12:20:42] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 12:20:42] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 12:20:42] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 12:20:42] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 12:20:42] [INFO] [Main] Queue size: 4
+[2026-05-24 12:20:42] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 12:20:42] [INFO] [Main] Current track: /tmp/boombox-eISRru/song1.mp3
+[2026-05-24 12:20:42] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 12:20:42] [INFO] [Main] Current index: 0
+[2026-05-24 12:20:42] [INFO] [Main] Next track exists: yes
+[2026-05-24 12:20:42] [INFO] [Main] Advanced to index: 1
+[2026-05-24 12:20:42] [INFO] [Main] Metadata for current track:
+[2026-05-24 12:20:42] [INFO] [Main]   Title: song1
+[2026-05-24 12:20:42] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 12:20:42] [INFO] [Main]   Album: Unknown Album
+[2026-05-24 12:20:42] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 12:20:42] [INFO] [Main] Track at index 1: found
+[2026-05-24 12:20:42] [INFO] [Main] Regressed to index: 0
+[2026-05-24 12:20:42] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 12:20:43] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 12:20:51] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 12:20:51] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 12:20:51] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:20:51] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 12:20:51] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 12:20:51] [DEBUG] [PlaybackController] Picked random track: index 593 of 2321
+[2026-05-24 12:20:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2002 - Masters Of Chant Chapter III/Gregorian - Blasphemous Rumours.mp3
+[2026-05-24 12:20:51] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2002 - Masters Of Chant Chapter III/Gregorian - Blasphemous Rumours.mp3
+[2026-05-24 12:20:51] [DEBUG] [MainWindow] Track metadata loaded: Gregorian - Blasphemous Rumours by Unknown Artist
+[2026-05-24 12:21:22] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:21:22] [INFO] [PlaybackController] Playback paused
+[2026-05-24 12:21:23] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:21:23] [INFO] [PlaybackController] Playing: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Are You Ready.mp3
+[2026-05-24 12:21:45] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:21:45] [INFO] [PlaybackController] Playback paused
+[2026-05-24 12:21:46] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:21:46] [INFO] [PlaybackController] Playing: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Are You Ready.mp3
+[2026-05-24 12:21:59] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:21:59] [INFO] [PlaybackController] Playback paused
+[2026-05-24 12:22:00] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:22:00] [INFO] [PlaybackController] Playing: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Are You Ready.mp3
+[2026-05-24 12:22:06] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:22:06] [INFO] [PlaybackController] Playback paused
+[2026-05-24 12:22:07] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:22:07] [INFO] [PlaybackController] Playing: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Are You Ready.mp3
+[2026-05-24 12:22:36] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:22:36] [INFO] [PlaybackController] Playback paused
+[2026-05-24 12:23:43] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 12:23:49] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith
+[2026-05-24 12:23:49] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith
+[2026-05-24 12:23:49] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:23:49] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith
+[2026-05-24 12:23:49] [INFO] [PlaybackController] Folder loaded with 34 tracks
+[2026-05-24 12:23:49] [DEBUG] [PlaybackController] Picked random track: index 22 of 34
+[2026-05-24 12:23:49] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith/Aerosmith - Monkey On My Back.mp3
+[2026-05-24 12:23:49] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith/Aerosmith - Monkey On My Back.mp3
+[2026-05-24 12:23:49] [DEBUG] [MainWindow] Track metadata loaded: Aerosmith - Monkey On My Back by Unknown Artist
+[2026-05-24 12:27:07] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:27:07] [DEBUG] [Main] State saved on application exit
+[2026-05-24 12:27:07] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 12:27:10] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:27:10] [INFO] [Main] Logger initialized
+[2026-05-24 12:27:10] [DEBUG] [Main] Debug message
+[2026-05-24 12:27:10] [WARN] [Main] Warning message
+[2026-05-24 12:27:10] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 12:27:10] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith, Track: track.mp3
+[2026-05-24 12:27:10] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 12:27:10] [INFO] [Main] StateManager initialized
+[2026-05-24 12:27:10] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 12:27:10] [INFO] [Main] PlaybackController initialized
+[2026-05-24 12:27:10] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 12:27:10] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 12:27:10] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 12:27:10] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 12:27:10] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 12:27:10] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 12:27:10] [INFO] [Main] Queue size: 4
+[2026-05-24 12:27:10] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 12:27:10] [INFO] [Main] Current track: /tmp/boombox-MjaaTB/song1.mp3
+[2026-05-24 12:27:10] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 12:27:10] [INFO] [Main] Current index: 0
+[2026-05-24 12:27:10] [INFO] [Main] Next track exists: yes
+[2026-05-24 12:27:10] [INFO] [Main] Advanced to index: 1
+[2026-05-24 12:27:10] [INFO] [Main] Metadata for current track:
+[2026-05-24 12:27:10] [INFO] [Main]   Title: song1
+[2026-05-24 12:27:10] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 12:27:10] [INFO] [Main]   Album: Unknown Album
+[2026-05-24 12:27:10] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 12:27:10] [INFO] [Main] Track at index 1: found
+[2026-05-24 12:27:10] [INFO] [Main] Regressed to index: 0
+[2026-05-24 12:27:10] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 12:27:12] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:27:12] [WARN] [PlaybackController] No track to play
+[2026-05-24 12:27:12] [ERROR] [MainWindow] Playback error: No track loaded
+[2026-05-24 12:27:14] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 12:27:16] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith
+[2026-05-24 12:27:16] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith
+[2026-05-24 12:27:16] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:27:16] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith
+[2026-05-24 12:27:16] [INFO] [PlaybackController] Folder loaded with 34 tracks
+[2026-05-24 12:27:16] [DEBUG] [PlaybackController] Picked random track: index 25 of 34
+[2026-05-24 12:27:16] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith/Aerosmith - Rag Doll.mp3
+[2026-05-24 12:27:16] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith/Aerosmith - Rag Doll.mp3
+[2026-05-24 12:27:16] [DEBUG] [MainWindow] Track metadata loaded: Aerosmith - Rag Doll by Unknown Artist
+[2026-05-24 12:27:22] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:27:22] [INFO] [PlaybackController] Playback paused
+[2026-05-24 12:27:23] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:27:23] [INFO] [PlaybackController] Playing: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith/Aerosmith - Ain't Enough.mp3
+[2026-05-24 12:29:42] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:29:42] [DEBUG] [Main] State saved on application exit
+[2026-05-24 12:29:42] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 12:29:45] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:29:45] [INFO] [Main] Logger initialized
+[2026-05-24 12:29:45] [DEBUG] [Main] Debug message
+[2026-05-24 12:29:45] [WARN] [Main] Warning message
+[2026-05-24 12:29:45] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 12:29:45] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Aerosmith, Track: track.mp3
+[2026-05-24 12:29:45] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 12:29:45] [INFO] [Main] StateManager initialized
+[2026-05-24 12:29:45] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 12:29:45] [INFO] [Main] PlaybackController initialized
+[2026-05-24 12:29:45] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 12:29:45] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 12:29:45] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 12:29:45] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 12:29:45] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 12:29:45] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 12:29:45] [INFO] [Main] Queue size: 4
+[2026-05-24 12:29:45] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 12:29:45] [INFO] [Main] Current track: /tmp/boombox-WkZJrS/song1.mp3
+[2026-05-24 12:29:45] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 12:29:45] [INFO] [Main] Current index: 0
+[2026-05-24 12:29:45] [INFO] [Main] Next track exists: yes
+[2026-05-24 12:29:45] [INFO] [Main] Advanced to index: 1
+[2026-05-24 12:29:45] [INFO] [Main] Metadata for current track:
+[2026-05-24 12:29:45] [INFO] [Main]   Title: song1
+[2026-05-24 12:29:45] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 12:29:45] [INFO] [Main]   Album: Unknown Album
+[2026-05-24 12:29:45] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 12:29:45] [INFO] [Main] Track at index 1: found
+[2026-05-24 12:29:45] [INFO] [Main] Regressed to index: 0
+[2026-05-24 12:29:45] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 12:29:49] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 12:29:51] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC
+[2026-05-24 12:29:51] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC
+[2026-05-24 12:29:51] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:29:51] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC
+[2026-05-24 12:29:51] [INFO] [PlaybackController] Folder loaded with 37 tracks
+[2026-05-24 12:29:51] [DEBUG] [PlaybackController] Picked random track: index 34 of 37
+[2026-05-24 12:29:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Who Made Who.mp3
+[2026-05-24 12:29:51] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Who Made Who.mp3
+[2026-05-24 12:29:51] [DEBUG] [MainWindow] Track metadata loaded: ACDC - Who Made Who by Unknown Artist
+[2026-05-24 12:30:54] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:30:54] [DEBUG] [Main] State saved on application exit
+[2026-05-24 12:30:54] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 12:34:35] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:34:35] [INFO] [Main] Application startup
+[2026-05-24 12:34:35] [DEBUG] [Main] This is a debug message
+[2026-05-24 12:34:35] [WARN] [Main] This is a warning message
+[2026-05-24 12:34:35] [ERROR] [Main] This is an error message
+[2026-05-24 12:34:35] [INFO] [Main] Logging test complete
+[2026-05-24 12:36:03] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:36:03] [INFO] [Main] Application startup
+[2026-05-24 12:36:03] [DEBUG] [Main] This is a debug message
+[2026-05-24 12:36:03] [WARN] [Main] This is a warning message
+[2026-05-24 12:36:03] [ERROR] [Main] This is an error message
+[2026-05-24 12:36:03] [INFO] [Main] Logging test complete
+[2026-05-24 12:36:31] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:36:31] [INFO] [Main] Application startup
+[2026-05-24 12:36:31] [DEBUG] [Main] This is a debug message
+[2026-05-24 12:36:31] [WARN] [Main] This is a warning message
+[2026-05-24 12:36:31] [ERROR] [Main] This is an error message
+[2026-05-24 12:36:31] [INFO] [Main] Logging test complete
+[2026-05-24 12:36:52] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:36:52] [INFO] [Main] Application startup
+[2026-05-24 12:36:52] [DEBUG] [Main] This is a debug message
+[2026-05-24 12:36:52] [WARN] [Main] This is a warning message
+[2026-05-24 12:36:52] [ERROR] [Main] This is an error message
+[2026-05-24 12:36:52] [INFO] [Main] Logging test complete
+[2026-05-24 12:41:33] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:41:33] [INFO] [Main] Logger initialized
+[2026-05-24 12:41:33] [DEBUG] [Main] Debug message
+[2026-05-24 12:41:33] [WARN] [Main] Warning message
+[2026-05-24 12:41:33] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 12:41:33] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC, Track: track.mp3
+[2026-05-24 12:41:33] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 12:41:33] [INFO] [Main] StateManager initialized
+[2026-05-24 12:41:33] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 12:41:33] [INFO] [Main] PlaybackController initialized
+[2026-05-24 12:41:33] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 12:41:33] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 12:41:33] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 12:41:33] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 12:41:33] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 12:41:33] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 12:41:33] [INFO] [Main] Queue size: 4
+[2026-05-24 12:41:33] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 12:41:33] [INFO] [Main] Current track: /tmp/boombox-XAXVKy/song1.mp3
+[2026-05-24 12:41:33] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 12:41:33] [INFO] [Main] Current index: 0
+[2026-05-24 12:41:33] [INFO] [Main] Next track exists: yes
+[2026-05-24 12:41:33] [INFO] [Main] Advanced to index: 1
+[2026-05-24 12:41:33] [INFO] [Main] Metadata for current track:
+[2026-05-24 12:41:33] [INFO] [Main]   Title: song1
+[2026-05-24 12:41:33] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 12:41:33] [INFO] [Main]   Album: boombox-XAXVKy
+[2026-05-24 12:41:33] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 12:41:33] [INFO] [Main] Track at index 1: found
+[2026-05-24 12:41:33] [INFO] [Main] Regressed to index: 0
+[2026-05-24 12:41:33] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 12:41:35] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 12:41:40] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC
+[2026-05-24 12:41:40] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC
+[2026-05-24 12:41:40] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:41:40] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC
+[2026-05-24 12:41:40] [INFO] [PlaybackController] Folder loaded with 37 tracks
+[2026-05-24 12:41:40] [DEBUG] [PlaybackController] Picked random track: index 17 of 37
+[2026-05-24 12:41:40] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Jailbreak.mp3
+[2026-05-24 12:41:40] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Jailbreak.mp3
+[2026-05-24 12:41:40] [DEBUG] [MainWindow] Track metadata loaded: Jailbreak by ACDC
+[2026-05-24 12:41:46] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:41:46] [INFO] [PlaybackController] Playback paused
+[2026-05-24 12:41:46] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:41:46] [INFO] [PlaybackController] Playback resumed
+[2026-05-24 12:42:04] [DEBUG] [PlaybackController] Picked random track: index 35 of 37
+[2026-05-24 12:42:04] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Whole Lotta Rosie.mp3
+[2026-05-24 12:42:04] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Whole Lotta Rosie.mp3
+[2026-05-24 12:42:04] [DEBUG] [MainWindow] Track metadata loaded: Whole Lotta Rosie by ACDC
+[2026-05-24 12:42:05] [DEBUG] [PlaybackController] Playing previous: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Jailbreak.mp3
+[2026-05-24 12:42:05] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Jailbreak.mp3
+[2026-05-24 12:42:05] [DEBUG] [MainWindow] Track metadata loaded: Jailbreak by ACDC
+[2026-05-24 12:42:06] [DEBUG] [PlaybackController] Picked random track: index 6 of 37
+[2026-05-24 12:42:06] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Fire Your Guns.mp3
+[2026-05-24 12:42:06] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Fire Your Guns.mp3
+[2026-05-24 12:42:06] [DEBUG] [MainWindow] Track metadata loaded: Fire Your Guns by ACDC
+[2026-05-24 12:42:07] [DEBUG] [PlaybackController] Picked random track: index 12 of 37
+[2026-05-24 12:42:07] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Hells Bells.mp3
+[2026-05-24 12:42:07] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Hells Bells.mp3
+[2026-05-24 12:42:07] [DEBUG] [MainWindow] Track metadata loaded: Hells Bells by ACDC
+[2026-05-24 12:42:09] [DEBUG] [PlaybackController] Playing previous: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Fire Your Guns.mp3
+[2026-05-24 12:42:09] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Fire Your Guns.mp3
+[2026-05-24 12:42:09] [DEBUG] [MainWindow] Track metadata loaded: Fire Your Guns by ACDC
+[2026-05-24 12:42:10] [DEBUG] [PlaybackController] Picked random track: index 20 of 37
+[2026-05-24 12:42:10] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Live Wire.mp3
+[2026-05-24 12:42:10] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Live Wire.mp3
+[2026-05-24 12:42:10] [DEBUG] [MainWindow] Track metadata loaded: Live Wire by ACDC
+[2026-05-24 12:42:13] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 12:42:22] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack
+[2026-05-24 12:42:22] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack
+[2026-05-24 12:42:22] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:42:22] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack
+[2026-05-24 12:42:22] [INFO] [PlaybackController] Folder loaded with 10 tracks
+[2026-05-24 12:42:22] [DEBUG] [PlaybackController] Picked random track: index 4 of 10
+[2026-05-24 12:42:22] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/05 - Solitude.flac
+[2026-05-24 12:42:22] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/05 - Solitude.flac
+[2026-05-24 12:42:22] [DEBUG] [MainWindow] Track metadata loaded: 05 - Solitude by Unknown Artist
+[2026-05-24 12:42:39] [DEBUG] [PlaybackController] Picked random track: index 8 of 10
+[2026-05-24 12:42:39] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 12:42:39] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 12:42:39] [DEBUG] [MainWindow] Track metadata loaded: 09 - Sterilization by Unknown Artist
+[2026-05-24 12:42:53] [DEBUG] [MainWindow] Random mode toggled: OFF
+[2026-05-24 12:42:53] [INFO] [PlaybackController] Random mode: OFF
+[2026-05-24 12:42:55] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 12:42:55] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 12:42:55] [DEBUG] [MainWindow] Track metadata loaded: 10 - Despair by Unknown Artist
+[2026-05-24 12:42:55] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 12:42:55] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 12:42:55] [DEBUG] [MainWindow] Track metadata loaded: 01 - Humanity (Part 1) by Unknown Artist
+[2026-05-24 12:42:58] [DEBUG] [PlaybackController] Playing previous: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 12:42:58] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 12:42:58] [DEBUG] [MainWindow] Track metadata loaded: 10 - Despair by Unknown Artist
+[2026-05-24 12:42:58] [DEBUG] [PlaybackController] Playing previous: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 12:42:58] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 12:42:58] [DEBUG] [MainWindow] Track metadata loaded: 09 - Sterilization by Unknown Artist
+[2026-05-24 12:42:59] [DEBUG] [PlaybackController] Playing previous: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/05 - Solitude.flac
+[2026-05-24 12:42:59] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/05 - Solitude.flac
+[2026-05-24 12:42:59] [DEBUG] [MainWindow] Track metadata loaded: 05 - Solitude by Unknown Artist
+[2026-05-24 12:42:59] [DEBUG] [PlaybackController] Playing previous: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 12:42:59] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 12:42:59] [DEBUG] [MainWindow] Track metadata loaded: 01 - Humanity (Part 1) by Unknown Artist
+[2026-05-24 12:43:00] [DEBUG] [PlaybackController] Playing previous: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Fire Your Guns.mp3
+[2026-05-24 12:43:00] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Fire Your Guns.mp3
+[2026-05-24 12:43:00] [DEBUG] [MainWindow] Track metadata loaded: Fire Your Guns by ACDC
+[2026-05-24 12:43:02] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/02 - Shape.flac
+[2026-05-24 12:43:02] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/02 - Shape.flac
+[2026-05-24 12:43:02] [DEBUG] [MainWindow] Track metadata loaded: 02 - Shape by Unknown Artist
+[2026-05-24 12:43:02] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/03 - Contamination.flac
+[2026-05-24 12:43:02] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/03 - Contamination.flac
+[2026-05-24 12:43:02] [DEBUG] [MainWindow] Track metadata loaded: 03 - Contamination by Unknown Artist
+[2026-05-24 12:43:03] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/04 - Bestiality.flac
+[2026-05-24 12:43:03] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/04 - Bestiality.flac
+[2026-05-24 12:43:03] [DEBUG] [MainWindow] Track metadata loaded: 04 - Bestiality by Unknown Artist
+[2026-05-24 12:43:03] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/05 - Solitude.flac
+[2026-05-24 12:43:03] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/05 - Solitude.flac
+[2026-05-24 12:43:03] [DEBUG] [MainWindow] Track metadata loaded: 05 - Solitude by Unknown Artist
+[2026-05-24 12:43:03] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/06 - Eternity.flac
+[2026-05-24 12:43:03] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/06 - Eternity.flac
+[2026-05-24 12:43:03] [DEBUG] [MainWindow] Track metadata loaded: 06 - Eternity by Unknown Artist
+[2026-05-24 12:43:03] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/07 - Wait.flac
+[2026-05-24 12:43:03] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/07 - Wait.flac
+[2026-05-24 12:43:03] [DEBUG] [MainWindow] Track metadata loaded: 07 - Wait by Unknown Artist
+[2026-05-24 12:43:03] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/08 - Humanity (Part 2).flac
+[2026-05-24 12:43:03] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/08 - Humanity (Part 2).flac
+[2026-05-24 12:43:03] [DEBUG] [MainWindow] Track metadata loaded: 08 - Humanity (Part 2) by Unknown Artist
+[2026-05-24 12:43:04] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 12:43:04] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/09 - Sterilization.flac
+[2026-05-24 12:43:04] [DEBUG] [MainWindow] Track metadata loaded: 09 - Sterilization by Unknown Artist
+[2026-05-24 12:43:05] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 12:43:05] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/10 - Despair.flac
+[2026-05-24 12:43:05] [DEBUG] [MainWindow] Track metadata loaded: 10 - Despair by Unknown Artist
+[2026-05-24 12:43:05] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 12:43:05] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/01 - Humanity (Part 1).flac
+[2026-05-24 12:43:05] [DEBUG] [MainWindow] Track metadata loaded: 01 - Humanity (Part 1) by Unknown Artist
+[2026-05-24 12:43:05] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/02 - Shape.flac
+[2026-05-24 12:43:05] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/02 - Shape.flac
+[2026-05-24 12:43:05] [DEBUG] [MainWindow] Track metadata loaded: 02 - Shape by Unknown Artist
+[2026-05-24 12:43:06] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/03 - Contamination.flac
+[2026-05-24 12:43:06] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack/03 - Contamination.flac
+[2026-05-24 12:43:06] [DEBUG] [MainWindow] Track metadata loaded: 03 - Contamination by Unknown Artist
+[2026-05-24 12:43:45] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:43:45] [DEBUG] [Main] State saved on application exit
+[2026-05-24 12:43:45] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 12:47:20] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:47:20] [INFO] [Main] Logger initialized
+[2026-05-24 12:47:20] [DEBUG] [Main] Debug message
+[2026-05-24 12:47:20] [WARN] [Main] Warning message
+[2026-05-24 12:47:20] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 12:47:20] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/The Thing - Soundtrack, Track: track.mp3
+[2026-05-24 12:47:20] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 12:47:20] [INFO] [Main] StateManager initialized
+[2026-05-24 12:47:20] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 12:47:20] [INFO] [Main] PlaybackController initialized
+[2026-05-24 12:47:20] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 12:47:20] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 12:47:20] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 12:47:20] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 12:47:20] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 12:47:20] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 12:47:20] [INFO] [Main] Queue size: 4
+[2026-05-24 12:47:20] [INFO] [Main] ✓ Correct queue size
+[2026-05-24 12:47:20] [INFO] [Main] Current track: /tmp/boombox-NFkqEc/song1.mp3
+[2026-05-24 12:47:20] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 12:47:20] [INFO] [Main] Current index: 0
+[2026-05-24 12:47:20] [INFO] [Main] Next track exists: yes
+[2026-05-24 12:47:20] [INFO] [Main] Advanced to index: 1
+[2026-05-24 12:47:20] [INFO] [Main] Metadata for current track:
+[2026-05-24 12:47:20] [INFO] [Main]   Title: song1
+[2026-05-24 12:47:20] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 12:47:20] [INFO] [Main]   Album: boombox-NFkqEc
+[2026-05-24 12:47:20] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 12:47:20] [INFO] [Main] Track at index 1: found
+[2026-05-24 12:47:20] [INFO] [Main] Regressed to index: 0
+[2026-05-24 12:47:20] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 12:47:24] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 12:47:24] [WARN] [PlaybackController] No track to play
+[2026-05-24 12:47:24] [ERROR] [MainWindow] Playback error: No track loaded
+[2026-05-24 12:47:27] [DEBUG] [MainWindow] Browse button clicked
+[2026-05-24 12:47:31] [INFO] [MainWindow] Selected folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 12:47:31] [DEBUG] [StateManager] Set current folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 12:47:31] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:47:31] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 12:47:31] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 12:47:31] [DEBUG] [PlaybackController] Picked random track: index 106 of 2321
+[2026-05-24 12:47:31] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Alice Cooper/Alice Cooper - Welcome To My Nightmare.mp3
+[2026-05-24 12:47:31] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Alice Cooper/Alice Cooper - Welcome To My Nightmare.mp3
+[2026-05-24 12:47:32] [DEBUG] [MainWindow] Track metadata loaded: Welcome To My Nightmare by Alice Cooper
+[2026-05-24 12:48:01] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 12:48:01] [DEBUG] [Main] State saved on application exit
+[2026-05-24 12:48:01] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 12:54:10] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 12:54:10] [INFO] [Main] Application startup
+[2026-05-24 12:54:10] [DEBUG] [Main] This is a debug message
+[2026-05-24 12:54:10] [WARN] [Main] This is a warning message
+[2026-05-24 12:54:10] [ERROR] [Main] This is an error message
+[2026-05-24 12:54:10] [INFO] [Main] Logging test complete
+[2026-05-24 13:24:07] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 13:24:07] [INFO] [Main] Logger initialized
+[2026-05-24 13:24:07] [DEBUG] [Main] Debug message
+[2026-05-24 13:24:07] [WARN] [Main] Warning message
+[2026-05-24 13:24:07] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 13:24:07] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 13:24:07] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 13:24:07] [INFO] [Main] StateManager initialized
+[2026-05-24 13:24:07] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 13:24:07] [INFO] [Main] PlaybackController initialized
+[2026-05-24 13:24:07] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 13:24:07] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 13:24:07] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 13:24:07] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 13:24:07] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 13:24:07] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 13:24:07] [INFO] [Main] Track count: 4
+[2026-05-24 13:24:07] [INFO] [Main] ✓ Correct track count
+[2026-05-24 13:24:07] [INFO] [Main] Current track: /tmp/boombox-akWVNA/song1.mp3
+[2026-05-24 13:24:07] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 13:24:07] [INFO] [Main] Current position: 0
+[2026-05-24 13:24:07] [INFO] [Main] Metadata for current track:
+[2026-05-24 13:24:07] [INFO] [Main]   Title: song1
+[2026-05-24 13:24:07] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 13:24:07] [INFO] [Main]   Album: boombox-akWVNA
+[2026-05-24 13:24:07] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 13:24:07] [INFO] [Main] Track at index 1: found
+[2026-05-24 13:24:07] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 13:24:07] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 13:24:07] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 13:24:07] [DEBUG] [PlaybackController] Picked random track: index 288 of 2321
+[2026-05-24 13:24:07] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Cult/The Cult - Heart Of Soul.mp3
+[2026-05-24 13:24:07] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Cult/The Cult - Heart Of Soul.mp3
+[2026-05-24 13:24:07] [DEBUG] [MainWindow] Track metadata loaded: Heart Of Soul by The Cult
+[2026-05-24 13:24:07] [INFO] [Main] Auto-loaded saved folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 13:24:18] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 13:24:18] [INFO] [PlaybackController] Playback paused
+[2026-05-24 13:24:19] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 13:24:19] [INFO] [PlaybackController] Playback resumed
+[2026-05-24 13:24:21] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 13:24:21] [INFO] [PlaybackController] Playback paused
+[2026-05-24 13:24:21] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 13:24:21] [INFO] [PlaybackController] Playback resumed
+[2026-05-24 13:24:22] [DEBUG] [PlaybackController] Picked random track: index 2192 of 2321
+[2026-05-24 13:24:22] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Police/The Police - Zenyatta Mondatta 2003 Remaster]/The Police - Canary in a Coalmine.mp3
+[2026-05-24 13:24:22] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Police/The Police - Zenyatta Mondatta 2003 Remaster]/The Police - Canary in a Coalmine.mp3
+[2026-05-24 13:24:22] [DEBUG] [MainWindow] Track metadata loaded: Canary in a Coalmine by The Police
+[2026-05-24 13:24:26] [DEBUG] [PlaybackController] Picked random track: index 1777 of 2321
+[2026-05-24 13:24:26] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Rolling Stones/The Rolling Stones - Monkey Man.mp3
+[2026-05-24 13:24:26] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Rolling Stones/The Rolling Stones - Monkey Man.mp3
+[2026-05-24 13:24:26] [DEBUG] [MainWindow] Track metadata loaded: Monkey Man by The Rolling Stones
+[2026-05-24 13:24:30] [DEBUG] [PlaybackController] Picked random track: index 903 of 2321
+[2026-05-24 13:24:30] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1985] Live After Death (Live Album)/Iron Maiden - Rime Of The Ancient Mariner.mp3
+[2026-05-24 13:24:30] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1985] Live After Death (Live Album)/Iron Maiden - Rime Of The Ancient Mariner.mp3
+[2026-05-24 13:24:30] [DEBUG] [MainWindow] Track metadata loaded: Rime Of The Ancient Mariner by Iron Maiden
+[2026-05-24 13:24:35] [DEBUG] [PlaybackController] Picked random track: index 1825 of 2321
+[2026-05-24 13:24:35] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Sabaton/Sabaton - Killing Ground.mp3
+[2026-05-24 13:24:35] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Sabaton/Sabaton - Killing Ground.mp3
+[2026-05-24 13:24:35] [DEBUG] [MainWindow] Track metadata loaded: Killing Ground by Sabaton
+[2026-05-24 13:24:41] [DEBUG] [PlaybackController] Picked random track: index 201 of 2321
+[2026-05-24 13:24:41] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Chicago/Chicago - (I've Been) Searchin' So Long.mp3
+[2026-05-24 13:24:41] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Chicago/Chicago - (I've Been) Searchin' So Long.mp3
+[2026-05-24 13:24:41] [DEBUG] [MainWindow] Track metadata loaded: (I've Been) Searchin' So Long by Chicago
+[2026-05-24 13:26:27] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 13:26:27] [DEBUG] [Main] State saved on application exit
+[2026-05-24 13:26:27] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 13:26:30] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 13:26:30] [INFO] [Main] Logger initialized
+[2026-05-24 13:26:30] [DEBUG] [Main] Debug message
+[2026-05-24 13:26:30] [WARN] [Main] Warning message
+[2026-05-24 13:26:30] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 13:26:30] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 13:26:30] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 13:26:30] [INFO] [Main] StateManager initialized
+[2026-05-24 13:26:30] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 13:26:30] [INFO] [Main] PlaybackController initialized
+[2026-05-24 13:26:30] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 13:26:30] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 13:26:30] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 13:26:30] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 13:26:30] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 13:26:30] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 13:26:30] [INFO] [Main] Track count: 4
+[2026-05-24 13:26:30] [INFO] [Main] ✓ Correct track count
+[2026-05-24 13:26:30] [INFO] [Main] Current track: /tmp/boombox-JkysTp/song1.mp3
+[2026-05-24 13:26:30] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 13:26:30] [INFO] [Main] Current position: 0
+[2026-05-24 13:26:30] [INFO] [Main] Metadata for current track:
+[2026-05-24 13:26:30] [INFO] [Main]   Title: song1
+[2026-05-24 13:26:30] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 13:26:30] [INFO] [Main]   Album: boombox-JkysTp
+[2026-05-24 13:26:30] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 13:26:30] [INFO] [Main] Track at index 1: found
+[2026-05-24 13:26:30] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 13:26:30] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 13:26:30] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 13:26:30] [DEBUG] [PlaybackController] Picked random track: index 26 of 2321
+[2026-05-24 13:26:30] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Sin City.mp3
+[2026-05-24 13:26:30] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/ACDC/ACDC - Sin City.mp3
+[2026-05-24 13:26:30] [DEBUG] [MainWindow] Track metadata loaded: Sin City by ACDC
+[2026-05-24 13:26:30] [INFO] [Main] Auto-loaded saved folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 13:26:33] [DEBUG] [PlaybackController] Picked random track: index 2190 of 2321
+[2026-05-24 13:26:33] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Police/The Police - Zenyatta Mondatta 2003 Remaster]/The Police - Behind My Camel.mp3
+[2026-05-24 13:26:33] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Police/The Police - Zenyatta Mondatta 2003 Remaster]/The Police - Behind My Camel.mp3
+[2026-05-24 13:26:33] [DEBUG] [MainWindow] Track metadata loaded: Behind My Camel by The Police
+[2026-05-24 13:26:36] [DEBUG] [PlaybackController] Picked random track: index 218 of 2321
+[2026-05-24 13:26:36] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Chicago/Chicago - I Don't Wanna Live Without You.mp3
+[2026-05-24 13:26:36] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Chicago/Chicago - I Don't Wanna Live Without You.mp3
+[2026-05-24 13:26:36] [DEBUG] [MainWindow] Track metadata loaded: I Don't Wanna Live Without You by Chicago
+[2026-05-24 13:26:37] [DEBUG] [PlaybackController] Picked random track: index 615 of 2321
+[2026-05-24 13:26:37] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2003 - Masters Of Chant Chapter IV/Gregorian - The End Of Days.mp3
+[2026-05-24 13:26:37] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2003 - Masters Of Chant Chapter IV/Gregorian - The End Of Days.mp3
+[2026-05-24 13:26:37] [DEBUG] [MainWindow] Track metadata loaded: The End Of Days by Gregorian
+[2026-05-24 13:29:39] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 13:29:39] [INFO] [PlaybackController] Playback paused
+[2026-05-24 13:29:43] [DEBUG] [PlaybackController] Picked random track: index 75 of 2321
+[2026-05-24 13:29:43] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Alice Cooper/Alice Cooper - Elected.mp3
+[2026-05-24 13:29:43] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Alice Cooper/Alice Cooper - Elected.mp3
+[2026-05-24 13:29:43] [DEBUG] [MainWindow] Track metadata loaded: Elected by Alice Cooper
+[2026-05-24 13:29:47] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 13:29:47] [INFO] [PlaybackController] Playback paused
+[2026-05-24 13:29:48] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 13:29:48] [INFO] [PlaybackController] Playback resumed
+[2026-05-24 13:29:53] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 13:29:53] [INFO] [PlaybackController] Playback paused
+[2026-05-24 13:29:54] [DEBUG] [MainWindow] Play/Pause button clicked
+[2026-05-24 13:29:54] [INFO] [PlaybackController] Playback resumed
+[2026-05-24 13:33:18] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 13:33:18] [INFO] [Main] Application startup
+[2026-05-24 13:33:18] [DEBUG] [Main] This is a debug message
+[2026-05-24 13:33:18] [WARN] [Main] This is a warning message
+[2026-05-24 13:33:18] [ERROR] [Main] This is an error message
+[2026-05-24 13:33:18] [INFO] [Main] Logging test complete
+[2026-05-24 13:33:42] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 13:33:42] [INFO] [Main] Application startup
+[2026-05-24 13:33:42] [DEBUG] [Main] This is a debug message
+[2026-05-24 13:33:42] [WARN] [Main] This is a warning message
+[2026-05-24 13:33:42] [ERROR] [Main] This is an error message
+[2026-05-24 13:33:42] [INFO] [Main] Logging test complete
+[2026-05-24 13:36:51] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 13:36:51] [INFO] [Main] Logger initialized
+[2026-05-24 13:36:51] [DEBUG] [Main] Debug message
+[2026-05-24 13:36:51] [WARN] [Main] Warning message
+[2026-05-24 13:36:51] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 13:36:51] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 13:36:51] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 13:36:51] [INFO] [Main] StateManager initialized
+[2026-05-24 13:36:51] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 13:36:51] [INFO] [Main] PlaybackController initialized
+[2026-05-24 13:36:51] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 13:36:51] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 13:36:51] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 13:36:51] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 13:36:51] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 13:36:51] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 13:36:51] [INFO] [Main] Track count: 4
+[2026-05-24 13:36:51] [INFO] [Main] ✓ Correct track count
+[2026-05-24 13:36:51] [INFO] [Main] Current track: /tmp/boombox-WdSfKt/song1.mp3
+[2026-05-24 13:36:51] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 13:36:51] [INFO] [Main] Current position: 0
+[2026-05-24 13:36:51] [INFO] [Main] Metadata for current track:
+[2026-05-24 13:36:51] [INFO] [Main]   Title: song1
+[2026-05-24 13:36:51] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 13:36:51] [INFO] [Main]   Album: boombox-WdSfKt
+[2026-05-24 13:36:51] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 13:36:51] [INFO] [Main] Track at index 1: found
+[2026-05-24 13:36:51] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 13:36:51] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 13:36:51] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 13:36:51] [DEBUG] [PlaybackController] Picked random track: index 1186 of 2321
+[2026-05-24 13:36:51] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/KISS/Kiss - Deuce.mp3
+[2026-05-24 13:36:51] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/KISS/Kiss - Deuce.mp3
+[2026-05-24 13:36:51] [DEBUG] [MainWindow] Track metadata loaded: Deuce by Kiss
+[2026-05-24 13:36:51] [INFO] [Main] Auto-loaded saved folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 13:37:00] [DEBUG] [PlaybackController] Picked random track: index 938 of 2321
+[2026-05-24 13:37:00] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1992] Fear Of The Dark/Iron Maiden - Fear Is The Key.mp3
+[2026-05-24 13:37:00] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Iron Maiden/[1992] Fear Of The Dark/Iron Maiden - Fear Is The Key.mp3
+[2026-05-24 13:37:00] [DEBUG] [MainWindow] Track metadata loaded: Fear Is The Key by Iron Maiden
+[2026-05-24 13:37:02] [DEBUG] [PlaybackController] Picked random track: index 1219 of 2321
+[2026-05-24 13:37:02] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Kansas/Kansas - Perfect Lover.mp3
+[2026-05-24 13:37:02] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Kansas/Kansas - Perfect Lover.mp3
+[2026-05-24 13:37:02] [DEBUG] [MainWindow] Track metadata loaded: Perfect Lover by Kansas
+[2026-05-24 13:37:04] [DEBUG] [PlaybackController] Picked random track: index 1394 of 2321
+[2026-05-24 13:37:04] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Metallica/1998 - Garage Inc/Metallica - Stone Cold Crazy-Queen.mp3
+[2026-05-24 13:37:04] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Metallica/1998 - Garage Inc/Metallica - Stone Cold Crazy-Queen.mp3
+[2026-05-24 13:37:04] [DEBUG] [MainWindow] Track metadata loaded: Stone Cold Crazy-Queen by Metallica
+[2026-05-24 13:37:09] [DEBUG] [PlaybackController] Picked random track: index 1563 of 2321
+[2026-05-24 13:37:09] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Pearl Jam/Rearviewmirror CD2/Pearl Jam - Given to Fly.mp3
+[2026-05-24 13:37:09] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Pearl Jam/Rearviewmirror CD2/Pearl Jam - Given to Fly.mp3
+[2026-05-24 13:37:09] [DEBUG] [MainWindow] Track metadata loaded: Given to Fly by Pearl Jam
+[2026-05-24 13:37:13] [DEBUG] [PlaybackController] Picked random track: index 214 of 2321
+[2026-05-24 13:37:13] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Chicago/Chicago - Free.mp3
+[2026-05-24 13:37:13] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Chicago/Chicago - Free.mp3
+[2026-05-24 13:37:13] [DEBUG] [MainWindow] Track metadata loaded: Free by Chicago
+[2026-05-24 13:37:14] [DEBUG] [PlaybackController] Picked random track: index 1708 of 2321
+[2026-05-24 13:37:14] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Queen/Queen - Bohemian Rhapsody.mp3
+[2026-05-24 13:37:14] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Queen/Queen - Bohemian Rhapsody.mp3
+[2026-05-24 13:37:14] [DEBUG] [MainWindow] Track metadata loaded: Bohemian Rhapsody by Queen
+[2026-05-24 13:37:17] [DEBUG] [PlaybackController] Picked random track: index 1630 of 2321
+[2026-05-24 13:37:17] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Pink Floyd/1983 - The Final Cut/Pink Floyd - Southampton Dock.mp3
+[2026-05-24 13:37:17] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Pink Floyd/1983 - The Final Cut/Pink Floyd - Southampton Dock.mp3
+[2026-05-24 13:37:17] [DEBUG] [MainWindow] Track metadata loaded: Southampton Dock by Pink Floyd
+[2026-05-24 13:37:20] [DEBUG] [PlaybackController] Picked random track: index 588 of 2321
+[2026-05-24 13:37:20] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2001 - Masters Of Chant Chapter II/Gregorian - Stairway To Heaven (Led Zeppelin).mp3
+[2026-05-24 13:37:20] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2001 - Masters Of Chant Chapter II/Gregorian - Stairway To Heaven (Led Zeppelin).mp3
+[2026-05-24 13:37:20] [DEBUG] [MainWindow] Track metadata loaded: Stairway To Heaven (Led Zeppel by Gregorian
+[2026-05-24 13:38:48] [DEBUG] [StateManager] State saved to: /home/esox/.boombox/config.json
+[2026-05-24 13:38:48] [DEBUG] [Main] State saved on application exit
+[2026-05-24 13:38:48] [INFO] [PlaybackController] PlaybackController destroyed
+[2026-05-24 13:38:53] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 13:38:53] [INFO] [Main] Application startup
+[2026-05-24 13:38:53] [DEBUG] [Main] This is a debug message
+[2026-05-24 13:38:53] [WARN] [Main] This is a warning message
+[2026-05-24 13:38:53] [ERROR] [Main] This is an error message
+[2026-05-24 13:38:53] [INFO] [Main] Logging test complete
+[2026-05-24 13:39:17] [INFO] [Logger] Logger initialized. Log file: /var/home/esox/dev/cpp/boombox/build/bin/boombox.log
+[2026-05-24 13:39:17] [INFO] [Main] Logger initialized
+[2026-05-24 13:39:17] [DEBUG] [Main] Debug message
+[2026-05-24 13:39:17] [WARN] [Main] Warning message
+[2026-05-24 13:39:17] [DEBUG] [StateManager] Initializing StateManager
+[2026-05-24 13:39:17] [DEBUG] [StateManager] Loaded state - Folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3, Track: track.mp3
+[2026-05-24 13:39:17] [DEBUG] [StateManager] StateManager initialized
+[2026-05-24 13:39:17] [INFO] [Main] StateManager initialized
+[2026-05-24 13:39:17] [INFO] [PlaybackController] PlaybackController initialized
+[2026-05-24 13:39:17] [INFO] [Main] PlaybackController initialized
+[2026-05-24 13:39:17] [INFO] [Main] === Testing FileManager ===
+[2026-05-24 13:39:17] [DEBUG] [Main] Created test file: song1.mp3
+[2026-05-24 13:39:17] [DEBUG] [Main] Created test file: song2.flac
+[2026-05-24 13:39:17] [DEBUG] [Main] Created test file: song3.wav
+[2026-05-24 13:39:17] [DEBUG] [Main] Created test file: track4.ogg
+[2026-05-24 13:39:17] [INFO] [Main] ✓ Folder loaded successfully
+[2026-05-24 13:39:17] [INFO] [Main] Track count: 4
+[2026-05-24 13:39:17] [INFO] [Main] ✓ Correct track count
+[2026-05-24 13:39:17] [INFO] [Main] Current track: /tmp/boombox-fJPmvN/song1.mp3
+[2026-05-24 13:39:17] [INFO] [Main] ✓ Current track retrieved
+[2026-05-24 13:39:17] [INFO] [Main] Current position: 0
+[2026-05-24 13:39:17] [INFO] [Main] Metadata for current track:
+[2026-05-24 13:39:17] [INFO] [Main]   Title: song1
+[2026-05-24 13:39:17] [INFO] [Main]   Artist: Unknown Artist
+[2026-05-24 13:39:17] [INFO] [Main]   Album: boombox-fJPmvN
+[2026-05-24 13:39:17] [INFO] [Main]   Duration: 0 seconds
+[2026-05-24 13:39:17] [INFO] [Main] Track at index 1: found
+[2026-05-24 13:39:17] [INFO] [Main] === All FileManager tests completed ===
+[2026-05-24 13:39:17] [INFO] [PlaybackController] Loading folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 13:39:17] [INFO] [PlaybackController] Folder loaded with 2321 tracks
+[2026-05-24 13:39:17] [DEBUG] [PlaybackController] Picked random track: index 1222 of 2321
+[2026-05-24 13:39:17] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Kansas/Kansas - Song For America.mp3
+[2026-05-24 13:39:17] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Kansas/Kansas - Song For America.mp3
+[2026-05-24 13:39:17] [DEBUG] [MainWindow] Track metadata loaded: Song For America by Kansas
+[2026-05-24 13:39:17] [INFO] [Main] Auto-loaded saved folder: /run/media/system/warehouse/_Skladište/AUDIO/__MP3
+[2026-05-24 13:39:19] [DEBUG] [PlaybackController] Picked random track: index 2216 of 2321
+[2026-05-24 13:39:19] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Twisted Sister/Twisted Sister - Out On The Streets.mp3
+[2026-05-24 13:39:19] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Twisted Sister/Twisted Sister - Out On The Streets.mp3
+[2026-05-24 13:39:19] [DEBUG] [MainWindow] Track metadata loaded: Out On The Streets by Twisted Sister
+[2026-05-24 13:39:21] [DEBUG] [PlaybackController] Picked random track: index 2004 of 2321
+[2026-05-24 13:39:21] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/T. Rex/T. Rex - Lady.mp3
+[2026-05-24 13:39:21] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/T. Rex/T. Rex - Lady.mp3
+[2026-05-24 13:39:21] [DEBUG] [MainWindow] Track metadata loaded: Lady by T. Rex
+[2026-05-24 13:39:23] [DEBUG] [PlaybackController] Picked random track: index 547 of 2321
+[2026-05-24 13:39:23] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/From Dusk Till Dawn/George Clooney - Everybody Be Cool.mp3
+[2026-05-24 13:39:23] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/From Dusk Till Dawn/George Clooney - Everybody Be Cool.mp3
+[2026-05-24 13:39:23] [DEBUG] [MainWindow] Track metadata loaded: Everybody Be Cool by George Clooney
+[2026-05-24 13:39:24] [DEBUG] [PlaybackController] Picked random track: index 1922 of 2321
+[2026-05-24 13:39:24] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Skid Row/Skid Row - Youth Gone Wild.mp3
+[2026-05-24 13:39:24] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Skid Row/Skid Row - Youth Gone Wild.mp3
+[2026-05-24 13:39:24] [DEBUG] [MainWindow] Track metadata loaded: Youth Gone Wild by Skid Row
+[2026-05-24 13:39:24] [DEBUG] [PlaybackController] Picked random track: index 2226 of 2321
+[2026-05-24 13:39:24] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/U2/U2 - Desire.mp3
+[2026-05-24 13:39:24] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/U2/U2 - Desire.mp3
+[2026-05-24 13:39:24] [DEBUG] [MainWindow] Track metadata loaded: Desire by U2
+[2026-05-24 13:39:25] [DEBUG] [PlaybackController] Picked random track: index 2224 of 2321
+[2026-05-24 13:39:25] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/U2/U2 - Angel Of Harlem.mp3
+[2026-05-24 13:39:25] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/U2/U2 - Angel Of Harlem.mp3
+[2026-05-24 13:39:25] [DEBUG] [MainWindow] Track metadata loaded: Angel Of Harlem by U2
+[2026-05-24 13:39:26] [DEBUG] [PlaybackController] Picked random track: index 2125 of 2321
+[2026-05-24 13:39:26] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Lord Of The Rings Trilogy Soundtrack/The Two Towers/LOTR - Forth Eorlingas.mp3
+[2026-05-24 13:39:26] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/The Lord Of The Rings Trilogy Soundtrack/The Two Towers/LOTR - Forth Eorlingas.mp3
+[2026-05-24 13:39:26] [DEBUG] [MainWindow] Track metadata loaded: Forth Eorlingas by LOTR
+[2026-05-24 13:39:27] [DEBUG] [PlaybackController] Picked random track: index 1199 of 2321
+[2026-05-24 13:39:27] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/KISS/Kiss - Let Me Know.mp3
+[2026-05-24 13:39:27] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/KISS/Kiss - Let Me Know.mp3
+[2026-05-24 13:39:27] [DEBUG] [MainWindow] Track metadata loaded: Let Me Know by Kiss
+[2026-05-24 13:39:27] [DEBUG] [PlaybackController] Picked random track: index 1408 of 2321
+[2026-05-24 13:39:27] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Metallica/1999 - S&M/Metallica - Enter Sandman (Live).mp3
+[2026-05-24 13:39:27] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Metallica/1999 - S&M/Metallica - Enter Sandman (Live).mp3
+[2026-05-24 13:39:27] [DEBUG] [MainWindow] Track metadata loaded: Enter Sandman (Live) by Metallica
+[2026-05-24 13:39:28] [DEBUG] [PlaybackController] Picked random track: index 581 of 2321
+[2026-05-24 13:39:28] [INFO] [PlaybackController] Playing track: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2001 - Masters Of Chant Chapter II/Gregorian - Everybody Gotta Learn Sometimes (The Korgis).mp3
+[2026-05-24 13:39:28] [DEBUG] [MainWindow] Track changed: /run/media/system/warehouse/_Skladište/AUDIO/__MP3/Gregorian/2001 - Masters Of Chant Chapter II/Gregorian - Everybody Gotta Learn Sometimes (The Korgis).mp3
+[2026-05-24 13:39:28] [DEBUG] [MainWindow] Track metadata loaded: Everybody Gotta Learn Sometime by Gregorian

@@ -42,7 +42,12 @@ template <> constexpr inline auto SeekBarWidget::qt_create_metaobjectdata<qt_met
         "SeekBarWidget",
         "positionChanged",
         "",
-        "position"
+        "position",
+        "userSeeked",
+        "positionSeconds",
+        "onSliderMoved",
+        "onSliderPressed",
+        "onSliderReleased"
     };
 
     QtMocHelpers::UintData qt_methods {
@@ -50,6 +55,18 @@ template <> constexpr inline auto SeekBarWidget::qt_create_metaobjectdata<qt_met
         QtMocHelpers::SignalData<void(int)>(1, 2, QMC::AccessPublic, QMetaType::Void, {{
             { QMetaType::Int, 3 },
         }}),
+        // Signal 'userSeeked'
+        QtMocHelpers::SignalData<void(int)>(4, 2, QMC::AccessPublic, QMetaType::Void, {{
+            { QMetaType::Int, 5 },
+        }}),
+        // Slot 'onSliderMoved'
+        QtMocHelpers::SlotData<void(int)>(6, 2, QMC::AccessPrivate, QMetaType::Void, {{
+            { QMetaType::Int, 3 },
+        }}),
+        // Slot 'onSliderPressed'
+        QtMocHelpers::SlotData<void()>(7, 2, QMC::AccessPrivate, QMetaType::Void),
+        // Slot 'onSliderReleased'
+        QtMocHelpers::SlotData<void()>(8, 2, QMC::AccessPrivate, QMetaType::Void),
     };
     QtMocHelpers::UintData qt_properties {
     };
@@ -74,11 +91,17 @@ void SeekBarWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->positionChanged((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 1: _t->userSeeked((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 2: _t->onSliderMoved((*reinterpret_cast<std::add_pointer_t<int>>(_a[1]))); break;
+        case 3: _t->onSliderPressed(); break;
+        case 4: _t->onSliderReleased(); break;
         default: ;
         }
     }
     if (_c == QMetaObject::IndexOfMethod) {
         if (QtMocHelpers::indexOfMethod<void (SeekBarWidget::*)(int )>(_a, &SeekBarWidget::positionChanged, 0))
+            return;
+        if (QtMocHelpers::indexOfMethod<void (SeekBarWidget::*)(int )>(_a, &SeekBarWidget::userSeeked, 1))
             return;
     }
 }
@@ -102,14 +125,14 @@ int SeekBarWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 5;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 5)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 5;
     }
     return _id;
 }
@@ -118,5 +141,11 @@ int SeekBarWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 void SeekBarWidget::positionChanged(int _t1)
 {
     QMetaObject::activate<void>(this, &staticMetaObject, 0, nullptr, _t1);
+}
+
+// SIGNAL 1
+void SeekBarWidget::userSeeked(int _t1)
+{
+    QMetaObject::activate<void>(this, &staticMetaObject, 1, nullptr, _t1);
 }
 QT_WARNING_POP

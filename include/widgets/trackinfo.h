@@ -14,6 +14,13 @@ public:
     void setArtistName(const QString &artist);
     void setAlbumName(const QString &album);
     void setTrackNumber(int current, int total);
+    
+    // Composite method to update all metadata at once
+    void updateTrackInfo(const QString& trackName, const QString& artist,
+                        const QString& album, int trackNum, int totalTracks);
+    
+    // Clear display and show placeholder
+    void clearDisplay();
 
 private:
     QLabel *trackNameLabel;
