@@ -339,4 +339,5 @@ CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o: \
  /usr/include/qt6/QtWidgets/qlayoutitem.h \
  /usr/include/qt6/QtWidgets/qboxlayout.h \
  /usr/include/qt6/QtWidgets/qgridlayout.h /usr/include/qt6/QtGui/QFont \
- /usr/include/qt6/QtGui/qfont.h
+ /usr/include/qt6/QtGui/qfont.h /usr/include/qt6/QtGui/QFontMetrics \
+ /usr/include/qt6/QtGui/qfontmetrics.h

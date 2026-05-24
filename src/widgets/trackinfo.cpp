@@ -1,24 +1,27 @@
 #include "widgets/trackinfo.h"
 #include <QVBoxLayout>
 #include <QFont>
+#include <QFontMetrics>
 
 TrackInfoWidget::TrackInfoWidget(QWidget *parent)
     : QWidget(parent)
 {
     auto layout = new QVBoxLayout(this);
-    layout->setContentsMargins(8, 8, 8, 8);
-    layout->setSpacing(3);
+    layout->setContentsMargins(8, 4, 8, 4);
+    layout->setSpacing(2);
     
     // Track name label
     trackNameLabel = new QLabel("No track loaded", this);
-    trackNameLabel->setAlignment(Qt::AlignCenter);
+    trackNameLabel->setAlignment(Qt::AlignHCenter | Qt::AlignTop);
     QFont trackFont = trackNameLabel->font();
     trackFont.setPointSize(18);
     trackFont.setBold(true);
     trackNameLabel->setFont(trackFont);
     trackNameLabel->setObjectName("trackName");
     trackNameLabel->setWordWrap(true);
+    trackNameLabel->setMinimumHeight((QFontMetrics(trackFont).lineSpacing() * 2) + 4);
     layout->addWidget(trackNameLabel);
+    layout->addSpacing(QFontMetrics(trackFont).height() / 2);
     
     // Artist name label
     artistNameLabel = new QLabel("Unknown Artist", this);

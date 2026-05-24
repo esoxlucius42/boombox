@@ -6698,6 +6698,7 @@ CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o: /var/home/esox/dev/cpp/boomb
   /usr/include/qt6/QtCore/qxptype_traits.h \
   /usr/include/qt6/QtCore/qyieldcpu.h \
   /usr/include/qt6/QtGui/QFont \
+  /usr/include/qt6/QtGui/QFontMetrics \
   /usr/include/qt6/QtGui/qaction.h \
   /usr/include/qt6/QtGui/qbitmap.h \
   /usr/include/qt6/QtGui/qbrush.h \
@@ -8684,6 +8685,8 @@ CMakeFiles/boombox.dir/src/main.cpp.o:
 
 /usr/include/qt6/QtCore/QDebug:
 
+/usr/include/qt6/QtGui/QFontMetrics:
+
 /lib64/cmake/Qt6WidgetsTools/Qt6WidgetsToolsAdditionalTargetInfo.cmake:
 
 /usr/include/qt6/QtCore/qdatastream.h:
@@ -9876,10 +9879,10 @@ boombox_autogen/3YJK5W5UP7/qrc_resources.cpp:
 
 /usr/lib64/libfmt.so.11:
 
+/usr/lib64/libgbm.so.1:
+
 /usr/include/qt6/QtGui/qtguiexports.h:
 
 /usr/include/qt6/QtWidgets/QApplication:
-
-/usr/lib64/libgbm.so.1:
 
 /usr/lib64/libfribidi.so.0:
