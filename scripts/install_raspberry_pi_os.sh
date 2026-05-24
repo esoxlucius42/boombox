@@ -52,8 +52,16 @@ apt install -y \
     cmake \
     pkg-config \
     qt6-base-dev \
+    qt6-base-dev-tools \
     libmpv-dev \
     desktop-file-utils
+
+# Warn if the Qt6 MOC tool cannot be found anywhere; it is required for AUTOMOC.
+if ! find /usr/lib /usr/libexec /usr/bin -name 'moc' -path '*qt6*' \
+        -o -name 'moc6' 2>/dev/null | grep -q .; then
+    echo "WARNING: Qt6 moc not found after package install — the build may fail."
+    echo "  Try installing 'qt6-tools-dev-tools' manually."
+fi
 
 echo "[2/6] Configuring build (repo: ${REPO_ROOT})..."
 # Remove any stale build directory that may have been copied from another machine.
@@ -66,7 +74,15 @@ fi
 run_as_build_user cmake -S "${REPO_ROOT}" -B "${REPO_ROOT}/build" -DCMAKE_BUILD_TYPE=Release
 
 echo "[3/6] Building boombox..."
-run_as_build_user cmake --build "${REPO_ROOT}/build" -j"$(nproc)"
+# Limit parallel jobs to avoid out-of-memory failures on Raspberry Pi.
+# Override with BUILD_JOBS=N if you have more RAM available.
+BUILD_JOBS="${BUILD_JOBS:-2}"
+if ! run_as_build_user cmake --build "${REPO_ROOT}/build" -j"${BUILD_JOBS}"; then
+    echo ""
+    echo "Build failed. Re-running with verbose output to show the root cause..."
+    run_as_build_user cmake --build "${REPO_ROOT}/build" -j1 -- VERBOSE=1 || true
+    exit 1
+fi
 
 echo "[4/6] Installing binary and assets to ${INSTALL_PREFIX}..."
 install -d "${INSTALL_PREFIX}"
