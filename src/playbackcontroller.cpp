@@ -86,6 +86,10 @@ public slots:
                 audioEngine->setVolume(kFixedVolumeLevel);
             }
 
+            if (!PlaybackController::kSpectrumAnalyzerEnabled) {
+                Logger::info("PlaybackWorker", "Spectrum analyzer generation disabled for test build");
+            }
+
             emit playbackSnapshotUpdated(audioEngine->isPlaying(),
                                          audioEngine->getCurrentPosition(),
                                          audioEngine->getDuration());
@@ -253,11 +257,12 @@ private slots:
 
         audioEngine->processEvents();
         const bool nowPlaying = audioEngine->isPlaying();
-        const float reactiveLevel = nowPlaying
-            ? static_cast<float>(std::clamp(audioEngine->getReactiveLevel(), 0.0, 1.0))
-            : 0.0f;
-
-        emit spectrumLevelsUpdated(createSpectrumBins(reactiveLevel, nowPlaying));
+        if (PlaybackController::kSpectrumAnalyzerEnabled) {
+            const float reactiveLevel = nowPlaying
+                ? static_cast<float>(std::clamp(audioEngine->getReactiveLevel(), 0.0, 1.0))
+                : 0.0f;
+            emit spectrumLevelsUpdated(createSpectrumBins(reactiveLevel, nowPlaying));
+        }
         emit playbackSnapshotUpdated(nowPlaying,
                                      audioEngine->getCurrentPosition(),
                                      audioEngine->getDuration());

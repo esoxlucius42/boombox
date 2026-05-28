@@ -136,8 +136,14 @@ void MainWindow::connectSignals()
     connect(playbackController, &PlaybackController::playbackError,
             this, &MainWindow::onPlaybackError);
 
-    connect(playbackController, &PlaybackController::spectrumLevelsUpdated,
-            spectrumAnalyzerWidget, &SpectrumAnalyzerWidget::setSpectrumLevels);
+    if (PlaybackController::kSpectrumAnalyzerEnabled) {
+        connect(playbackController, &PlaybackController::spectrumLevelsUpdated,
+                spectrumAnalyzerWidget, &SpectrumAnalyzerWidget::setSpectrumLevels);
+    } else {
+        spectrumAnalyzerWidget->clear();
+        spectrumAnalyzerWidget->setUpdatesEnabled(false);
+        Logger::info("MainWindow", "Spectrum analyzer widget updates disabled for test build");
+    }
     
     // Connect play/pause button
     connect(controlsWidget, &ControlsWidget::playPauseClicked,
