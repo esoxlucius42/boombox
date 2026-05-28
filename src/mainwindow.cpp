@@ -14,6 +14,10 @@
 #include <QDir>
 #include "logger.h"
 
+namespace {
+constexpr bool kLivePlaybackUiUpdatesEnabled = false;
+}
+
 MainWindow::MainWindow(PlaybackController *controller, bool fullscreen, QWidget *parent)
     : QMainWindow(parent), playbackController(controller)
 {
@@ -158,10 +162,14 @@ void MainWindow::connectSignals()
             this, &MainWindow::onSeekRequested);
 
     // UI timer for live playback position updates
-    playbackUiTimer = new QTimer(this);
-    playbackUiTimer->setInterval(250);
-    connect(playbackUiTimer, &QTimer::timeout, this, &MainWindow::onPlaybackUiTick);
-    playbackUiTimer->start();
+    if (kLivePlaybackUiUpdatesEnabled) {
+        playbackUiTimer = new QTimer(this);
+        playbackUiTimer->setInterval(250);
+        connect(playbackUiTimer, &QTimer::timeout, this, &MainWindow::onPlaybackUiTick);
+        playbackUiTimer->start();
+    } else {
+        Logger::info("MainWindow", "Live playback UI timer disabled for test build");
+    }
     
     // Initialize UI state from controller
     controlsWidget->setPlayButtonState(playbackController->isPlaying());

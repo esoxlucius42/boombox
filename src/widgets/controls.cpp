@@ -59,19 +59,33 @@ ControlsWidget::ControlsWidget(QWidget *parent)
 
 void ControlsWidget::setPlayButtonText(const QString &text)
 {
+    if (playPauseButton->text() == text) {
+        return;
+    }
     playPauseButton->setText(text);
 }
 
 void ControlsWidget::setPlayButtonState(bool playing)
 {
+    if (isPlaying == playing) {
+        return;
+    }
     isPlaying = playing;
     setPlayButtonText(playing ? "Pause" : "Play");
 }
 
 void ControlsWidget::enableControls(bool enabled)
 {
-    playPauseButton->setEnabled(enabled);
-    nextButton->setEnabled(enabled);
-    fullscreenButton->setEnabled(enabled);
-    browseButton->setEnabled(enabled);
+    if (playPauseButton->isEnabled() != enabled) {
+        playPauseButton->setEnabled(enabled);
+    }
+    if (nextButton->isEnabled() != enabled) {
+        nextButton->setEnabled(enabled);
+    }
+    if (fullscreenButton->isEnabled() != enabled) {
+        fullscreenButton->setEnabled(enabled);
+    }
+    if (browseButton->isEnabled() != enabled) {
+        browseButton->setEnabled(enabled);
+    }
 }

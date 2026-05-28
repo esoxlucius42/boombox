@@ -49,16 +49,27 @@ SeekBarWidget::SeekBarWidget(QWidget *parent)
 
 void SeekBarWidget::setCurrentTime(int milliseconds)
 {
-    currentTimeLabel->setText(formatTime(milliseconds));
+    const QString formatted = formatTime(milliseconds);
+    if (currentTimeLabel->text() == formatted) {
+        return;
+    }
+    currentTimeLabel->setText(formatted);
 }
 
 void SeekBarWidget::setTotalTime(int milliseconds)
 {
-    totalTimeLabel->setText(formatTime(milliseconds));
+    const QString formatted = formatTime(milliseconds);
+    if (totalTimeLabel->text() == formatted) {
+        return;
+    }
+    totalTimeLabel->setText(formatted);
 }
 
 void SeekBarWidget::setRange(int min, int max)
 {
+    if (seekSlider->minimum() == min && seekSlider->maximum() == max) {
+        return;
+    }
     seekSlider->setRange(min, max);
 }
 
@@ -69,22 +80,37 @@ int SeekBarWidget::getCurrentPosition() const
 
 void SeekBarWidget::setDuration(int seconds)
 {
-    seekSlider->setMaximum(seconds);
-    totalTimeLabel->setText(formatTimeSeconds(seconds));
+    if (seekSlider->maximum() != seconds) {
+        seekSlider->setMaximum(seconds);
+    }
+
+    const QString formatted = formatTimeSeconds(seconds);
+    if (totalTimeLabel->text() != formatted) {
+        totalTimeLabel->setText(formatted);
+    }
 }
 
 void SeekBarWidget::updatePosition(int seconds)
 {
     if (!isUserDragging) {
-        seekSlider->blockSignals(true);
-        seekSlider->setValue(seconds);
-        seekSlider->blockSignals(false);
-        currentTimeLabel->setText(formatTimeSeconds(seconds));
+        if (seekSlider->value() != seconds) {
+            seekSlider->blockSignals(true);
+            seekSlider->setValue(seconds);
+            seekSlider->blockSignals(false);
+        }
+
+        const QString formatted = formatTimeSeconds(seconds);
+        if (currentTimeLabel->text() != formatted) {
+            currentTimeLabel->setText(formatted);
+        }
     }
 }
 
 void SeekBarWidget::enableSeeking(bool enabled)
 {
+    if (seekSlider->isEnabled() == enabled) {
+        return;
+    }
     seekSlider->setEnabled(enabled);
 }
 
@@ -96,7 +122,10 @@ int SeekBarWidget::getRequestedPosition() const
 void SeekBarWidget::onSliderMoved(int position)
 {
     if (isUserDragging) {
-        currentTimeLabel->setText(formatTimeSeconds(position));
+        const QString formatted = formatTimeSeconds(position);
+        if (currentTimeLabel->text() != formatted) {
+            currentTimeLabel->setText(formatted);
+        }
         emit userSeeked(position);
         emit positionChanged(position);
     }
