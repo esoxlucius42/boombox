@@ -146,6 +146,7 @@ AudioEngine::AudioEngine(AudioEngine&& other) noexcept
     : mHandle(other.mHandle),
       mState(other.mState),
       mOnTrackFinished(std::move(other.mOnTrackFinished)),
+      mOnFileLoaded(std::move(other.mOnFileLoaded)),
       mOnError(std::move(other.mOnError)) {
     other.mHandle = nullptr;
 }
@@ -156,6 +157,7 @@ AudioEngine& AudioEngine::operator=(AudioEngine&& other) noexcept {
         mHandle = other.mHandle;
         mState = other.mState;
         mOnTrackFinished = std::move(other.mOnTrackFinished);
+        mOnFileLoaded = std::move(other.mOnFileLoaded);
         mOnError = std::move(other.mOnError);
         other.mHandle = nullptr;
     }
@@ -520,6 +522,10 @@ void AudioEngine::setOnTrackFinished(TrackFinishedCallback callback) {
     mOnTrackFinished = callback;
 }
 
+void AudioEngine::setOnFileLoaded(FileLoadedCallback callback) {
+    mOnFileLoaded = callback;
+}
+
 void AudioEngine::setOnError(ErrorCallback callback) {
     mOnError = callback;
 }
@@ -565,6 +571,9 @@ void AudioEngine::handleEvent(const mpv_event* event) {
                 logMessage("INFO", "File loaded successfully");
                 if (mState == PlaybackState::Stopped) {
                     mState = PlaybackState::Playing;
+                }
+                if (mOnFileLoaded) {
+                    mOnFileLoaded();
                 }
                 resetPlaybackProgressTracking();
                 logPlaybackSnapshot("file-loaded");

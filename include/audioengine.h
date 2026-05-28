@@ -39,6 +39,7 @@ public:
 
     // Callback types
     using TrackFinishedCallback = std::function<void()>;
+    using FileLoadedCallback = std::function<void()>;
     using ErrorCallback = std::function<void(ErrorCode, const std::string&)>;
 
     /**
@@ -153,6 +154,12 @@ public:
     void setOnTrackFinished(TrackFinishedCallback callback);
 
     /**
+     * @brief Set callback for file-loaded event
+     * @param callback Function to call when mpv reports the file is loaded
+     */
+    void setOnFileLoaded(FileLoadedCallback callback);
+
+    /**
      * @brief Set callback for error event
      * @param callback Function to call on playback error
      */
@@ -168,6 +175,7 @@ private:
     mpv_handle* mHandle;
     PlaybackState mState;
     TrackFinishedCallback mOnTrackFinished;
+    FileLoadedCallback mOnFileLoaded;
     ErrorCallback mOnError;
 
     /**

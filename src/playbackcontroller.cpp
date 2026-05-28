@@ -4,6 +4,7 @@
 #include "logger.h"
 
 #include <QFileInfo>
+#include <QFile>
 #include <QMetaObject>
 #include <QThread>
 #include <QTimer>
@@ -12,12 +13,31 @@
 #include <cmath>
 #include <memory>
 #include <random>
+#include <cerrno>
+#include <cstring>
+#include <sys/mman.h>
+#include <sys/stat.h>
+#include <sys/syscall.h>
+#include <unistd.h>
 
 namespace {
 constexpr const char* kBackendUnavailableMessage =
     "Audio backend unavailable. Folder loaded, but playback cannot start.";
 constexpr int kFixedVolumeLevel = 100;
 constexpr int kSpectrumBinCount = 24;
+constexpr qint64 kRamBufferChunkSize = 1024 * 1024;
+
+int createMemfdHandle(const QString& name) {
+#ifdef MFD_CLOEXEC
+    const QByteArray utf8Name = name.toUtf8();
+    const int fd = static_cast<int>(::syscall(SYS_memfd_create, utf8Name.constData(), MFD_CLOEXEC));
+    return fd;
+#else
+    Q_UNUSED(name);
+    errno = ENOSYS;
+    return -1;
+#endif
+}
 }
 
 class PlaybackWorker : public QObject {
@@ -45,6 +65,10 @@ public slots:
 
             audioEngine->setOnTrackFinished([this]() {
                 onTrackFinished();
+            });
+
+            audioEngine->setOnFileLoaded([this]() {
+                onFileLoaded();
             });
 
             audioEngine->setOnError([this](AudioEngine::ErrorCode code, const std::string& msg) {
@@ -87,6 +111,7 @@ public slots:
             audioEngine.reset();
         }
 
+        releaseStagedTrack();
         fileManager.reset();
         emit playbackSnapshotUpdated(false, 0.0, 0.0);
 
@@ -240,8 +265,18 @@ private slots:
 
 private:
     void onTrackFinished() {
+        releaseStagedTrack();
         Logger::info("PlaybackWorker", "Track finished");
         playNext();
+    }
+
+    void onFileLoaded() {
+        if (stagedTrackFd >= 0) {
+            Logger::info("PlaybackWorker",
+                         QString("Releasing worker RAM-buffer handle after mpv loaded track: %1")
+                             .arg(stagedTrackSourcePath));
+        }
+        releaseStagedTrack();
     }
 
     void onPlaybackError(AudioEngine::ErrorCode errorCode, const std::string& errorMsg) {
@@ -254,6 +289,7 @@ private:
                  rawErrorMsg.contains("AudioEngine not initialized", Qt::CaseInsensitive));
 
             if (backendUnavailableError) {
+                releaseStagedTrack();
                 Logger::error("PlaybackWorker", QString("Playback backend unavailable: %1").arg(rawErrorMsg));
                 emitBackendUnavailableErrorOnce();
                 return;
@@ -267,6 +303,7 @@ private:
 
             Logger::error("PlaybackWorker", error);
             emit playbackError(error);
+            releaseStagedTrack();
 
             if (fileManager && !currentTrack.isEmpty()) {
                 fileManager->markFileAsProblematic(currentTrack);
@@ -301,6 +338,81 @@ private:
 
     bool isBackendAvailable() const {
         return audioEngine && audioEngine->isInitialized();
+    }
+
+    void releaseStagedTrack() {
+        if (stagedTrackFd >= 0) {
+            ::close(stagedTrackFd);
+            stagedTrackFd = -1;
+        }
+        stagedTrackSourcePath.clear();
+        stagedTrackPlaybackPath.clear();
+    }
+
+    QString stageTrackInRam(const QString& sourcePath) {
+        QFile sourceFile(sourcePath);
+        if (!sourceFile.open(QIODevice::ReadOnly)) {
+            emit playbackError(QString("Failed to open track for RAM buffering: %1").arg(sourcePath));
+            return QString();
+        }
+
+        Logger::info("PlaybackWorker",
+                     QString("Buffering full track into RAM before playback: %1 (%2 bytes)")
+                         .arg(sourcePath)
+                         .arg(sourceFile.size()));
+
+        const QString memfdName = QFileInfo(sourcePath).fileName().isEmpty()
+            ? QStringLiteral("boombox-track")
+            : QFileInfo(sourcePath).fileName();
+        const int fd = createMemfdHandle(memfdName);
+        if (fd < 0) {
+            emit playbackError(QString("Failed to create RAM buffer for playback: %1")
+                                   .arg(QString::fromLocal8Bit(std::strerror(errno))));
+            return QString();
+        }
+
+        while (!sourceFile.atEnd()) {
+            const QByteArray chunk = sourceFile.read(kRamBufferChunkSize);
+            if (chunk.isEmpty() && sourceFile.error() != QFile::NoError) {
+                const QString errorText = sourceFile.errorString();
+                ::close(fd);
+                emit playbackError(QString("Failed while reading track into RAM: %1").arg(errorText));
+                return QString();
+            }
+
+            const char* data = chunk.constData();
+            qint64 remaining = chunk.size();
+            while (remaining > 0) {
+                const ssize_t written = ::write(fd, data, static_cast<size_t>(remaining));
+                if (written < 0) {
+                    const QString errorText = QString::fromLocal8Bit(std::strerror(errno));
+                    ::close(fd);
+                    emit playbackError(QString("Failed while writing RAM buffer: %1").arg(errorText));
+                    return QString();
+                }
+                remaining -= written;
+                data += written;
+            }
+        }
+
+        if (::lseek(fd, 0, SEEK_SET) < 0) {
+            const QString errorText = QString::fromLocal8Bit(std::strerror(errno));
+            ::close(fd);
+            emit playbackError(QString("Failed to rewind RAM buffer: %1").arg(errorText));
+            return QString();
+        }
+
+        const QString playbackPath = QString("/proc/self/fd/%1").arg(fd);
+        Logger::info("PlaybackWorker",
+                     QString("Track fully buffered in RAM: %1 -> %2")
+                         .arg(sourcePath)
+                         .arg(playbackPath));
+
+        releaseStagedTrack();
+        stagedTrackFd = fd;
+        stagedTrackSourcePath = sourcePath;
+        stagedTrackPlaybackPath = playbackPath;
+        return stagedTrackPlaybackPath;
     }
 
     void emitBackendUnavailableErrorOnce() {
@@ -354,8 +466,13 @@ private:
             }
 
             Logger::info("PlaybackWorker", QString("Playing track: %1").arg(trackPath));
+            const QString playbackPath = stageTrackInRam(trackPath);
+            if (playbackPath.isEmpty()) {
+                return;
+            }
+
             audioEngine->setVolume(kFixedVolumeLevel);
-            audioEngine->play(trackPath.toStdString());
+            audioEngine->play(playbackPath.toStdString());
 
             emit trackChangedWithContext(trackPath, index, fileManager->getTrackCount());
             emit playbackSnapshotUpdated(audioEngine->isPlaying(),
@@ -420,6 +537,9 @@ private:
     bool backendUnavailableErrorShown = false;
     QTimer* audioEventTimer = nullptr;
     QVector<float> smoothedSpectrumBins;
+    int stagedTrackFd = -1;
+    QString stagedTrackSourcePath;
+    QString stagedTrackPlaybackPath;
 };
 
 PlaybackController::PlaybackController(QObject *parent)
