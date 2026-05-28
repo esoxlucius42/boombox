@@ -129,6 +129,7 @@ int main(int argc, char *argv[])
 
     // Save state when application exits
     QObject::connect(&app, &QApplication::aboutToQuit, [&playbackController]() {
+        playbackController->shutdown();
         StateManager::save();
         Logger::debug("Main", "State saved on application exit");
     });

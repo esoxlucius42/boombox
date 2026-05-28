@@ -1,143 +1,479 @@
 #include "playbackcontroller.h"
+
+#include "audioengine.h"
 #include "logger.h"
+
 #include <QFileInfo>
+#include <QMetaObject>
+#include <QThread>
 #include <QTimer>
 #include <algorithm>
 #include <chrono>
 #include <cmath>
+#include <memory>
+#include <random>
 
-PlaybackController::PlaybackController(QObject *parent)
-    : QObject(parent),
-      audioEngine(std::make_unique<AudioEngine>()),
-      fileManager(std::make_unique<FileManager>()),
-      smoothedSpectrumBins(SPECTRUM_BIN_COUNT, 0.0f) {
-    
-    try {
-        // Seed the random generator with current time
-        auto seed = std::chrono::system_clock::now().time_since_epoch().count();
-        randomGenerator.seed(seed);
-        
-        // Connect audio engine signals
-        audioEngine->setOnTrackFinished([this]() {
-            this->onTrackFinished();
-        });
-        
-        audioEngine->setOnError([this](AudioEngine::ErrorCode code, const std::string& msg) {
-            this->onPlaybackError(code, msg);
-        });
+namespace {
+constexpr const char* kBackendUnavailableMessage =
+    "Audio backend unavailable. Folder loaded, but playback cannot start.";
+constexpr int kFixedVolumeLevel = 100;
+constexpr int kSpectrumBinCount = 24;
+}
 
-        // Pump backend events so end-of-track callbacks fire.
-        audioEventTimer = new QTimer(this);
-        audioEventTimer->setInterval(50);
-        connect(audioEventTimer, &QTimer::timeout, this, &PlaybackController::onAudioEventTick);
-        audioEventTimer->start();
-        
-        if (!isBackendAvailable()) {
-            Logger::warn("PlaybackController", "Playback backend is unavailable; playback will be disabled");
-        } else {
-            audioEngine->setVolume(FIXED_VOLUME_LEVEL);
+class PlaybackWorker : public QObject {
+    Q_OBJECT
+
+public:
+    explicit PlaybackWorker(QObject* parent = nullptr)
+        : QObject(parent) {
+    }
+
+public slots:
+    void onThreadStarted() {
+        if (audioEngine || fileManager) {
+            return;
         }
 
-        Logger::info("PlaybackController", "PlaybackController initialized");
-    } catch (const std::exception& e) {
-        Logger::error("PlaybackController", QString("Exception in constructor: %1").arg(e.what()));
-    } catch (...) {
-        Logger::error("PlaybackController", "Unknown exception in constructor");
+        try {
+            auto seed = std::chrono::system_clock::now().time_since_epoch().count();
+            randomGenerator.seed(seed);
+            smoothedSpectrumBins.fill(0.0f, kSpectrumBinCount);
+            backendUnavailableErrorShown = false;
+
+            fileManager = std::make_unique<FileManager>();
+            audioEngine = std::make_unique<AudioEngine>();
+
+            audioEngine->setOnTrackFinished([this]() {
+                onTrackFinished();
+            });
+
+            audioEngine->setOnError([this](AudioEngine::ErrorCode code, const std::string& msg) {
+                onPlaybackError(code, msg);
+            });
+
+            audioEventTimer = new QTimer(this);
+            audioEventTimer->setInterval(50);
+            connect(audioEventTimer, &QTimer::timeout, this, &PlaybackWorker::onAudioEventTick);
+            audioEventTimer->start();
+
+            if (!isBackendAvailable()) {
+                Logger::warn("PlaybackWorker", "Playback backend is unavailable; playback will be disabled");
+            } else {
+                audioEngine->setVolume(kFixedVolumeLevel);
+            }
+
+            emit playbackSnapshotUpdated(audioEngine->isPlaying(),
+                                         audioEngine->getCurrentPosition(),
+                                         audioEngine->getDuration());
+            Logger::info("PlaybackWorker", "Playback worker initialized on dedicated thread");
+        } catch (const std::exception& e) {
+            Logger::error("PlaybackWorker", QString("Exception in onThreadStarted: %1").arg(e.what()));
+            emit playbackError(QString("Failed to initialize playback worker: %1").arg(e.what()));
+        } catch (...) {
+            Logger::error("PlaybackWorker", "Unknown exception in onThreadStarted");
+            emit playbackError("Failed to initialize playback worker");
+        }
     }
+
+    void onShutdown() {
+        if (audioEventTimer) {
+            audioEventTimer->stop();
+            audioEventTimer->deleteLater();
+            audioEventTimer = nullptr;
+        }
+
+        if (audioEngine) {
+            audioEngine->stop();
+            audioEngine.reset();
+        }
+
+        fileManager.reset();
+        emit playbackSnapshotUpdated(false, 0.0, 0.0);
+
+        if (QThread* thread = QThread::currentThread()) {
+            thread->quit();
+        }
+    }
+
+    void loadFolder(const QString& folderPath) {
+        try {
+            Logger::info("PlaybackWorker", QString("Loading folder: %1").arg(folderPath));
+
+            QFileInfo folderInfo(folderPath);
+            if (!folderInfo.exists() || !folderInfo.isDir()) {
+                emit playbackError(QString("Folder does not exist or is not accessible: %1").arg(folderPath));
+                return;
+            }
+
+            if (!folderInfo.isReadable()) {
+                emit playbackError(QString("Permission denied: cannot read folder %1").arg(folderPath));
+                return;
+            }
+
+            if (!fileManager || !fileManager->loadFolder(folderPath)) {
+                emit playbackError(QString("Failed to load folder: %1").arg(folderPath));
+                return;
+            }
+
+            const int loadedTrackCount = fileManager->getTrackCount();
+            Logger::info("PlaybackWorker", QString("Folder loaded with %1 tracks").arg(loadedTrackCount));
+
+            if (loadedTrackCount == 0) {
+                emit playbackError("No audio files found in folder");
+                return;
+            }
+
+            if (!isBackendAvailable()) {
+                Logger::warn("PlaybackWorker", "Folder loaded but backend unavailable; skipping autoplay");
+                emitBackendUnavailableErrorOnce();
+                emit trackChangedWithContext(fileManager->getCurrentTrack(),
+                                             fileManager->getCurrentTrackPosition(),
+                                             fileManager->getTrackCount());
+                return;
+            }
+
+            playTrackAt(pickRandomTrack());
+        } catch (const std::exception& e) {
+            emit playbackError(QString("Exception while loading folder: %1").arg(e.what()));
+        } catch (...) {
+            emit playbackError("Unknown exception while loading folder");
+        }
+    }
+
+    void playNext() {
+        try {
+            if (!isBackendAvailable()) {
+                emitBackendUnavailableErrorOnce();
+                return;
+            }
+
+            if (!fileManager || fileManager->getTrackCount() == 0) {
+                Logger::warn("PlaybackWorker", "playNext called but track list is empty");
+                emit playbackError("No tracks available to play");
+                return;
+            }
+
+            playTrackAt(pickRandomTrack());
+        } catch (const std::exception& e) {
+            Logger::error("PlaybackWorker", QString("Exception in playNext: %1").arg(e.what()));
+        } catch (...) {
+            Logger::error("PlaybackWorker", "Unknown exception in playNext");
+        }
+    }
+
+    void seek(int position) {
+        if (position < 0) {
+            Logger::warn("PlaybackWorker", QString("Invalid seek position: %1").arg(position));
+            return;
+        }
+        if (audioEngine) {
+            audioEngine->seek(static_cast<double>(position));
+            emit playbackSnapshotUpdated(audioEngine->isPlaying(),
+                                         audioEngine->getCurrentPosition(),
+                                         audioEngine->getDuration());
+        }
+    }
+
+    void play() {
+        try {
+            if (!isBackendAvailable()) {
+                emitBackendUnavailableErrorOnce();
+                return;
+            }
+
+            const QString currentTrack = fileManager ? fileManager->getCurrentTrack() : QString();
+            if (currentTrack.isEmpty()) {
+                Logger::warn("PlaybackWorker", "No track to play");
+                emit playbackError("No track loaded");
+                return;
+            }
+
+            if (audioEngine->getPlaybackState() == AudioEngine::PlaybackState::Paused) {
+                audioEngine->setVolume(kFixedVolumeLevel);
+                audioEngine->resume();
+                Logger::info("PlaybackWorker", "Playback resumed");
+            } else {
+                audioEngine->setVolume(kFixedVolumeLevel);
+                audioEngine->play(currentTrack.toStdString());
+                Logger::info("PlaybackWorker", QString("Playing: %1").arg(currentTrack));
+            }
+
+            emit playbackSnapshotUpdated(audioEngine->isPlaying(),
+                                         audioEngine->getCurrentPosition(),
+                                         audioEngine->getDuration());
+        } catch (const std::exception& e) {
+            Logger::error("PlaybackWorker", QString("Exception in play: %1").arg(e.what()));
+        } catch (...) {
+            Logger::error("PlaybackWorker", "Unknown exception in play");
+        }
+    }
+
+    void pause() {
+        if (!audioEngine) {
+            return;
+        }
+
+        audioEngine->pause();
+        Logger::info("PlaybackWorker", "Playback paused");
+        emit playbackSnapshotUpdated(audioEngine->isPlaying(),
+                                     audioEngine->getCurrentPosition(),
+                                     audioEngine->getDuration());
+    }
+
+private slots:
+    void onAudioEventTick() {
+        if (!audioEngine) {
+            return;
+        }
+
+        audioEngine->processEvents();
+        const bool nowPlaying = audioEngine->isPlaying();
+        const float reactiveLevel = nowPlaying
+            ? static_cast<float>(std::clamp(audioEngine->getReactiveLevel(), 0.0, 1.0))
+            : 0.0f;
+
+        emit spectrumLevelsUpdated(createSpectrumBins(reactiveLevel, nowPlaying));
+        emit playbackSnapshotUpdated(nowPlaying,
+                                     audioEngine->getCurrentPosition(),
+                                     audioEngine->getDuration());
+    }
+
+private:
+    void onTrackFinished() {
+        Logger::info("PlaybackWorker", "Track finished");
+        playNext();
+    }
+
+    void onPlaybackError(AudioEngine::ErrorCode errorCode, const std::string& errorMsg) {
+        try {
+            const QString rawErrorMsg = QString::fromStdString(errorMsg);
+            const bool backendUnavailableError =
+                !isBackendAvailable() ||
+                errorCode == AudioEngine::ErrorCode::InitializationFailed ||
+                (errorCode == AudioEngine::ErrorCode::PlaybackFailed &&
+                 rawErrorMsg.contains("AudioEngine not initialized", Qt::CaseInsensitive));
+
+            if (backendUnavailableError) {
+                Logger::error("PlaybackWorker", QString("Playback backend unavailable: %1").arg(rawErrorMsg));
+                emitBackendUnavailableErrorOnce();
+                return;
+            }
+
+            const QString currentTrack = fileManager ? fileManager->getCurrentTrack() : QString();
+            const QString error = QString("Playback error for '%1' (code %2): %3")
+                                      .arg(currentTrack)
+                                      .arg(static_cast<int>(errorCode))
+                                      .arg(rawErrorMsg);
+
+            Logger::error("PlaybackWorker", error);
+            emit playbackError(error);
+
+            if (fileManager && !currentTrack.isEmpty()) {
+                fileManager->markFileAsProblematic(currentTrack);
+            }
+
+            switch (errorCode) {
+                case AudioEngine::ErrorCode::FileNotFound:
+                    Logger::warn("PlaybackWorker", QString("File not found or deleted: %1").arg(currentTrack));
+                    break;
+                case AudioEngine::ErrorCode::CorruptedFile:
+                    Logger::warn("PlaybackWorker", QString("File appears corrupted: %1").arg(currentTrack));
+                    break;
+                case AudioEngine::ErrorCode::UnsupportedCodec:
+                    Logger::warn("PlaybackWorker", QString("Unsupported codec in: %1").arg(currentTrack));
+                    break;
+                case AudioEngine::ErrorCode::DeviceError:
+                    Logger::error("PlaybackWorker", "Audio device error - playback device may be disconnected");
+                    emit playbackError("Audio device error: output device may be disconnected");
+                    return;
+                default:
+                    Logger::warn("PlaybackWorker", QString("Playback failed for: %1").arg(currentTrack));
+                    break;
+            }
+
+            playNext();
+        } catch (const std::exception& e) {
+            Logger::error("PlaybackWorker", QString("Exception in onPlaybackError: %1").arg(e.what()));
+        } catch (...) {
+            Logger::error("PlaybackWorker", "Unknown exception in onPlaybackError");
+        }
+    }
+
+    bool isBackendAvailable() const {
+        return audioEngine && audioEngine->isInitialized();
+    }
+
+    void emitBackendUnavailableErrorOnce() {
+        if (backendUnavailableErrorShown) {
+            return;
+        }
+
+        backendUnavailableErrorShown = true;
+        Logger::error("PlaybackWorker", kBackendUnavailableMessage);
+        emit playbackError(kBackendUnavailableMessage);
+    }
+
+    int pickRandomTrack() {
+        const int totalTracks = fileManager ? fileManager->getTrackCount() : 0;
+        if (totalTracks <= 0) {
+            return -1;
+        }
+
+        if (totalTracks == 1) {
+            return 0;
+        }
+
+        std::uniform_int_distribution<int> distribution(0, totalTracks - 1);
+        const int randomIndex = distribution(randomGenerator);
+        Logger::debug("PlaybackWorker",
+                      QString("Picked random track: index %1 of %2").arg(randomIndex).arg(totalTracks));
+        return randomIndex;
+    }
+
+    void playTrackAt(int index) {
+        try {
+            if (!isBackendAvailable()) {
+                emitBackendUnavailableErrorOnce();
+                return;
+            }
+
+            if (!fileManager || index < 0 || index >= fileManager->getTrackCount()) {
+                emit playbackError("Invalid track index");
+                return;
+            }
+
+            const QString trackPath = fileManager->getTrackByPosition(index);
+            if (trackPath.isEmpty()) {
+                emit playbackError("Failed to retrieve track");
+                return;
+            }
+
+            if (!fileManager->setCurrentTrackPosition(index)) {
+                emit playbackError("Failed to update current track index");
+                return;
+            }
+
+            Logger::info("PlaybackWorker", QString("Playing track: %1").arg(trackPath));
+            audioEngine->setVolume(kFixedVolumeLevel);
+            audioEngine->play(trackPath.toStdString());
+
+            emit trackChangedWithContext(trackPath, index, fileManager->getTrackCount());
+            emit playbackSnapshotUpdated(audioEngine->isPlaying(),
+                                         audioEngine->getCurrentPosition(),
+                                         audioEngine->getDuration());
+
+            QTimer::singleShot(0, this, [this, trackPath, index]() {
+                if (!fileManager) {
+                    return;
+                }
+
+                if (fileManager->getCurrentTrackPosition() != index ||
+                    fileManager->getTrackByPosition(index) != trackPath) {
+                    return;
+                }
+
+                const AudioMetadata meta = fileManager->getMetadata(trackPath);
+                emit trackMetadataLoaded(meta);
+            });
+        } catch (const std::exception& e) {
+            Logger::error("PlaybackWorker", QString("Exception in playTrackAt: %1").arg(e.what()));
+            emit playbackError("Error playing track");
+        } catch (...) {
+            Logger::error("PlaybackWorker", "Unknown exception in playTrackAt");
+            emit playbackError("Unknown error playing track");
+        }
+    }
+
+    QVector<float> createSpectrumBins(float baseLevel, bool nowPlaying) {
+        QVector<float> bins(kSpectrumBinCount, 0.0f);
+        if (smoothedSpectrumBins.size() != kSpectrumBinCount) {
+            smoothedSpectrumBins.fill(0.0f, kSpectrumBinCount);
+        }
+
+        for (int i = 0; i < kSpectrumBinCount; ++i) {
+            const float pos = static_cast<float>(i) / static_cast<float>(kSpectrumBinCount - 1);
+            constexpr float PI = 3.14159265f;
+            const float eqProfile = 0.35f + 0.65f * std::sin(pos * PI);
+            const float jitter = 0.82f + 0.18f * std::generate_canonical<float, 10>(randomGenerator);
+            const float target = nowPlaying ? std::clamp(baseLevel * eqProfile * jitter, 0.0f, 1.0f) : 0.0f;
+            const float previous = smoothedSpectrumBins[i];
+            const float smoothing = target > previous ? 0.45f : 0.14f;
+            const float nextValue = previous + (target - previous) * smoothing;
+            bins[i] = std::clamp(nextValue, 0.0f, 1.0f);
+        }
+
+        smoothedSpectrumBins = bins;
+        return bins;
+    }
+
+signals:
+    void trackChangedWithContext(const QString& filePath, int position, int trackCount);
+    void trackMetadataLoaded(const AudioMetadata& meta);
+    void playbackError(const QString& error);
+    void spectrumLevelsUpdated(const QVector<float>& levels);
+    void playbackSnapshotUpdated(bool playing, double position, double duration);
+
+private:
+    std::unique_ptr<AudioEngine> audioEngine;
+    std::unique_ptr<FileManager> fileManager;
+    std::mt19937 randomGenerator;
+    bool backendUnavailableErrorShown = false;
+    QTimer* audioEventTimer = nullptr;
+    QVector<float> smoothedSpectrumBins;
+};
+
+PlaybackController::PlaybackController(QObject *parent)
+    : QObject(parent) {
+    qRegisterMetaType<AudioMetadata>("AudioMetadata");
+    qRegisterMetaType<QVector<float>>("QVector<float>");
+
+    workerThread = new QThread(this);
+    worker = new PlaybackWorker();
+    worker->moveToThread(workerThread);
+
+    connect(workerThread, &QThread::started, worker, &PlaybackWorker::onThreadStarted);
+    connect(workerThread, &QThread::finished, worker, &QObject::deleteLater);
+    connect(workerThread, &QThread::finished, this, &PlaybackController::onWorkerThreadFinished);
+
+    connect(this, &PlaybackController::requestLoadFolder,
+            worker, &PlaybackWorker::loadFolder, Qt::QueuedConnection);
+    connect(this, &PlaybackController::requestPlayNext,
+            worker, &PlaybackWorker::playNext, Qt::QueuedConnection);
+    connect(this, &PlaybackController::requestSeek,
+            worker, &PlaybackWorker::seek, Qt::QueuedConnection);
+    connect(this, &PlaybackController::requestPlay,
+            worker, &PlaybackWorker::play, Qt::QueuedConnection);
+    connect(this, &PlaybackController::requestPause,
+            worker, &PlaybackWorker::pause, Qt::QueuedConnection);
+    connect(this, &PlaybackController::requestShutdown,
+            worker, &PlaybackWorker::onShutdown, Qt::QueuedConnection);
+
+    connect(worker, &PlaybackWorker::trackChangedWithContext,
+            this, &PlaybackController::onWorkerTrackChanged, Qt::QueuedConnection);
+    connect(worker, &PlaybackWorker::trackMetadataLoaded,
+            this, &PlaybackController::onWorkerTrackMetadataLoaded, Qt::QueuedConnection);
+    connect(worker, &PlaybackWorker::playbackError,
+            this, &PlaybackController::onWorkerPlaybackError, Qt::QueuedConnection);
+    connect(worker, &PlaybackWorker::spectrumLevelsUpdated,
+            this, &PlaybackController::onWorkerSpectrumLevelsUpdated, Qt::QueuedConnection);
+    connect(worker, &PlaybackWorker::playbackSnapshotUpdated,
+            this, &PlaybackController::onWorkerPlaybackSnapshot, Qt::QueuedConnection);
+
+    workerThread->start();
+    Logger::info("PlaybackController", "PlaybackController initialized with dedicated playback thread");
 }
 
 PlaybackController::~PlaybackController() {
-    if (audioEventTimer) {
-        audioEventTimer->stop();
-    }
-
-    if (audioEngine) {
-        audioEngine->stop();
-    }
+    shutdown();
     Logger::info("PlaybackController", "PlaybackController destroyed");
 }
 
 void PlaybackController::loadFolder(const QString& folderPath) {
-    try {
-        Logger::info("PlaybackController", QString("Loading folder: %1").arg(folderPath));
-        
-        // Check if folder path is valid
-        QFileInfo folderInfo(folderPath);
-        if (!folderInfo.exists() || !folderInfo.isDir()) {
-            QString errorMsg = QString("Folder does not exist or is not accessible: %1").arg(folderPath);
-            Logger::error("PlaybackController", errorMsg);
-            emit playbackError(errorMsg);
-            return;
-        }
-        
-        // Check permissions
-        if (!folderInfo.isReadable()) {
-            QString errorMsg = QString("Permission denied: cannot read folder %1").arg(folderPath);
-            Logger::error("PlaybackController", errorMsg);
-            emit playbackError(errorMsg);
-            return;
-        }
-        
-        // Load folder into FileManager
-        if (!fileManager->loadFolder(folderPath)) {
-            QString errorMsg = QString("Failed to load folder: %1").arg(folderPath);
-            Logger::error("PlaybackController", errorMsg);
-            emit playbackError(errorMsg);
-            return;
-        }
-        
-        int trackCount = fileManager->getTrackCount();
-        Logger::info("PlaybackController", QString("Folder loaded with %1 tracks").arg(trackCount));
-        
-        if (trackCount == 0) {
-            QString errorMsg = "No audio files found in folder";
-            Logger::error("PlaybackController", errorMsg);
-            emit playbackError(errorMsg);
-            return;
-        }
-
-        if (!isBackendAvailable()) {
-            Logger::warn("PlaybackController", "Folder loaded but backend unavailable; skipping autoplay");
-            emitBackendUnavailableErrorOnce();
-            return;
-        }
-        
-        // Start with a random track (not index 0)
-        int randomIndex = pickRandomTrack();
-        playTrackAt(randomIndex);
-    } catch (const std::exception& e) {
-        QString errorMsg = QString("Exception while loading folder: %1").arg(e.what());
-        Logger::error("PlaybackController", errorMsg);
-        emit playbackError(errorMsg);
-    } catch (...) {
-        QString errorMsg = "Unknown exception while loading folder";
-        Logger::error("PlaybackController", errorMsg);
-        emit playbackError(errorMsg);
-    }
+    emit requestLoadFolder(folderPath);
 }
 
 void PlaybackController::playNext() {
-    try {
-        if (!isBackendAvailable()) {
-            emitBackendUnavailableErrorOnce();
-            return;
-        }
-
-        int trackCount = fileManager->getTrackCount();
-        if (trackCount == 0) {
-            Logger::warn("PlaybackController", "playNext called but track list is empty");
-            QString errorMsg = "No tracks available to play";
-            emit playbackError(errorMsg);
-            return;
-        }
-        
-        const int nextIndex = pickRandomTrack();
-        playTrackAt(nextIndex);
-    } catch (const std::exception& e) {
-        Logger::error("PlaybackController", QString("Exception in playNext: %1").arg(e.what()));
-    } catch (...) {
-        Logger::error("PlaybackController", "Unknown exception in playNext");
-    }
+    emit requestPlayNext();
 }
 
 void PlaybackController::seek(int position) {
@@ -145,265 +481,85 @@ void PlaybackController::seek(int position) {
         Logger::warn("PlaybackController", QString("Invalid seek position: %1").arg(position));
         return;
     }
-    audioEngine->seek(static_cast<double>(position));
+
+    emit requestSeek(position);
 }
 
 bool PlaybackController::isPlaying() const {
-    return audioEngine->isPlaying();
+    return playing;
 }
 
 void PlaybackController::play() {
-    try {
-        if (!isBackendAvailable()) {
-            emitBackendUnavailableErrorOnce();
-            return;
-        }
-
-        QString currentTrack = fileManager->getCurrentTrack();
-        if (currentTrack.isEmpty()) {
-            Logger::warn("PlaybackController", "No track to play");
-            emit playbackError("No track loaded");
-            return;
-        }
-
-        if (audioEngine->getPlaybackState() == AudioEngine::PlaybackState::Paused) {
-            audioEngine->setVolume(FIXED_VOLUME_LEVEL);
-            audioEngine->resume();
-            Logger::info("PlaybackController", "Playback resumed");
-            return;
-        }
-
-        audioEngine->setVolume(FIXED_VOLUME_LEVEL);
-        audioEngine->play(currentTrack.toStdString());
-        Logger::info("PlaybackController", QString("Playing: %1").arg(currentTrack));
-    } catch (const std::exception& e) {
-        Logger::error("PlaybackController", QString("Exception in play: %1").arg(e.what()));
-    } catch (...) {
-        Logger::error("PlaybackController", "Unknown exception in play");
-    }
+    emit requestPlay();
 }
 
 void PlaybackController::pause() {
-    audioEngine->pause();
-    Logger::info("PlaybackController", "Playback paused");
-}
-
-int PlaybackController::pickRandomTrack() {
-    int trackCount = fileManager->getTrackCount();
-    if (trackCount == 0) {
-        return -1;
-    }
-    
-    if (trackCount == 1) {
-        return 0;
-    }
-    
-    // Generate random index from 0 to trackCount-1
-    std::uniform_int_distribution<int> distribution(0, trackCount - 1);
-    int randomIndex = distribution(randomGenerator);
-    
-    Logger::debug("PlaybackController", 
-        QString("Picked random track: index %1 of %2").arg(randomIndex).arg(trackCount));
-    
-    return randomIndex;
-}
-
-void PlaybackController::playTrackAt(int index) {
-    try {
-        if (!isBackendAvailable()) {
-            emitBackendUnavailableErrorOnce();
-            return;
-        }
-
-        if (index < 0 || index >= fileManager->getTrackCount()) {
-            Logger::error("PlaybackController", QString("Invalid track index: %1").arg(index));
-            emit playbackError("Invalid track index");
-            return;
-        }
-        
-        QString trackPath = fileManager->getTrackByPosition(index);
-        if (trackPath.isEmpty()) {
-            Logger::error("PlaybackController", QString("Failed to get track at index %1").arg(index));
-            emit playbackError("Failed to retrieve track");
-            return;
-        }
-
-        if (!fileManager->setCurrentTrackPosition(index)) {
-            Logger::error("PlaybackController", QString("Failed to set current track index: %1").arg(index));
-            emit playbackError("Failed to update current track index");
-            return;
-        }
-        
-        // Start playing the track
-        Logger::info("PlaybackController", QString("Playing track: %1").arg(trackPath));
-        audioEngine->setVolume(FIXED_VOLUME_LEVEL);
-        audioEngine->play(trackPath.toStdString());
-        
-        // Emit signal for UI update
-        emit trackChanged(trackPath);
-
-        // Defer metadata I/O until after playback has started so transition latency
-        // is less likely to add audible silence between tracks.
-        QTimer::singleShot(0, this, [this, trackPath, index]() {
-            if (!fileManager) {
-                return;
-            }
-
-            if (fileManager->getCurrentTrackPosition() != index ||
-                fileManager->getTrackByPosition(index) != trackPath) {
-                return;
-            }
-
-            AudioMetadata meta = fileManager->getMetadata(trackPath);
-            emit trackMetadataLoaded(meta);
-        });
-    } catch (const std::exception& e) {
-        Logger::error("PlaybackController", QString("Exception in playTrackAt: %1").arg(e.what()));
-        emit playbackError("Error playing track");
-    } catch (...) {
-        Logger::error("PlaybackController", "Unknown exception in playTrackAt");
-        emit playbackError("Unknown error playing track");
-    }
+    emit requestPause();
 }
 
 double PlaybackController::getCurrentPosition() const {
-    if (!audioEngine) {
-        return 0.0;
-    }
-    return audioEngine->getCurrentPosition();
+    return currentPosition;
 }
 
 double PlaybackController::getDuration() const {
-    if (!audioEngine) {
-        return 0.0;
-    }
-    return audioEngine->getDuration();
+    return duration;
 }
 
 int PlaybackController::getCurrentTrackPosition() const {
-    if (!fileManager) {
-        return -1;
-    }
-    return fileManager->getCurrentTrackPosition();
+    return currentTrackPosition;
 }
 
 int PlaybackController::getTrackCount() const {
-    if (!fileManager) {
-        return 0;
-    }
-    return fileManager->getTrackCount();
+    return trackCount;
 }
 
-void PlaybackController::onAudioEventTick() {
-    if (!audioEngine) {
+void PlaybackController::shutdown() {
+    if (shutdownRequested) {
         return;
     }
 
-    audioEngine->processEvents();
-    const bool playing = audioEngine->isPlaying();
-    const float reactiveLevel = playing
-        ? static_cast<float>(std::clamp(audioEngine->getReactiveLevel(), 0.0, 1.0))
-        : 0.0f;
+    shutdownRequested = true;
 
-    emit spectrumLevelsUpdated(createSpectrumBins(reactiveLevel, playing));
-}
-
-void PlaybackController::onTrackFinished() {
-    Logger::info("PlaybackController", "Track finished");
-    // Automatically play next track
-    playNext();
-}
-
-void PlaybackController::onPlaybackError(AudioEngine::ErrorCode errorCode, const std::string& errorMsg) {
-    try {
-        const QString rawErrorMsg = QString::fromStdString(errorMsg);
-        const bool backendUnavailableError =
-            !isBackendAvailable() ||
-            errorCode == AudioEngine::ErrorCode::InitializationFailed ||
-            (errorCode == AudioEngine::ErrorCode::PlaybackFailed &&
-             rawErrorMsg.contains("AudioEngine not initialized", Qt::CaseInsensitive));
-
-        if (backendUnavailableError) {
-            Logger::error("PlaybackController", QString("Playback backend unavailable: %1").arg(rawErrorMsg));
-            emitBackendUnavailableErrorOnce();
-            return;
-        }
-
-        QString currentTrack = fileManager->getCurrentTrack();
-        QString error = QString("Playback error for '%1' (code %2): %3")
-            .arg(currentTrack)
-            .arg(static_cast<int>(errorCode))
-            .arg(rawErrorMsg);
-        
-        Logger::error("PlaybackController", error);
-        emit playbackError(error);
-        
-        // Mark the current file as problematic
-        if (!currentTrack.isEmpty()) {
-            fileManager->markFileAsProblematic(currentTrack);
-        }
-        
-        // Log error details by type
-        switch (errorCode) {
-            case AudioEngine::ErrorCode::FileNotFound:
-                Logger::warn("PlaybackController", QString("File not found or deleted: %1").arg(currentTrack));
-                break;
-            case AudioEngine::ErrorCode::CorruptedFile:
-                Logger::warn("PlaybackController", QString("File appears corrupted: %1").arg(currentTrack));
-                break;
-            case AudioEngine::ErrorCode::UnsupportedCodec:
-                Logger::warn("PlaybackController", QString("Unsupported codec in: %1").arg(currentTrack));
-                break;
-            case AudioEngine::ErrorCode::DeviceError:
-                Logger::error("PlaybackController", "Audio device error - playback device may be disconnected");
-                emit playbackError("Audio device error: output device may be disconnected");
-                return;  // Don't skip on device error
-            default:
-                Logger::warn("PlaybackController", QString("Playback failed for: %1").arg(currentTrack));
-                break;
-        }
-        
-        // Try to play next track on error (skip current problematic one)
-        playNext();
-    } catch (const std::exception& e) {
-        Logger::error("PlaybackController", QString("Exception in onPlaybackError: %1").arg(e.what()));
-    } catch (...) {
-        Logger::error("PlaybackController", "Unknown exception in onPlaybackError");
-    }
-}
-
-bool PlaybackController::isBackendAvailable() const {
-    return audioEngine && audioEngine->isInitialized();
-}
-
-void PlaybackController::emitBackendUnavailableErrorOnce() {
-    if (backendUnavailableErrorShown) {
+    if (!workerThread) {
         return;
     }
 
-    backendUnavailableErrorShown = true;
-    Logger::error("PlaybackController", BACKEND_UNAVAILABLE_MESSAGE);
-    emit playbackError(BACKEND_UNAVAILABLE_MESSAGE);
+    if (workerThread->isRunning()) {
+        emit requestShutdown();
+        if (!workerThread->wait(5000)) {
+            Logger::warn("PlaybackController", "Playback worker thread did not stop within timeout");
+            workerThread->quit();
+            workerThread->wait(5000);
+        }
+    }
 }
 
-QVector<float> PlaybackController::createSpectrumBins(float baseLevel, bool playing) {
-    QVector<float> bins(SPECTRUM_BIN_COUNT, 0.0f);
-    if (smoothedSpectrumBins.size() != SPECTRUM_BIN_COUNT) {
-        smoothedSpectrumBins.fill(0.0f, SPECTRUM_BIN_COUNT);
-    }
-
-    for (int i = 0; i < SPECTRUM_BIN_COUNT; ++i) {
-        const float pos = static_cast<float>(i) / static_cast<float>(SPECTRUM_BIN_COUNT - 1);
-        constexpr float PI = 3.14159265f;
-        const float eqProfile = 0.35f + 0.65f * std::sin(pos * PI);
-        const float jitter = 0.82f + 0.18f * std::generate_canonical<float, 10>(randomGenerator);
-        const float target = playing ? std::clamp(baseLevel * eqProfile * jitter, 0.0f, 1.0f) : 0.0f;
-        const float previous = smoothedSpectrumBins[i];
-        const float smoothing = target > previous ? 0.45f : 0.14f;
-        const float nextValue = previous + (target - previous) * smoothing;
-        bins[i] = std::clamp(nextValue, 0.0f, 1.0f);
-    }
-
-    smoothedSpectrumBins = bins;
-    return bins;
+void PlaybackController::onWorkerTrackChanged(const QString& filePath, int position, int totalTracks) {
+    currentTrackPosition = position;
+    trackCount = totalTracks;
+    emit trackChanged(filePath);
 }
+
+void PlaybackController::onWorkerTrackMetadataLoaded(const AudioMetadata& meta) {
+    emit trackMetadataLoaded(meta);
+}
+
+void PlaybackController::onWorkerPlaybackError(const QString& error) {
+    emit playbackError(error);
+}
+
+void PlaybackController::onWorkerSpectrumLevelsUpdated(const QVector<float>& levels) {
+    emit spectrumLevelsUpdated(levels);
+}
+
+void PlaybackController::onWorkerPlaybackSnapshot(bool nowPlaying, double position, double trackDuration) {
+    playing = nowPlaying;
+    currentPosition = position;
+    duration = trackDuration;
+}
+
+void PlaybackController::onWorkerThreadFinished() {
+    worker = nullptr;
+}
+
+#include "playbackcontroller.moc"
