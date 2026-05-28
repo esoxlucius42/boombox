@@ -24,23 +24,23 @@ int main() {
     std::cout << "========================\n\n";
 
     std::cout << "Test 1: Creating AudioEngine instance...\n";
-    AudioEngine engine;
+    auto engine = createAudioEngine();
     std::cout << "✓ AudioEngine created successfully\n\n";
 
     std::cout << "Test 2: Checking playback state...\n";
-    bool playing = engine.isPlaying();
+    bool playing = engine->isPlaying();
     std::cout << "  Initial state: " << (playing ? "Playing" : "Not playing") << "\n";
     std::cout << "✓ Playback state check passed\n\n";
 
     std::cout << "Test 3: Getting property values...\n";
-    std::cout << "  Current position: " << engine.getCurrentPosition() << " sec\n";
-    std::cout << "  Duration: " << engine.getDuration() << " sec\n";
-    std::cout << "  Volume: " << engine.getVolume() << "%\n";
+    std::cout << "  Current position: " << engine->getCurrentPosition() << " sec\n";
+    std::cout << "  Duration: " << engine->getDuration() << " sec\n";
+    std::cout << "  Volume: " << engine->getVolume() << "%\n";
     std::cout << "✓ Property retrieval passed\n\n";
 
     std::cout << "Test 4: Testing callbacks...\n";
-    engine.setOnTrackFinished([]() { std::cout << "  Track finished!\n"; });
-    engine.setOnError([](AudioEngine::ErrorCode c, const std::string& m) { 
+    engine->setOnTrackFinished([]() { std::cout << "  Track finished!\n"; });
+    engine->setOnError([](AudioEngine::ErrorCode c, const std::string& m) { 
         std::cout << "  Error: " << m << "\n"; 
     });
     std::cout << "✓ Callbacks registered\n\n";

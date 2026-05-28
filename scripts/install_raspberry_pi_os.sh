@@ -53,6 +53,11 @@ apt install -y \
     pkg-config \
     qt6-base-dev \
     qt6-base-dev-tools \
+    libgstreamer1.0-dev \
+    gstreamer1.0-tools \
+    gstreamer1.0-plugins-base \
+    gstreamer1.0-plugins-good \
+    gstreamer1.0-libav \
     libmpv-dev \
     desktop-file-utils
 
@@ -71,7 +76,9 @@ if [[ -f "${REPO_ROOT}/build/CMakeCache.txt" ]]; then
     echo "  Removing stale build directory..."
     rm -rf "${REPO_ROOT}/build"
 fi
-run_as_build_user cmake -S "${REPO_ROOT}" -B "${REPO_ROOT}/build" -DCMAKE_BUILD_TYPE=Release
+run_as_build_user cmake -S "${REPO_ROOT}" -B "${REPO_ROOT}/build" \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DBOOMBOX_AUDIO_BACKEND=auto
 
 echo "[3/6] Building boombox..."
 # Limit parallel jobs to avoid out-of-memory failures on Raspberry Pi.

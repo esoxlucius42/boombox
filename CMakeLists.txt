@@ -18,10 +18,14 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 # Find Qt6 components
 find_package(Qt6 COMPONENTS Core Gui Widgets REQUIRED)
 
+# Select audio backend
+set(BOOMBOX_AUDIO_BACKEND "auto" CACHE STRING "Audio backend preference: auto, gstreamer, mpv, stub")
+set_property(CACHE BOOMBOX_AUDIO_BACKEND PROPERTY STRINGS auto gstreamer mpv stub)
+
 # Find libmpv using pkg-config (optional)
 find_package(PkgConfig QUIET)
 set(MPV_LINKABLE FALSE)
-set(MPV_LINK_MODE "stub")
+set(MPV_LINK_MODE "unavailable")
 set(MPV_HEADER_FOUND FALSE)
 if(PkgConfig_FOUND)
     pkg_check_modules(MPV QUIET mpv)
@@ -83,16 +87,69 @@ if(NOT MPV_LINKABLE)
     endif()
 endif()
 
-if(NOT MPV_LINKABLE)
-    message(WARNING "libmpv not found or not linkable. Building with stub backend (no real audio playback).")
+# Find GStreamer using pkg-config (optional)
+set(GSTREAMER_AVAILABLE FALSE)
+if(PkgConfig_FOUND)
+    pkg_check_modules(GSTREAMER QUIET gstreamer-1.0)
+    if(GSTREAMER_FOUND AND GSTREAMER_LIBRARIES)
+        set(GSTREAMER_AVAILABLE TRUE)
+        message(STATUS "Found GStreamer via pkg-config")
+    endif()
+endif()
+
+string(TOLOWER "${BOOMBOX_AUDIO_BACKEND}" BOOMBOX_AUDIO_BACKEND_NORMALIZED)
+
+set(SELECTED_AUDIO_BACKEND "")
+if(BOOMBOX_AUDIO_BACKEND_NORMALIZED STREQUAL "auto")
+    if(GSTREAMER_AVAILABLE)
+        set(SELECTED_AUDIO_BACKEND "gstreamer")
+    elseif(MPV_LINKABLE)
+        set(SELECTED_AUDIO_BACKEND "mpv")
+    else()
+        set(SELECTED_AUDIO_BACKEND "stub")
+    endif()
+elseif(BOOMBOX_AUDIO_BACKEND_NORMALIZED STREQUAL "gstreamer")
+    if(GSTREAMER_AVAILABLE)
+        set(SELECTED_AUDIO_BACKEND "gstreamer")
+    elseif(MPV_LINKABLE)
+        message(WARNING "Requested GStreamer backend, but GStreamer development files were not found. Falling back to libmpv.")
+        set(SELECTED_AUDIO_BACKEND "mpv")
+    else()
+        message(WARNING "Requested GStreamer backend, but no real playback backend is available. Falling back to stub.")
+        set(SELECTED_AUDIO_BACKEND "stub")
+    endif()
+elseif(BOOMBOX_AUDIO_BACKEND_NORMALIZED STREQUAL "mpv")
+    if(MPV_LINKABLE)
+        set(SELECTED_AUDIO_BACKEND "mpv")
+    elseif(GSTREAMER_AVAILABLE)
+        message(WARNING "Requested libmpv backend, but libmpv is not available. Falling back to GStreamer.")
+        set(SELECTED_AUDIO_BACKEND "gstreamer")
+    else()
+        message(WARNING "Requested libmpv backend, but no real playback backend is available. Falling back to stub.")
+        set(SELECTED_AUDIO_BACKEND "stub")
+    endif()
+elseif(BOOMBOX_AUDIO_BACKEND_NORMALIZED STREQUAL "stub")
+    set(SELECTED_AUDIO_BACKEND "stub")
 else()
+    message(FATAL_ERROR "Invalid BOOMBOX_AUDIO_BACKEND='${BOOMBOX_AUDIO_BACKEND}'. Use auto, gstreamer, mpv, or stub.")
+endif()
+
+if(MPV_LINKABLE)
     message(STATUS "Using libmpv backend detection mode: ${MPV_LINK_MODE}")
+endif()
+if(SELECTED_AUDIO_BACKEND STREQUAL "stub")
+    message(WARNING "Building with stub backend (no real audio playback).")
+else()
+    message(STATUS "Selected audio backend: ${SELECTED_AUDIO_BACKEND}")
 endif()
 
 # Include directories
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-if(MPV_LINKABLE AND MPV_INCLUDE_DIRS)
+if(SELECTED_AUDIO_BACKEND STREQUAL "mpv" AND MPV_INCLUDE_DIRS)
     include_directories(${MPV_INCLUDE_DIRS})
+endif()
+if(SELECTED_AUDIO_BACKEND STREQUAL "gstreamer" AND GSTREAMER_INCLUDE_DIRS)
+    include_directories(${GSTREAMER_INCLUDE_DIRS})
 endif()
 
 # Source files
@@ -110,14 +167,20 @@ set(SOURCES
     src/widgets/albumart.cpp
 )
 
-# Use libmpv stub only when real libmpv is not available
-if(NOT MPV_LINKABLE)
-    list(APPEND SOURCES src/mpv_stub.cpp)
+if(SELECTED_AUDIO_BACKEND STREQUAL "gstreamer")
+    list(APPEND SOURCES src/gstaudioengine.cpp)
+elseif(SELECTED_AUDIO_BACKEND STREQUAL "mpv")
+    list(APPEND SOURCES src/mpvaudioengine.cpp)
+else()
+    list(APPEND SOURCES src/stubaudioengine.cpp)
 endif()
 
 # Header files (needed for MOC)
 set(HEADERS
+    include/audioengine.h
+    include/gstaudioengine.h
     include/mainwindow.h
+    include/mpvaudioengine.h
     include/playbackcontroller.h
     include/widgets/trackinfo.h
     include/widgets/seekbar.h
@@ -126,12 +189,8 @@ set(HEADERS
     include/filemanager.h
     include/logger.h
     include/statemanager.h
+    include/stubaudioengine.h
 )
-
-# Add audioengine header only if MPV is found
-if(MPV_LINKABLE)
-    list(APPEND HEADERS include/audioengine.h)
-endif()
 
 # Resource files
 set(RESOURCES
@@ -160,8 +219,20 @@ target_link_libraries(test_logger_exe
     Qt6::Widgets
 )
 
-# Link MPV if found
-if(MPV_LINKABLE)
+# Link selected audio backend
+if(SELECTED_AUDIO_BACKEND STREQUAL "gstreamer")
+    target_link_libraries(boombox ${GSTREAMER_LIBRARIES})
+    if(GSTREAMER_LIBRARY_DIRS)
+        target_link_directories(boombox PRIVATE ${GSTREAMER_LIBRARY_DIRS})
+    endif()
+    if(GSTREAMER_CFLAGS_OTHER)
+        target_compile_options(boombox PRIVATE ${GSTREAMER_CFLAGS_OTHER})
+    endif()
+    if(GSTREAMER_LDFLAGS_OTHER)
+        target_link_options(boombox PRIVATE ${GSTREAMER_LDFLAGS_OTHER})
+    endif()
+    target_compile_definitions(boombox PRIVATE BOOMBOX_AUDIO_BACKEND_GSTREAMER=1)
+elseif(SELECTED_AUDIO_BACKEND STREQUAL "mpv")
     target_link_libraries(boombox ${MPV_LIBRARIES})
     if(MPV_LIBRARY_DIRS)
         target_link_directories(boombox PRIVATE ${MPV_LIBRARY_DIRS})
@@ -172,8 +243,9 @@ if(MPV_LINKABLE)
     if(NOT MPV_INCLUDE_DIRS)
         target_compile_definitions(boombox PRIVATE BOOMBOX_USING_MPV_COMPAT_HEADER=1)
     endif()
+    target_compile_definitions(boombox PRIVATE BOOMBOX_AUDIO_BACKEND_MPV=1)
 else()
-    target_compile_definitions(boombox PRIVATE BOOMBOX_USING_MPV_STUB=1)
+    target_compile_definitions(boombox PRIVATE BOOMBOX_AUDIO_BACKEND_STUB=1)
 endif()
 
 # Test executable for error handling

@@ -21,6 +21,11 @@ sudo apt install -y \
   cmake \
   pkg-config \
   qt6-base-dev \
+  libgstreamer1.0-dev \
+  gstreamer1.0-tools \
+  gstreamer1.0-plugins-base \
+  gstreamer1.0-plugins-good \
+  gstreamer1.0-libav \
   libmpv2 \
   libmpv-dev
 ```
@@ -40,10 +45,11 @@ sudo apt install -y \
 ```bash
 cmake --version
 pkg-config --modversion Qt6Core
+pkg-config --modversion gstreamer-1.0
 pkg-config --modversion mpv
 ```
 
-If `pkg-config --modversion mpv` fails, the project can still use a direct `libmpv` runtime-library lookup during CMake configure. If no usable libmpv runtime is found, Boombox builds with a stub backend (UI works, playback unavailable).
+If `pkg-config --modversion gstreamer-1.0` succeeds, Boombox can build the GStreamer backend. If GStreamer development files are unavailable, the build falls back to libmpv when possible. If neither real backend is usable, Boombox builds with a stub backend (UI works, playback unavailable).
 
 ## 3. Get source code
 
@@ -71,7 +77,7 @@ sudo ./scripts/update_raspberry_pi_os.sh
 Configure:
 
 ```bash
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBOOMBOX_AUDIO_BACKEND=auto
 ```
 
 Build:

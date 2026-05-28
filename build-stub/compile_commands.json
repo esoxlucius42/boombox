@@ -1,0 +1,128 @@
+[
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o -c /var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/mocs_compilation.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/mocs_compilation.cpp",
+  "output": "CMakeFiles/boombox.dir/boombox_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/src/main.cpp.o -c /var/home/esox/dev/cpp/boombox/src/main.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/main.cpp",
+  "output": "CMakeFiles/boombox.dir/src/main.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/src/mainwindow.cpp.o -c /var/home/esox/dev/cpp/boombox/src/mainwindow.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/mainwindow.cpp",
+  "output": "CMakeFiles/boombox.dir/src/mainwindow.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/src/audioengine.cpp.o -c /var/home/esox/dev/cpp/boombox/src/audioengine.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/audioengine.cpp",
+  "output": "CMakeFiles/boombox.dir/src/audioengine.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/src/filemanager.cpp.o -c /var/home/esox/dev/cpp/boombox/src/filemanager.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/filemanager.cpp",
+  "output": "CMakeFiles/boombox.dir/src/filemanager.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o -c /var/home/esox/dev/cpp/boombox/src/playbackcontroller.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/playbackcontroller.cpp",
+  "output": "CMakeFiles/boombox.dir/src/playbackcontroller.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/src/logger.cpp.o -c /var/home/esox/dev/cpp/boombox/src/logger.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/logger.cpp",
+  "output": "CMakeFiles/boombox.dir/src/logger.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/src/statemanager.cpp.o -c /var/home/esox/dev/cpp/boombox/src/statemanager.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/statemanager.cpp",
+  "output": "CMakeFiles/boombox.dir/src/statemanager.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o -c /var/home/esox/dev/cpp/boombox/src/widgets/trackinfo.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/widgets/trackinfo.cpp",
+  "output": "CMakeFiles/boombox.dir/src/widgets/trackinfo.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o -c /var/home/esox/dev/cpp/boombox/src/widgets/seekbar.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/widgets/seekbar.cpp",
+  "output": "CMakeFiles/boombox.dir/src/widgets/seekbar.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/src/widgets/controls.cpp.o -c /var/home/esox/dev/cpp/boombox/src/widgets/controls.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/widgets/controls.cpp",
+  "output": "CMakeFiles/boombox.dir/src/widgets/controls.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o -c /var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/widgets/albumart.cpp",
+  "output": "CMakeFiles/boombox.dir/src/widgets/albumart.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/src/stubaudioengine.cpp.o -c /var/home/esox/dev/cpp/boombox/src/stubaudioengine.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/stubaudioengine.cpp",
+  "output": "CMakeFiles/boombox.dir/src/stubaudioengine.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DBOOMBOX_AUDIO_BACKEND_STUB=1 -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -Wall -Wextra -o CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o -c /var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/build-stub/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp",
+  "output": "CMakeFiles/boombox.dir/boombox_autogen/3YJK5W5UP7/qrc_resources.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/test_logger_exe_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -o CMakeFiles/test_logger_exe.dir/test_logger_exe_autogen/mocs_compilation.cpp.o -c /var/home/esox/dev/cpp/boombox/build-stub/test_logger_exe_autogen/mocs_compilation.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/build-stub/test_logger_exe_autogen/mocs_compilation.cpp",
+  "output": "CMakeFiles/test_logger_exe.dir/test_logger_exe_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/test_logger_exe_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -o CMakeFiles/test_logger_exe.dir/src/main_test.cpp.o -c /var/home/esox/dev/cpp/boombox/src/main_test.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/main_test.cpp",
+  "output": "CMakeFiles/test_logger_exe.dir/src/main_test.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/test_logger_exe_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -o CMakeFiles/test_logger_exe.dir/src/logger.cpp.o -c /var/home/esox/dev/cpp/boombox/src/logger.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/logger.cpp",
+  "output": "CMakeFiles/test_logger_exe.dir/src/logger.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/test_error_handling_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -o CMakeFiles/test_error_handling.dir/test_error_handling_autogen/mocs_compilation.cpp.o -c /var/home/esox/dev/cpp/boombox/build-stub/test_error_handling_autogen/mocs_compilation.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/build-stub/test_error_handling_autogen/mocs_compilation.cpp",
+  "output": "CMakeFiles/test_error_handling.dir/test_error_handling_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/test_error_handling_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -o CMakeFiles/test_error_handling.dir/test_error_handling.cpp.o -c /var/home/esox/dev/cpp/boombox/test_error_handling.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/test_error_handling.cpp",
+  "output": "CMakeFiles/test_error_handling.dir/test_error_handling.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/test_error_handling_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -o CMakeFiles/test_error_handling.dir/src/filemanager.cpp.o -c /var/home/esox/dev/cpp/boombox/src/filemanager.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/filemanager.cpp",
+  "output": "CMakeFiles/test_error_handling.dir/src/filemanager.cpp.o"
+},
+{
+  "directory": "/var/home/esox/dev/cpp/boombox/build-stub",
+  "command": "/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/var/home/esox/dev/cpp/boombox/build-stub/test_error_handling_autogen/include -I/var/home/esox/dev/cpp/boombox/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -std=gnu++17 -o CMakeFiles/test_error_handling.dir/src/logger.cpp.o -c /var/home/esox/dev/cpp/boombox/src/logger.cpp",
+  "file": "/var/home/esox/dev/cpp/boombox/src/logger.cpp",
+  "output": "CMakeFiles/test_error_handling.dir/src/logger.cpp.o"
+}
+]

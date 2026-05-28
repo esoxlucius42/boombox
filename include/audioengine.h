@@ -1,22 +1,17 @@
 #pragma once
 
-#include <string>
 #include <functional>
 #include <memory>
-#include <chrono>
-#include "mpv_client_compat.h"
+#include <string>
 
 /**
- * @brief AudioEngine - Wraps libmpv C API for audio playback
- * 
- * Provides a simple interface for audio playback control with event callbacks.
- * Manages the lifetime of the mpv context and handles cleanup.
+ * @brief AudioEngine - backend-agnostic audio playback contract
+ *
+ * Concrete backends provide the actual playback implementation (for example
+ * GStreamer, libmpv, or a no-op stub).
  */
 class AudioEngine {
 public:
-    /**
-     * @brief Error codes for playback errors
-     */
     enum class ErrorCode {
         NoError = 0,
         InitializationFailed = 1,
@@ -28,222 +23,46 @@ public:
         UnknownError = 7
     };
 
-    /**
-     * @brief Playback state
-     */
     enum class PlaybackState {
         Stopped = 0,
         Playing = 1,
         Paused = 2
     };
 
-    // Callback types
     using TrackFinishedCallback = std::function<void()>;
     using FileLoadedCallback = std::function<void()>;
     using ErrorCallback = std::function<void(ErrorCode, const std::string&)>;
 
-    /**
-     * @brief Construct a new AudioEngine object
-     */
-    AudioEngine();
+    virtual ~AudioEngine() = default;
 
-    /**
-     * @brief Destroy the AudioEngine object
-     * Cleans up mpv context and releases all resources
-     */
-    ~AudioEngine();
-
-    // Prevent copying
     AudioEngine(const AudioEngine&) = delete;
     AudioEngine& operator=(const AudioEngine&) = delete;
+    AudioEngine(AudioEngine&&) = delete;
+    AudioEngine& operator=(AudioEngine&&) = delete;
 
-    // Allow moving
-    AudioEngine(AudioEngine&&) noexcept;
-    AudioEngine& operator=(AudioEngine&&) noexcept;
+    virtual void play(const std::string& filePath) = 0;
+    virtual void pause() = 0;
+    virtual void resume() = 0;
+    virtual void stop() = 0;
+    virtual void next() = 0;
+    virtual void previous() = 0;
+    virtual void seek(double positionSeconds) = 0;
+    virtual void setVolume(int level) = 0;
+    virtual int getVolume() const = 0;
+    virtual double getCurrentPosition() const = 0;
+    virtual double getDuration() const = 0;
+    virtual bool isPlaying() const = 0;
+    virtual bool isInitialized() const = 0;
+    virtual PlaybackState getPlaybackState() const = 0;
+    virtual void setOnTrackFinished(TrackFinishedCallback callback) = 0;
+    virtual void setOnFileLoaded(FileLoadedCallback callback) = 0;
+    virtual void setOnError(ErrorCallback callback) = 0;
+    virtual void processEvents() = 0;
 
-    /**
-     * @brief Start playing a file
-     * @param filePath Path to audio file to play
-     */
-    void play(const std::string& filePath);
-
-    /**
-     * @brief Pause playback
-     */
-    void pause();
-
-    /**
-     * @brief Resume from pause
-     */
-    void resume();
-
-    /**
-     * @brief Stop playback and cleanup
-     */
-    void stop();
-
-    /**
-     * @brief Skip to next track
-     * Triggers onTrackFinished callback
-     */
-    void next();
-
-    /**
-     * @brief Go to previous track
-     */
-    void previous();
-
-    /**
-     * @brief Seek to position in playback
-     * @param positionSeconds Position in seconds
-     */
-    void seek(double positionSeconds);
-
-    /**
-     * @brief Set playback volume
-     * @param level Volume level 0-100
-     */
-    void setVolume(int level);
-
-    /**
-     * @brief Get current volume level
-     * @return Volume level 0-100
-     */
-    int getVolume() const;
-
-    /**
-     * @brief Get current playback position
-     * @return Position in seconds
-     */
-    double getCurrentPosition() const;
-
-    /**
-     * @brief Get duration of current track
-     * @return Duration in seconds
-     */
-    double getDuration() const;
-
-    /**
-     * @brief Check if currently playing
-     * @return true if playing, false otherwise
-     */
-    bool isPlaying() const;
-
-    /**
-     * @brief Check if audio backend is initialized and usable
-     * @return true if mpv handle is available
-     */
-    bool isInitialized() const;
-
-    /**
-     * @brief Get current playback state
-     * @return Current PlaybackState
-     */
-    PlaybackState getPlaybackState() const;
-
-    /**
-     * @brief Set callback for track finished event
-     * @param callback Function to call when track finishes
-     */
-    void setOnTrackFinished(TrackFinishedCallback callback);
-
-    /**
-     * @brief Set callback for file-loaded event
-     * @param callback Function to call when mpv reports the file is loaded
-     */
-    void setOnFileLoaded(FileLoadedCallback callback);
-
-    /**
-     * @brief Set callback for error event
-     * @param callback Function to call on playback error
-     */
-    void setOnError(ErrorCallback callback);
-
-    /**
-     * @brief Process pending events from mpv
-     * Should be called periodically (e.g., from Qt event loop)
-     */
-    void processEvents();
-
-private:
-    mpv_handle* mHandle;
-    PlaybackState mState;
-    TrackFinishedCallback mOnTrackFinished;
-    FileLoadedCallback mOnFileLoaded;
-    ErrorCallback mOnError;
-
-    /**
-     * @brief Initialize the mpv context
-     */
-    void initializeMpv();
-
-    /**
-     * @brief Cleanup the mpv context
-     */
-    void cleanupMpv();
-
-    /**
-     * @brief Send a command to mpv
-     * @param args Command arguments (null-terminated array of strings)
-     */
-    int sendCommand(const char** args);
-
-    /**
-     * @brief Get a property from mpv
-     * @param property Property name
-     * @param type Property type format
-     * @return Property value (caller must cast appropriately)
-     */
-    void* getProperty(const char* property, const char* type);
-
-    /**
-     * @brief Set a property in mpv
-     * @param property Property name
-     * @param type Property type format
-     * @param value Property value
-     */
-    void setProperty(const char* property, const char* type, void* value);
-
-    /**
-     * @brief Handle mpv events
-     * @param event Event from mpv
-     */
-    void handleEvent(const mpv_event* event);
-
-    /**
-     * @brief Poll and log lightweight playback diagnostics while a track is running
-     */
-    void samplePlaybackDiagnostics();
-
-    /**
-     * @brief Log a snapshot of mpv state when playback stalls or reconfigures
-     */
-    void logPlaybackSnapshot(const char* reason);
-
-    /**
-     * @brief Reset position-progress tracking used for stall detection
-     */
-    void resetPlaybackProgressTracking();
-
-    /**
-     * @brief Convert mpv error code to our ErrorCode enum
-     * @param mpvError MPV error code
-     * @return Corresponding ErrorCode
-     */
-    static ErrorCode mapMpvError(int mpvError);
-
-    bool mHasLastObservedPause = false;
-    bool mLastObservedPause = false;
-    bool mHasLastObservedCoreIdle = false;
-    bool mLastObservedCoreIdle = false;
-    bool mHasLastObservedPausedForCache = false;
-    bool mLastObservedPausedForCache = false;
-    double mLastObservedCacheBufferingState = -1.0;
-    double mLastObservedDemuxerCacheDuration = -1.0;
-    std::string mLastObservedAudioDevice;
-    bool mHasLastPlaybackPosition = false;
-    double mLastPlaybackPosition = 0.0;
-    bool mPlaybackStallLogged = false;
-    std::chrono::steady_clock::time_point mLastPlaybackAdvanceAt{};
-    std::chrono::steady_clock::time_point mLastDiagnosticSampleAt{};
+protected:
+    AudioEngine() = default;
 };
+
+std::unique_ptr<AudioEngine> createAudioEngine();
+void initializeAudioBackendRuntime();
+const char* selectedAudioBackendName();

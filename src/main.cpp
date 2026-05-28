@@ -5,6 +5,7 @@
 #include <QIcon>
 #include <locale.h>
 #include <memory>
+#include "audioengine.h"
 #include "logger.h"
 #include "filemanager.h"
 #include "statemanager.h"
@@ -13,8 +14,10 @@
 
 int main(int argc, char *argv[])
 {
-    // libmpv requires C numeric locale for parsing floats/options.
+    // Audio backends expect C numeric locale for parsing floats/options.
     setlocale(LC_NUMERIC, "C");
+
+    initializeAudioBackendRuntime();
 
     QApplication app(argc, argv);
     app.setWindowIcon(QIcon(":/icon.jpg"));
@@ -29,12 +32,14 @@ int main(int argc, char *argv[])
     StateManager::init();
     Logger::info("Main", "StateManager initialized");
 
-    // Some frameworks can reset locale during startup; enforce again before mpv init.
+    // Some frameworks can reset locale during startup; enforce again before backend init.
     if (!setlocale(LC_NUMERIC, "C")) {
         Logger::warn("Main", "Failed to enforce LC_NUMERIC=C before audio engine initialization");
     }
 
-    // Create PlaybackController - always created (uses stub if AudioEngine not available)
+    Logger::info("Main", QString("Selected audio backend: %1").arg(selectedAudioBackendName()));
+
+    // Create PlaybackController - always created (uses stub backend if playback is unavailable)
     auto playbackController = std::make_unique<PlaybackController>();
     Logger::info("Main", "PlaybackController initialized");
 

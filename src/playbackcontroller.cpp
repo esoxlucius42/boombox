@@ -58,7 +58,7 @@ public slots:
             backendUnavailableErrorShown = false;
 
             fileManager = std::make_unique<FileManager>();
-            audioEngine = std::make_unique<AudioEngine>();
+            audioEngine = createAudioEngine();
 
             audioEngine->setOnTrackFinished([this]() {
                 onTrackFinished();
