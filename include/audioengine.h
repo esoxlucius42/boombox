@@ -3,6 +3,7 @@
 #include <string>
 #include <functional>
 #include <memory>
+#include <chrono>
 #include "mpv_client_compat.h"
 
 /**
@@ -208,9 +209,39 @@ private:
     void handleEvent(const mpv_event* event);
 
     /**
+     * @brief Poll and log lightweight playback diagnostics while a track is running
+     */
+    void samplePlaybackDiagnostics();
+
+    /**
+     * @brief Log a snapshot of mpv state when playback stalls or reconfigures
+     */
+    void logPlaybackSnapshot(const char* reason);
+
+    /**
+     * @brief Reset position-progress tracking used for stall detection
+     */
+    void resetPlaybackProgressTracking();
+
+    /**
      * @brief Convert mpv error code to our ErrorCode enum
      * @param mpvError MPV error code
      * @return Corresponding ErrorCode
      */
     static ErrorCode mapMpvError(int mpvError);
+
+    bool mHasLastObservedPause = false;
+    bool mLastObservedPause = false;
+    bool mHasLastObservedCoreIdle = false;
+    bool mLastObservedCoreIdle = false;
+    bool mHasLastObservedPausedForCache = false;
+    bool mLastObservedPausedForCache = false;
+    double mLastObservedCacheBufferingState = -1.0;
+    double mLastObservedDemuxerCacheDuration = -1.0;
+    std::string mLastObservedAudioDevice;
+    bool mHasLastPlaybackPosition = false;
+    double mLastPlaybackPosition = 0.0;
+    bool mPlaybackStallLogged = false;
+    std::chrono::steady_clock::time_point mLastPlaybackAdvanceAt{};
+    std::chrono::steady_clock::time_point mLastDiagnosticSampleAt{};
 };

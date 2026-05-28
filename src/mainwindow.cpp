@@ -202,9 +202,13 @@ void MainWindow::onTrackChanged(const QString& filePath)
     
     // Store current track path for album art extraction
     currentTrackPath = filePath;
-    
-    // Extract and display album art
-    albumArtWidget->extractAndDisplayAlbumArt(filePath);
+    albumArtWidget->setPlaceholder();
+    QTimer::singleShot(0, this, [this, filePath]() {
+        if (currentTrackPath != filePath) {
+            return;
+        }
+        albumArtWidget->extractAndDisplayAlbumArt(filePath);
+    });
 
     const int trackPosition = playbackController ? playbackController->getCurrentTrackPosition() : -1;
     const int trackCount = playbackController ? playbackController->getTrackCount() : 0;

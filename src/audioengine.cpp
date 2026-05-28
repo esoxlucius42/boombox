@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <cmath>
 #include <cstdio>
+#include <chrono>
+#include <sstream>
 
 // Helper function to log messages
 static void logMessage(const std::string& level, const std::string& message) {
@@ -73,10 +75,58 @@ static bool readDoubleProperty(mpv_handle* handle, const char* property, double&
     return ok;
 }
 
+static bool readFlagProperty(mpv_handle* handle, const char* property, bool& value) {
+    int flag = 0;
+    if (mpv_get_property(handle, property, MPV_FORMAT_FLAG, &flag) >= 0) {
+        value = flag != 0;
+        return true;
+    }
+
+    int64_t intValue = 0;
+    if (mpv_get_property(handle, property, MPV_FORMAT_INT64, &intValue) >= 0) {
+        value = intValue != 0;
+        return true;
+    }
+
+    std::string text;
+    if (!readStringProperty(handle, property, text)) {
+        return false;
+    }
+
+    std::transform(text.begin(), text.end(), text.begin(), [](unsigned char c) {
+        return static_cast<char>(std::tolower(c));
+    });
+    if (text == "yes" || text == "true" || text == "1") {
+        value = true;
+        return true;
+    }
+    if (text == "no" || text == "false" || text == "0") {
+        value = false;
+        return true;
+    }
+
+    return false;
+}
+
+static std::string boolToText(bool value) {
+    return value ? "yes" : "no";
+}
+
+static void setOptionWithLog(mpv_handle* handle, const char* option, const char* value) {
+    const int result = mpv_set_option_string(handle, option, value);
+    if (result < 0) {
+        logMessage("WARN",
+                   std::string("Failed to set mpv option '") + option + "' to '" + value +
+                       "': " + mpv_error_string(result));
+    }
+}
+
 namespace {
 constexpr int kMpvEventPause = 19;
 constexpr int kMpvEventUnpause = 20;
 constexpr int kMpvEventError = 21;
+constexpr auto kDiagnosticSampleInterval = std::chrono::milliseconds(1000);
+constexpr auto kPlaybackStallThreshold = std::chrono::milliseconds(2000);
 
 struct MpvEventErrorPayload {
     int error;
@@ -129,9 +179,13 @@ void AudioEngine::initializeMpv() {
     }
 
     // Set options
-    mpv_set_option_string(mHandle, "audio-only", "yes");
-    mpv_set_option_string(mHandle, "vo", "null");
-    mpv_set_option_string(mHandle, "af", "@bbxstats:lavfi=[astats=metadata=1:reset=1:length=0.05]");
+    setOptionWithLog(mHandle, "audio-only", "yes");
+    setOptionWithLog(mHandle, "vo", "null");
+    setOptionWithLog(mHandle, "cache", "yes");
+    setOptionWithLog(mHandle, "demuxer-max-bytes", "67108864");
+    setOptionWithLog(mHandle, "demuxer-max-back-bytes", "16777216");
+    setOptionWithLog(mHandle, "audio-buffer", "0.40");
+    setOptionWithLog(mHandle, "af", "@bbxstats:lavfi=[astats=metadata=1:reset=1:length=0.05]");
 
     // Initialize the context
     int result = mpv_initialize(mHandle);
@@ -208,6 +262,7 @@ void AudioEngine::play(const std::string& filePath) {
         }
 
         mState = PlaybackState::Playing;
+        resetPlaybackProgressTracking();
         logMessage("INFO", "Playing: " + filePath);
     } catch (const std::exception& e) {
         logMessage("ERROR", "Exception in play(): " + std::string(e.what()));
@@ -266,6 +321,7 @@ void AudioEngine::resume() {
         }
 
         mState = PlaybackState::Playing;
+        resetPlaybackProgressTracking();
         logMessage("INFO", "Playback resumed");
     } catch (const std::exception& e) {
         logMessage("ERROR", "Exception in resume(): " + std::string(e.what()));
@@ -283,6 +339,7 @@ void AudioEngine::stop() {
     mpv_command(mHandle, args);
 
     mState = PlaybackState::Stopped;
+    resetPlaybackProgressTracking();
     logMessage("INFO", "Playback stopped");
 }
 
@@ -324,6 +381,7 @@ void AudioEngine::seek(double positionSeconds) {
         if (result < 0) {
             logMessage("WARN", "Seek failed: " + std::string(mpv_error_string(result)));
         } else {
+            resetPlaybackProgressTracking();
             logMessage("INFO", "Seeked to: " + posStr + "s");
         }
     } catch (const std::exception& e) {
@@ -486,6 +544,8 @@ void AudioEngine::processEvents() {
 
             handleEvent(event);
         }
+
+        samplePlaybackDiagnostics();
     } catch (const std::exception& e) {
         logMessage("ERROR", "Exception in processEvents(): " + std::string(e.what()));
     } catch (...) {
@@ -506,6 +566,8 @@ void AudioEngine::handleEvent(const mpv_event* event) {
                 if (mState == PlaybackState::Stopped) {
                     mState = PlaybackState::Playing;
                 }
+                resetPlaybackProgressTracking();
+                logPlaybackSnapshot("file-loaded");
                 break;
 
             case MPV_EVENT_END_FILE: {
@@ -519,6 +581,7 @@ void AudioEngine::handleEvent(const mpv_event* event) {
                     // Handle playback error on end file
                     logMessage("ERROR", "Track ended with error: " + std::string(mpv_error_string(eof->error)));
                     mState = PlaybackState::Stopped;
+                    resetPlaybackProgressTracking();
                     if (mOnError) {
                         ErrorCode errorCode = mapMpvError(eof->error);
                         mOnError(errorCode, "Playback error: track ended with error");
@@ -526,6 +589,7 @@ void AudioEngine::handleEvent(const mpv_event* event) {
                 } else if (eof->reason == MPV_END_FILE_REASON_EOF) {
                     logMessage("INFO", "Track finished");
                     mState = PlaybackState::Stopped;
+                    resetPlaybackProgressTracking();
                     if (mOnTrackFinished) {
                         mOnTrackFinished();
                     }
@@ -540,12 +604,20 @@ void AudioEngine::handleEvent(const mpv_event* event) {
             case MPV_EVENT_PLAYBACK_RESTART:
                 logMessage("INFO", "Playback restarted");
                 mState = PlaybackState::Playing;
+                resetPlaybackProgressTracking();
+                logPlaybackSnapshot("playback-restart");
                 break;
 
             case MPV_EVENT_SEEK: {
+                resetPlaybackProgressTracking();
                 logMessage("INFO", "Seek event");
                 break;
             }
+
+            case MPV_EVENT_AUDIO_RECONFIG:
+                logMessage("INFO", "Audio reconfigured");
+                logPlaybackSnapshot("audio-reconfig");
+                break;
 
             case MPV_EVENT_PROPERTY_CHANGE: {
                 mpv_event_property* prop = static_cast<mpv_event_property*>(event->data);
@@ -568,12 +640,16 @@ void AudioEngine::handleEvent(const mpv_event* event) {
                 if (eventId == kMpvEventPause) {
                     logMessage("INFO", "Paused by event");
                     mState = PlaybackState::Paused;
+                    resetPlaybackProgressTracking();
+                    logPlaybackSnapshot("pause-event");
                     break;
                 }
 
                 if (eventId == kMpvEventUnpause) {
                     logMessage("INFO", "Unpaused by event");
                     mState = PlaybackState::Playing;
+                    resetPlaybackProgressTracking();
+                    logPlaybackSnapshot("unpause-event");
                     break;
                 }
 
@@ -586,6 +662,8 @@ void AudioEngine::handleEvent(const mpv_event* event) {
 
                     logMessage("ERROR", "MPV Error: " + std::string(mpv_error_string(error->error)));
                     mState = PlaybackState::Stopped;
+                    resetPlaybackProgressTracking();
+                    logPlaybackSnapshot("error-event");
                     if (mOnError) {
                         mOnError(mapMpvError(error->error),
                                 "MPV Error: " + std::string(mpv_error_string(error->error)));
@@ -601,6 +679,161 @@ void AudioEngine::handleEvent(const mpv_event* event) {
     } catch (...) {
         logMessage("ERROR", "Unknown exception in handleEvent()");
     }
+}
+
+void AudioEngine::samplePlaybackDiagnostics() {
+    if (!mHandle) {
+        return;
+    }
+
+    const auto now = std::chrono::steady_clock::now();
+    if (mLastDiagnosticSampleAt != std::chrono::steady_clock::time_point{} &&
+        now - mLastDiagnosticSampleAt < kDiagnosticSampleInterval) {
+        return;
+    }
+    mLastDiagnosticSampleAt = now;
+
+    bool pause = false;
+    if (readFlagProperty(mHandle, "pause", pause) &&
+        (!mHasLastObservedPause || pause != mLastObservedPause)) {
+        logMessage("INFO", "Diagnostic state change: pause=" + boolToText(pause));
+        mHasLastObservedPause = true;
+        mLastObservedPause = pause;
+    }
+
+    bool coreIdle = false;
+    if (readFlagProperty(mHandle, "core-idle", coreIdle) &&
+        (!mHasLastObservedCoreIdle || coreIdle != mLastObservedCoreIdle)) {
+        logMessage("INFO", "Diagnostic state change: core-idle=" + boolToText(coreIdle));
+        mHasLastObservedCoreIdle = true;
+        mLastObservedCoreIdle = coreIdle;
+    }
+
+    bool pausedForCache = false;
+    if (readFlagProperty(mHandle, "paused-for-cache", pausedForCache) &&
+        (!mHasLastObservedPausedForCache || pausedForCache != mLastObservedPausedForCache)) {
+        logMessage("INFO", "Diagnostic state change: paused-for-cache=" + boolToText(pausedForCache));
+        mHasLastObservedPausedForCache = true;
+        mLastObservedPausedForCache = pausedForCache;
+        if (pausedForCache) {
+            logPlaybackSnapshot("paused-for-cache");
+        }
+    }
+
+    double cacheBufferingState = 0.0;
+    if (readDoubleProperty(mHandle, "cache-buffering-state", cacheBufferingState) &&
+        (mLastObservedCacheBufferingState < 0.0 ||
+         std::fabs(cacheBufferingState - mLastObservedCacheBufferingState) >= 10.0)) {
+        logMessage("INFO", "Diagnostic state change: cache-buffering-state=" +
+                               std::to_string(cacheBufferingState));
+        mLastObservedCacheBufferingState = cacheBufferingState;
+    }
+
+    double demuxerCacheDuration = 0.0;
+    if (readDoubleProperty(mHandle, "demuxer-cache-duration", demuxerCacheDuration) &&
+        (mLastObservedDemuxerCacheDuration < 0.0 ||
+         std::fabs(demuxerCacheDuration - mLastObservedDemuxerCacheDuration) >= 2.0)) {
+        logMessage("INFO", "Diagnostic state change: demuxer-cache-duration=" +
+                               std::to_string(demuxerCacheDuration));
+        mLastObservedDemuxerCacheDuration = demuxerCacheDuration;
+    }
+
+    std::string audioDevice;
+    if (readStringProperty(mHandle, "audio-device", audioDevice) &&
+        audioDevice != mLastObservedAudioDevice) {
+        logMessage("INFO", "Diagnostic state change: audio-device=" + audioDevice);
+        mLastObservedAudioDevice = audioDevice;
+    }
+
+    if (mState != PlaybackState::Playing) {
+        mHasLastPlaybackPosition = false;
+        mPlaybackStallLogged = false;
+        return;
+    }
+
+    double currentPosition = 0.0;
+    if (!readDoubleProperty(mHandle, "time-pos", currentPosition)) {
+        return;
+    }
+
+    if (!mHasLastPlaybackPosition || currentPosition > mLastPlaybackPosition + 0.05) {
+        mLastPlaybackPosition = currentPosition;
+        mLastPlaybackAdvanceAt = now;
+        mHasLastPlaybackPosition = true;
+        mPlaybackStallLogged = false;
+        return;
+    }
+
+    if (!mHasLastPlaybackPosition) {
+        mLastPlaybackPosition = currentPosition;
+        mLastPlaybackAdvanceAt = now;
+        mHasLastPlaybackPosition = true;
+        return;
+    }
+
+    if (!mPlaybackStallLogged && now - mLastPlaybackAdvanceAt >= kPlaybackStallThreshold) {
+        std::ostringstream message;
+        message << "Playback stall suspected: time-pos stuck at " << currentPosition
+                << "s for at least "
+                << std::chrono::duration_cast<std::chrono::milliseconds>(now - mLastPlaybackAdvanceAt).count()
+                << "ms";
+        logMessage("WARN", message.str());
+        logPlaybackSnapshot("time-pos-stalled");
+        mPlaybackStallLogged = true;
+    }
+}
+
+void AudioEngine::logPlaybackSnapshot(const char* reason) {
+    if (!mHandle) {
+        return;
+    }
+
+    std::ostringstream message;
+    message << "Playback diagnostic snapshot [" << (reason ? reason : "unknown") << "]";
+
+    double timePos = 0.0;
+    if (readDoubleProperty(mHandle, "time-pos", timePos)) {
+        message << " time-pos=" << timePos;
+    }
+
+    bool pause = false;
+    if (readFlagProperty(mHandle, "pause", pause)) {
+        message << " pause=" << boolToText(pause);
+    }
+
+    bool coreIdle = false;
+    if (readFlagProperty(mHandle, "core-idle", coreIdle)) {
+        message << " core-idle=" << boolToText(coreIdle);
+    }
+
+    bool pausedForCache = false;
+    if (readFlagProperty(mHandle, "paused-for-cache", pausedForCache)) {
+        message << " paused-for-cache=" << boolToText(pausedForCache);
+    }
+
+    double cacheBufferingState = 0.0;
+    if (readDoubleProperty(mHandle, "cache-buffering-state", cacheBufferingState)) {
+        message << " cache-buffering-state=" << cacheBufferingState;
+    }
+
+    double demuxerCacheDuration = 0.0;
+    if (readDoubleProperty(mHandle, "demuxer-cache-duration", demuxerCacheDuration)) {
+        message << " demuxer-cache-duration=" << demuxerCacheDuration;
+    }
+
+    std::string audioDevice;
+    if (readStringProperty(mHandle, "audio-device", audioDevice)) {
+        message << " audio-device=" << audioDevice;
+    }
+
+    logMessage("INFO", message.str());
+}
+
+void AudioEngine::resetPlaybackProgressTracking() {
+    mHasLastPlaybackPosition = false;
+    mLastPlaybackPosition = 0.0;
+    mPlaybackStallLogged = false;
+    mLastPlaybackAdvanceAt = std::chrono::steady_clock::now();
 }
 
 AudioEngine::ErrorCode AudioEngine::mapMpvError(int mpvError) {

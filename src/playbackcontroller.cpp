@@ -1,6 +1,7 @@
 #include "playbackcontroller.h"
 #include "logger.h"
 #include <QFileInfo>
+#include <QTimer>
 #include <algorithm>
 #include <chrono>
 #include <cmath>
@@ -240,10 +241,22 @@ void PlaybackController::playTrackAt(int index) {
         
         // Emit signal for UI update
         emit trackChanged(trackPath);
-        
-        // Load and emit metadata
-        AudioMetadata meta = fileManager->getMetadata(trackPath);
-        emit trackMetadataLoaded(meta);
+
+        // Defer metadata I/O until after playback has started so transition latency
+        // is less likely to add audible silence between tracks.
+        QTimer::singleShot(0, this, [this, trackPath, index]() {
+            if (!fileManager) {
+                return;
+            }
+
+            if (fileManager->getCurrentTrackPosition() != index ||
+                fileManager->getTrackByPosition(index) != trackPath) {
+                return;
+            }
+
+            AudioMetadata meta = fileManager->getMetadata(trackPath);
+            emit trackMetadataLoaded(meta);
+        });
     } catch (const std::exception& e) {
         Logger::error("PlaybackController", QString("Exception in playTrackAt: %1").arg(e.what()));
         emit playbackError("Error playing track");

@@ -1,5 +1,7 @@
 #include "filemanager.h"
+#include "logger.h"
 #include <QDir>
+#include <QElapsedTimer>
 #include <QFileInfo>
 #include <QDebug>
 #include <QFile>
@@ -166,11 +168,22 @@ AudioMetadata FileManager::getMetadata(const QString& filePath) {
         return metadataCache.value(filePath);
     }
 
+    QElapsedTimer timer;
+    timer.start();
+
     // Extract metadata from file
     AudioMetadata metadata = extractMetadata(filePath);
     
     // Cache for future access
     metadataCache.insert(filePath, metadata);
+
+    const qint64 elapsedMs = timer.elapsed();
+    if (elapsedMs >= 100) {
+        Logger::info("FileManager",
+                     QString("Metadata extraction took %1ms for %2")
+                         .arg(elapsedMs)
+                         .arg(filePath));
+    }
     
     return metadata;
 }

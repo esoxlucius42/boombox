@@ -1,8 +1,10 @@
 #include "widgets/albumart.h"
+#include "logger.h"
 #include <QVBoxLayout>
 #include <QFile>
 #include <QByteArray>
 #include <QBuffer>
+#include <QElapsedTimer>
 #include <QImage>
 #include <QFileInfo>
 #include <QDebug>
@@ -82,6 +84,9 @@ void AlbumArtWidget::extractAndDisplayAlbumArt(const QString& filePath) {
         return;
     }
     
+    QElapsedTimer timer;
+    timer.start();
+
     // Extract based on file type
     try {
         if (suffix == "mp3") {
@@ -108,6 +113,14 @@ void AlbumArtWidget::extractAndDisplayAlbumArt(const QString& filePath) {
         setAlbumArt(pixmap);
     } else {
         setPlaceholder();
+    }
+
+    const qint64 elapsedMs = timer.elapsed();
+    if (elapsedMs >= 100) {
+        Logger::info("AlbumArtWidget",
+                     QString("Album art extraction took %1ms for %2")
+                         .arg(elapsedMs)
+                         .arg(filePath));
     }
 }
 

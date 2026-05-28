@@ -196,6 +196,48 @@ find /path/to/music -type f | grep -Ei '\.(mp3|flac|wav|ogg|m4a|aac|wma|ape)$' |
 rm -f ~/.boombox/config.json
 ```
 
+### 9.5 Playback stutters mid-track for a few seconds
+
+Recent builds log extra playback diagnostics to help distinguish:
+
+- mpv cache starvation / buffering pauses
+- audio-device reconfiguration
+- Boombox detecting that `time-pos` stopped advancing while playback was expected
+
+Start by following the app log:
+
+```bash
+tail -f /opt/boombox/boombox.log
+```
+
+If you run from the build tree instead:
+
+```bash
+tail -f ./build/bin/boombox.log
+```
+
+Look for lines containing:
+
+- `Playback stall suspected`
+- `paused-for-cache=yes`
+- `audio reconfigured`
+- `Playback diagnostic snapshot`
+
+Then check the Pi for USB or audio stack issues around the same time:
+
+```bash
+sudo dmesg | grep -Ei 'usb|uas|reset|i/o|ext4|xfs|snd|alsa' | tail -n 100
+journalctl --since '-10 min' --no-pager | grep -Ei 'boombox|mpv|usb|alsa|pipewire|pulseaudio'
+lsblk -o NAME,MODEL,TRAN,ROTA,MOUNTPOINT
+```
+
+Interpretation guide:
+
+- If the log shows `paused-for-cache=yes` or very low `demuxer-cache-duration`, suspect media-drive latency, USB autosuspend, cable/power issues, or filesystem stalls.
+- If the log shows `audio reconfigured` or the system log reports ALSA/PipeWire/PulseAudio device resets, suspect the audio sink rather than decoding.
+- If system load and memory remain low while the app reports stalled `time-pos`, decoding performance is less likely than storage or audio-output interruption.
+- If the pause happens only at track changes, focus next on metadata and album-art extraction latency instead.
+
 ## 10. Optional: run as a systemd service
 
 Create `/etc/systemd/system/boombox.service`:
