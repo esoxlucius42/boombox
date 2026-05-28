@@ -14,7 +14,7 @@ Boombox is a Qt6 + C++ audio player designed for Raspberry Pi (targeting Pi 5 to
   - **Browse**
   - Seek bar
 - Persists last selected folder in `~/.boombox/config.json`
-- Writes logs to `boombox.log` next to the executable
+- Writes logs to `~/boombox.log`
 
 ## Supported audio file extensions
 
@@ -114,8 +114,8 @@ Common user shell commands:
 # Start app in fullscreen mode
 ./build/bin/boombox --fullscreen
 
-# Follow logs (log file is written beside the executable)
-tail -f ./build/bin/boombox.log
+# Follow logs
+tail -f ~/boombox.log
 ```
 
 ## Raspberry Pi OS installation (full guide)

@@ -138,8 +138,8 @@ boombox
 # Fullscreen
 boombox --fullscreen
 
-# Follow logs (adjust path based on your install location)
-tail -f /opt/boombox/boombox.log
+# Follow logs
+tail -f ~/boombox.log
 
 # Check linked libraries
 ldd /opt/boombox/boombox | grep "not found"
@@ -153,13 +153,13 @@ If running from the build directory instead:
 ```bash
 ./build/bin/boombox
 ./build/bin/boombox --fullscreen
-tail -f ./build/bin/boombox.log
+tail -f ~/boombox.log
 ```
 
 ## 8. Runtime behavior and files
 
 - **Config path**: `~/.boombox/config.json`
-- **Log path**: `boombox.log` in the same directory as the executable
+- **Log path**: `~/boombox.log`
 - **Audio formats scanned**: `mp3`, `flac`, `wav`, `ogg`, `m4a`, `aac`, `wma`, `ape`
 - **Primary UI controls**: Play/Pause, Next, Browse, seek bar
 
@@ -179,7 +179,7 @@ If built without linkable `libmpv`, playback will not start; rebuild after insta
 
 ```bash
 ldd /opt/boombox/boombox | grep "not found"
-tail -n 200 /opt/boombox/boombox.log
+tail -n 200 ~/boombox.log
 ```
 
 ### 9.3 Folder loads but no tracks found
@@ -207,13 +207,13 @@ Recent builds log extra playback diagnostics to help distinguish:
 Start by following the app log:
 
 ```bash
-tail -f /opt/boombox/boombox.log
+tail -f ~/boombox.log
 ```
 
-If you run from the build tree instead:
+The log file is always written to:
 
 ```bash
-tail -f ./build/bin/boombox.log
+tail -f ~/boombox.log
 ```
 
 Look for lines containing:

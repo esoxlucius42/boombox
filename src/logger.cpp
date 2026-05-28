@@ -1,7 +1,7 @@
 #include "logger.h"
 #include <QCoreApplication>
 #include <QDateTime>
-#include <QFileInfo>
+#include <QDir>
 #include <iostream>
 
 // Static instance holder
@@ -40,11 +40,7 @@ void Logger::initInternal()
         return;
     }
 
-    // Get the executable directory
-    QString exePath = QCoreApplication::applicationFilePath();
-    QFileInfo fileInfo(exePath);
-    QString logDir = fileInfo.absolutePath();
-    QString logPath = logDir + "/boombox.log";
+    const QString logPath = QDir::homePath() + "/boombox.log";
 
     logFile.setFileName(logPath);
 
