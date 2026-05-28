@@ -64,12 +64,6 @@ void MainWindow::setupUI()
     leftLayout->setContentsMargins(0, 0, 0, 0);
     leftLayout->setSpacing(0);
 
-    // Analyzer strip at top of left pane
-    spectrumAnalyzerWidget = new SpectrumAnalyzerWidget(this);
-    spectrumAnalyzerWidget->setObjectName("spectrumAnalyzer");
-    leftLayout->addWidget(spectrumAnalyzerWidget);
-    leftLayout->addSpacing(2);
-     
     // Pane 0: Track Info (80px)
     trackInfoWidget = new TrackInfoWidget(this);
     trackInfoWidget->setObjectName("pane0");
@@ -105,11 +99,10 @@ void MainWindow::setupUI()
     albumArtWidget->setObjectName("albumArt");
     
     rightLayout->addWidget(albumArtWidget);
-    
     mainLayout->addWidget(rightPane);
-    
+    mainLayout->addWidget(rightPane);
     trackInfoWidget->clearDisplay();
-    spectrumAnalyzerWidget->clear();
+    trackInfoWidget->clearDisplay();
     seekBarWidget->setCurrentTime(0);
     seekBarWidget->setTotalTime(0);
     seekBarWidget->setDuration(0);
@@ -139,15 +132,6 @@ void MainWindow::connectSignals()
     // Connect playback error
     connect(playbackController, &PlaybackController::playbackError,
             this, &MainWindow::onPlaybackError);
-
-    if (PlaybackController::kSpectrumAnalyzerEnabled) {
-        connect(playbackController, &PlaybackController::spectrumLevelsUpdated,
-                spectrumAnalyzerWidget, &SpectrumAnalyzerWidget::setSpectrumLevels);
-    } else {
-        spectrumAnalyzerWidget->clear();
-        spectrumAnalyzerWidget->setUpdatesEnabled(false);
-        Logger::info("MainWindow", "Spectrum analyzer widget updates disabled for test build");
-    }
     
     // Connect play/pause button
     connect(controlsWidget, &ControlsWidget::playPauseClicked,

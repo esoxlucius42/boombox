@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QString>
-#include <QVector>
 #include "filemanager.h"
 
 class QThread;
@@ -20,8 +19,6 @@ class PlaybackController : public QObject {
     Q_OBJECT
 
 public:
-    static constexpr bool kSpectrumAnalyzerEnabled = true;
-
     explicit PlaybackController(QObject *parent = nullptr);
     ~PlaybackController();
 
@@ -44,7 +41,6 @@ signals:
     void trackChanged(const QString& filePath);
     void trackMetadataLoaded(const AudioMetadata& meta);
     void playbackError(const QString& error);
-    void spectrumLevelsUpdated(const QVector<float>& levels);
 
     void requestLoadFolder(const QString& folderPath);
     void requestPlayNext();
@@ -57,7 +53,6 @@ private slots:
     void onWorkerTrackChanged(const QString& filePath, int position, int trackCount);
     void onWorkerTrackMetadataLoaded(const AudioMetadata& meta);
     void onWorkerPlaybackError(const QString& error);
-    void onWorkerSpectrumLevelsUpdated(const QVector<float>& levels);
     void onWorkerPlaybackSnapshot(bool playing, double position, double duration);
     void onWorkerThreadFinished();
 

@@ -8,9 +8,7 @@
 #include <QMetaObject>
 #include <QThread>
 #include <QTimer>
-#include <algorithm>
 #include <chrono>
-#include <cmath>
 #include <memory>
 #include <random>
 #include <cerrno>
@@ -24,7 +22,6 @@ namespace {
 constexpr const char* kBackendUnavailableMessage =
     "Audio backend unavailable. Folder loaded, but playback cannot start.";
 constexpr int kFixedVolumeLevel = 100;
-constexpr int kSpectrumBinCount = 24;
 constexpr qint64 kRamBufferChunkSize = 1024 * 1024;
 constexpr int kPlaybackWorkerPollingIntervalMs = 250;
 
@@ -58,7 +55,6 @@ public slots:
         try {
             auto seed = std::chrono::system_clock::now().time_since_epoch().count();
             randomGenerator.seed(seed);
-            smoothedSpectrumBins.fill(0.0f, kSpectrumBinCount);
             backendUnavailableErrorShown = false;
 
             fileManager = std::make_unique<FileManager>();
@@ -85,10 +81,6 @@ public slots:
                 Logger::warn("PlaybackWorker", "Playback backend is unavailable; playback will be disabled");
             } else {
                 audioEngine->setVolume(kFixedVolumeLevel);
-            }
-
-            if (!PlaybackController::kSpectrumAnalyzerEnabled) {
-                Logger::info("PlaybackWorker", "Spectrum analyzer generation disabled for test build");
             }
             Logger::info("PlaybackWorker",
                          QString("Playback worker polling interval set to %1ms for test build")
@@ -261,12 +253,6 @@ private slots:
 
         audioEngine->processEvents();
         const bool nowPlaying = audioEngine->isPlaying();
-        if (PlaybackController::kSpectrumAnalyzerEnabled) {
-            const float reactiveLevel = nowPlaying
-                ? static_cast<float>(std::clamp(audioEngine->getReactiveLevel(), 0.0, 1.0))
-                : 0.0f;
-            emit spectrumLevelsUpdated(createSpectrumBins(reactiveLevel, nowPlaying));
-        }
         emit playbackSnapshotUpdated(nowPlaying,
                                      audioEngine->getCurrentPosition(),
                                      audioEngine->getDuration());
@@ -510,33 +496,10 @@ private:
         }
     }
 
-    QVector<float> createSpectrumBins(float baseLevel, bool nowPlaying) {
-        QVector<float> bins(kSpectrumBinCount, 0.0f);
-        if (smoothedSpectrumBins.size() != kSpectrumBinCount) {
-            smoothedSpectrumBins.fill(0.0f, kSpectrumBinCount);
-        }
-
-        for (int i = 0; i < kSpectrumBinCount; ++i) {
-            const float pos = static_cast<float>(i) / static_cast<float>(kSpectrumBinCount - 1);
-            constexpr float PI = 3.14159265f;
-            const float eqProfile = 0.35f + 0.65f * std::sin(pos * PI);
-            const float jitter = 0.82f + 0.18f * std::generate_canonical<float, 10>(randomGenerator);
-            const float target = nowPlaying ? std::clamp(baseLevel * eqProfile * jitter, 0.0f, 1.0f) : 0.0f;
-            const float previous = smoothedSpectrumBins[i];
-            const float smoothing = target > previous ? 0.45f : 0.14f;
-            const float nextValue = previous + (target - previous) * smoothing;
-            bins[i] = std::clamp(nextValue, 0.0f, 1.0f);
-        }
-
-        smoothedSpectrumBins = bins;
-        return bins;
-    }
-
 signals:
     void trackChangedWithContext(const QString& filePath, int position, int trackCount);
     void trackMetadataLoaded(const AudioMetadata& meta);
     void playbackError(const QString& error);
-    void spectrumLevelsUpdated(const QVector<float>& levels);
     void playbackSnapshotUpdated(bool playing, double position, double duration);
 
 private:
@@ -545,7 +508,6 @@ private:
     std::mt19937 randomGenerator;
     bool backendUnavailableErrorShown = false;
     QTimer* audioEventTimer = nullptr;
-    QVector<float> smoothedSpectrumBins;
     int stagedTrackFd = -1;
     QString stagedTrackSourcePath;
     QString stagedTrackPlaybackPath;
@@ -554,7 +516,6 @@ private:
 PlaybackController::PlaybackController(QObject *parent)
     : QObject(parent) {
     qRegisterMetaType<AudioMetadata>("AudioMetadata");
-    qRegisterMetaType<QVector<float>>("QVector<float>");
 
     workerThread = new QThread(this);
     worker = new PlaybackWorker();
@@ -583,8 +544,6 @@ PlaybackController::PlaybackController(QObject *parent)
             this, &PlaybackController::onWorkerTrackMetadataLoaded, Qt::QueuedConnection);
     connect(worker, &PlaybackWorker::playbackError,
             this, &PlaybackController::onWorkerPlaybackError, Qt::QueuedConnection);
-    connect(worker, &PlaybackWorker::spectrumLevelsUpdated,
-            this, &PlaybackController::onWorkerSpectrumLevelsUpdated, Qt::QueuedConnection);
     connect(worker, &PlaybackWorker::playbackSnapshotUpdated,
             this, &PlaybackController::onWorkerPlaybackSnapshot, Qt::QueuedConnection);
 
@@ -675,10 +634,6 @@ void PlaybackController::onWorkerTrackMetadataLoaded(const AudioMetadata& meta) 
 
 void PlaybackController::onWorkerPlaybackError(const QString& error) {
     emit playbackError(error);
-}
-
-void PlaybackController::onWorkerSpectrumLevelsUpdated(const QVector<float>& levels) {
-    emit spectrumLevelsUpdated(levels);
 }
 
 void PlaybackController::onWorkerPlaybackSnapshot(bool nowPlaying, double position, double trackDuration) {

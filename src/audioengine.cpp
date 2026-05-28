@@ -21,21 +21,6 @@ static bool fileExists(const std::string& filePath) {
     return f.good();
 }
 
-static double clamp01(double value) {
-    return std::clamp(value, 0.0, 1.0);
-}
-
-static double dbToLevel(double dbValue) {
-    if (!std::isfinite(dbValue)) {
-        return 0.0;
-    }
-
-    // Map a practical dBFS range to [0, 1] so UI movement remains visible.
-    // RMS around -60dB should be near silent, peaks close to 0dB near full scale.
-    const double normalized = (dbValue + 60.0) / 55.0;
-    return clamp01(normalized);
-}
-
 static bool parseDoubleString(const char* text, double& value) {
     if (!text) {
         return false;
@@ -127,7 +112,6 @@ constexpr int kMpvEventUnpause = 20;
 constexpr int kMpvEventError = 21;
 constexpr auto kDiagnosticSampleInterval = std::chrono::milliseconds(1000);
 constexpr auto kPlaybackStallThreshold = std::chrono::milliseconds(2000);
-constexpr bool kBackendAnalysisFilterEnabled = true;
 
 struct MpvEventErrorPayload {
     int error;
@@ -188,11 +172,6 @@ void AudioEngine::initializeMpv() {
     setOptionWithLog(mHandle, "demuxer-max-bytes", "67108864");
     setOptionWithLog(mHandle, "demuxer-max-back-bytes", "16777216");
     setOptionWithLog(mHandle, "audio-buffer", "0.40");
-    if (kBackendAnalysisFilterEnabled) {
-        setOptionWithLog(mHandle, "af", "@bbxstats:lavfi=[astats=metadata=1:reset=1:length=0.05]");
-    } else {
-        logMessage("INFO", "Backend audio analysis filter disabled for test build");
-    }
 
     // Initialize the context
     int result = mpv_initialize(mHandle);
@@ -462,53 +441,6 @@ double AudioEngine::getDuration() const {
     }
 
     return duration;
-}
-
-double AudioEngine::getReactiveLevel() const {
-    if (!mHandle || mState != PlaybackState::Playing) {
-        return 0.0;
-    }
-
-    // mpv exposes filter metadata at af-metadata/<filter-label>/...
-    // For robustness, we try our explicit label first and then common implicit
-    // lavfi labels used by mpv when no explicit label is available.
-    const char* labels[] = {
-        "bbxstats",
-        "lavfi.00",
-        "lavfi.0",
-        "lavfi.01",
-        "lavfi.1"
-    };
-
-    double bestLevel = 0.0;
-    char propertyName[256] = {};
-    for (const char* label : labels) {
-        int64_t metadataCount = 0;
-        std::snprintf(propertyName, sizeof(propertyName), "af-metadata/%s/list/count", label);
-        if (mpv_get_property(mHandle, propertyName, MPV_FORMAT_INT64, &metadataCount) >= 0 && metadataCount > 0) {
-            for (int64_t i = 0; i < metadataCount; ++i) {
-                char keyProperty[256] = {};
-                std::snprintf(keyProperty, sizeof(keyProperty), "af-metadata/%s/list/%lld/key", label, static_cast<long long>(i));
-                std::string key;
-                if (!readStringProperty(mHandle, keyProperty, key)) {
-                    continue;
-                }
-
-                if (key.find("RMS_level") == std::string::npos && key.find("Peak_level") == std::string::npos) {
-                    continue;
-                }
-
-                char valueProperty[256] = {};
-                std::snprintf(valueProperty, sizeof(valueProperty), "af-metadata/%s/list/%lld/value", label, static_cast<long long>(i));
-                double dbValue = 0.0;
-                if (readDoubleProperty(mHandle, valueProperty, dbValue)) {
-                    bestLevel = std::max(bestLevel, dbToLevel(dbValue));
-                }
-            }
-        }
-    }
-
-    return clamp01(bestLevel);
 }
 
 bool AudioEngine::isPlaying() const {

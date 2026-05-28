@@ -16,11 +16,6 @@ QWidget {
     border-right: 1px solid #1a1a1a;
 }
 
-#spectrumAnalyzer, #spectrumAnalyzerWidget {
-    background-color: #31373a;
-    border-bottom: 1px solid #1f2427;
-}
-
 #rightPane {
     background-color: #3a3a3a;
 }
