@@ -15,7 +15,7 @@
 #include "logger.h"
 
 namespace {
-constexpr bool kLivePlaybackUiUpdatesEnabled = false;
+constexpr bool kLivePlaybackUiUpdatesEnabled = true;
 }
 
 MainWindow::MainWindow(PlaybackController *controller, bool fullscreen, QWidget *parent)

@@ -127,7 +127,7 @@ constexpr int kMpvEventUnpause = 20;
 constexpr int kMpvEventError = 21;
 constexpr auto kDiagnosticSampleInterval = std::chrono::milliseconds(1000);
 constexpr auto kPlaybackStallThreshold = std::chrono::milliseconds(2000);
-constexpr bool kBackendAnalysisFilterEnabled = false;
+constexpr bool kBackendAnalysisFilterEnabled = true;
 
 struct MpvEventErrorPayload {
     int error;

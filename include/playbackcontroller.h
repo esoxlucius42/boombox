@@ -20,7 +20,7 @@ class PlaybackController : public QObject {
     Q_OBJECT
 
 public:
-    static constexpr bool kSpectrumAnalyzerEnabled = false;
+    static constexpr bool kSpectrumAnalyzerEnabled = true;
 
     explicit PlaybackController(QObject *parent = nullptr);
     ~PlaybackController();
