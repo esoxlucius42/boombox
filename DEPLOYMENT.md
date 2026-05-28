@@ -223,6 +223,12 @@ Look for lines containing:
 - `audio reconfigured`
 - `Playback diagnostic snapshot`
 
+Then compare the same file with plain mpv on the same Pi and output path:
+
+```bash
+mpv --no-video --audio-display=no "/path/to/the/same/test-track.flac"
+```
+
 Then check the Pi for USB or audio stack issues around the same time:
 
 ```bash
@@ -236,6 +242,8 @@ Interpretation guide:
 - If the log shows `paused-for-cache=yes` or very low `demuxer-cache-duration`, suspect media-drive latency, USB autosuspend, cable/power issues, or filesystem stalls.
 - If the log shows `audio reconfigured` or the system log reports ALSA/PipeWire/PulseAudio device resets, suspect the audio sink rather than decoding.
 - If system load and memory remain low while the app reports stalled `time-pos`, decoding performance is less likely than storage or audio-output interruption.
+- If plain `mpv` also stutters with the same file and sink, focus on the Raspberry Pi audio/backend stack before spending more time on Qt/UI code.
+- If plain `mpv` is clean while Boombox still stutters, the remaining app-side playback workload is the better place to investigate.
 - If the pause happens only at track changes, focus next on metadata and album-art extraction latency instead.
 
 ## 10. Optional: run as a systemd service

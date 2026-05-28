@@ -26,6 +26,7 @@ constexpr const char* kBackendUnavailableMessage =
 constexpr int kFixedVolumeLevel = 100;
 constexpr int kSpectrumBinCount = 24;
 constexpr qint64 kRamBufferChunkSize = 1024 * 1024;
+constexpr int kPlaybackWorkerPollingIntervalMs = 250;
 
 int createMemfdHandle(const QString& name) {
 #ifdef MFD_CLOEXEC
@@ -76,7 +77,7 @@ public slots:
             });
 
             audioEventTimer = new QTimer(this);
-            audioEventTimer->setInterval(50);
+            audioEventTimer->setInterval(kPlaybackWorkerPollingIntervalMs);
             connect(audioEventTimer, &QTimer::timeout, this, &PlaybackWorker::onAudioEventTick);
             audioEventTimer->start();
 
@@ -89,6 +90,9 @@ public slots:
             if (!PlaybackController::kSpectrumAnalyzerEnabled) {
                 Logger::info("PlaybackWorker", "Spectrum analyzer generation disabled for test build");
             }
+            Logger::info("PlaybackWorker",
+                         QString("Playback worker polling interval set to %1ms for test build")
+                             .arg(kPlaybackWorkerPollingIntervalMs));
 
             emit playbackSnapshotUpdated(audioEngine->isPlaying(),
                                          audioEngine->getCurrentPosition(),

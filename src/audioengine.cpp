@@ -127,6 +127,7 @@ constexpr int kMpvEventUnpause = 20;
 constexpr int kMpvEventError = 21;
 constexpr auto kDiagnosticSampleInterval = std::chrono::milliseconds(1000);
 constexpr auto kPlaybackStallThreshold = std::chrono::milliseconds(2000);
+constexpr bool kBackendAnalysisFilterEnabled = false;
 
 struct MpvEventErrorPayload {
     int error;
@@ -187,7 +188,11 @@ void AudioEngine::initializeMpv() {
     setOptionWithLog(mHandle, "demuxer-max-bytes", "67108864");
     setOptionWithLog(mHandle, "demuxer-max-back-bytes", "16777216");
     setOptionWithLog(mHandle, "audio-buffer", "0.40");
-    setOptionWithLog(mHandle, "af", "@bbxstats:lavfi=[astats=metadata=1:reset=1:length=0.05]");
+    if (kBackendAnalysisFilterEnabled) {
+        setOptionWithLog(mHandle, "af", "@bbxstats:lavfi=[astats=metadata=1:reset=1:length=0.05]");
+    } else {
+        logMessage("INFO", "Backend audio analysis filter disabled for test build");
+    }
 
     // Initialize the context
     int result = mpv_initialize(mHandle);
