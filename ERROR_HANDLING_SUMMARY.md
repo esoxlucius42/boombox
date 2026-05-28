@@ -19,7 +19,7 @@ Added granular error detection for:
 #### Error Handling Features
 1. **File Existence Check**: Validates file exists before attempting playback
 2. **Try-Catch Blocks**: All critical methods wrapped (play, pause, resume, seek)
-3. **Event-Based Error Detection**: Detects errors during MPV event processing
+3. **Event-Based Error Detection**: Detects errors during GStreamer event processing
 4. **Error Callback Emission**: Calls `onError` callback with code and message
 5. **Comprehensive Logging**: All errors logged via Logger system
 

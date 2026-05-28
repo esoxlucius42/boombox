@@ -26,9 +26,7 @@ Boombox is a Qt6 + C++ audio player designed for Raspberry Pi (targeting Pi 5 to
 
 - Raspberry Pi OS (64-bit recommended)
 - Qt6 runtime libraries
-- GStreamer runtime/plugins and/or `libmpv` runtime (for real playback)
-
-> If linkable `libmpv` is not found at build time, Boombox builds with a stub backend and audio playback is unavailable.
+- GStreamer runtime/plugins for audio playback
 
 ### Build dependencies
 
@@ -36,48 +34,7 @@ Boombox is a Qt6 + C++ audio player designed for Raspberry Pi (targeting Pi 5 to
 - C++17 compiler toolchain (`g++`, `make`, etc.)
 - Qt6 development packages (`qt6-base-dev`)
 - `pkg-config`
-- `libgstreamer1.0-dev` (for the GStreamer backend)
-- `libmpv-dev` (for the libmpv backend; recommended, but not required if the runtime library is installed)
-
-### Check whether mpv is installed
-
-Check whether the runtime library is present:
-
-```bash
-ldconfig -p | grep libmpv
-```
-
-Check whether the development header is available:
-
-```bash
-pkg-config --modversion mpv
-ls /usr/include/mpv/client.h
-```
-
-If `ldconfig -p | grep libmpv` succeeds, Boombox can still build the real playback backend even when `pkg-config --modversion mpv` or `ls /usr/include/mpv/client.h` fails. The development package is still recommended.
-
-### Install mpv if missing
-
-On Raspberry Pi OS / Debian:
-
-```bash
-sudo apt update
-sudo apt install -y libmpv2 libmpv-dev
-```
-
-If you only need the runtime library:
-
-```bash
-sudo apt update
-sudo apt install -y libmpv2
-```
-
-Then rebuild:
-
-```bash
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-```
+- `libgstreamer1.0-dev`
 
 ### Install GStreamer if missing
 
@@ -96,26 +53,8 @@ sudo apt install -y \
 Then rebuild:
 
 ```bash
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBOOMBOX_AUDIO_BACKEND=auto
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
-```
-
-### Choose an audio backend
-
-Boombox now supports build-time backend selection:
-
-```bash
-# Prefer GStreamer when available, otherwise fall back to libmpv or the stub
-cmake -S . -B build -DBOOMBOX_AUDIO_BACKEND=auto
-
-# Force the GStreamer backend (falls back with a warning if unavailable)
-cmake -S . -B build -DBOOMBOX_AUDIO_BACKEND=gstreamer
-
-# Force the libmpv backend
-cmake -S . -B build -DBOOMBOX_AUDIO_BACKEND=mpv
-
-# Build the no-playback stub backend explicitly
-cmake -S . -B build -DBOOMBOX_AUDIO_BACKEND=stub
 ```
 
 ## Quick start (local build)

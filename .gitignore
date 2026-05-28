@@ -1,3 +1,5 @@
-include/mpv/
-include/mpv.disabled/
 build/
+build-gst/
+build-stub/
+build-test/
+test_audioengine

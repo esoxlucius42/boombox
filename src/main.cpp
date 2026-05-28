@@ -39,7 +39,7 @@ int main(int argc, char *argv[])
 
     Logger::info("Main", QString("Selected audio backend: %1").arg(selectedAudioBackendName()));
 
-    // Create PlaybackController - always created (uses stub backend if playback is unavailable)
+    // Create PlaybackController using the required GStreamer playback backend.
     auto playbackController = std::make_unique<PlaybackController>();
     Logger::info("Main", "PlaybackController initialized");
 

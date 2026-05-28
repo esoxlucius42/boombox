@@ -7,8 +7,7 @@
 /**
  * @brief AudioEngine - backend-agnostic audio playback contract
  *
- * Concrete backends provide the actual playback implementation (for example
- * GStreamer, libmpv, or a no-op stub).
+ * The concrete implementation is GStreamer-based.
  */
 class AudioEngine {
 public:

@@ -1,7 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"/var/home/esox/dev/cpp/boombox/build-stub/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

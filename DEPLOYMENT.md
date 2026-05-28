@@ -25,9 +25,7 @@ sudo apt install -y \
   gstreamer1.0-tools \
   gstreamer1.0-plugins-base \
   gstreamer1.0-plugins-good \
-  gstreamer1.0-libav \
-  libmpv2 \
-  libmpv-dev
+  gstreamer1.0-libav
 ```
 
 Optional but useful diagnostics packages:
@@ -46,10 +44,9 @@ sudo apt install -y \
 cmake --version
 pkg-config --modversion Qt6Core
 pkg-config --modversion gstreamer-1.0
-pkg-config --modversion mpv
 ```
 
-If `pkg-config --modversion gstreamer-1.0` succeeds, Boombox can build the GStreamer backend. If GStreamer development files are unavailable, the build falls back to libmpv when possible. If neither real backend is usable, Boombox builds with a stub backend (UI works, playback unavailable).
+If `pkg-config --modversion gstreamer-1.0` succeeds, Boombox can build and run with the required GStreamer backend.
 
 ## 3. Get source code
 
@@ -77,7 +74,7 @@ sudo ./scripts/update_raspberry_pi_os.sh
 Configure:
 
 ```bash
-cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DBOOMBOX_AUDIO_BACKEND=auto
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 ```
 
 Build:
@@ -126,7 +123,7 @@ boombox
 
 1. Start Boombox.
 2. Use **Browse** to select your music folder.
-3. Playback starts from a random track if backend is available.
+3. Playback starts from a random track once GStreamer playback initializes successfully.
 4. App state is saved in `~/.boombox/config.json`.
 
 ## 7. CLI commands for users
@@ -179,7 +176,7 @@ pactl list short sinks
 amixer sget Master
 ```
 
-If built without linkable `libmpv`, playback will not start; rebuild after installing/repairing `libmpv`.
+If playback still does not start, verify the required GStreamer packages are installed and inspect `~/boombox.log` for initialization errors.
 
 ### 9.2 App fails to start
 
@@ -206,7 +203,7 @@ rm -f ~/.boombox/config.json
 
 Recent builds log extra playback diagnostics to help distinguish:
 
-- mpv cache starvation / buffering pauses
+- GStreamer buffering pauses
 - audio-device reconfiguration
 - Boombox detecting that `time-pos` stopped advancing while playback was expected
 
@@ -225,31 +222,31 @@ tail -f ~/boombox.log
 Look for lines containing:
 
 - `Playback stall suspected`
-- `paused-for-cache=yes`
+- `buffering=`
 - `audio reconfigured`
 - `Playback diagnostic snapshot`
 
-Then compare the same file with plain mpv on the same Pi and output path:
+Then compare the same file with the standalone GStreamer player on the same Pi and output path:
 
 ```bash
-mpv --no-video --audio-display=no "/path/to/the/same/test-track.flac"
+gst-play-1.0 "/path/to/the/same/test-track.flac"
 ```
 
 Then check the Pi for USB or audio stack issues around the same time:
 
 ```bash
 sudo dmesg | grep -Ei 'usb|uas|reset|i/o|ext4|xfs|snd|alsa' | tail -n 100
-journalctl --since '-10 min' --no-pager | grep -Ei 'boombox|mpv|usb|alsa|pipewire|pulseaudio'
+journalctl --since '-10 min' --no-pager | grep -Ei 'boombox|gstreamer|gst|usb|alsa|pipewire|pulseaudio'
 lsblk -o NAME,MODEL,TRAN,ROTA,MOUNTPOINT
 ```
 
 Interpretation guide:
 
-- If the log shows `paused-for-cache=yes` or very low `demuxer-cache-duration`, suspect media-drive latency, USB autosuspend, cable/power issues, or filesystem stalls.
+- If the log shows repeated `buffering=` state changes while the same track is already RAM-buffered, suspect audio sink interruption rather than ordinary file-read latency.
 - If the log shows `audio reconfigured` or the system log reports ALSA/PipeWire/PulseAudio device resets, suspect the audio sink rather than decoding.
 - If system load and memory remain low while the app reports stalled `time-pos`, decoding performance is less likely than storage or audio-output interruption.
-- If plain `mpv` also stutters with the same file and sink, focus on the Raspberry Pi audio/backend stack before spending more time on Qt/UI code.
-- If plain `mpv` is clean while Boombox still stutters, the remaining app-side playback workload is the better place to investigate.
+- If `gst-play-1.0` also stutters with the same file and sink, focus on the Raspberry Pi audio/backend stack before spending more time on Qt/UI code.
+- If `gst-play-1.0` is clean while Boombox still stutters, the remaining app-side playback workload is the better place to investigate.
 - If the pause happens only at track changes, focus next on metadata and album-art extraction latency instead.
 
 ## 10. Optional: run as a systemd service

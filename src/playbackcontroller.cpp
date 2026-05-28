@@ -20,7 +20,7 @@
 
 namespace {
 constexpr const char* kBackendUnavailableMessage =
-    "Audio backend unavailable. Folder loaded, but playback cannot start.";
+    "GStreamer playback initialization failed. Check that the required GStreamer plugins are installed.";
 constexpr int kFixedVolumeLevel = 100;
 constexpr qint64 kRamBufferChunkSize = 1024 * 1024;
 constexpr int kPlaybackWorkerPollingIntervalMs = 250;
@@ -78,7 +78,7 @@ public slots:
             audioEventTimer->start();
 
             if (!isBackendAvailable()) {
-                Logger::warn("PlaybackWorker", "Playback backend is unavailable; playback will be disabled");
+                Logger::error("PlaybackWorker", kBackendUnavailableMessage);
             } else {
                 audioEngine->setVolume(kFixedVolumeLevel);
             }
@@ -149,7 +149,7 @@ public slots:
             }
 
             if (!isBackendAvailable()) {
-                Logger::warn("PlaybackWorker", "Folder loaded but backend unavailable; skipping autoplay");
+                Logger::warn("PlaybackWorker", "Folder loaded but GStreamer playback is unavailable; skipping autoplay");
                 emitBackendUnavailableErrorOnce();
                 emit trackChangedWithContext(fileManager->getCurrentTrack(),
                                              fileManager->getCurrentTrackPosition(),
@@ -268,7 +268,7 @@ private:
     void onFileLoaded() {
         if (stagedTrackFd >= 0) {
             Logger::info("PlaybackWorker",
-                         QString("Releasing worker RAM-buffer handle after mpv loaded track: %1")
+                         QString("Releasing worker RAM-buffer handle after GStreamer loaded track: %1")
                              .arg(stagedTrackSourcePath));
         }
         releaseStagedTrack();
@@ -285,7 +285,7 @@ private:
 
             if (backendUnavailableError) {
                 releaseStagedTrack();
-                Logger::error("PlaybackWorker", QString("Playback backend unavailable: %1").arg(rawErrorMsg));
+                Logger::error("PlaybackWorker", QString("GStreamer playback initialization failed: %1").arg(rawErrorMsg));
                 emitBackendUnavailableErrorOnce();
                 return;
             }

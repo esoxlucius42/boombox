@@ -58,7 +58,6 @@ apt install -y \
     gstreamer1.0-plugins-base \
     gstreamer1.0-plugins-good \
     gstreamer1.0-libav \
-    libmpv-dev \
     desktop-file-utils
 
 # Warn if the Qt6 MOC tool cannot be found anywhere; it is required for AUTOMOC.
@@ -77,8 +76,7 @@ if [[ -f "${REPO_ROOT}/build/CMakeCache.txt" ]]; then
     rm -rf "${REPO_ROOT}/build"
 fi
 run_as_build_user cmake -S "${REPO_ROOT}" -B "${REPO_ROOT}/build" \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DBOOMBOX_AUDIO_BACKEND=auto
+    -DCMAKE_BUILD_TYPE=Release
 
 echo "[3/6] Building boombox..."
 # Limit parallel jobs to avoid out-of-memory failures on Raspberry Pi.
