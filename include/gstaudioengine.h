@@ -2,7 +2,9 @@
 
 #include <chrono>
 #include <functional>
+#include <mutex>
 #include <memory>
+#include <optional>
 #include <string>
 
 #include <gst/gst.h>
@@ -12,8 +14,6 @@
 
 class GstAudioEngine final : public AudioEngine {
 public:
-    using SpectrumCallback = std::function<void(const SpectrumLevels&)>;
-
     GstAudioEngine();
     ~GstAudioEngine() override;
 
@@ -39,7 +39,8 @@ public:
     void setOnTrackFinished(TrackFinishedCallback callback) override;
     void setOnFileLoaded(FileLoadedCallback callback) override;
     void setOnError(ErrorCallback callback) override;
-    void setOnSpectrumLevels(SpectrumCallback callback);
+    std::optional<SpectrumLevels> takeLatestSpectrumLevels();
+    void clearSpectrumLevels();
     void processEvents() override;
 
 private:
@@ -54,8 +55,7 @@ private:
     void logPlaybackSnapshot(const char* reason) const;
     void signalFileLoadedIfReady(GstState newState);
     void resetPlaybackProgressTracking();
-    void clearSpectrumLevels();
-    void emitSpectrumLevels(const SpectrumLevels& levels);
+    void storeSpectrumLevels(const SpectrumLevels& levels);
     bool setupAudioSinkBin();
     static GstFlowReturn handleAnalyzerNewSample(GstElement* sink, gpointer userData);
     GstFlowReturn onAnalyzerNewSample(GstElement* sink);
@@ -69,8 +69,10 @@ private:
     TrackFinishedCallback mOnTrackFinished;
     FileLoadedCallback mOnFileLoaded;
     ErrorCallback mOnError;
-    SpectrumCallback mOnSpectrumLevels;
     std::unique_ptr<AnalyzerState> mAnalyzerState;
+    std::mutex mSpectrumMutex;
+    SpectrumLevels mLatestSpectrumLevels{};
+    bool mHasPendingSpectrumLevels = false;
     bool mFileLoadedSignaled = false;
     bool mPlaybackStallLogged = false;
     bool mHasLastPlaybackPosition = false;

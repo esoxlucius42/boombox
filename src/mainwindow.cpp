@@ -16,6 +16,7 @@
 
 namespace {
 constexpr bool kLivePlaybackUiUpdatesEnabled = true;
+constexpr int kSpectrumFrameIntervalMs = 25;
 }
 
 MainWindow::MainWindow(PlaybackController *controller, bool fullscreen, QWidget *parent)
@@ -81,7 +82,7 @@ void MainWindow::setupUI()
     spectrumWidget = new SpectrumWidget(this);
     spectrumWidget->setObjectName("spectrumWidget");
     spectrumWidget->setMinimumHeight(88);
-    spectrumWidget->setMaximumHeight(96);
+    spectrumWidget->setMaximumHeight(88);
     leftLayout->addWidget(spectrumWidget);
     
     // Pane 2: Control Buttons (300px)
@@ -113,7 +114,7 @@ void MainWindow::setupUI()
     seekBarWidget->setTotalTime(0);
     seekBarWidget->setDuration(0);
     seekBarWidget->enableSeeking(false);
-    spectrumWidget->setLevels(SpectrumLevels{});
+    spectrumWidget->setFrame(QImage());
 }
 
 void MainWindow::connectSignals()
@@ -140,9 +141,6 @@ void MainWindow::connectSignals()
     connect(playbackController, &PlaybackController::playbackError,
             this, &MainWindow::onPlaybackError);
 
-    connect(playbackController, &PlaybackController::spectrumLevelsChanged,
-            spectrumWidget, &SpectrumWidget::setLevels);
-    
     // Connect play/pause button
     connect(controlsWidget, &ControlsWidget::playPauseClicked,
             this, &MainWindow::onPlayPauseClicked);
@@ -157,6 +155,11 @@ void MainWindow::connectSignals()
 
     // UI timer for live playback position updates
     if (kLivePlaybackUiUpdatesEnabled) {
+        spectrumFrameTimer = new QTimer(this);
+        spectrumFrameTimer->setInterval(kSpectrumFrameIntervalMs);
+        connect(spectrumFrameTimer, &QTimer::timeout, this, &MainWindow::onSpectrumFrameTick);
+        spectrumFrameTimer->start();
+
         playbackUiTimer = new QTimer(this);
         playbackUiTimer->setInterval(250);
         connect(playbackUiTimer, &QTimer::timeout, this, &MainWindow::onPlaybackUiTick);
@@ -333,6 +336,18 @@ void MainWindow::onPlaybackUiTick()
 
     seekBarWidget->updatePosition(position);
     controlsWidget->setPlayButtonState(playbackController->isPlaying());
+}
+
+void MainWindow::onSpectrumFrameTick()
+{
+    if (!playbackController) {
+        return;
+    }
+
+    const QImage frame = playbackController->takeLatestSpectrumFrame();
+    if (!frame.isNull()) {
+        spectrumWidget->setFrame(frame);
+    }
 }
 
 void MainWindow::loadStylesheet()

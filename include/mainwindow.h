@@ -28,6 +28,7 @@ private slots:
     void onNextClicked();
     void onFullscreenClicked();
     void onSeekRequested(int positionSeconds);
+    void onSpectrumFrameTick();
     void onPlaybackUiTick();
 
 private:
@@ -42,6 +43,7 @@ private:
     AlbumArtWidget *albumArtWidget;
     PlaybackController *playbackController;
     QString currentTrackPath;
+    QTimer *spectrumFrameTimer = nullptr;
     QTimer *playbackUiTimer = nullptr;
 };
 

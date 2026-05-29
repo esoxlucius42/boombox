@@ -6,11 +6,17 @@
 
 #include <QFileInfo>
 #include <QFile>
+#include <QImage>
 #include <QMetaObject>
+#include <QPainter>
 #include <QThread>
 #include <QTimer>
+#include <QSize>
+#include <algorithm>
 #include <chrono>
+#include <cmath>
 #include <memory>
+#include <mutex>
 #include <random>
 #include <cerrno>
 #include <cstring>
@@ -19,13 +25,90 @@
 #include <sys/syscall.h>
 #include <unistd.h>
 
+struct SpectrumFrameBuffer {
+    mutable std::mutex mutex;
+    QImage frame;
+    QSize renderSize = QSize(320, 88);
+    bool dirty = false;
+};
+
 namespace {
 constexpr const char* kBackendUnavailableMessage =
     "GStreamer playback initialization failed. Check that the required GStreamer plugins are installed.";
 constexpr int kFixedVolumeLevel = 100;
 constexpr qint64 kRamBufferChunkSize = 1024 * 1024;
 constexpr int kPlaybackWorkerPollingIntervalMs = 250;
+constexpr int kSpectrumFrameIntervalMs = 25;
+constexpr int kSpectrumSegmentCount = 12;
+constexpr int kSpectrumOuterMargin = 6;
+constexpr int kSpectrumBarGap = 4;
+constexpr int kSpectrumBlockGap = 2;
+constexpr QSize kSpectrumFrameSize(320, 88);
 
+QColor spectrumSegmentColor(int blockIndex, int totalBlocks)
+{
+    const QColor lowColor(102, 206, 255);
+    const QColor highColor(255, 216, 114);
+    const qreal t = totalBlocks <= 1 ? 0.0 : static_cast<qreal>(blockIndex) / static_cast<qreal>(totalBlocks - 1);
+
+    return QColor::fromRgbF(lowColor.redF() + (highColor.redF() - lowColor.redF()) * t,
+                            lowColor.greenF() + (highColor.greenF() - lowColor.greenF()) * t,
+                            lowColor.blueF() + (highColor.blueF() - lowColor.blueF()) * t,
+                            1.0);
+}
+
+QImage renderSpectrumFrame(const SpectrumLevels& levels, const QSize& size)
+{
+    const QSize renderSize = size.isValid() ? size : kSpectrumFrameSize;
+    QImage frame(renderSize, QImage::Format_ARGB32_Premultiplied);
+    frame.fill(Qt::transparent);
+
+    QPainter painter(&frame);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+
+    const QRectF outerRect =
+        QRectF(frame.rect()).adjusted(kSpectrumOuterMargin, kSpectrumOuterMargin, -kSpectrumOuterMargin, -kSpectrumOuterMargin);
+    if (outerRect.isEmpty()) {
+        return frame;
+    }
+
+    painter.setPen(Qt::NoPen);
+    painter.setBrush(QColor(18, 18, 18, 110));
+    painter.drawRoundedRect(outerRect, 8.0, 8.0);
+
+    painter.setPen(QColor(255, 255, 255, 40));
+    painter.setBrush(Qt::NoBrush);
+    painter.drawRoundedRect(outerRect, 8.0, 8.0);
+
+    const QRectF contentRect = outerRect.adjusted(8.0, 6.0, -8.0, -6.0);
+    const qreal barWidth =
+        (contentRect.width() - static_cast<qreal>(SpectrumLevels::kBandCount - 1) * kSpectrumBarGap) /
+        static_cast<qreal>(SpectrumLevels::kBandCount);
+    const qreal blockHeight =
+        (contentRect.height() - static_cast<qreal>(kSpectrumSegmentCount - 1) * kSpectrumBlockGap) /
+        static_cast<qreal>(kSpectrumSegmentCount);
+
+    painter.setPen(Qt::NoPen);
+    for (int band = 0; band < SpectrumLevels::kBandCount; ++band) {
+        const qreal left = contentRect.left() + band * (barWidth + kSpectrumBarGap);
+        int activeBlocks = static_cast<int>(std::lround(levels.bands[band] * static_cast<float>(kSpectrumSegmentCount)));
+        if (levels.bands[band] > 0.04F && activeBlocks == 0) {
+            activeBlocks = 1;
+        }
+        activeBlocks = std::clamp(activeBlocks, 0, kSpectrumSegmentCount);
+
+        for (int block = 0; block < kSpectrumSegmentCount; ++block) {
+            const int reverseIndex = kSpectrumSegmentCount - 1 - block;
+            const qreal top = contentRect.top() + reverseIndex * (blockHeight + kSpectrumBlockGap);
+            const QRectF blockRect(left, top, std::max<qreal>(2.0, barWidth), std::max<qreal>(2.0, blockHeight));
+            const bool isActive = levels.active && block < activeBlocks;
+            painter.setBrush(isActive ? spectrumSegmentColor(block, kSpectrumSegmentCount) : QColor(255, 255, 255, 24));
+            painter.drawRoundedRect(blockRect, 1.4, 1.4);
+        }
+    }
+
+    return frame;
+}
 int createMemfdHandle(const QString& name) {
 #ifdef MFD_CLOEXEC
     const QByteArray utf8Name = name.toUtf8();
@@ -43,8 +126,9 @@ class PlaybackWorker : public QObject {
     Q_OBJECT
 
 public:
-    explicit PlaybackWorker(QObject* parent = nullptr)
-        : QObject(parent) {
+    explicit PlaybackWorker(std::shared_ptr<SpectrumFrameBuffer> spectrumFrameBuffer, QObject* parent = nullptr)
+        : QObject(parent)
+        , mSpectrumFrameBuffer(std::move(spectrumFrameBuffer)) {
     }
 
 public slots:
@@ -60,12 +144,7 @@ public slots:
 
             fileManager = std::make_unique<FileManager>();
             audioEngine = createAudioEngine();
-
-            if (auto* gstEngine = dynamic_cast<GstAudioEngine*>(audioEngine.get())) {
-                gstEngine->setOnSpectrumLevels([this](const SpectrumLevels& levels) {
-                    emit spectrumLevelsChanged(levels);
-                });
-            }
+            gstAudioEngine = dynamic_cast<GstAudioEngine*>(audioEngine.get());
 
             audioEngine->setOnTrackFinished([this]() {
                 onTrackFinished();
@@ -84,6 +163,11 @@ public slots:
             connect(audioEventTimer, &QTimer::timeout, this, &PlaybackWorker::onAudioEventTick);
             audioEventTimer->start();
 
+            spectrumFrameTimer = new QTimer(this);
+            spectrumFrameTimer->setInterval(kSpectrumFrameIntervalMs);
+            connect(spectrumFrameTimer, &QTimer::timeout, this, &PlaybackWorker::onSpectrumFrameTick);
+            spectrumFrameTimer->start();
+
             if (!isBackendAvailable()) {
                 Logger::error("PlaybackWorker", kBackendUnavailableMessage);
             } else {
@@ -96,6 +180,7 @@ public slots:
             emit playbackSnapshotUpdated(audioEngine->isPlaying(),
                                          audioEngine->getCurrentPosition(),
                                          audioEngine->getDuration());
+            writeSpectrumFrame(renderSpectrumFrame(SpectrumLevels{}, currentRenderSize()));
             Logger::info("PlaybackWorker", "Playback worker initialized on dedicated thread");
         } catch (const std::exception& e) {
             Logger::error("PlaybackWorker", QString("Exception in onThreadStarted: %1").arg(e.what()));
@@ -112,16 +197,22 @@ public slots:
             audioEventTimer->deleteLater();
             audioEventTimer = nullptr;
         }
+        if (spectrumFrameTimer) {
+            spectrumFrameTimer->stop();
+            spectrumFrameTimer->deleteLater();
+            spectrumFrameTimer = nullptr;
+        }
 
         if (audioEngine) {
             audioEngine->stop();
             audioEngine.reset();
         }
+        gstAudioEngine = nullptr;
 
         releaseStagedTrack();
         fileManager.reset();
         emit playbackSnapshotUpdated(false, 0.0, 0.0);
-        emit spectrumLevelsChanged(SpectrumLevels{});
+        writeSpectrumFrame(renderSpectrumFrame(SpectrumLevels{}, currentRenderSize()));
 
         if (QThread* thread = QThread::currentThread()) {
             thread->quit();
@@ -204,7 +295,9 @@ public slots:
             emit playbackSnapshotUpdated(audioEngine->isPlaying(),
                                          audioEngine->getCurrentPosition(),
                                          audioEngine->getDuration());
-            emit spectrumLevelsChanged(SpectrumLevels{});
+            if (gstAudioEngine) {
+                gstAudioEngine->clearSpectrumLevels();
+            }
         }
     }
 
@@ -227,6 +320,9 @@ public slots:
                 audioEngine->resume();
                 Logger::info("PlaybackWorker", "Playback resumed");
             } else {
+                if (gstAudioEngine) {
+                    gstAudioEngine->clearSpectrumLevels();
+                }
                 audioEngine->setVolume(kFixedVolumeLevel);
                 audioEngine->play(currentTrack.toStdString());
                 Logger::info("PlaybackWorker", QString("Playing: %1").arg(currentTrack));
@@ -248,6 +344,9 @@ public slots:
         }
 
         audioEngine->pause();
+        if (gstAudioEngine) {
+            gstAudioEngine->clearSpectrumLevels();
+        }
         Logger::info("PlaybackWorker", "Playback paused");
         emit playbackSnapshotUpdated(audioEngine->isPlaying(),
                                      audioEngine->getCurrentPosition(),
@@ -265,6 +364,19 @@ private slots:
         emit playbackSnapshotUpdated(nowPlaying,
                                      audioEngine->getCurrentPosition(),
                                      audioEngine->getDuration());
+    }
+
+    void onSpectrumFrameTick() {
+        if (!gstAudioEngine) {
+            return;
+        }
+
+        const auto levels = gstAudioEngine->takeLatestSpectrumLevels();
+        if (!levels) {
+            return;
+        }
+
+        writeSpectrumFrame(renderSpectrumFrame(*levels, currentRenderSize()));
     }
 
 private:
@@ -429,6 +541,27 @@ private:
         emit playbackError(kBackendUnavailableMessage);
     }
 
+    QSize currentRenderSize() const
+    {
+        if (!mSpectrumFrameBuffer) {
+            return kSpectrumFrameSize;
+        }
+
+        std::lock_guard<std::mutex> lock(mSpectrumFrameBuffer->mutex);
+        return mSpectrumFrameBuffer->renderSize;
+    }
+
+    void writeSpectrumFrame(QImage frame)
+    {
+        if (!mSpectrumFrameBuffer) {
+            return;
+        }
+
+        std::lock_guard<std::mutex> lock(mSpectrumFrameBuffer->mutex);
+        mSpectrumFrameBuffer->frame = std::move(frame);
+        mSpectrumFrameBuffer->dirty = true;
+    }
+
     int pickRandomTrack() {
         const int totalTracks = fileManager ? fileManager->getTrackCount() : 0;
         if (totalTracks <= 0) {
@@ -475,6 +608,9 @@ private:
                 return;
             }
 
+            if (gstAudioEngine) {
+                gstAudioEngine->clearSpectrumLevels();
+            }
             audioEngine->setVolume(kFixedVolumeLevel);
             audioEngine->play(playbackPath.toStdString());
 
@@ -510,7 +646,6 @@ signals:
     void trackMetadataLoaded(const AudioMetadata& meta);
     void playbackError(const QString& error);
     void playbackSnapshotUpdated(bool playing, double position, double duration);
-    void spectrumLevelsChanged(const SpectrumLevels& levels);
 
 private:
     std::unique_ptr<AudioEngine> audioEngine;
@@ -518,18 +653,21 @@ private:
     std::mt19937 randomGenerator;
     bool backendUnavailableErrorShown = false;
     QTimer* audioEventTimer = nullptr;
+    QTimer* spectrumFrameTimer = nullptr;
+    GstAudioEngine* gstAudioEngine = nullptr;
     int stagedTrackFd = -1;
     QString stagedTrackSourcePath;
     QString stagedTrackPlaybackPath;
+    std::shared_ptr<SpectrumFrameBuffer> mSpectrumFrameBuffer;
 };
 
 PlaybackController::PlaybackController(QObject *parent)
     : QObject(parent) {
     qRegisterMetaType<AudioMetadata>("AudioMetadata");
-    qRegisterMetaType<SpectrumLevels>("SpectrumLevels");
 
+    spectrumFrameBuffer = std::make_shared<SpectrumFrameBuffer>();
     workerThread = new QThread(this);
-    worker = new PlaybackWorker();
+    worker = new PlaybackWorker(spectrumFrameBuffer);
     worker->moveToThread(workerThread);
 
     connect(workerThread, &QThread::started, worker, &PlaybackWorker::onThreadStarted);
@@ -557,8 +695,6 @@ PlaybackController::PlaybackController(QObject *parent)
             this, &PlaybackController::onWorkerPlaybackError, Qt::QueuedConnection);
     connect(worker, &PlaybackWorker::playbackSnapshotUpdated,
             this, &PlaybackController::onWorkerPlaybackSnapshot, Qt::QueuedConnection);
-    connect(worker, &PlaybackWorker::spectrumLevelsChanged,
-            this, &PlaybackController::onWorkerSpectrumLevelsChanged, Qt::QueuedConnection);
 
     workerThread->start();
     Logger::info("PlaybackController", "PlaybackController initialized with dedicated playback thread");
@@ -614,6 +750,21 @@ int PlaybackController::getTrackCount() const {
     return trackCount;
 }
 
+QImage PlaybackController::takeLatestSpectrumFrame() const
+{
+    if (!spectrumFrameBuffer) {
+        return {};
+    }
+
+    std::lock_guard<std::mutex> lock(spectrumFrameBuffer->mutex);
+    if (!spectrumFrameBuffer->dirty) {
+        return {};
+    }
+
+    spectrumFrameBuffer->dirty = false;
+    return spectrumFrameBuffer->frame;
+}
+
 void PlaybackController::shutdown() {
     if (shutdownRequested) {
         return;
@@ -653,10 +804,6 @@ void PlaybackController::onWorkerPlaybackSnapshot(bool nowPlaying, double positi
     playing = nowPlaying;
     currentPosition = position;
     duration = trackDuration;
-}
-
-void PlaybackController::onWorkerSpectrumLevelsChanged(const SpectrumLevels& levels) {
-    emit spectrumLevelsChanged(levels);
 }
 
 void PlaybackController::onWorkerThreadFinished() {

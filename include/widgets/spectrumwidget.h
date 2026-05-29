@@ -1,8 +1,7 @@
 #pragma once
 
+#include <QImage>
 #include <QWidget>
-
-#include "spectrumlevels.h"
 
 class SpectrumWidget : public QWidget {
 public:
@@ -11,11 +10,11 @@ public:
     QSize minimumSizeHint() const override;
     QSize sizeHint() const override;
 
-    void setLevels(const SpectrumLevels &levels);
+    void setFrame(const QImage& frame);
 
 protected:
     void paintEvent(QPaintEvent *event) override;
 
 private:
-    SpectrumLevels mLevels;
+    QImage mFrame;
 };

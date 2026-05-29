@@ -1,13 +1,18 @@
 #ifndef PLAYBACKCONTROLLER_H
 #define PLAYBACKCONTROLLER_H
 
+#include <memory>
+#include <mutex>
+
+#include <QImage>
 #include <QObject>
 #include <QString>
+
 #include "filemanager.h"
-#include "spectrumlevels.h"
 
 class QThread;
 class PlaybackWorker;
+struct SpectrumFrameBuffer;
 
 /**
  * @brief PlaybackController - Main-thread bridge for playback state and commands
@@ -36,13 +41,13 @@ public:
     double getDuration() const;
     int getCurrentTrackPosition() const;
     int getTrackCount() const;
+    QImage takeLatestSpectrumFrame() const;
     void shutdown();
 
 signals:
     void trackChanged(const QString& filePath);
     void trackMetadataLoaded(const AudioMetadata& meta);
     void playbackError(const QString& error);
-    void spectrumLevelsChanged(const SpectrumLevels& levels);
 
     void requestLoadFolder(const QString& folderPath);
     void requestPlayNext();
@@ -56,7 +61,6 @@ private slots:
     void onWorkerTrackMetadataLoaded(const AudioMetadata& meta);
     void onWorkerPlaybackError(const QString& error);
     void onWorkerPlaybackSnapshot(bool playing, double position, double duration);
-    void onWorkerSpectrumLevelsChanged(const SpectrumLevels& levels);
     void onWorkerThreadFinished();
 
 private:
@@ -68,6 +72,7 @@ private:
     double duration = 0.0;
     int currentTrackPosition = -1;
     int trackCount = 0;
+    std::shared_ptr<SpectrumFrameBuffer> spectrumFrameBuffer;
 };
 
 #endif // PLAYBACKCONTROLLER_H
