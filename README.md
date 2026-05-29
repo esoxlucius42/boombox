@@ -1,19 +1,19 @@
 # Boombox
 
-![Boombox app screenshot](resources/appshot.png)
+![Boombox app screenshot showing the current touchscreen playback UI](resources/appshot.png)
 
-Boombox is a Qt6 + C++ audio player designed for Raspberry Pi (targeting Pi 5 touchscreen setups).
+Boombox is a Qt6 + C++ audio player designed for Raspberry Pi, especially 800x480 touchscreen setups.
 
-## What the app does
+## Features
 
-- Plays audio files from a selected folder (recursive scan)
+- Plays audio files from a selected folder with recursive folder scanning
 - Uses random track selection for playback progression
-- Provides a simple touchscreen-first UI:
-  - **Play/Pause**
-  - **Next**
-  - **Browse**
-  - Seek bar
-- Persists last selected folder in `~/.boombox/config.json`
+- Displays track title, artist, album, and queue position
+- Extracts and shows embedded album art when available
+- Includes a live seek bar with elapsed and total time
+- Shows a stereo spectrum visualizer during playback
+- Provides large touchscreen-friendly controls for **Play/Pause**, **Next**, **Browse**, and in-app **Fullscreen**
+- Remembers the last selected folder in `~/.boombox/config.json` and auto-loads it on startup
 - Writes logs to `~/boombox.log`
 
 ## Supported audio file extensions

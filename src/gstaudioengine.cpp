@@ -13,13 +13,21 @@
 namespace {
 constexpr auto kDiagnosticSampleInterval = std::chrono::milliseconds(1000);
 constexpr auto kPlaybackStallThreshold = std::chrono::milliseconds(2000);
-constexpr auto kSpectrumRefreshInterval = std::chrono::milliseconds(50);
+constexpr auto kSpectrumAnalysisWindow = std::chrono::milliseconds(50);
+constexpr auto kSpectrumRefreshInterval = std::chrono::milliseconds(25);
 constexpr auto kPlaybackQueueLeadTime = std::chrono::milliseconds(500);
 constexpr int kAnalyzerSampleRate = 44100;
 constexpr std::array<double, SpectrumLevels::kBandCount> kSpectrumBandCenters = {31.0, 62.0, 125.0, 200.0, 250.0, 400.0, 500.0};
 constexpr double kSpectrumDbFloor = 66.0;
 constexpr double kSpectrumDbRange = 38.0;
 constexpr double kSpectrumResponseGamma = 0.72;
+constexpr float kSpectrumAverageBlend = 0.18F;
+constexpr float kSpectrumTargetFill = 0.92F;
+constexpr float kSpectrumAdaptiveFloor = 0.24F;
+constexpr float kSpectrumAdaptiveAttack = 0.22F;
+constexpr float kSpectrumAdaptiveRelease = 0.08F;
+constexpr float kSpectrumMinAdaptiveGain = 0.85F;
+constexpr float kSpectrumMaxAdaptiveGain = 2.75F;
 
 void logMessage(const std::string& level, const std::string& message) {
     std::cerr << "[AudioEngine " << level << "] " << message << std::endl;
@@ -79,15 +87,20 @@ void setUIntPropertyIfPresent(GstElement* element, const char* propertyName, gui
 
 struct GstAudioEngine::AnalyzerState {
     double sampleRate = kAnalyzerSampleRate;
-    std::size_t framesPerSnapshot =
+    std::size_t windowFrames =
+        static_cast<std::size_t>(kAnalyzerSampleRate * kSpectrumAnalysisWindow.count() / 1000);
+    std::size_t hopFrames =
         static_cast<std::size_t>(kAnalyzerSampleRate * kSpectrumRefreshInterval.count() / 1000);
     std::array<std::vector<float>, SpectrumLevels::kChannelCount> channelBuffers{};
     std::array<std::array<float, SpectrumLevels::kBandCount>, SpectrumLevels::kChannelCount> smoothedLevels{};
+    float adaptiveReference = kSpectrumTargetFill;
 
     void reset()
     {
         sampleRate = kAnalyzerSampleRate;
-        framesPerSnapshot = static_cast<std::size_t>(kAnalyzerSampleRate * kSpectrumRefreshInterval.count() / 1000);
+        windowFrames = static_cast<std::size_t>(kAnalyzerSampleRate * kSpectrumAnalysisWindow.count() / 1000);
+        hopFrames = static_cast<std::size_t>(kAnalyzerSampleRate * kSpectrumRefreshInterval.count() / 1000);
+        adaptiveReference = kSpectrumTargetFill;
         for (auto& buffer : channelBuffers) {
             buffer.clear();
         }
@@ -104,9 +117,13 @@ struct GstAudioEngine::AnalyzerState {
         }
 
         sampleRate = normalizedRate;
-        framesPerSnapshot = std::max<std::size_t>(
+        windowFrames = std::max<std::size_t>(
             512,
+            static_cast<std::size_t>(sampleRate * kSpectrumAnalysisWindow.count() / 1000.0));
+        hopFrames = std::max<std::size_t>(
+            256,
             static_cast<std::size_t>(sampleRate * kSpectrumRefreshInterval.count() / 1000.0));
+        adaptiveReference = kSpectrumTargetFill;
         for (auto& buffer : channelBuffers) {
             buffer.clear();
         }
@@ -127,10 +144,10 @@ struct GstAudioEngine::AnalyzerState {
         }
 
         std::optional<SpectrumLevels> latest;
-        while (channelBuffers[0].size() >= framesPerSnapshot && channelBuffers[1].size() >= framesPerSnapshot) {
+        while (channelBuffers[0].size() >= windowFrames && channelBuffers[1].size() >= windowFrames) {
             latest = analyzeWindow();
             for (auto& buffer : channelBuffers) {
-                buffer.erase(buffer.begin(), buffer.begin() + static_cast<std::ptrdiff_t>(framesPerSnapshot));
+                buffer.erase(buffer.begin(), buffer.begin() + static_cast<std::ptrdiff_t>(hopFrames));
             }
         }
 
@@ -167,29 +184,42 @@ private:
     {
         SpectrumLevels levels;
         levels.active = true;
+        float strongestBand = 0.0F;
 
         for (int channel = 0; channel < SpectrumLevels::kChannelCount; ++channel) {
             const float* data = channelBuffers[channel].data();
             for (int band = 0; band < SpectrumLevels::kBandCount; ++band) {
                 const double center = kSpectrumBandCenters[band];
-                const double lower = goertzelMagnitude(data, framesPerSnapshot, center * 0.85, sampleRate);
-                const double middle = goertzelMagnitude(data, framesPerSnapshot, center, sampleRate);
-                const double upper = goertzelMagnitude(data, framesPerSnapshot, center * 1.15, sampleRate);
+                const double lower = goertzelMagnitude(data, windowFrames, center * 0.85, sampleRate);
+                const double middle = goertzelMagnitude(data, windowFrames, center, sampleRate);
+                const double upper = goertzelMagnitude(data, windowFrames, center * 1.15, sampleRate);
                 const double magnitude = (lower + middle + upper) / 3.0;
                 const double db = 20.0 * std::log10(magnitude + 1.0e-7);
                 const double normalized = std::clamp((db + kSpectrumDbFloor) / kSpectrumDbRange, 0.0, 1.0);
                 const float target = static_cast<float>(std::pow(normalized, kSpectrumResponseGamma));
                 float& smoothed = smoothedLevels[channel][band];
-                smoothed = target >= smoothed ? (smoothed * 0.35F + target * 0.65F)
-                                              : (smoothed * 0.82F + target * 0.18F);
+                smoothed += (target - smoothed) * kSpectrumAverageBlend;
+                strongestBand = std::max(strongestBand, smoothed);
+            }
+        }
 
+        const float targetReference = std::max(strongestBand, kSpectrumAdaptiveFloor);
+        const float referenceBlend = targetReference >= adaptiveReference ? kSpectrumAdaptiveAttack : kSpectrumAdaptiveRelease;
+        adaptiveReference += (targetReference - adaptiveReference) * referenceBlend;
+        const float adaptiveGain = std::clamp(
+            kSpectrumTargetFill / std::max(adaptiveReference, 0.001F),
+            kSpectrumMinAdaptiveGain,
+            kSpectrumMaxAdaptiveGain);
+
+        for (int channel = 0; channel < SpectrumLevels::kChannelCount; ++channel) {
+            for (int band = 0; band < SpectrumLevels::kBandCount; ++band) {
+                const float displayLevel = std::clamp(smoothedLevels[channel][band] * adaptiveGain, 0.0F, 1.0F);
                 int blocks =
-                    static_cast<int>(std::lround(smoothed * static_cast<float>(SpectrumLevels::kBlockCount)));
-                if (smoothed > 0.08F && blocks == 0) {
+                    static_cast<int>(std::lround(displayLevel * static_cast<float>(SpectrumLevels::kBlockCount)));
+                if (displayLevel > 0.08F && blocks == 0) {
                     blocks = 1;
                 }
-                levels.channels[channel][band] =
-                    std::clamp(blocks, 0, SpectrumLevels::kBlockCount);
+                levels.channels[channel][band] = std::clamp(blocks, 0, SpectrumLevels::kBlockCount);
             }
         }
 
