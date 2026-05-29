@@ -7,6 +7,7 @@
 #include "filemanager.h"
 #include "widgets/trackinfo.h"
 #include "widgets/seekbar.h"
+#include "widgets/spectrumwidget.h"
 #include "widgets/controls.h"
 #include "widgets/albumart.h"
 
@@ -36,6 +37,7 @@ private:
 
     TrackInfoWidget *trackInfoWidget;
     SeekBarWidget *seekBarWidget;
+    SpectrumWidget *spectrumWidget;
     ControlsWidget *controlsWidget;
     AlbumArtWidget *albumArtWidget;
     PlaybackController *playbackController;

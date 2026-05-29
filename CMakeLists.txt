@@ -39,6 +39,7 @@ set(SOURCES
     src/logger.cpp
     src/statemanager.cpp
     src/widgets/trackinfo.cpp
+    src/widgets/spectrumwidget.cpp
     src/widgets/seekbar.cpp
     src/widgets/controls.cpp
     src/widgets/albumart.cpp

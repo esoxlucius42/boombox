@@ -77,6 +77,12 @@ void MainWindow::setupUI()
     seekBarWidget->setMinimumHeight(56);
     seekBarWidget->setMaximumHeight(72);
     leftLayout->addWidget(seekBarWidget);
+
+    spectrumWidget = new SpectrumWidget(this);
+    spectrumWidget->setObjectName("spectrumWidget");
+    spectrumWidget->setMinimumHeight(88);
+    spectrumWidget->setMaximumHeight(96);
+    leftLayout->addWidget(spectrumWidget);
     
     // Pane 2: Control Buttons (300px)
     controlsWidget = new ControlsWidget(this);
@@ -107,6 +113,7 @@ void MainWindow::setupUI()
     seekBarWidget->setTotalTime(0);
     seekBarWidget->setDuration(0);
     seekBarWidget->enableSeeking(false);
+    spectrumWidget->setLevels(SpectrumLevels{});
 }
 
 void MainWindow::connectSignals()
@@ -132,6 +139,9 @@ void MainWindow::connectSignals()
     // Connect playback error
     connect(playbackController, &PlaybackController::playbackError,
             this, &MainWindow::onPlaybackError);
+
+    connect(playbackController, &PlaybackController::spectrumLevelsChanged,
+            spectrumWidget, &SpectrumWidget::setLevels);
     
     // Connect play/pause button
     connect(controlsWidget, &ControlsWidget::playPauseClicked,

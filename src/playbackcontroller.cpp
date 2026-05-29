@@ -1,6 +1,7 @@
 #include "playbackcontroller.h"
 
 #include "audioengine.h"
+#include "gstaudioengine.h"
 #include "logger.h"
 
 #include <QFileInfo>
@@ -60,6 +61,12 @@ public slots:
             fileManager = std::make_unique<FileManager>();
             audioEngine = createAudioEngine();
 
+            if (auto* gstEngine = dynamic_cast<GstAudioEngine*>(audioEngine.get())) {
+                gstEngine->setOnSpectrumLevels([this](const SpectrumLevels& levels) {
+                    emit spectrumLevelsChanged(levels);
+                });
+            }
+
             audioEngine->setOnTrackFinished([this]() {
                 onTrackFinished();
             });
@@ -114,6 +121,7 @@ public slots:
         releaseStagedTrack();
         fileManager.reset();
         emit playbackSnapshotUpdated(false, 0.0, 0.0);
+        emit spectrumLevelsChanged(SpectrumLevels{});
 
         if (QThread* thread = QThread::currentThread()) {
             thread->quit();
@@ -196,6 +204,7 @@ public slots:
             emit playbackSnapshotUpdated(audioEngine->isPlaying(),
                                          audioEngine->getCurrentPosition(),
                                          audioEngine->getDuration());
+            emit spectrumLevelsChanged(SpectrumLevels{});
         }
     }
 
@@ -501,6 +510,7 @@ signals:
     void trackMetadataLoaded(const AudioMetadata& meta);
     void playbackError(const QString& error);
     void playbackSnapshotUpdated(bool playing, double position, double duration);
+    void spectrumLevelsChanged(const SpectrumLevels& levels);
 
 private:
     std::unique_ptr<AudioEngine> audioEngine;
@@ -516,6 +526,7 @@ private:
 PlaybackController::PlaybackController(QObject *parent)
     : QObject(parent) {
     qRegisterMetaType<AudioMetadata>("AudioMetadata");
+    qRegisterMetaType<SpectrumLevels>("SpectrumLevels");
 
     workerThread = new QThread(this);
     worker = new PlaybackWorker();
@@ -546,6 +557,8 @@ PlaybackController::PlaybackController(QObject *parent)
             this, &PlaybackController::onWorkerPlaybackError, Qt::QueuedConnection);
     connect(worker, &PlaybackWorker::playbackSnapshotUpdated,
             this, &PlaybackController::onWorkerPlaybackSnapshot, Qt::QueuedConnection);
+    connect(worker, &PlaybackWorker::spectrumLevelsChanged,
+            this, &PlaybackController::onWorkerSpectrumLevelsChanged, Qt::QueuedConnection);
 
     workerThread->start();
     Logger::info("PlaybackController", "PlaybackController initialized with dedicated playback thread");
@@ -640,6 +653,10 @@ void PlaybackController::onWorkerPlaybackSnapshot(bool nowPlaying, double positi
     playing = nowPlaying;
     currentPosition = position;
     duration = trackDuration;
+}
+
+void PlaybackController::onWorkerSpectrumLevelsChanged(const SpectrumLevels& levels) {
+    emit spectrumLevelsChanged(levels);
 }
 
 void PlaybackController::onWorkerThreadFinished() {

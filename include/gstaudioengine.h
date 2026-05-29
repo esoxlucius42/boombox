@@ -1,14 +1,19 @@
 #pragma once
 
 #include <chrono>
+#include <functional>
+#include <memory>
 #include <string>
 
 #include <gst/gst.h>
 
 #include "audioengine.h"
+#include "spectrumlevels.h"
 
 class GstAudioEngine final : public AudioEngine {
 public:
+    using SpectrumCallback = std::function<void(const SpectrumLevels&)>;
+
     GstAudioEngine();
     ~GstAudioEngine() override;
 
@@ -34,9 +39,12 @@ public:
     void setOnTrackFinished(TrackFinishedCallback callback) override;
     void setOnFileLoaded(FileLoadedCallback callback) override;
     void setOnError(ErrorCallback callback) override;
+    void setOnSpectrumLevels(SpectrumCallback callback);
     void processEvents() override;
 
 private:
+    struct AnalyzerState;
+
     void initializeGStreamer();
     void cleanupGStreamer();
     void resetForNewTrack();
@@ -46,14 +54,23 @@ private:
     void logPlaybackSnapshot(const char* reason) const;
     void signalFileLoadedIfReady(GstState newState);
     void resetPlaybackProgressTracking();
+    void clearSpectrumLevels();
+    void emitSpectrumLevels(const SpectrumLevels& levels);
+    bool setupAudioSinkBin();
+    static GstFlowReturn handleAnalyzerNewSample(GstElement* sink, gpointer userData);
+    GstFlowReturn onAnalyzerNewSample(GstElement* sink);
     static ErrorCode mapGstError(const GError* error);
 
     GstElement* mPlaybin = nullptr;
     GstBus* mBus = nullptr;
+    GstElement* mAudioSinkBin = nullptr;
+    GstElement* mAnalyzerSink = nullptr;
     PlaybackState mState = PlaybackState::Stopped;
     TrackFinishedCallback mOnTrackFinished;
     FileLoadedCallback mOnFileLoaded;
     ErrorCallback mOnError;
+    SpectrumCallback mOnSpectrumLevels;
+    std::unique_ptr<AnalyzerState> mAnalyzerState;
     bool mFileLoadedSignaled = false;
     bool mPlaybackStallLogged = false;
     bool mHasLastPlaybackPosition = false;

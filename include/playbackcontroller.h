@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QString>
 #include "filemanager.h"
+#include "spectrumlevels.h"
 
 class QThread;
 class PlaybackWorker;
@@ -41,6 +42,7 @@ signals:
     void trackChanged(const QString& filePath);
     void trackMetadataLoaded(const AudioMetadata& meta);
     void playbackError(const QString& error);
+    void spectrumLevelsChanged(const SpectrumLevels& levels);
 
     void requestLoadFolder(const QString& folderPath);
     void requestPlayNext();
@@ -54,6 +56,7 @@ private slots:
     void onWorkerTrackMetadataLoaded(const AudioMetadata& meta);
     void onWorkerPlaybackError(const QString& error);
     void onWorkerPlaybackSnapshot(bool playing, double position, double duration);
+    void onWorkerSpectrumLevelsChanged(const SpectrumLevels& levels);
     void onWorkerThreadFinished();
 
 private:
